@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1519</title>
+    <title>Nodewords 1523</title>
     <script>
     var guessed = new Array();
     var word = "";
@@ -79,6 +79,7 @@ window.onerror = function(msg, url, line, col, error) {
 				var iters = 0;
 				alert("The word contains "+count+" "+value+"'s");
 				while(iters <= indexarray.length){
+					alert(iters+" "+indexarray[iters]+" "+value)
 					shown = setCharAt(shown, indexarray[iters], value);
 					document.getElementById("shownWord").innerHTML = shown;
 					iters += 1;
