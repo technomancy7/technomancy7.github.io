@@ -62,21 +62,21 @@ window.onerror = function(msg, url, line, col, error) {
 			definition = ""
 			guesses = 0
 			lives = 15
-			alert("Please wait, grabbing a word...")
+			document.getElementById("shownWord").InnerHTML = "Please wait, grabbing a word..."
 			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'))
 			var new_obj = pickRandomProperty(data)
 			
 			definition = data[new_obj]
 			word = new_obj.toLowerCase()
 			alert(word+" - "+definition)
-			document.getElementById("shownWord").InnerHTML = "*"*word.length
+			document.getElementById("shownWord").InnerHTML = "*".repeat(word.length)
 		}
 	}
 		
 	</script>
   </head>
   <body>
-    <label id="shownWord">Press new game.</label>
+    <label id="shownWord">Press new game.</label><br>
 	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="calculate()">Send Guess</button>
 	<br>
   </body>
