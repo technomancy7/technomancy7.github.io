@@ -27,7 +27,7 @@ window.onerror = function(msg, url, line, col, error) {
     var word = "";
     var shown = "";
     var guesses = 0;
-    var lives = 5;
+    var lives = 10;
     var definition = "";
  
     $(document).keypress(function (e) {
@@ -207,7 +207,7 @@ window.onerror = function(msg, url, line, col, error) {
 			shown = "";
 			definition = "";
 			guesses = 0;
-			lives = 5;
+			lives = 10;
 			document.getElementById("guesses").innerHTML = "None";
 			
 			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'));
