@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1619</title>
+    <title>Nodewords</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -187,11 +187,14 @@ window.onerror = function(msg, url, line, col, error) {
 	}
 	
 	function appinfo(){
-	alert("Nodewords v0.12\nA simple JS word game.\nKey shortcuts: Enter > submits guess, Minus > new game.\n\nBy Kaiser.")
+		alert("Nodewords v0.12\nA simple JS word game.\nKey shortcuts: Enter > submits guess, Minus > new game.\n\nBy Kaiser.")
 	}
+	
 	function showdef(){
-		if (word != ""){
-			alert(word+" - "+definition)
+		if(confirm("Note: Some definitions may give away the answer.")){
+			if (word != ""){
+				alert(definition)
+			}
 		}
 	}
 	function newgame(){
@@ -210,7 +213,7 @@ window.onerror = function(msg, url, line, col, error) {
 			
 			definition = data[new_obj];
 			word = new_obj.toLowerCase();
-			alert(word+" - "+definition);
+			//alert(word+" - "+definition);
 			shown = "*".repeat(word.length)
 			//shown = repl_non_chars(word)
 			document.getElementById("shownWord").innerHTML = shown;
