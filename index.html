@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1546</title>
+    <title>Nodewords 1550</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -34,7 +34,7 @@ window.onerror = function(msg, url, line, col, error) {
     if (e.which == 13 || e.keycode == 13 || e.code == "Enter" || e.key == "Enter") {
         sendguess()
     }
-    if (e.which == 9 || e.keycode == 9 || e.code == "Tab" || e.key == "Tab") {
+    if (e.which == 113 || e.keycode == 113 || e.code == "F2" || e.key == "F2") {
         newgame()
     }
 	});
@@ -66,6 +66,36 @@ window.onerror = function(msg, url, line, col, error) {
 			}
 		}
 		return result;
+	}
+
+	function repl_non_chars(source) {
+		if(source.indexOf(" ") > -1){
+			var indexarray = indexes(source, " ")
+			var count = source.split(" ").length-1;
+			var iters = 0;
+			alert("The source contains "+count+" space's");
+			mods = source
+			while(iters < indexarray.length){
+				mods = setCharAt(source, indexarray[iters], " ");
+				iters += 1;
+			source = mods
+			document.getElementById("shownWord").innerHTML = mods;
+			}
+		}
+		if(source.indexOf("-") > -1){
+			var indexarray = indexes(source, "-")
+			var count = source.split(" ").length-1;
+			var iters = 0;
+			alert("The source contains "+count+" dash's");
+			mods = shown
+			while(iters < indexarray.length){
+				mods = setCharAt(shown, indexarray[iters], "-");
+				iters += 1;
+			source = mods
+			document.getElementById("shownWord").innerHTML = mods;
+			}
+		}
+		return source
 	}
 			
 	function sendguess(){
