@@ -45,7 +45,7 @@ window.onerror = function(msg, url, line, col, error) {
 		if (value == word){
 			alert("Win!");
 		}else{
-			if (guesses.includes(value)){
+			if (guessed.includes(value)){
 				alert("You already guessed that.")
 			}else{
 				alert("Incorrect guess.");
