@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1459</title>
+    <title>Nodewords 1508</title>
     <script>
     var guessed = new Array();
     var word = "";
@@ -62,10 +62,13 @@ window.onerror = function(msg, url, line, col, error) {
 			if (guessed.includes(value) || shown.includes(value)){
 				alert("You already guessed that.");
 			}else{
-				while(word.indexOf(value) > -1){
-					alert("The word contains "+value);
-					shown = setCharAt(shown, word.indexOf(value), value)
+				var count = word.split(value).length-1);
+				var iters = 0
+				alert("The word contains "+count+" "+value);
+				while(iters < count){
+					shown = setCharAt(shown, word.indexOf(value), value);
 					document.getElementById("shownWord").innerHTML = shown;
+					iters += 1
 				}
 			}
 		}else{
