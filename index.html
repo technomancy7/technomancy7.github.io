@@ -34,6 +34,9 @@ window.onerror = function(msg, url, line, col, error) {
     if (e.which == 13) {
         sendguess()
     }
+    if (e.which == 8) {
+        newgame()
+    }
 	});
 	
     function loadFile(filePath) {
@@ -122,6 +125,7 @@ window.onerror = function(msg, url, line, col, error) {
 			}
 		}
 	}
+	
 	function pickRandomProperty(obj) {
 		var result;
 		var count = 0;
