@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1614</title>
+    <title>Nodewords 1619</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -168,6 +168,7 @@ window.onerror = function(msg, url, line, col, error) {
 				}
 			}
 		}
+		document.getElementById("wentry").focus()
 	}
 	
 	function pickRandomProperty(obj) {
@@ -200,10 +201,12 @@ window.onerror = function(msg, url, line, col, error) {
 			//shown = repl_non_chars(word)
 			document.getElementById("shownWord").innerHTML = shown;
 			document.getElementById("shownWord").style.color = "black"
+			document.getElementById("shownWord").style.size = 20
 			document.getElementById("lives").innerHTML = lives;
 			document.getElementById("lives").style.color = "green"
 			sendguess(force_value=" ")
 			sendguess(force_value="-")
+			document.getElementById("wentry").focus()
 		}
 	}
 		
