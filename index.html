@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1420</title>
+    <title>Nodewords 1424</title>
     <script>
     var guessed = new Array();
     var word = "";
@@ -47,7 +47,7 @@ window.onerror = function(msg, url, line, col, error) {
 		}else{
 			alert("Fail");
 			guessed.push(value);
-			document.getElementById("guesses").innerHTML = '<br>'.join(guesses);
+			document.getElementById("guesses").innerHTML = guessed.join("<br>");
 		}
 	}
 	function pickRandomProperty(obj) {
