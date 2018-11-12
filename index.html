@@ -40,9 +40,12 @@ window.onerror = function(msg, url, line, col, error) {
 		return result;
 	}
 			
-	function calculate(){
+	function sendguess(){
 		value = document.getElementById("wentry").value;
-		alert(eval(value));
+		if (value == word){
+		alert("Win!")
+		}else{
+		alert("Fail")}
 	}
 	function pickRandomProperty(obj) {
 		var result;
