@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1454+</title>
+    <title>Nodewords 1459</title>
     <script>
     var guessed = new Array();
     var word = "";
@@ -64,6 +64,7 @@ window.onerror = function(msg, url, line, col, error) {
 			}else{
 				alert("The word contains "+value);
 				shown = setCharAt(shown, word.indexOf(value), value)
+				document.getElementById("shownWord").innerHTML = shown;
 			}
 		}else{
 			if (guessed.includes(value)){
