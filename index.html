@@ -22,7 +22,7 @@ window.onerror = function(msg, url, line, col, error) {
 </script>
     <title>Nodewords</title>
     <script>
-    var guesses = [];
+    var guesses = new Array;
     var word = "";
     var shown = "";
     var guesses = 0;
@@ -43,11 +43,11 @@ window.onerror = function(msg, url, line, col, error) {
 	function sendguess(){
 		value = document.getElementById("wentry").value;
 		if (value == word){
-		alert("Win!")
+			alert("Win!");
 		}else{
-		alert("Fail")
-		guesses.push(value)
-		document.getElementById("guesses").innerHTML = '<br>'.join(guesses);
+			alert("Fail");
+			guesses.push(value);
+			document.getElementById("guesses").innerHTML = '<br>'.join(guesses);
 		}
 	}
 	function pickRandomProperty(obj) {
