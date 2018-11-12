@@ -20,14 +20,9 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1536</title>
+    <title>Nodewords 1536+</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
-    $(document).keypress(function (e) {
-    if (e.which == 13) {
-        alert('enter key is pressed');
-    }
-	});
     var guessed = new Array();
     var word = "";
     var shown = "";
@@ -35,6 +30,12 @@ window.onerror = function(msg, url, line, col, error) {
     var lives = 5;
     var definition = "";
  
+    $(document).keypress(function (e) {
+    if (e.which == 13) {
+        sendguess()
+    }
+	});
+	
     function loadFile(filePath) {
 		var result = null;
 		var xmlhttp = new XMLHttpRequest();
