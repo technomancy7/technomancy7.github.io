@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1605</title>
+    <title>Nodewords 1608</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -103,7 +103,9 @@ window.onerror = function(msg, url, line, col, error) {
 			alert("Press New Game first.")
 			return
 		}
-		silent = false
+		var silent = false;
+		var value = "";
+		
 		if(force_value == ""){
 			value = document.getElementById("wentry").value.toLowerCase();
 		}else{
