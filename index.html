@@ -22,7 +22,7 @@ window.onerror = function(msg, url, line, col, error) {
 </script>
     <title>Nodewords</title>
     <script>
-    var guesses = new Array;
+    var guesses = new Array();
     var word = "";
     var shown = "";
     var guesses = 0;
@@ -62,7 +62,7 @@ window.onerror = function(msg, url, line, col, error) {
 	function newgame(){
 		if (confirm("Start a new game?")){
 			//console.log("Begin")
-			guesses = [];
+			guesses = new Array();
 			word = "";
 			shown = "";
 			definition = "";
