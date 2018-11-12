@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1608</title>
+    <title>Nodewords 1614</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -34,7 +34,7 @@ window.onerror = function(msg, url, line, col, error) {
 		if (e.which == 13 || e.keycode == 13 || e.code == "Enter" || e.key == "Enter") {
 			sendguess()
 		}
-		else if (e.which == 113 || e.keycode == 113 || e.code == "F2" || e.key == "F2") {
+		else if (e.which == 189 || e.keycode == 189 || e.code == "Minus" || e.key == "-") {
 			newgame()
 		}
 	});
@@ -111,7 +111,7 @@ window.onerror = function(msg, url, line, col, error) {
 		}else{
 			value = force_value;
 			silent = true;
-			alert("Debug: Checking chars: "+value)
+			//alert("Debug: Checking chars: "+value)
 		}
 		document.getElementById("wentry").value = "";
 		if (value.length > 1 && value == word){
