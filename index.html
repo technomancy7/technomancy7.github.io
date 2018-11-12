@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1435</title>
+    <title>Nodewords 1440</title>
     <script>
     var guessed = new Array();
     var word = "";
@@ -48,6 +48,7 @@ window.onerror = function(msg, url, line, col, error) {
 		value = document.getElementById("wentry").value;
 		if (value == word){
 			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+			document.getElementById("shownWord").style.color = "darkgreen"
 			word = ""
 			alert("Win!");
 		}else{
@@ -60,15 +61,18 @@ window.onerror = function(msg, url, line, col, error) {
 					guessed.push(value);
 					document.getElementById("guesses").innerHTML = guessed.join("<br>");
 					document.getElementById("lives").innerHTML = lives;
+					document.getElementById("lives").style.color = "yellow"
 				}else{
 					lives -= 3
-					alert("Incorrect word guss. ("+lives+" lives remaining.)");
+					alert("Incorrect word guess. ("+lives+" lives remaining.)");
 					guessed.push(value);
 					document.getElementById("guesses").innerHTML = guessed.join("<br>");
 					document.getElementById("lives").innerHTML = lives;
+					document.getElementById("lives").style.color = "yellow"
 				}
 				if (lives <= 0){
 					document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+					document.getElementById("lives").style.color = "red"
 					word = ""
 					alert("Game over.");
 				}
@@ -102,6 +106,9 @@ window.onerror = function(msg, url, line, col, error) {
 			word = new_obj.toLowerCase();
 			alert(word+" - "+definition);
 			document.getElementById("shownWord").innerHTML = "*".repeat(word.length);
+			document.getElementById("shownWord").style.color = "black"
+			document.getElementById("lives").innerHTML = lives;
+			document.getElementById("lives").style.color = "green"
 		}
 	}
 		
@@ -110,7 +117,7 @@ window.onerror = function(msg, url, line, col, error) {
   <body>
     <label id="shownWord">Press new game.</label><br>
 	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="sendguess()">Send Guess</button><br>
-	<label id="lives">5</label> lives.<br>
+	<label id="lives">0</label> lives.<br>
 	<label id="guesses">None.</label>
   </body>
 </html>
