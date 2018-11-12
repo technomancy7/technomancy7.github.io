@@ -45,7 +45,10 @@ window.onerror = function(msg, url, line, col, error) {
 		if (value == word){
 		alert("Win!")
 		}else{
-		alert("Fail")}
+		alert("Fail")
+		guesses.push(value)
+		document.getElementById("guesses").innerHTML = '<br>'.join(guesses);
+		}
 	}
 	function pickRandomProperty(obj) {
 		var result;
@@ -81,7 +84,7 @@ window.onerror = function(msg, url, line, col, error) {
   </head>
   <body>
     <label id="shownWord">Press new game.</label><br>
-	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="calculate()">Send Guess</button><br>
+	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="sendguess()">Send Guess</button><br>
 	<label id="guesses">None.</label>
   </body>
 </html>
