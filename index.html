@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1536+</title>
+    <title>Nodewords 1540</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -73,7 +73,7 @@ window.onerror = function(msg, url, line, col, error) {
 			alert("Press New Game first.")
 			return
 		}
-		value = document.getElementById("wentry").value;
+		value = document.getElementById("wentry").value.toLowerCase();
 		document.getElementById("wentry").value = "";
 		if (value.length > 1 && value == word){
 			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
