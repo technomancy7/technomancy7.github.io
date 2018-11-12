@@ -118,7 +118,7 @@ window.onerror = function(msg, url, line, col, error) {
 			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
 			document.getElementById("shownWord").style.color = "darkgreen";
 			word = "";
-			alert("Win!");
+			alert("You win!");
 		}else if(value.length == 1 && word.indexOf(value) > -1){
 			if (guessed.includes(value) || shown.includes(value)){
 				if (silent == false){
@@ -135,6 +135,12 @@ window.onerror = function(msg, url, line, col, error) {
 					iters += 1;
 				shown = mods
 				document.getElementById("shownWord").innerHTML = mods;
+				}
+				if(shown.indexOf("*") == -1){
+					document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+					document.getElementById("shownWord").style.color = "darkgreen";
+					word = "";
+					alert("You win!");
 				}
 			}
 		}else{
@@ -180,6 +186,14 @@ window.onerror = function(msg, url, line, col, error) {
 		return result;
 	}
 	
+	function appinfo(){
+	alert("Nodewords v0.12\nA simple JS word game.\nKey shortcuts: Enter > submits guess, Minus > new game.\n\nBy Kaiser.")
+	}
+	function showdef(){
+		if (word != ""){
+			alert(word+" - "+definition)
+		}
+	}
 	function newgame(){
 		if (confirm("Start a new game?")){
 			//console.log("Begin")
@@ -213,7 +227,7 @@ window.onerror = function(msg, url, line, col, error) {
   </head>
   <body>
     <font size=24><label id="shownWord">Press new game.</label></font><br>
-	Guess: <input type="text" name="input" id="wentry"><button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><br>
+	Guess: <input type="text" name="input" id="wentry"><button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><button onclick="showdef()">Show word definition</button><button onclick="appinfo()">?</button><br>
 	♥ <label id="lives">0</label> lives.<br>
 	<label id="guesses">None.</label>
   </body>
