@@ -62,9 +62,11 @@ window.onerror = function(msg, url, line, col, error) {
 			if (guessed.includes(value) || shown.includes(value)){
 				alert("You already guessed that.");
 			}else{
-				alert("The word contains "+value);
-				shown = setCharAt(shown, word.indexOf(value), value)
-				document.getElementById("shownWord").innerHTML = shown;
+				while(word.indexOf(value) > -1){
+					alert("The word contains "+value);
+					shown = setCharAt(shown, word.indexOf(value), value)
+					document.getElementById("shownWord").innerHTML = shown;
+				}
 			}
 		}else{
 			if (guessed.includes(value)){
@@ -121,7 +123,8 @@ window.onerror = function(msg, url, line, col, error) {
 			definition = data[new_obj];
 			word = new_obj.toLowerCase();
 			alert(word+" - "+definition);
-			document.getElementById("shownWord").innerHTML = "*".repeat(word.length);
+			shown = "*".repeat(word.length)
+			document.getElementById("shownWord").innerHTML = shown;
 			document.getElementById("shownWord").style.color = "black"
 			document.getElementById("lives").innerHTML = lives;
 			document.getElementById("lives").style.color = "green"
