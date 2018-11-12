@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1452</title>
+    <title>Nodewords 1454+</title>
     <script>
     var guessed = new Array();
     var word = "";
@@ -39,7 +39,13 @@ window.onerror = function(msg, url, line, col, error) {
 		}
 		return result;
 	}
-			
+	
+	//str = setCharAt(str,4,'a');
+	function setCharAt(str,index,chr) {
+		if(index > str.length-1) return str;
+		return str.substr(0,index) + chr + str.substr(index+1);
+	}
+
 	function sendguess(){
 		if (word == ""){
 			alert("Press New Game first.")
@@ -53,10 +59,11 @@ window.onerror = function(msg, url, line, col, error) {
 			word = "";
 			alert("Win!");
 		}else if(value.length == 1 && word.indexOf(value) > -1){
-			if (guessed.includes(value)){
-				alert("You already guessed that.")
+			if (guessed.includes(value) || shown.includes(value)){
+				alert("You already guessed that.");
 			}else{
-				alert("The word contains "+value)
+				alert("The word contains "+value);
+				shown = setCharAt(shown, word.indexOf(value), value)
 			}
 		}else{
 			if (guessed.includes(value)){
