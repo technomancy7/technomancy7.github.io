@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1602</title>
+    <title>Nodewords 1605</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -104,7 +104,7 @@ window.onerror = function(msg, url, line, col, error) {
 			return
 		}
 		silent = false
-		if(force_value != ""){
+		if(force_value == ""){
 			value = document.getElementById("wentry").value.toLowerCase();
 		}else{
 			value = force_value;
