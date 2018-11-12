@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Node Wordguesser</title>
+    <title>Nodewords</title>
     <script>
     var guesses = []
     var word = ""
@@ -66,7 +66,7 @@ window.onerror = function(msg, url, line, col, error) {
 			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'))
 			var new_obj = pickRandomProperty(data)
 			
-			definition = data[word]
+			definition = data[new_obj]
 			word = new_obj.toLowerCase()
 			alert(word+" - "+definition)
 			document.getElementById("shownWord").InnerHTML = "*"*word.length
