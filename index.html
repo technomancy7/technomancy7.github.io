@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1553</title>
+    <title>Nodewords 1555</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -98,12 +98,18 @@ window.onerror = function(msg, url, line, col, error) {
 		return source
 	}
 			
-	function sendguess(silent=false){
+	function sendguess(force_value=""){
 		if (word == ""){
 			alert("Press New Game first.")
 			return
 		}
-		value = document.getElementById("wentry").value.toLowerCase();
+		silent = false
+		if(force_value != ""){
+			value = document.getElementById("wentry").value.toLowerCase();
+		}else{
+			value = force_value;
+			silent = true;
+		}
 		document.getElementById("wentry").value = "";
 		if (value.length > 1 && value == word){
 			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
@@ -192,6 +198,8 @@ window.onerror = function(msg, url, line, col, error) {
 			document.getElementById("shownWord").style.color = "black"
 			document.getElementById("lives").innerHTML = lives;
 			document.getElementById("lives").style.color = "green"
+			sendguess(force_value=" ")
+			sendguess(force_value="-")
 		}
 	}
 		
