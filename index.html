@@ -191,10 +191,12 @@ window.onerror = function(msg, url, line, col, error) {
 	}
 	
 	function showdef(){
-		if(confirm("Note: Some definitions may give away the answer.")){
-			if (word != ""){
+		if(word != ""){
+			if (confirm("Note: Some definitions may give away the answer.")){
 				alert(definition)
 			}
+		}else{
+		alert("Start a new game first.")
 		}
 	}
 	function newgame(){
