@@ -201,7 +201,6 @@ window.onerror = function(msg, url, line, col, error) {
 			//shown = repl_non_chars(word)
 			document.getElementById("shownWord").innerHTML = shown;
 			document.getElementById("shownWord").style.color = "black"
-			document.getElementById("shownWord").style.size = 20
 			document.getElementById("lives").innerHTML = lives;
 			document.getElementById("lives").style.color = "green"
 			sendguess(force_value=" ")
@@ -213,7 +212,7 @@ window.onerror = function(msg, url, line, col, error) {
 	</script>
   </head>
   <body>
-    <label id="shownWord">Press new game.</label><br>
+    <font size=24><label id="shownWord">Press new game.</label></font><br>
 	Guess: <input type="text" name="input" id="wentry"><button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><br>
 	♥ <label id="lives">0</label> lives.<br>
 	<label id="guesses">None.</label>
