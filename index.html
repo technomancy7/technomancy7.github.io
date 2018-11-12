@@ -20,8 +20,13 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1523</title>
+    <title>Nodewords 1535</title>
     <script>
+    $(document).keypress(function (e) {
+    if (e.which == 13) {
+        alert('enter key is pressed');
+    }
+	});
     var guessed = new Array();
     var word = "";
     var shown = "";
@@ -64,7 +69,7 @@ window.onerror = function(msg, url, line, col, error) {
 			return
 		}
 		value = document.getElementById("wentry").value;
-		
+		document.getElementById("wentry").value = "";
 		if (value.length > 1 && value == word){
 			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
 			document.getElementById("shownWord").style.color = "darkgreen";
@@ -80,7 +85,6 @@ window.onerror = function(msg, url, line, col, error) {
 				alert("The word contains "+count+" "+value+"'s");
 				mods = shown
 				while(iters < indexarray.length){
-					alert(iters+" "+indexarray[iters]+" "+value+" "+mods)
 					mods = setCharAt(shown, indexarray[iters], value);
 					iters += 1;
 				shown = mods
