@@ -121,13 +121,13 @@ window.onerror = function(msg, url, line, col, error) {
 			alert("Win!");
 		}else if(value.length == 1 && word.indexOf(value) > -1){
 			if (guessed.includes(value) || shown.includes(value)){
-				if (silent != false){
+				if (silent == false){
 				alert("You already guessed that.");}
 			}else{
 				var indexarray = indexes(word, value)
 				var count = word.split(value).length-1;
 				var iters = 0;
-				if(silent != false){
+				if(silent == false){
 				alert("The word contains "+count+" "+value+"'s");}
 				mods = shown
 				while(iters < indexarray.length){
@@ -139,11 +139,11 @@ window.onerror = function(msg, url, line, col, error) {
 			}
 		}else{
 			if (guessed.includes(value)){
-				if (silent != false){
+				if (silent == false){
 				alert("You already guessed that.");}
 			}else{
 				if (value.length == 1){
-					if(silent != false){
+					if(silent == false){
 					lives -= 1
 					alert("Incorrect character. ("+lives+" lives remaining.)");
 					guessed.push(value);}
@@ -151,7 +151,7 @@ window.onerror = function(msg, url, line, col, error) {
 					document.getElementById("lives").innerHTML = lives;
 					document.getElementById("lives").style.color = "darkgold"
 				}else{
-					if(silent != false){
+					if(silent == false){
 					lives -= 3
 					alert("Incorrect word guess. ("+lives+" lives remaining.)");
 					guessed.push(value);}
