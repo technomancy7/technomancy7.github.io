@@ -22,7 +22,7 @@ window.onerror = function(msg, url, line, col, error) {
 </script>
     <title>Nodewords 1420</title>
     <script>
-    var guesses = new Array();
+    var guessed = new Array();
     var word = "";
     var shown = "";
     var guesses = 0;
@@ -46,7 +46,7 @@ window.onerror = function(msg, url, line, col, error) {
 			alert("Win!");
 		}else{
 			alert("Fail");
-			guesses.push(value);
+			guessed.push(value);
 			document.getElementById("guesses").innerHTML = '<br>'.join(guesses);
 		}
 	}
@@ -62,7 +62,7 @@ window.onerror = function(msg, url, line, col, error) {
 	function newgame(){
 		if (confirm("Start a new game?")){
 			//console.log("Begin")
-			guesses = new Array();
+			guessed = new Array();
 			word = "";
 			shown = "";
 			definition = "";
