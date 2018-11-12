@@ -20,13 +20,13 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1429</title>
+    <title>Nodewords 1435</title>
     <script>
     var guessed = new Array();
     var word = "";
     var shown = "";
     var guesses = 0;
-    var lives = 15;
+    var lives = 5;
     var definition = "";
  
     function loadFile(filePath) {
@@ -41,16 +41,37 @@ window.onerror = function(msg, url, line, col, error) {
 	}
 			
 	function sendguess(){
+		if (word == ""){
+			alert("Press New Game first.")
+			return
+		}
 		value = document.getElementById("wentry").value;
 		if (value == word){
+			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+			word = ""
 			alert("Win!");
 		}else{
 			if (guessed.includes(value)){
 				alert("You already guessed that.")
 			}else{
-				alert("Incorrect guess.");
-				guessed.push(value);
-				document.getElementById("guesses").innerHTML = guessed.join("<br>");
+				if (value.length == 1){
+					lives -= 1
+					alert("Incorrect character. ("+lives+" lives remaining.)");
+					guessed.push(value);
+					document.getElementById("guesses").innerHTML = guessed.join("<br>");
+					document.getElementById("lives").innerHTML = lives;
+				}else{
+					lives -= 3
+					alert("Incorrect word guss. ("+lives+" lives remaining.)");
+					guessed.push(value);
+					document.getElementById("guesses").innerHTML = guessed.join("<br>");
+					document.getElementById("lives").innerHTML = lives;
+				}
+				if (lives <= 0){
+					document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+					word = ""
+					alert("Game over.");
+				}
 			}
 		}
 	}
@@ -71,9 +92,9 @@ window.onerror = function(msg, url, line, col, error) {
 			shown = "";
 			definition = "";
 			guesses = 0;
-			lives = 15;
+			lives = 5;
 			document.getElementById("guesses").innerHTML = "None";
-			document.getElementById("shownWord").innerHTML = "Please wait, grabbing a word...";
+			
 			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'));
 			var new_obj = pickRandomProperty(data);
 			
@@ -89,6 +110,7 @@ window.onerror = function(msg, url, line, col, error) {
   <body>
     <label id="shownWord">Press new game.</label><br>
 	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="sendguess()">Send Guess</button><br>
+	<label id="lives">5</label> lives.<br>
 	<label id="guesses">None.</label>
   </body>
 </html>
