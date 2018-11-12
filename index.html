@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1555</title>
+    <title>Nodewords 1600</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -109,6 +109,7 @@ window.onerror = function(msg, url, line, col, error) {
 		}else{
 			value = force_value;
 			silent = true;
+			alert("Debug: Checking chars: "+value)
 		}
 		document.getElementById("wentry").value = "";
 		if (value.length > 1 && value == word){
@@ -148,9 +149,10 @@ window.onerror = function(msg, url, line, col, error) {
 					document.getElementById("lives").innerHTML = lives;
 					document.getElementById("lives").style.color = "darkgold"
 				}else{
+					if(silent != false){
 					lives -= 3
 					alert("Incorrect word guess. ("+lives+" lives remaining.)");
-					guessed.push(value);
+					guessed.push(value);}
 					document.getElementById("guesses").innerHTML = guessed.join("<br>");
 					document.getElementById("lives").innerHTML = lives;
 					document.getElementById("lives").style.color = "darkgold"
