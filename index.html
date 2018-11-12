@@ -20,7 +20,7 @@ window.onerror = function(msg, url, line, col, error) {
    return suppressErrorAlert;
 };
 </script>
-    <title>Nodewords 1543</title>
+    <title>Nodewords 1546</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -31,10 +31,10 @@ window.onerror = function(msg, url, line, col, error) {
     var definition = "";
  
     $(document).keypress(function (e) {
-    if (e.which == 13 || e.keycode == 13) {
+    if (e.which == 13 || e.keycode == 13 || e.code == "Enter" || e.key == "Enter") {
         sendguess()
     }
-    if (e.which == 9 || e.keycode == 9) {
+    if (e.which == 9 || e.keycode == 9 || e.code == "Tab" || e.key == "Tab") {
         newgame()
     }
 	});
