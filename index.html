@@ -22,12 +22,12 @@ window.onerror = function(msg, url, line, col, error) {
 </script>
     <title>Nodewords</title>
     <script>
-    var guesses = []
-    var word = ""
-    var shown = ""
-    var guesses = 0
-    var lives = 15
-    var definition = ""
+    var guesses = [];
+    var word = "";
+    var shown = "";
+    var guesses = 0;
+    var lives = 15;
+    var definition = "";
  
     function loadFile(filePath) {
 		var result = null;
@@ -56,20 +56,21 @@ window.onerror = function(msg, url, line, col, error) {
 	function newgame(){
 		if (confirm("Start a new game?")){
 			//console.log("Begin")
-			guesses = []
-			word = ""
-			shown = ""
-			definition = ""
-			guesses = 0
-			lives = 15
-			document.getElementById("shownWord").InnerHTML = "Please wait, grabbing a word..."
-			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'))
-			var new_obj = pickRandomProperty(data)
+			guesses = [];
+			word = "";
+			shown = "";
+			definition = "";
+			guesses = 0;
+			lives = 15;
+			document.getElementById("guesses").innerHTML = "None";
+			document.getElementById("shownWord").innerHTML = "Please wait, grabbing a word...";
+			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'));
+			var new_obj = pickRandomProperty(data);
 			
-			definition = data[new_obj]
-			word = new_obj.toLowerCase()
-			alert(word+" - "+definition)
-			document.getElementById("shownWord").InnerHTML = "*".repeat(word.length)
+			definition = data[new_obj];
+			word = new_obj.toLowerCase();
+			alert(word+" - "+definition);
+			document.getElementById("shownWord").innerHTML = "*".repeat(word.length);
 		}
 	}
 		
@@ -77,7 +78,7 @@ window.onerror = function(msg, url, line, col, error) {
   </head>
   <body>
     <label id="shownWord">Press new game.</label><br>
-	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="calculate()">Send Guess</button>
-	<br>
+	Guess: <input type="text" name="input" id="wentry"><button onclick="newgame()">New Game</button><button onclick="calculate()">Send Guess</button><br>
+	<label id="guesses">None.</label>
   </body>
 </html>
