@@ -78,11 +78,13 @@ window.onerror = function(msg, url, line, col, error) {
 				var count = word.split(value).length-1;
 				var iters = 0;
 				alert("The word contains "+count+" "+value+"'s");
-				while(iters <= indexarray.length){
-					alert(iters+" "+indexarray[iters]+" "+value)
-					shown = setCharAt(shown, indexarray[iters], value);
-					document.getElementById("shownWord").innerHTML = shown;
+				mods = shown
+				while(iters < indexarray.length){
+					alert(iters+" "+indexarray[iters]+" "+value+" "+mods)
+					mods = setCharAt(shown, indexarray[iters], value);
 					iters += 1;
+				shown = mods
+				document.getElementById("shownWord").innerHTML = mods;
 				}
 			}
 		}else{
