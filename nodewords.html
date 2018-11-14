@@ -1,0 +1,239 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+  <script type="text/javascript">
+window.onerror = function(msg, url, line, col, error) {
+   // Note that col & error are new to the HTML 5 spec and may not be 
+   // supported in every browser.  It worked for me in Chrome.
+   var extra = !col ? '' : '\ncolumn: ' + col;
+   extra += !error ? '' : '\nerror: ' + error;
+
+   // You can view the information in an alert to see things working like this:
+   alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
+
+   // TODO: Report this error via ajax so you can keep track
+   //       of what pages have JS issues
+
+   var suppressErrorAlert = true;
+   // If you return true, then error alerts (like in older versions of 
+   // Internet Explorer) will be suppressed.
+   return suppressErrorAlert;
+};
+</script>
+    <title>Nodewords</title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+    var guessed = new Array();
+    var word = "";
+    var shown = "";
+    var guesses = 0;
+    var lives = 10;
+    var definition = "";
+ 
+    $(document).keypress(function (e) {
+		if (e.which == 13 || e.keycode == 13 || e.code == "Enter" || e.key == "Enter") {
+			sendguess()
+		}
+		else if (e.which == 189 || e.keycode == 189 || e.code == "Minus" || e.key == "-") {
+			newgame()
+		}
+	});
+	
+    function loadFile(filePath) {
+		var result = null;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", filePath, false);
+		xmlhttp.send();
+		if (xmlhttp.status==200) {
+			result = xmlhttp.responseText;
+		}
+		return result;
+	}
+	
+	//str = setCharAt(str,4,'a');
+	function setCharAt(str,index,chr) {
+		if(index > str.length-1) return str;
+		return str.substr(0,index) + chr + str.substr(index+1);
+	}
+	
+	function indexes(source, find) {
+		var result = [];
+		for (i = 0; i < source.length; ++i) {
+			// If you want to search case insensitive use 
+			// if (source.substring(i, i + find.length).toLowerCase() == find) {
+			if (source.substring(i, i + find.length) == find) {
+			result.push(i);
+			}
+		}
+		return result;
+	}
+
+	function repl_non_chars(source) {
+		if(source.indexOf(" ") > -1){
+			var indexarray = indexes(source, " ")
+			var count = source.split(" ").length-1;
+			var iters = 0;
+			alert("The source contains "+count+" space's");
+			mods = source
+			while(iters < indexarray.length){
+				mods = setCharAt(source, indexarray[iters], " ");
+				iters += 1;
+			source = mods
+			document.getElementById("shownWord").innerHTML = mods;
+			}
+		}
+		if(source.indexOf("-") > -1){
+			var indexarray = indexes(source, "-")
+			var count = source.split(" ").length-1;
+			var iters = 0;
+			alert("The source contains "+count+" dash's");
+			mods = shown
+			while(iters < indexarray.length){
+				mods = setCharAt(shown, indexarray[iters], "-");
+				iters += 1;
+			source = mods
+			document.getElementById("shownWord").innerHTML = mods;
+			}
+		}
+		return source
+	}
+			
+	function sendguess(force_value=""){
+		if (word == ""){
+			alert("Press New Game first.")
+			return
+		}
+		var silent = false;
+		var value = "";
+		
+		if(force_value == ""){
+			value = document.getElementById("wentry").value.toLowerCase();
+		}else{
+			value = force_value;
+			silent = true;
+			//alert("Debug: Checking chars: "+value)
+		}
+		document.getElementById("wentry").value = "";
+		if (value.length > 1 && value == word){
+			document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+			document.getElementById("shownWord").style.color = "darkgreen";
+			word = "";
+			alert("You win!");
+		}else if(value.length == 1 && word.indexOf(value) > -1){
+			if (guessed.includes(value) || shown.includes(value)){
+				if (silent == false){
+				alert("You already guessed that.");}
+			}else{
+				var indexarray = indexes(word, value)
+				var count = word.split(value).length-1;
+				var iters = 0;
+				if(silent == false){
+				alert("The word contains "+count+" "+value+"'s");}
+				mods = shown
+				while(iters < indexarray.length){
+					mods = setCharAt(shown, indexarray[iters], value);
+					iters += 1;
+				shown = mods
+				document.getElementById("shownWord").innerHTML = mods;
+				}
+				if(shown.indexOf("*") == -1){
+					document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+					document.getElementById("shownWord").style.color = "darkgreen";
+					word = "";
+					alert("You win!");
+				}
+			}
+		}else{
+			if (guessed.includes(value)){
+				if (silent == false){
+				alert("You already guessed that.");}
+			}else{
+				if (value.length == 1){
+					if(silent == false){
+					lives -= 1
+					alert("Incorrect character. ("+lives+" lives remaining.)");
+					guessed.push(value);}
+					document.getElementById("guesses").innerHTML = guessed.join("<br>");
+					document.getElementById("lives").innerHTML = lives;
+					document.getElementById("lives").style.color = "darkgold"
+				}else{
+					if(silent == false){
+					lives -= 3
+					alert("Incorrect word guess. ("+lives+" lives remaining.)");
+					guessed.push(value);}
+					document.getElementById("guesses").innerHTML = guessed.join("<br>");
+					document.getElementById("lives").innerHTML = lives;
+					document.getElementById("lives").style.color = "darkgold"
+				}
+				if (lives <= 0){
+					document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+					document.getElementById("shownWord").style.color = "red"
+					document.getElementById("lives").style.color = "red"
+					word = ""
+					alert("Game over.");
+				}
+			}
+		}
+		//document.getElementById("wentry").focus()
+	}
+	
+	function pickRandomProperty(obj) {
+		var result;
+		var count = 0;
+		for (var prop in obj)
+			if (Math.random() < 1/++count)
+			result = prop;
+		return result;
+	}
+	
+	function appinfo(){
+		alert("Nodewords v0.12\nA simple JS word game.\nKey shortcuts: Enter > submits guess, Minus > new game.\n\nBy Kaiser.")
+	}
+	
+	function showdef(){
+		if(word != ""){
+			if (confirm("Note: Some definitions may give away the answer.")){
+				alert(definition)
+			}
+		}else{
+		alert("Start a new game first.")
+		}
+	}
+	function newgame(){
+		if (confirm("Start a new game?")){
+			//console.log("Begin")
+			guessed = new Array();
+			word = "";
+			shown = "";
+			definition = "";
+			guesses = 0;
+			lives = 10;
+			document.getElementById("guesses").innerHTML = "None";
+			
+			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'));
+			var new_obj = pickRandomProperty(data);
+			
+			definition = data[new_obj];
+			word = new_obj.toLowerCase();
+			//alert(word+" - "+definition);
+			shown = "*".repeat(word.length)
+			//shown = repl_non_chars(word)
+			document.getElementById("shownWord").innerHTML = shown;
+			document.getElementById("shownWord").style.color = "black"
+			document.getElementById("lives").innerHTML = lives;
+			document.getElementById("lives").style.color = "green"
+			sendguess(force_value=" ")
+			sendguess(force_value="-")
+			//document.getElementById("wentry").focus()
+		}
+	}
+		//git add index.html && git commit -m "Uploading" && git push -u origin master
+	</script>
+  </head>
+  <body>
+    <font size=24><label id="shownWord">Press new game.</label></font><br>
+	Guess: <input type="text" name="input" id="wentry"><button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><button onclick="showdef()">Show word definition</button><button onclick="appinfo()">?</button><br>
+	♥ <label id="lives">0</label> lives.<br>
+	<label id="guesses">None.</label>
+  </body>
+</html>
