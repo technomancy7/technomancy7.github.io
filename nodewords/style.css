@@ -37,12 +37,23 @@ body {
       rgba(0, 0, 55, 0.45), 
       rgba(45, 0, 0, 0.45)
     );
-	background-size: 100% 100%;
   background-color: black;
   font-family: sans-serif;
   margin-left: 10px;
   margin-right: 10px;
-  max-width: 1280px;
+}
+
+.bg { 
+  /* The image used */
+  background-image: url("https://deusexhq.gitlab.io/kb/images/bgr.png");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .navbar {
