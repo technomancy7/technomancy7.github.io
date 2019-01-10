@@ -202,7 +202,7 @@
 			lives = 10;
 			document.getElementById("guesses").innerHTML = "None";
 			
-			var data = JSON.parse(loadFile('https://kaiz0r.github.io/dictionary.json'));
+			var data = JSON.parse(loadFile('https://kaiz0r.github.io/nodewords/dictionary.json'));
 			var new_obj = pickRandomProperty(data);
 			
 			definition = data[new_obj];
