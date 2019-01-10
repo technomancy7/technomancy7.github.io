@@ -32,8 +32,7 @@ body {
       linear-gradient(
       rgba(0, 0, 55, 0.45), 
       rgba(45, 0, 0, 0.45)
-    ),
-    url(https://deusexhq.gitlab.io/kb/images/bgr.png);
+    );
   background-color: black;
   font-family: sans-serif;
   margin-left: 10px;
