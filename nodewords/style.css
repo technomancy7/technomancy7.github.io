@@ -31,29 +31,24 @@ a:active {
 	color: #6A7D9B;
 }
 
+body, html {
+  height: 100%;
+}
+
 body {
   background-image: 
       linear-gradient(
       rgba(0, 0, 55, 0.45), 
       rgba(45, 0, 0, 0.45)
-    );
+    ),
+    url("https://deusexhq.gitlab.io/kb/images/bgr.png");
   background-color: black;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: sans-serif;
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.bg { 
-  /* The image used */
-  background-image: url("https://deusexhq.gitlab.io/kb/images/bgr.png");
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .navbar {
