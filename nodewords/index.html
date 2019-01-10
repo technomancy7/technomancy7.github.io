@@ -128,7 +128,7 @@
 				document.getElementById("shownWord").innerHTML = mods;
 				}
 				if(shown.indexOf("*") == -1){
-					document.getElementById("shownWord").innerHTML = word+"<br>"+definition;
+					document.getElementById("shownWord").innerHTML = word+"<br><br>"+definition;
 					document.getElementById("shownWord").style.color = "darkgreen";
 					word = "";
 					alert("You win!");
@@ -190,6 +190,7 @@
 		alert("Start a new game first.")
 		}
 	}
+		
 	function newgame(){
 		if (confirm("Start a new game?")){
 			//console.log("Begin")
