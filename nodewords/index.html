@@ -152,7 +152,7 @@
 					lives -= 3
 					alert("Incorrect word guess. ("+lives+" lives remaining.)");
 					guessed.push(value);}
-					document.getElementById("guesses").innerHTML = guessed.join("<br>");
+					document.getElementById("guesses").innerHTML = guessed.join(" ");
 					document.getElementById("lives").innerHTML = lives;
 					document.getElementById("lives").style.color = "darkgold"
 				}
