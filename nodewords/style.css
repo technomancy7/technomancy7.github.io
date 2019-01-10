@@ -1,0 +1,194 @@
+.code {
+    font-family: Courier New, Courier, sans-serif;
+    border: 1px solid #009900;
+    color: #009900;
+    background-color: #01091E;
+    display: block;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: left;
+    white-space: pre;
+}
+
+a, a:link, a:visited {
+    text-decoration: underline;
+    color: #9EABBE;
+}
+
+a:hover {
+    color: #6A7D9B;
+}
+
+a:active {
+	color: #6A7D9B;
+}
+
+body {
+  background-image: 
+      linear-gradient(
+      rgba(0, 0, 55, 0.45), 
+      rgba(45, 0, 0, 0.45)
+    ),
+    url(https://deusexhq.gitlab.io/kb/images/bgr.png);
+  background-color: black;
+  font-family: sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 1280px;
+}
+
+.navbar {
+  background-color: #313236;
+  border-radius: 2px;
+  max-width: 1280px;
+}
+
+.navbar a {
+  color: #aaa;
+  display: inline-block;
+  font-size: 15px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #ffffff;
+}
+
+hr, p, h3, h2, h1, h4, span {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    border-bottom: 1px solid #474D65;
+    padding: 0px;
+    clear: both;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 2.0em; 
+    font-weight: normal;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #474D65;
+}
+
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 1.7em; 
+    font-weight: normal;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #474D65;
+}
+
+h3 {
+    font: bolder 1.4em Arial, sans-serif;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+}
+
+h4 {
+    font: bolder 1.1em Arial, sans-serif;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+}
+
+h3.news {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+ul.topnav li {
+    list-style-type: disc;
+}
+
+ul.topnav li.h3kb {
+    font: bolder 1.4em Arial, sans-serif;
+    margin-bottom: 0px;
+	margin-left: 10px;
+	margin-right: 10px;
+    padding-bottom: 8px;
+    list-style-type: none;
+}
+
+ul.topnav li, body, input, textarea, select {
+    font-family: "Trebuchet MS", Arial, Georgia, serif;
+    font-size: 12px;
+    color: #9CADC1;
+    font-weight: normal;
+}
+
+table.cw {
+    border-top: 1px solid #474D65;
+    border-left: 1px solid #474D65;
+    width: 100%;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+table.cw td, table.cw th, table.smallcw td, table.smallcw th {
+    border-bottom: 1px solid #474D65;
+    border-right: 1px solid #474D65;
+}
+
+table.smallcw {
+    border-top: 1px solid #474D65;
+    border-left: 1px solid #474D65;
+    margin-left: auto;
+    margin-right: auto;
+    width: 420px;
+}
+
+table.cw h3 {
+    margin: 0px;
+    padding: 4px;
+}
+
+table.cw th {
+    background-color: #01091E;
+}
+
+.hdrimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+p {
+    text-align: justify;
+	margin-left: auto;
+	margin-right: auto;
+    padding-left: auto;
+    white-space: pre;
+}
+
+p.copyright {
+	width: 120px;
+    padding: 10px;
+    border: 1px black;
+    margin: 0;
+    text-align: center
+}
+
+cent {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.tcalert {
+	background-color: #2F2F2F;
+	width: 520px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
