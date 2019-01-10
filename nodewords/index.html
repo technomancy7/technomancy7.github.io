@@ -11,7 +11,7 @@
    return suppressErrorAlert;
 	};
 	</script>
-    <title>Nodewords 19.01.10</title>
+    <title>Nodewords 19.01.10.4</title>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     var guessed = new Array();
@@ -210,7 +210,7 @@
 			shown = "*".repeat(word.length)
 			//shown = repl_non_chars(word)
 			document.getElementById("shownWord").innerHTML = shown;
-			document.getElementById("shownWord").style.color = "black"
+			//document.getElementById("shownWord").style.color = "black"
 			document.getElementById("lives").innerHTML = lives;
 			document.getElementById("lives").style.color = "green"
 			sendguess(force_value=" ")
@@ -227,9 +227,9 @@
 	</p>
 	Guess: <input type="text" name="input" id="wentry"><br>
 	<button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><button onclick="showdef()">Show word definition</button><button onclick="appinfo()">?</button><br>
-	♥ <label id="lives">0</label> lives.<br>
 	
-	<div class="tcalert"><label id="guesses">None.</label></div>
+	
+	<div class="tcalert">♥ <label id="lives">0</label> lives.<br><br>Guesses:<br><label id="guesses">None.</label></div>
 	
   </body>
 </html>
