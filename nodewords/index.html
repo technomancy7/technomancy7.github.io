@@ -144,7 +144,7 @@
 					lives -= 1
 					alert("Incorrect character. ("+lives+" lives remaining.)");
 					guessed.push(value);}
-					document.getElementById("guesses").innerHTML = guessed.join("<br>");
+					document.getElementById("guesses").innerHTML = guessed.join(" ");
 					document.getElementById("lives").innerHTML = lives;
 					document.getElementById("lives").style.color = "darkgold"
 				}else{
@@ -228,10 +228,12 @@
 	</p>
 	<div class="tcalert">
 	Guess: <input type="text" name="input" id="wentry"><br>
-	<button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><button onclick="showdef()">Show word definition</button><button onclick="appinfo()">?</button><br>
+	<button onclick="sendguess()">Send Guess</button><button onclick="newgame()">New Game</button><button onclick="showdef()">Word Definition</button><button onclick="appinfo()">App Info</button><br>
 	
 	
-	♥ <label id="lives">0</label> lives.<br><br>Guesses:<br><label id="guesses">None.</label></div>
+	♥ <label id="lives">0</label> lives.<br><br>Guesses:<br><label id="guesses">None.</label>
+	
+	</div>
 	
   </body>
 </html>
