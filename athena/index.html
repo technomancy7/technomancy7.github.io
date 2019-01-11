@@ -164,7 +164,7 @@ Areas: $areas
 &lt;&lt;if $health &lt; 100 and $energy &gt; 5&gt;&gt;You can [[heal]].&lt;&lt;endif&gt;&gt;
 &lt;&lt;if $exp &gt; 100&gt;&gt;You can [[train]].&lt;&lt;endif&gt;&gt;
 You can [[explore]].
-You can [[navigate]].</tw-passagedata><tw-passagedata pid="8" name="heal" tags="" position="28,646" size="100,100">&lt;&lt;if $character.hp &lt; $character.hpmax and $character.en &gt; 5&gt;&gt;You heal 10 HP.
+You can [[navigate]].</tw-passagedata><tw-passagedata pid="8" name="heal" tags="" position="14.666666666666666,656" size="100,100">&lt;&lt;if $character.hp &lt; $character.hpmax and $character.en &gt; 5&gt;&gt;You heal 10 HP.
 &lt;&lt;set $character.hp to $character.hp + 10&gt;&gt;
 &lt;&lt;set $character.en to $character.en - 5&gt;&gt;
 You have $character.hp HP and $character.en EN.
@@ -177,7 +177,7 @@ You discovered Smuggler.
 &lt;&lt;else&gt;&gt;
 Nothing happens.
 &lt;&lt;endif&gt;&gt;
-[[Home]]</tw-passagedata><tw-passagedata pid="11" name="Medicine" tags="" position="350,1045" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="12" name="Weapons" tags="" position="500,1045" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="13" name="Hacking" tags="" position="650,1045" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="14" name="Self" tags="" position="159,708" size="100,100">You&#39;re at &lt;&lt;print previous()&gt;&gt;.
+[[Home]]</tw-passagedata><tw-passagedata pid="11" name="Medicine" tags="" position="350,1045" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="12" name="Weapons" tags="" position="500,1045" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="13" name="Hacking" tags="" position="650,1045" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="14" name="Self" tags="" position="14,756.3333333333334" size="100,100">You&#39;re at &lt;&lt;print previous()&gt;&gt;.
 $character.hp / $character.hpmax HP
 $character.en / $character.enmax EN
 
@@ -210,8 +210,8 @@ Go back to [[previous()]].</tw-passagedata><tw-passagedata pid="15" name="StoryI
 &quot;armour&quot;: &quot;&quot;
 }&gt;&gt;
 
-&lt;&lt;cacheaudio &quot;intro&quot; &quot;/home/kaiz0r/Documents/Twine/Stories/Music/arx_lumine.mp3&quot;&gt;&gt;
-&lt;&lt;cacheaudio &quot;home&quot; &quot;/home/kaiz0r/Documents/Twine/Stories/Music/Elysium - Stars Over The Four Seas.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;intro&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/blob/master/athena/Music/arx_lumine.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;home&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/blob/master/athena/Music/Elysium%20-%20Stars%20Over%20The%20Four%20Seas.mp3&quot;&gt;&gt;
 &lt;&lt;masteraudio volume 1&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="PassageDone" tags="" position="796,116" size="100,100">&lt;&lt;print &quot;This is turn #&quot; + turns()&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="StoryMenu" tags="" position="85,506" size="100,100">[[heal]]
 [[Self]]</tw-passagedata><tw-passagedata pid="18" name="navigate" tags="" position="706,704" size="100,100">Double-click this passage to edit it.</tw-passagedata></tw-storydata></div>
 	<script id="script-sugarcube" type="text/javascript">
