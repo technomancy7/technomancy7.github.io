@@ -3,6 +3,12 @@
 <html>
   <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="/audio.min.js"></script>
+	  <script>
+	  audiojs.events.ready(function() {
+	    var as = audiojs.createAll();
+	  });
+	</script>
     <title>Kaiser's Web Apps</title>
   </head>
   <body>
@@ -12,6 +18,7 @@
 </div>
 <div class="c1784">Kaiser's Web Apps
 </div>
+<audio src="/home.mp3" preload="auto" />
 <div class="row">
   <div class="cell">
     <div class="c2131">Working Projects
