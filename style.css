@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+body{
+  background-color:#dad7d7;
+}
+*{
+  box-sizing:border-box;
+}
+html, body, #wrapper{
+  min-height:100%;
+}
+body{
+  margin-top:0px;
+  margin-right:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+  height:100%;
+  background-color:rgb(255, 255, 255);
+}
+#wrapper{
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+.gjs-dashed [data-highlightable]{
+  outline-color:rgba(170, 170, 170, 0.7);
+  outline-style:dashed;
+  outline-width:1px;
+  outline-offset:-2px;
+}
+* ::-webkit-scrollbar-track{
+  background-image:initial;
+  background-position-x:initial;
+  background-position-y:initial;
+  background-size:initial;
+  background-repeat-x:initial;
+  background-repeat-y:initial;
+  background-attachment:initial;
+  background-origin:initial;
+  background-clip:initial;
+  background-color:rgba(0, 0, 0, 0.1);
+}
+* ::-webkit-scrollbar-thumb{
+  background-image:initial;
+  background-position-x:initial;
+  background-position-y:initial;
+  background-size:initial;
+  background-repeat-x:initial;
+  background-repeat-y:initial;
+  background-attachment:initial;
+  background-origin:initial;
+  background-clip:initial;
+  background-color:rgba(255, 255, 255, 0.2);
+}
+* ::-webkit-scrollbar{
+  width:10px;
+}
+.row{
+  display:flex;
+  justify-content:flex-start;
+  align-items:stretch;
+  flex-wrap:nowrap;
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+}
+.cell{
+  min-height:75px;
+  flex-grow:1;
+  flex-basis:100%;
+}
+.c1784{
+  padding:10px;
+  float:none;
+  text-align:center;
+  text-shadow:1px 2px 7px black;
+  font-family:Verdana, Geneva, sans-serif;
+}
+.c2131{
+  padding:10px;
+  text-align:center;
+  text-decoration:underline;
+  text-shadow:1px 1px 4px black;
+}
+.c2199{
+  padding:10px;
+  text-align:center;
+  text-shadow:1px 1px 9px black;
+  text-decoration:underline;
+}
+.c2267{
+  padding:10px;
+  text-decoration:underline;
+  text-align:center;
+  text-shadow:0 0 7px black;
+}
+.c2347{
+  padding:10px;
+}
+.c2438{
+  color:#d983a6;
+}
+.c2709{
+  color:#d983a6;
+}
+.c2786{
+  padding:10px;
+}
+.c3230{
+  padding:10px;
+}
+.c3306{
+  padding:10px;
+}
+@media (max-width: 768px){
+  .row{
+    flex-wrap:wrap;
+  }
+}
