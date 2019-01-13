@@ -109,6 +109,25 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 {
   display: none;
 }
+body, html {
+  height: 100%;
+}
+
+body {
+  background-image: 
+      linear-gradient(
+      rgba(0, 0, 55, 0.45), 
+      rgba(45, 0, 0, 0.45)
+    ),
+    url("https://deusexhq.gitlab.io/kb/images/bgr.png");
+  background-color: black;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 div.tcalert {
 	background-color: #2F2F2F;
@@ -397,7 +416,7 @@ $word means; $definition&lt;&lt;/if&gt;&gt;
 		Credits:
 			Kaiser - Programming, concept
 			ChapelR - Macros
-			You know who - Initial tests
+			Choco - Initial tests, design suggestions
 			
 			Additional testers - WIP
 	&lt;&lt;/dialog&gt;&gt;
