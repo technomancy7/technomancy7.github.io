@@ -371,7 +371,7 @@ Macro.add('popup', {
 
 });
 
-</script><tw-passagedata pid="1" name="NodewordsGame" tags="" position="412,163" size="100,100">&lt;p class=&quot;code&quot;&gt;$shown&lt;/p&gt;
+</script><tw-passagedata pid="1" name="NodewordsGame" tags="" position="403.6666666666667,99.66666666666667" size="100,100">&lt;p class=&quot;code&quot;&gt;$shown&lt;/p&gt;
 
 &lt;div class=&quot;tcalert&quot;&gt;&lt;&lt;textbox &quot;$sentguess&quot; &quot;&quot; &quot;Submit&quot; autofocus&gt;&gt;
 &lt;&lt;if $gameover == 1&gt;&gt;You won! Click Restart Game to get a new word.
@@ -382,7 +382,7 @@ $word means; $definition&lt;&lt;/if&gt;&gt;
 &lt;&lt;for _i, _name range $guessed&gt;&gt;_name &lt;&lt;/for&gt;&gt;
 &lt;/div&gt;
 
-</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="302,163" size="100,100">&lt;&lt;nwinit&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Submit" tags="" position="412,313" size="100,100">&lt;&lt;if $guessed.includes($sentguess) or $shown.count($sentguess) &gt; 0&gt;&gt;
+</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="198.66666666666666,301.33333333333337" size="100,100">&lt;&lt;nwinit&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Submit" tags="" position="400.3333333333333,298" size="100,100">&lt;&lt;if $guessed.includes($sentguess) or $shown.count($sentguess) &gt; 0&gt;&gt;
 	&lt;&lt;notify&gt;&gt;You already guessed that.&lt;&lt;/notify&gt;&gt;
 	&lt;&lt;goto &quot;NodewordsGame&quot;&gt;&gt;
 &lt;&lt;elseif $sentguess.length == 1&gt;&gt;
@@ -394,8 +394,7 @@ $word means; $definition&lt;&lt;/if&gt;&gt;
 	&lt;&lt;else&gt;&gt;
 		&lt;&lt;notify&gt;&gt;
 			You guessed $sentguess, and it was wrong.
-			&lt;&lt;set $guessed.push($sentguess)&gt;&gt;&lt;&lt;set $lives to $lives - 1&gt;&gt;\
-			&lt;&lt;if $lives &lt; 0&gt;&gt;&lt;&lt;set $gameover to 2&gt;&gt;&lt;&lt;/if&gt;&gt;
+			&lt;&lt;set $guessed.push($sentguess)&gt;&gt;&lt;&lt;if $lives &lt;= 0&gt;&gt;&lt;&lt;set $gameover to 2&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;set $lives to $lives - 1&gt;&gt;\
 		&lt;&lt;/notify&gt;&gt;
 	&lt;&lt;/if&gt;&gt;.
 &lt;&lt;else&gt;&gt;
@@ -408,7 +407,7 @@ $word means; $definition&lt;&lt;/if&gt;&gt;
 		&lt;&lt;/if&gt;&gt;.
 	&lt;&lt;/notify&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;goto &quot;NodewordsGame&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="StoryMenu" tags="" position="546,225" size="100,100">&lt;&lt;link &#39;About Nodewords&#39;&gt;&gt;
+&lt;&lt;goto &quot;NodewordsGame&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="StoryMenu" tags="" position="601,300" size="100,100">&lt;&lt;link &#39;About Nodewords&#39;&gt;&gt;
 	&lt;&lt;dialog &#39;About&#39;&gt;&gt;\
 		Welcome to Nodewords!
 		This is a simple text game all about guessing words.
