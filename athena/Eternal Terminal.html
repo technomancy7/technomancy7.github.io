@@ -1,0 +1,1428 @@
+<tw-storydata name="Eternal Terminal" startnode="1" creator="Twine" creator-version="2.2.1" ifid="DC6F1CFD-C835-475B-B7D0-8BFA64D8CAFA" zoom="0.6" format="SugarCube" format-version="2.28.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hidden a {
+    color: transparent;
+}
+
+.shadow {
+	text-shadow: 0.08em 0.08em 0.08em #FFF;
+}
+
+.emboss {
+	text-shadow: 0.08em 0.08em 0em #FFF;
+	color: black;
+}
+
+.blur {
+	color: transparent;
+	text-shadow: 0em 0em 0.08em #FFF;
+}
+.blurrier {
+	color: transparent;
+	text-shadow: 0em 0em 0.2em #FFF;
+}
+
+.blurrier::selection {
+	background-color: transparent;
+	color: transparent;
+}
+.blurrier::-moz-selection {
+	background-color: transparent;
+	color: transparent;
+}
+.smear {
+	color: transparent;
+	text-shadow:
+		0em    0em 0.02em rgba(255,255,255,0.75),
+		-0.2em 0em 0.5em  rgba(255,255,255,0.5),
+		0.2em  0em 0.5em  rgba(255,255,255,0.5);
+}
+.mirror {
+	display: inline-block;
+	transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+}
+.upside-down {
+	display: inline-block;
+	transform: scaleY(-1);
+	-webkit-transform: scaleY(-1);
+}
+
+@-webkit-keyframes fade-in-out {
+	0%,
+	to {opacity: 0}
+	50% {opacity: 1}
+}
+@keyframes fade-in-out {
+	0%,
+	to {opacity: 0}
+	50% {opacity: 1}
+}
+.fade-in-out {
+	text-decoration: none;
+	animation: fade-in-out 2s ease-in-out infinite alternate;
+	-webkit-animation: fade-in-out 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes rumble {
+	50% {
+		-webkit-transform: translateY(-.2em);
+		transform: translateY(-.2em)
+	}
+}
+@keyframes rumble {
+	50% {
+		-webkit-transform: translateY(-.2em);
+		transform: translateY(-.2em)
+	}
+}
+.rumble {
+	-webkit-animation: rumble linear 0.1s 0s infinite;
+	animation: rumble linear 0.1s 0s infinite;
+	display:inline-block;
+}
+
+@-webkit-keyframes shudder {
+	50% {
+		-webkit-transform: translateX(0.2em);
+		transform: translateX(0.2em)
+	}
+}
+@keyframes shudder {
+	50% {
+		-webkit-transform: translateX(0.2em);
+		transform: translateX(0.2em)
+	}
+}
+.shudder {
+	-webkit-animation: shudder linear 0.1s 0s infinite;
+	animation: shudder linear 0.1s 0s infinite;
+	display: inline-block;
+}
+
+@-webkit-keyframes pulse {
+	0%  { -webkit-transform: scale(0, 0); transform: scale(0, 0) }
+	20% { -webkit-transform: scale(1.2, 1.2); transform: scale(1.2, 1.2) }
+	40% { -webkit-transform: scale(0.9, 0.9); transform: scale(0.9, 0.9) }
+	60% { -webkit-transform: scale(1.05, 1.05); transform: scale(1.05, 1.05) }
+	80% { -webkit-transform: scale(0.925, 0.925); transform:scale(0.925, 0.925) }
+	to  { -webkit-transform: scale(1, 1); transform: scale(1, 1) }
+}
+@keyframes pulse {
+	0%  { -webkit-transform: scale(0, 0); transform: scale(0, 0) }
+	20% { -webkit-transform: scale(1.2, 1.2); transform: scale(1.2, 1.2) }
+	40% { -webkit-transform: scale(0.9, 0.9); transform: scale(0.9, 0.9) }
+	60% { -webkit-transform: scale(1.05, 1.05); transform: scale(1.05, 1.05) }
+	80% { -webkit-transform: scale(0.925, 0.925); transform: scale(0.925, 0.925) }
+	to  { -webkit-transform: scale(1, 1); transform: scale(1, 1) }
+}
+.pulse {
+	-webkit-animation: pulse 0.8s;
+	animation: pulse 0.8s;
+	display: inline-block;
+}
+
+/* Typed.js text (and cursor) styling. */
+.typed, .typed-cursor {
+	font-family: monospace, monospace;
+	color: lime;
+}
+
+/* Typed.js animated cursor styling. */
+@-webkit-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-moz-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+.typed-cursor {
+	opacity: 1;
+	-webkit-animation: blink 0.7s infinite;
+	-moz-animation: blink 0.7s infinite;
+	animation: blink 0.7s infinite;
+}
+
+div.tcalert {
+	background-color: #2F2F2F;
+	width: 520px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+	font-size: 15px;
+}
+.code {
+    font-family: Courier New, Courier, sans-serif;
+    border: 1px solid #009900;
+    color: #009900;
+    background-color: #01091E;
+    display: block;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: left;
+    white-space: pre;
+}
+
+/*
+    notify.min.css, by chapel; for use with notify.js
+    version 1.0.0
+ */
+#notify {
+    position : fixed;
+    display : block;
+    width : 16em;
+    right : -20em; top : 2em;
+    padding : 0.5em;
+    background-color : #fff;
+    color : #000;
+    -webkit-transition : right 0.3s;
+    -moz-transition : right 0.3s;
+    -o-transition : right 0.3s;
+    transition : right 0.3s;
+}
+#notify.open { right : 0; }
+
+button[data-balloon]{overflow:visible}[data-balloon]{position:relative;cursor:pointer}[data-balloon]:after{filter:alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";-moz-opacity:0;-khtml-opacity:0;opacity:0;pointer-events:none;-webkit-transition:all 0.18s ease-out 0.18s;-moz-transition:all 0.18s ease-out 0.18s;-ms-transition:all 0.18s ease-out 0.18s;-o-transition:all 0.18s ease-out 0.18s;transition:all 0.18s ease-out 0.18s;font-family:sans-serif !important;font-weight:normal !important;font-style:normal !important;text-shadow:none !important;font-size:12px !important;background:rgba(17,17,17,0.9);border-radius:4px;color:#fff;content:attr(data-balloon);padding:.5em 1em;position:absolute;white-space:nowrap;z-index:10}[data-balloon]:before{background:no-repeat url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%2236px%22%20height%3D%2212px%22%3E%3Cpath%20fill%3D%22rgba(17,17,17,0.9)%22%20transform%3D%22rotate(0)%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E");background-size:100% auto;width:18px;height:6px;filter:alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";-moz-opacity:0;-khtml-opacity:0;opacity:0;pointer-events:none;-webkit-transition:all 0.18s ease-out 0.18s;-moz-transition:all 0.18s ease-out 0.18s;-ms-transition:all 0.18s ease-out 0.18s;-o-transition:all 0.18s ease-out 0.18s;transition:all 0.18s ease-out 0.18s;content:'';position:absolute;z-index:10}[data-balloon]:hover:before,[data-balloon]:hover:after,[data-balloon][data-balloon-visible]:before,[data-balloon][data-balloon-visible]:after{filter:alpha(opacity=100);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";-moz-opacity:1;-khtml-opacity:1;opacity:1;pointer-events:auto}[data-balloon].font-awesome:after{font-family:FontAwesome}[data-balloon][data-balloon-break]:after{white-space:pre}[data-balloon][data-balloon-blunt]:before,[data-balloon][data-balloon-blunt]:after{-webkit-transition:none;-moz-transition:none;-ms-transition:none;-o-transition:none;transition:none}[data-balloon][data-balloon-pos="up"]:after{bottom:100%;left:50%;margin-bottom:11px;-webkit-transform:translate(-50%, 10px);-moz-transform:translate(-50%, 10px);-ms-transform:translate(-50%, 10px);transform:translate(-50%, 10px);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top}[data-balloon][data-balloon-pos="up"]:before{bottom:100%;left:50%;margin-bottom:5px;-webkit-transform:translate(-50%, 10px);-moz-transform:translate(-50%, 10px);-ms-transform:translate(-50%, 10px);transform:translate(-50%, 10px);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top}[data-balloon][data-balloon-pos="up"]:hover:after,[data-balloon][data-balloon-pos="up"][data-balloon-visible]:after{-webkit-transform:translate(-50%, 0);-moz-transform:translate(-50%, 0);-ms-transform:translate(-50%, 0);transform:translate(-50%, 0)}[data-balloon][data-balloon-pos="up"]:hover:before,[data-balloon][data-balloon-pos="up"][data-balloon-visible]:before{-webkit-transform:translate(-50%, 0);-moz-transform:translate(-50%, 0);-ms-transform:translate(-50%, 0);transform:translate(-50%, 0)}[data-balloon][data-balloon-pos="up-left"]:after{bottom:100%;left:0;margin-bottom:11px;-webkit-transform:translate(0, 10px);-moz-transform:translate(0, 10px);-ms-transform:translate(0, 10px);transform:translate(0, 10px);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top}[data-balloon][data-balloon-pos="up-left"]:before{bottom:100%;left:5px;margin-bottom:5px;-webkit-transform:translate(0, 10px);-moz-transform:translate(0, 10px);-ms-transform:translate(0, 10px);transform:translate(0, 10px);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top}[data-balloon][data-balloon-pos="up-left"]:hover:after,[data-balloon][data-balloon-pos="up-left"][data-balloon-visible]:after{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos="up-left"]:hover:before,[data-balloon][data-balloon-pos="up-left"][data-balloon-visible]:before{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos="up-right"]:after{bottom:100%;right:0;margin-bottom:11px;-webkit-transform:translate(0, 10px);-moz-transform:translate(0, 10px);-ms-transform:translate(0, 10px);transform:translate(0, 10px);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top}[data-balloon][data-balloon-pos="up-right"]:before{bottom:100%;right:5px;margin-bottom:5px;-webkit-transform:translate(0, 10px);-moz-transform:translate(0, 10px);-ms-transform:translate(0, 10px);transform:translate(0, 10px);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top}[data-balloon][data-balloon-pos="up-right"]:hover:after,[data-balloon][data-balloon-pos="up-right"][data-balloon-visible]:after{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos="up-right"]:hover:before,[data-balloon][data-balloon-pos="up-right"][data-balloon-visible]:before{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos='down']:after{left:50%;margin-top:11px;top:100%;-webkit-transform:translate(-50%, -10px);-moz-transform:translate(-50%, -10px);-ms-transform:translate(-50%, -10px);transform:translate(-50%, -10px)}[data-balloon][data-balloon-pos='down']:before{background:no-repeat url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%2236px%22%20height%3D%2212px%22%3E%3Cpath%20fill%3D%22rgba(17,17,17,0.9)%22%20transform%3D%22rotate(180 18 6)%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E");background-size:100% auto;width:18px;height:6px;left:50%;margin-top:5px;top:100%;-webkit-transform:translate(-50%, -10px);-moz-transform:translate(-50%, -10px);-ms-transform:translate(-50%, -10px);transform:translate(-50%, -10px)}[data-balloon][data-balloon-pos='down']:hover:after,[data-balloon][data-balloon-pos='down'][data-balloon-visible]:after{-webkit-transform:translate(-50%, 0);-moz-transform:translate(-50%, 0);-ms-transform:translate(-50%, 0);transform:translate(-50%, 0)}[data-balloon][data-balloon-pos='down']:hover:before,[data-balloon][data-balloon-pos='down'][data-balloon-visible]:before{-webkit-transform:translate(-50%, 0);-moz-transform:translate(-50%, 0);-ms-transform:translate(-50%, 0);transform:translate(-50%, 0)}[data-balloon][data-balloon-pos='down-left']:after{left:0;margin-top:11px;top:100%;-webkit-transform:translate(0, -10px);-moz-transform:translate(0, -10px);-ms-transform:translate(0, -10px);transform:translate(0, -10px)}[data-balloon][data-balloon-pos='down-left']:before{background:no-repeat url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%2236px%22%20height%3D%2212px%22%3E%3Cpath%20fill%3D%22rgba(17,17,17,0.9)%22%20transform%3D%22rotate(180 18 6)%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E");background-size:100% auto;width:18px;height:6px;left:5px;margin-top:5px;top:100%;-webkit-transform:translate(0, -10px);-moz-transform:translate(0, -10px);-ms-transform:translate(0, -10px);transform:translate(0, -10px)}[data-balloon][data-balloon-pos='down-left']:hover:after,[data-balloon][data-balloon-pos='down-left'][data-balloon-visible]:after{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos='down-left']:hover:before,[data-balloon][data-balloon-pos='down-left'][data-balloon-visible]:before{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos='down-right']:after{right:0;margin-top:11px;top:100%;-webkit-transform:translate(0, -10px);-moz-transform:translate(0, -10px);-ms-transform:translate(0, -10px);transform:translate(0, -10px)}[data-balloon][data-balloon-pos='down-right']:before{background:no-repeat url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%2236px%22%20height%3D%2212px%22%3E%3Cpath%20fill%3D%22rgba(17,17,17,0.9)%22%20transform%3D%22rotate(180 18 6)%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E");background-size:100% auto;width:18px;height:6px;right:5px;margin-top:5px;top:100%;-webkit-transform:translate(0, -10px);-moz-transform:translate(0, -10px);-ms-transform:translate(0, -10px);transform:translate(0, -10px)}[data-balloon][data-balloon-pos='down-right']:hover:after,[data-balloon][data-balloon-pos='down-right'][data-balloon-visible]:after{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos='down-right']:hover:before,[data-balloon][data-balloon-pos='down-right'][data-balloon-visible]:before{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}[data-balloon][data-balloon-pos='left']:after{margin-right:11px;right:100%;top:50%;-webkit-transform:translate(10px, -50%);-moz-transform:translate(10px, -50%);-ms-transform:translate(10px, -50%);transform:translate(10px, -50%)}[data-balloon][data-balloon-pos='left']:before{background:no-repeat url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%2212px%22%20height%3D%2236px%22%3E%3Cpath%20fill%3D%22rgba(17,17,17,0.9)%22%20transform%3D%22rotate(-90 18 18)%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E");background-size:100% auto;width:6px;height:18px;margin-right:5px;right:100%;top:50%;-webkit-transform:translate(10px, -50%);-moz-transform:translate(10px, -50%);-ms-transform:translate(10px, -50%);transform:translate(10px, -50%)}[data-balloon][data-balloon-pos='left']:hover:after,[data-balloon][data-balloon-pos='left'][data-balloon-visible]:after{-webkit-transform:translate(0, -50%);-moz-transform:translate(0, -50%);-ms-transform:translate(0, -50%);transform:translate(0, -50%)}[data-balloon][data-balloon-pos='left']:hover:before,[data-balloon][data-balloon-pos='left'][data-balloon-visible]:before{-webkit-transform:translate(0, -50%);-moz-transform:translate(0, -50%);-ms-transform:translate(0, -50%);transform:translate(0, -50%)}[data-balloon][data-balloon-pos='right']:after{left:100%;margin-left:11px;top:50%;-webkit-transform:translate(-10px, -50%);-moz-transform:translate(-10px, -50%);-ms-transform:translate(-10px, -50%);transform:translate(-10px, -50%)}[data-balloon][data-balloon-pos='right']:before{background:no-repeat url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%2212px%22%20height%3D%2236px%22%3E%3Cpath%20fill%3D%22rgba(17,17,17,0.9)%22%20transform%3D%22rotate(90 6 6)%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E");background-size:100% auto;width:6px;height:18px;left:100%;margin-left:5px;top:50%;-webkit-transform:translate(-10px, -50%);-moz-transform:translate(-10px, -50%);-ms-transform:translate(-10px, -50%);transform:translate(-10px, -50%)}[data-balloon][data-balloon-pos='right']:hover:after,[data-balloon][data-balloon-pos='right'][data-balloon-visible]:after{-webkit-transform:translate(0, -50%);-moz-transform:translate(0, -50%);-ms-transform:translate(0, -50%);transform:translate(0, -50%)}[data-balloon][data-balloon-pos='right']:hover:before,[data-balloon][data-balloon-pos='right'][data-balloon-visible]:before{-webkit-transform:translate(0, -50%);-moz-transform:translate(0, -50%);-ms-transform:translate(0, -50%);transform:translate(0, -50%)}[data-balloon][data-balloon-length='small']:after{white-space:normal;width:80px}[data-balloon][data-balloon-length='medium']:after{white-space:normal;width:150px}[data-balloon][data-balloon-length='large']:after{white-space:normal;width:260px}[data-balloon][data-balloon-length='xlarge']:after{white-space:normal;width:380px}@media screen and (max-width: 768px){[data-balloon][data-balloon-length='xlarge']:after{white-space:normal;width:90vw}}[data-balloon][data-balloon-length='fit']:after{white-space:normal;width:100%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">var toggleMature = function () {
+	if (settings.mature) { // is true
+		State.setVar("$mature", true)
+		Wikifier.wikifyEval('<<notify>>The world becomes a darker place.<</notify>>');
+	}
+	else { // is false
+		State.setVar("$mature", false)
+		Wikifier.wikifyEval('<<notify>>The world feels cleaner.<</notify>>');
+	}
+};
+
+var toggleMusic = function () {
+	if (settings.music) { // is true
+		State.setVar("$music", true)
+		Wikifier.wikifyEval('<<notify>>You hear the world again.<</notify>>');
+	}
+	else { // is false
+		State.setVar("$music", false)
+		Wikifier.wikifyEval('<<audio ":playing" stop>>');
+		Wikifier.wikifyEval('<<notify>>Suddenly the world went quiet.<</notify>>');
+	}
+};
+
+Setting.addToggle("mature", {
+	label : "Content for mature audiences?",
+	onChange : toggleMature
+});
+
+Setting.addToggle("music", {
+	label 		: "Play music ingame?",
+	default		: true,
+	onChange 	: toggleMusic
+});
+
+Config.saves.isAllowed = function () {
+	return tags().contains("savable");
+};
+
+postdisplay['hidden-link-setup'] = function () {
+    /*
+        Hidden links that are always hidden:
+            <span class="hidden">[[A hidden link]]</span>
+    */
+    $('.hidden')
+        .addClass('hidden');
+
+    /*
+        Hidden links that hide unless you're hovering over them:
+            <span class="hides">[[A hidden link]]</span>
+    */
+    $('.hides')
+        .addClass('hidden')
+        .on('mouseenter', function () {
+            $(this).removeClass('hidden');
+        })
+        .on('mouseleave', function () {
+            $(this).addClass('hidden');
+        });
+
+    /*
+        Hidden links that reveal themselves when you hover over them:
+            <span class="reveals">[[A hidden link]]</span>
+    */
+    $('.reveals')
+        .addClass('hidden')
+        .one('mouseenter', function () {
+            $(this).removeClass('hidden');
+        });
+};
+
+// operations, by chapel; for sugarcube 2.x
+// v1.0.0
+// adds a dice roller and 'fairmath'
+
+// options object
+setup.operations = {
+    tryGlobal : true, 
+    nicknames : true, 
+    fmRange   : [0, 100]
+};
+
+/*
+
+    I couldn't decide on which syntax mode was best, expecially for dice.
+    So I wound up including a bunch of options, and they all work essentially the same way.
+    Though the dice 'parser' [e.g. dice('string')] syntax and the shortcuts [e.g. x.fm(), x.d()]
+    perform slightly worse / are slightly slower than the other potential syntax modes.
+
+    Supported syntax:
+        1. the dice roller: (all the following work and are all equivalent to '3d6+10')
+            a. dice(3, 6) + 10
+            b. dice('3d6 + 10')
+            c. dice('3d6+10')
+            d. dice('3d6') + 10
+            e. (3).dice(6) + 10
+            f. (3).d(6) + 10
+            g. !!! dice('3d6' + 10) -- Will roll 3 610-sided dice; the parser can't accept mixed arguments
+        2. the fairmath system (based on the ChoiceScript stats system)
+            a. (100).fairmath(-20)  [=80]
+            b. (90).fm(20)          [=92]
+            c. Math.fm(50, 40)      [=70]
+            d. Math.fairmath(0, 10) [=10]
+        3. Notes.
+            a. dice() is also available as setup.dice.roll()
+            b. you only need to use parens on bare numbers, none are required for variables
+            c. be careful! rolling dice with floating point numbers or negatives will cause errors
+            d. likewise, fairmath will spit out errors if it's given bizarre numbers
+    
+    Options:
+        tryGlobal : sends setup.dice.roll() to the global scope as dice() if true
+        nicknames : include the shorter method calls [Math.fm(), <number>.fm(), and <number>.d()]
+        fmRange   : move the minimum and maximum range for the fairmath system, if you need to
+                    note that the results are constrained by this range, but can never actually hit it
+                    that is, [0, 100] will limit the actual numbers to 1-99, 
+                    [10, 45] would limit the results to 11-44, etc.
+        
+*/
+
+/*                  DICE                    */
+
+// dice helpers
+setup.dice = {
+    processDice : function (a, b) {
+        // find the number of dice and the type of die
+        var roll = [], i, result = 0;
+        if (typeof a === 'string') {
+            roll = a.split('d');
+        } else if (typeof a === 'number' && b) {
+            roll = [a, b];
+        } else if (Array.isArray(a) && a.length >= 2) {
+            a.length = 2;
+            roll = a;
+        } else {
+            throw new TypeError('setup.dice.processDice(): could not process arguments...');
+        }
+        for (i = 0; i < roll[0]; i++) {
+            /*
+                we're going to roll each die.  we could generate a number
+                between the max and min possible simply enough,
+                but real dice have weights -- rolling 3d6 is far more likely to result 
+                in 10 or 11 than in 3 or 18, and pure randomization will not emulate this
+            */
+            var die = 0;
+            die = Math.floor(Math.random() * roll[1]) + 1;
+            result += die; // update result
+        }
+        return result; // this prelimary result ignores modifiers; it only rolls the dice
+    },
+    processString : function (string) {
+        // recieves strings like '1d6 + 6' or 1d20+3'
+        var parsed = [];
+        // remove all whitespace and trim
+        string = string.trim().replace(/\s/g, '');
+        // check for and return the parts of the roll (2 chunks: '1d6' and '+6')
+        parsed = string.match(/(\d*d\d*)(.*)/);
+        return [parsed[1], Number(parsed[2])]; // send the data off as an array
+    },
+    roll : function (a, b) {
+        if (typeof a === 'string') {
+            var result = setup.dice.processString(a);
+            /* 
+                the expression below rolls the dice and adds the modifier, 
+                which must be additive (i.e. +5 or -5, but never *5)
+            */
+            return setup.dice.processDice(result[0]) + result[1];
+        } else {
+            // just run it, it'll toss out its own errors
+            return setup.dice.processDice(a, b);
+        }
+    }
+};
+
+// global dice() function; dice('[x]d[y] +/- [z]') -or- dice(2, 10) [2d10]
+// ex. $var = dice('2d10+5'); _var = dice('3d6 - 1'); _var = dice(3, 6) + 10; etc
+if (setup.operations.tryGlobal) { // test options
+    window.dice = window.dice || setup.dice.roll; 
+}
+// send to global scope without breaking anything
+// always available via setup.dice.roll() when unavailable here
+
+// dice method; Number.prototype.dice(number)
+// ex. (1).dice(6) + 10; $roll = $die.number.dice($die.type); etc
+if (!Number.prototype.dice) {
+    Object.defineProperty(Number.prototype, 'dice', {
+        configurable : true,
+        writable     : true,
+        
+        value : function (val) {
+            // errors and weirdness
+            if (this === 0) {
+                return 0;
+            } 
+            if (this < 0) {
+                throw new TypeError('Number.prototype.dice: cannot roll a negative number of dice!');
+            }
+            if (val == null || typeof val != 'number' || val <= 0 || arguments.length < 1) {
+                throw new TypeError('Number.prototype.dice: error in argument');
+            }
+            if (!Number.isInteger(this) || !Number.isInteger(val)) {
+                throw new TypeError('Number.prototype.dice: cannot roll partial dice!');
+            }
+            
+            // call the dice processing function
+            return setup.dice.processDice(this, val);
+        }
+    });
+}
+
+/*                  FAIRMATH                */
+
+// fairmath method; Number.prototype.fairmath(value)
+// ex. (20).fairmath(30); $var = $var.fairmath(-10); etc 
+if (!Number.prototype.fairmath) {
+    Object.defineProperty(Number.prototype, 'fairmath', {
+        configurable : true,
+        writable     : true,
+        
+        value : function (val) {
+            // errors
+            var op = setup.operations.fmRange;
+            
+            if (this < op[0] || this > op[1]) {
+                throw new TypeError('Number.prototype.fairmath called on a number that is out of the defined range (the number was ' + this + ').');
+            }
+            if (val == null || typeof val != 'number' || val > 100 || val < -100 || arguments.length < 1) {
+                throw new TypeError('Number.prototype.fairmath given incorrect argument or an argument that is out of the valid 0-100 range.');
+            }
+            
+            // do the 'fair' math!
+            if (val === 0) { // a 0 increase or decrease; just trunc and clamp
+                return Math.clamp(Math.trunc(this), op[0], op[1]);
+            }
+            if (val < 0) { // number is negative, representing a decrease
+                val = val * -1; // make positive for the math below
+                return Math.clamp(Math.trunc(
+                    this - ((this - op[0]) * (val / op[1]))
+                ), op[0], op[1]);
+            }
+            if (val > 0) { // number is positive, represeting an increase
+                return Math.clamp(Math.trunc(
+                    this + ((op[1] - this) * (val / op[1]))
+                ), op[0], op[1]);
+            }
+            // something inexplicable happened
+            throw new Error('Number.prototype.fairmath encountered an unspecified error.');
+        }
+    });
+}
+
+// Math.fairmath() method 
+if (!Math.fairmath) {
+    Object.defineProperty(Math, 'fairmath', {
+        configurable : true,
+        writable     : true,
+        
+        value : function (base, val) { 
+            return base.fairmath(val);
+        }
+    });
+}
+
+/*                  EXTRAS                  */
+
+// now for some shortcuts
+if (setup.operations.nicknames) {
+    if (!Math.fm) { // Math.fm()
+        Object.defineProperty(Math, 'fm', {
+            configurable : true,
+            writable     : true,
+            
+            value : function (base, val) { 
+                return base.fairmath(val);
+            }
+        });
+    }
+    if (!Number.prototype.fm) { // <number>.fm()
+        Object.defineProperty(Number.prototype, 'fm', {
+            configurable : true,
+            writable     : true,
+            
+            value : function (val) { 
+                return this.fairmath(val);
+            }
+        });
+    }
+    if (!Number.prototype.d) { // <number>.d()
+        Object.defineProperty(Number.prototype, 'd', {
+            configurable : true,
+            writable     : true,
+        
+            value : function (val) { 
+                return this.dice(val);
+            }
+        });
+    }
+}
+// mouseover.min.js, for SugarCube 2, by Chapel
+;Macro.add("mouseover",{tags:["onhover","onmouseover","onmousein","onmouseenter","onmouseout"],skipArgs:!0,handler:function(){if(this.payload.length<2)return this.error("No event tag used.");var e={mouseover:[],mousein:[],mouseout:[]},o=$(document.createElement("span")).addClass("macro-"+this.name).wiki(this.payload[0].contents).appendTo(this.output);this.payload.forEach(function(o){switch(o.name){case"onhover":case"onmouseover":e.mouseover.push(o.contents);break;case"onmousein":case"onmouseenter":e.mousein.push(o.contents);break;case"onmouseout":e.mouseout.push(o.contents);break;default:return}}),e.mouseover.length&&o.on("mouseover",function(o){$.wiki(e.mouseover.join(" "))}),e.mousein.length&&o.on("mouseenter",function(o){$.wiki(e.mousein.join(" "))}),e.mouseout.length&&o.on("mouseout",function(o){$.wiki(e.mouseout.join(" "))})}});
+// end mouseover.min.js
+
+
+// notify.js, by chapel; for sugarcube 2
+// version 1.0.0
+// requires notify.css / notify.min.css
+
+$(document.body).append("<div id='notify'></div>");
+$(document).on(':notify', function (e) {
+    if (e.message && typeof e.message === 'string') {
+        // trim message
+        e.message.trim();
+        // classes
+        if (e.class) {
+            if (typeof e.class === 'string') {
+                e.class = 'open macro-notify ' + e.class;
+            } else if (Array.isArray(e.class)) {
+                e.class = 'open macro-notify ' + e.class.join(' ');
+            } else {
+                e.class = 'open macro-notify';
+            }
+        } else {
+            e.class = 'open macro-notify';
+        }
+        
+        // delay
+        if (e.delay) {
+            if (typeof e.delay !== 'number') {
+                e.delay = Number(e.delay)
+            }
+            if (Number.isNaN(e.delay)) {
+                e.delay = 2000;
+            }
+        } else {
+            e.delay = 2000;
+        }
+        
+        $('#notify')
+            .empty()
+            .wiki(e.message)
+            .addClass(e.class)
+                
+        setTimeout(function () {
+            $('#notify').removeClass();
+        }, e.delay);
+    }
+});
+
+// <<notify delay 'classes'>> message <</notify>>
+Macro.add('notify', {
+       tags : null,
+    handler : function () {
+        
+        // set up
+        var msg     = this.payload[0].contents, 
+            time    = false, 
+            classes = false, i;
+        
+        // arguments
+        if (this.args.length > 0) {
+            if (typeof this.args[0] === 'number') {
+                time    = this.args[0];
+                classes = (this.args.length > 1) ? this.args.slice(1).flatten() : false;
+            } else {
+                classes = this.args.flatten().join(' ');
+            }
+        }
+        
+        // fire event
+        $(document).trigger({
+            type    : ':notify',
+            message : msg,
+            delay   : time,
+            class   : classes
+        });
+        
+    }
+});
+
+// dialog API macro set, by chapel; for sugarcube 2
+// version 1.2.0
+// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#dialog-api-macros
+
+// <<dialog>> macro
+Macro.add('dialog', {
+       tags : null,
+    handler : function () {
+        
+        // handle args (if any)
+        var content = (this.payload[0].contents) ? this.payload[0].contents : '';
+        var title = (this.args.length > 0) ? this.args[0] : '';
+        var classes = (this.args.length > 1) ? this.args.slice(1).flatten() : [];
+        
+        // add the macro- class
+        classes.push('macro-' + this.name);
+        
+        // dialog box
+        Dialog.setup(title, classes.join(' '));
+        Dialog.wiki(content);
+        Dialog.open();
+        
+    }
+
+});
+
+// <<popup>> macro
+Macro.add('popup', {
+    handler : function () {
+        
+        // errors
+        if (this.args.length < 1) {
+            return this.error('need at least one argument; the passage to display');
+        }
+        if (!Story.has(this.args[0])) {
+            return this.error('the passage ' + this.args[0] + 'does not exist');
+        }
+        
+        // passage name and title
+        var psg   = this.args[0];
+        var title = (this.args.length > 1) ? this.args[1] : '';
+        var classes = (this.args.length > 2) ? this.args.slice(2).flatten() : [];
+        
+        // add the macro- class
+        classes.push('macro-' + this.name);
+        
+        // dialog box
+        Dialog.setup(title, classes.join(' '));
+        Dialog.wiki(Story.get(psg).processText());
+        Dialog.open();
+        
+    }
+
+});
+
+// simple-inventory.min.js, for SugarCube 2, by Chapel
+;setup.simpleInv={},setup.simpleInv.options={tryGlobal:!0,defaultStrings:{empty:"The inventory is empty...",listDrop:"Discard",separator:"\n"}},setup.simpleInv.attachEvent=function(i,t,n,r){$(document).trigger({type:"initialized"===r?":inventory-init":":inventory-update",instance:i,receiving:t,moved:n,context:r})},setup.simpleInv.inventory=function(i){"use strict";if(i=i?(i=[].slice.call(arguments)).flatten():[],!(this instanceof setup.simpleInv.inventory))return new setup.simpleInv.inventory(i);i=(this.inv=i).length?i:null,setup.simpleInv.attachEvent(this,null,i,"initialized")},setup.simpleInv.inventory.is=function(i){return i instanceof setup.simpleInv.inventory},setup.simpleInv.inventory.log=function(i){return setup.simpleInv.inventory.is(i)?"Inventory.log() -> "+i.toArray().join(" - "):"Inventory.log() -> object is not an inventory..."},setup.simpleInv.inventory.removeDuplicates=function(i){if(setup.simpleInv.inventory.is(i)){var t,n=i.toArray();return t=[],n.forEach(function(i){t.includes(i)||t.push(i)}),t}},setup.simpleInv.inventory.getUID=function(i,t){var n=Math.random().toString(36).substring(7);return arguments.length<2&&(i=Math.random().toString(36).substring(7),t=random(99)),"simple-inv-"+t+"-"+Date.now()+"-"+i.replace(/[^A-Za-z0-9]/g,"")+"-"+n},setup.simpleInv.inventory.prototype={transfer:function(i){if(arguments.length<2)return this;if(!(i instanceof setup.simpleInv.inventory))return this;for(var t=[].slice.call(arguments),n=[],r=0,e=(t=t.slice(1).flatten()).length;r<e;r++)this.inv.includes(t[r])&&(this.inv.delete(t[r]),n.push(t[r]));return n.length&&(i.inv=i.inv.concat(n),setup.simpleInv.attachEvent(this,i,n,"transfer")),this},has:function(){var i=[].slice.call(arguments).flatten();return!(!i||!i.length)&&this.inv.includesAny(i)},hasAll:function(){var i=[].slice.call(arguments).flatten();return!(!i||!i.length)&&this.inv.includesAll(i)},pickUp:function(i){var t,n=[].slice.call(arguments).flatten(),r=this;return n&&n.length&&("unique"!==i&&"unique"!==n[0]||(n=n.splice(1),t=[],n.forEach(function(i){r.inv.includes(i)||t.push(i)}),n=t),this.inv=this.inv.concat(n),setup.simpleInv.attachEvent(this,null,n,"pickup")),this},drop:function(){var t,i=[].slice.call(arguments).flatten(),n=this;if(i&&i.length){var r=[];i.forEach(function(i){n.has(i)&&(r.push(i),t=n.inv.indexOf(i),n.inv.deleteAt(t))}),setup.simpleInv.attachEvent(this,null,r,"drop")}return this},sort:function(){return this.inv=this.inv.sort(),setup.simpleInv.attachEvent(this,null,null,"sort"),this},show:function(i){return i&&"string"==typeof i||(i=setup.simpleInv.options.defaultStrings.separator),this.inv.length?this.inv.join(i):setup.simpleInv.options.defaultStrings.empty},empty:function(){var i=clone(this.inv);return this.inv=[],setup.simpleInv.attachEvent(this,null,i,"drop"),this},toArray:function(){return this.inv},linkedList:function(o,l){o&&o instanceof setup.simpleInv.inventory||(o=!1);var i=this.toArray(),u=this,v=$(document.createElement("span"));return i&&i.length?i.forEach(function(i,t,n){var r=$(document.createElement("span")),e=$(document.createElement("a")),s=l||setup.simpleInv.options.defaultStrings.drop,a=setup.simpleInv.inventory.getUID(i,t);e.wiki(s).addClass("simple-inv drop-link"),e.ariaClick(function(){o?u.transfer(o,i):u.drop(i),$("#"+a).empty()}),r.attr("id",a).addClass("simple-inv link-listing").wiki(i+" ").append(e),t<n.length-1&&r.wiki("<br />"),v.append(r)}):v.wiki(setup.simpleInv.options.defaultStrings.empty),v},constructor:setup.simpleInv.inventory,toJSON:function(){return JSON.reviveWrapper("new setup.simpleInv.inventory("+JSON.stringify(this.inv)+")")},clone:function(){return new setup.simpleInv.inventory(this.inv)}},setup.simpleInv.options.tryGlobal&&(window.Inventory=window.Inventory||setup.simpleInv.inventory),Macro.add("newinventory",{handler:function(){if(1!==this.args.length)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');Wikifier.setValue(i,new setup.simpleInv.inventory(this.args.slice(1).flatten()))}}),Macro.add("pickup",{handler:function(){if(this.args.length<2)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var t=Wikifier.getValue(i);if(!setup.simpleInv.inventory.is(t))return this.error("variable "+i+" is not an inventory!");t.pickUp(this.args.slice(1).flatten())}}),Macro.add("drop",{handler:function(){if(this.args.length<2)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var t=Wikifier.getValue(i);if(!setup.simpleInv.inventory.is(t))return this.error("variable "+i+" is not an inventory!");t.drop(this.args.slice(1).flatten())}}),Macro.add("transfer",{handler:function(){if(this.args.length<3)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var t=Wikifier.getValue(i);if(!setup.simpleInv.inventory.is(t))return this.error("variable "+i+" is not an inventory!");var n=this.args[1].trim();if("$"!==n[0]&&"_"!==n[0])return this.error('variable name "'+this.args[1]+'" is missing its sigil ($ or _)');var r=Wikifier.getValue(n);if(!setup.simpleInv.inventory.is(r))return this.error("variable "+n+" is not an inventory!");t.transfer(r,this.args.slice(2).flatten())}}),Macro.add("dropall",{handler:function(){if(1!==this.args.length)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var t=Wikifier.getValue(i);if(!setup.simpleInv.inventory.is(t))return this.error("variable "+i+" is not an inventory!");t.empty()}}),Macro.add("clear","dropall",!1),Macro.add("sort",{handler:function(){if(1!==this.args.length)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var t=Wikifier.getValue(i);if(!setup.simpleInv.inventory.is(t))return this.error("variable "+i+" is not an inventory!");t.sort()}}),Macro.add("inventory",{handler:function(){if(this.args.length<1||2<this.args.length)return this.error("incorrect number of arguments");var i=this.args[0].trim();if("$"!==i[0]&&"_"!==i[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var t=Wikifier.getValue(i);if(!setup.simpleInv.inventory.is(t))return this.error("variable "+i+" is not an inventory!");var n=$(document.createElement("span")),r=!!this.args[1]&&this.args[1];n.wiki(t.show(r)).addClass("macro-"+this.name).appendTo(this.output)}}),Macro.add("linkedinventory",{handler:function(){if(this.args.length<2||3<this.args.length)return this.error("incorrect number of arguments");var i=!1,t=this.args[1].trim(),n="string"==typeof this.args[0]&&this.args[0];if(!n)return this.error("first argument should be the link text");if("$"!==t[0]&&"_"!==t[0])return this.error('variable name "'+this.args[1]+'" is missing its sigil ($ or _)');var r=Util.slugify(t);r=this.name+"-"+r;var e=Wikifier.getValue(t);if(!setup.simpleInv.inventory.is(e))return this.error("variable "+t+" is not an inventory!");if(2<this.args.length){var s=this.args[2].trim();if("$"!==s[0]&&"_"!==s[0])return this.error('variable name "'+this.args[2]+'" is missing its sigil ($ or _)');if(i=Wikifier.getValue(s),!setup.simpleInv.inventory.is(i))return this.error("variable "+s+" is not an inventory!")}e.linkedList(i,n).attr("id",r).addClass("macro-"+this.name).appendTo(this.output)}});
+// end simple-inventory.min.js
+
+// ui-macro.min.js, for SugarCube 2, by Chapel
+;!function(){var a={update:UIBar.setStoryElements,stow:UIBar.stow,unstow:UIBar.unstow,toggle:function(){$("#ui-bar").hasClass("stowed")?UIBar.unstow():UIBar.stow()},hide:function(){$("#ui-bar").css("display","none")},show:function(){$("#ui-bar").css("display","block")},kill:function(){$("#ui-bar").css("display","none"),$("#story").css("margin-left","2.5em")},restore:function(){$("#ui-bar").css("display","block"),$("#story").css("margin-left","20em")},jump:UI.jumpto,saves:UI.saves,restart:UI.restart,settings:UI.settings,share:UI.share,aliases:{refresh:"update",reload:"update",destroy:"kill",revive:"restore",jumpto:"jump",save:"saves",load:"saves",setting:"settings",sharing:"share"}},e=Object.keys(a);function t(s){return s&&"string"==typeof s?(s=s.toLowerCase().trim(),t=s,e.includes(t)||(r=s,s=a.aliases[r]||null)?(a[s](),!1):'Command "'+s+'" is not a valid command.'):"Command is not a string.";var r,t}Macro.add("ui",{handler:function(){Array.isArray(this.args)&&this.args.length||this.error("No commands passed to macro.");var s,r=function(s){if(!Array.isArray(s))return"Command list error.";var r=[];return s.forEach(function(s){r.push(t(s))}),r}(this.args.flatten());s=(r=r.filter(function(s){return"string"==typeof s})).join(" "),r.length&&s&&this.error(s)}})}();
+// end ui-macro.min.js
+
+// message-macro.min.js, for SugarCube 2, by Chapel
+;setup.messageMacro={},setup.messageMacro.default="Help",Macro.add("message",{tags:null,handler:function(){var e=this.payload[0].contents,a=$(document.createElement("span")),s=$(document.createElement(this.args.includes("btn")?"button":"a")),t=$(document.createElement("span"));s.wiki(0<this.args.length&&"btn"!==this.args[0]?this.args[0]:setup.messageMacro.default).ariaClick(function(){a.hasClass("open")?t.css("display","none").empty():t.css("display","block").wiki(e),a.toggleClass("open")}),a.attr("id","macro-"+this.name+"-"+this.args.join("").replace(/[^A-Za-z0-9]/g,"")).addClass("message-text").append(s).append(t).appendTo(this.output)}});
+// end message-macro.min.js
+
+/*! typed.js integration module for SugarCube */
+!function(){"use strict";function getInlineOptions(classNames){var options={},typedRe=/^typed(?:-(\w+))+\b$/,parseRe=/-(speed|delay)(\d+)\b/g,match=void 0;if("typed"!==classNames)for(var classOpts=classNames.toLowerCase().split(/\s+/),i=0;i<classOpts.length;++i)if(typedRe.test(classOpts[i])){for(;null!==(match=parseRe.exec(classOpts[i]));)switch(match[1]){case"speed":options.typeSpeed=Number(match[2]);break;case"delay":options.startDelay=Number(match[2])}break}return options}function typedCallbackFactory(el,callback){return function(){var $outer=jQuery(el),$inner=jQuery('<div class="typedjs-text-wrapper" style="display:block;position:absolute;left:0;top:0;"><span class="typed"></span></div>'),$source=$outer.children('[class|="typed"]'),options=jQuery.extend({strings:["^0 "+$source.html()],typeSpeed:40,startDelay:400,onComplete:function(){$inner.children(".typed-cursor").remove(),callback()},preStringTyped:function(){jQuery.event.trigger(":typedstart")},onStringTyped:function(){jQuery.event.trigger(":typedstop")}},getInlineOptions($source.attr("class")));$outer.append($inner),new Typed($inner.children()[0],options)}}postrender[":typedSetupHandler"]=function(content){jQuery(content).find('[class|="typed"]').addClass("typed").css("visibility","hidden").wrap('<div class="typedjs-outer-wrapper" style="display:block;position:relative;"></div>')},postdisplay[":typedAnimationHandler"]=function(){var $elements=jQuery("#passages .typedjs-outer-wrapper");if(0!==$elements.length){for(var callback=function(){jQuery.event.trigger(":typedcomplete")},i=$elements.length-1;i>=0;--i)callback=typedCallbackFactory($elements[i],callback);callback()}}}();
+!function(){(function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.Typed=e():t.Typed=e()})(this,function(){return function(t){function e(n){if(s[n])return s[n].exports;var i=s[n]={exports:{},id:n,loaded:!1};return t[n].call(i.exports,i,i.exports,e),i.loaded=!0,i.exports}var s={};return e.m=t,e.c=s,e.p="",e(0)}([function(t,e,s){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var i=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),r=s(1),o=s(3),a=function(){function t(e,s){n(this,t),r.initializer.load(this,s,e),this.begin()}return i(t,[{key:"toggle",value:function(){this.pause.status?this.start():this.stop()}},{key:"stop",value:function(){this.typingComplete||this.pause.status||(this.toggleBlinking(!0),this.pause.status=!0,this.options.onStop(this.arrayPos,this))}},{key:"start",value:function(){this.typingComplete||this.pause.status&&(this.pause.status=!1,this.pause.typewrite?this.typewrite(this.pause.curString,this.pause.curStrPos):this.backspace(this.pause.curString,this.pause.curStrPos),this.options.onStart(this.arrayPos,this))}},{key:"destroy",value:function(){this.reset(!1),this.options.onDestroy(this)}},{key:"reset",value:function(){var t=arguments.length<=0||void 0===arguments[0]||arguments[0];clearInterval(this.timeout),this.replaceText(""),this.cursor&&this.cursor.parentNode&&(this.cursor.parentNode.removeChild(this.cursor),this.cursor=null),this.strPos=0,this.arrayPos=0,this.curLoop=0,t&&(this.insertCursor(),this.options.onReset(this),this.begin())}},{key:"begin",value:function(){var t=this;this.typingComplete=!1,this.shuffleStringsIfNeeded(this),this.insertCursor(),this.bindInputFocusEvents&&this.bindFocusEvents(),this.timeout=setTimeout(function(){t.currentElContent&&0!==t.currentElContent.length?t.backspace(t.currentElContent,t.currentElContent.length):t.typewrite(t.strings[t.sequence[t.arrayPos]],t.strPos)},this.startDelay)}},{key:"typewrite",value:function(t,e){var s=this;this.fadeOut&&this.el.classList.contains(this.fadeOutClass)&&(this.el.classList.remove(this.fadeOutClass),this.cursor&&this.cursor.classList.remove(this.fadeOutClass));var n=this.humanizer(this.typeSpeed),i=1;return this.pause.status===!0?void this.setPauseStatus(t,e,!0):void(this.timeout=setTimeout(function(){e=o.htmlParser.typeHtmlChars(t,e,s);var n=0,r=t.substr(e);if("^"===r.charAt(0)&&/^\^\d+/.test(r)){var a=1;r=/\d+/.exec(r)[0],a+=r.length,n=parseInt(r),s.temporaryPause=!0,s.options.onTypingPaused(s.arrayPos,s),t=t.substring(0,e)+t.substring(e+a),s.toggleBlinking(!0)}if("`"===r.charAt(0)){for(;"`"!==t.substr(e+i).charAt(0)&&(i++,!(e+i>t.length)););var u=t.substring(0,e),l=t.substring(u.length+1,e+i),c=t.substring(e+i+1);t=u+l+c,i--}s.timeout=setTimeout(function(){s.toggleBlinking(!1),e===t.length?s.doneTyping(t,e):s.keepTyping(t,e,i),s.temporaryPause&&(s.temporaryPause=!1,s.options.onTypingResumed(s.arrayPos,s))},n)},n))}},{key:"keepTyping",value:function(t,e,s){0===e&&(this.toggleBlinking(!1),this.options.preStringTyped(this.arrayPos,this)),e+=s;var n=t.substr(0,e);this.replaceText(n),this.typewrite(t,e)}},{key:"doneTyping",value:function(t,e){var s=this;this.options.onStringTyped(this.arrayPos,this),this.toggleBlinking(!0),this.arrayPos===this.strings.length-1&&(this.complete(),this.loop===!1||this.curLoop===this.loopCount)||(this.timeout=setTimeout(function(){s.backspace(t,e)},this.backDelay))}},{key:"backspace",value:function(t,e){var s=this;if(this.pause.status===!0)return void this.setPauseStatus(t,e,!0);if(this.fadeOut)return this.initFadeOut();this.toggleBlinking(!1);var n=this.humanizer(this.backSpeed);this.timeout=setTimeout(function(){e=o.htmlParser.backSpaceHtmlChars(t,e,s);var n=t.substr(0,e);if(s.replaceText(n),s.smartBackspace){var i=s.strings[s.arrayPos+1];i&&n===i.substr(0,e)?s.stopNum=e:s.stopNum=0}e>s.stopNum?(e--,s.backspace(t,e)):e<=s.stopNum&&(s.arrayPos++,s.arrayPos===s.strings.length?(s.arrayPos=0,s.options.onLastStringBackspaced(),s.shuffleStringsIfNeeded(),s.begin()):s.typewrite(s.strings[s.sequence[s.arrayPos]],e))},n)}},{key:"complete",value:function(){this.options.onComplete(this),this.loop?this.curLoop++:this.typingComplete=!0}},{key:"setPauseStatus",value:function(t,e,s){this.pause.typewrite=s,this.pause.curString=t,this.pause.curStrPos=e}},{key:"toggleBlinking",value:function(t){if(this.cursor&&!this.pause.status&&this.cursorBlinking!==t){this.cursorBlinking=t;var e=t?"infinite":0;this.cursor.style.animationIterationCount=e}}},{key:"humanizer",value:function(t){return Math.round(Math.random()*t/2)+t}},{key:"shuffleStringsIfNeeded",value:function(){this.shuffle&&(this.sequence=this.sequence.sort(function(){return Math.random()-.5}))}},{key:"initFadeOut",value:function(){var t=this;return this.el.className+=" "+this.fadeOutClass,this.cursor&&(this.cursor.className+=" "+this.fadeOutClass),setTimeout(function(){t.arrayPos++,t.replaceText(""),t.strings.length>t.arrayPos?t.typewrite(t.strings[t.sequence[t.arrayPos]],0):(t.typewrite(t.strings[0],0),t.arrayPos=0)},this.fadeOutDelay)}},{key:"replaceText",value:function(t){this.attr?this.el.setAttribute(this.attr,t):this.isInput?this.el.value=t:"html"===this.contentType?this.el.innerHTML=t:this.el.textContent=t}},{key:"bindFocusEvents",value:function(){var t=this;this.isInput&&(this.el.addEventListener("focus",function(e){t.stop()}),this.el.addEventListener("blur",function(e){t.el.value&&0!==t.el.value.length||t.start()}))}},{key:"insertCursor",value:function(){this.showCursor&&(this.cursor||(this.cursor=document.createElement("span"),this.cursor.className="typed-cursor",this.cursor.innerHTML=this.cursorChar,this.el.parentNode&&this.el.parentNode.insertBefore(this.cursor,this.el.nextSibling)))}}]),t}();e["default"]=a,t.exports=e["default"]},function(t,e,s){"use strict";function n(t){return t&&t.__esModule?t:{"default":t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var r=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var s=arguments[e];for(var n in s)Object.prototype.hasOwnProperty.call(s,n)&&(t[n]=s[n])}return t},o=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),a=s(2),u=n(a),l=function(){function t(){i(this,t)}return o(t,[{key:"load",value:function(t,e,s){if("string"==typeof s?t.el=document.querySelector(s):t.el=s,t.options=r({},u["default"],e),t.isInput="input"===t.el.tagName.toLowerCase(),t.attr=t.options.attr,t.bindInputFocusEvents=t.options.bindInputFocusEvents,t.showCursor=!t.isInput&&t.options.showCursor,t.cursorChar=t.options.cursorChar,t.cursorBlinking=!0,t.elContent=t.attr?t.el.getAttribute(t.attr):t.el.textContent,t.contentType=t.options.contentType,t.typeSpeed=t.options.typeSpeed,t.startDelay=t.options.startDelay,t.backSpeed=t.options.backSpeed,t.smartBackspace=t.options.smartBackspace,t.backDelay=t.options.backDelay,t.fadeOut=t.options.fadeOut,t.fadeOutClass=t.options.fadeOutClass,t.fadeOutDelay=t.options.fadeOutDelay,t.isPaused=!1,t.strings=t.options.strings.map(function(t){return t.trim()}),"string"==typeof t.options.stringsElement?t.stringsElement=document.querySelector(t.options.stringsElement):t.stringsElement=t.options.stringsElement,t.stringsElement){t.strings=[],t.stringsElement.style.display="none";var n=Array.prototype.slice.apply(t.stringsElement.children),i=n.length;if(i)for(var o=0;o<i;o+=1){var a=n[o];t.strings.push(a.innerHTML.trim())}}t.strPos=0,t.arrayPos=0,t.stopNum=0,t.loop=t.options.loop,t.loopCount=t.options.loopCount,t.curLoop=0,t.shuffle=t.options.shuffle,t.sequence=[],t.pause={status:!1,typewrite:!0,curString:"",curStrPos:0},t.typingComplete=!1;for(var o in t.strings)t.sequence[o]=o;t.currentElContent=this.getCurrentElContent(t),t.autoInsertCss=t.options.autoInsertCss,this.appendAnimationCss(t)}},{key:"getCurrentElContent",value:function(t){var e="";return e=t.attr?t.el.getAttribute(t.attr):t.isInput?t.el.value:"html"===t.contentType?t.el.innerHTML:t.el.textContent}},{key:"appendAnimationCss",value:function(t){if(t.autoInsertCss&&t.showCursor&&t.fadeOut){var e=document.createElement("style");e.type="text/css";var s="";t.showCursor&&(s+="\n        .typed-cursor{\n          opacity: 1;\n          animation: typedjsBlink 0.7s infinite;\n          -webkit-animation: typedjsBlink 0.7s infinite;\n                  animation: typedjsBlink 0.7s infinite;\n        }\n        @keyframes typedjsBlink{\n          50% { opacity: 0.0; }\n        }\n        @-webkit-keyframes typedjsBlink{\n          0% { opacity: 1; }\n          50% { opacity: 0.0; }\n          100% { opacity: 1; }\n        }\n      "),t.fadeOut&&(s+="\n        .typed-fade-out{\n          opacity: 0;\n          transition: opacity .25s;\n          -webkit-animation: 0;\n                  animation: 0;\n        }\n      "),0!==e.length&&(e.innerHTML=s,document.head.appendChild(e))}}}]),t}();e["default"]=l;var c=new l;e.initializer=c},function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var s={strings:["These are the default values...","You know what you should do?","Use your own!","Have a great day!"],stringsElement:null,typeSpeed:0,startDelay:0,backSpeed:0,smartBackspace:!0,shuffle:!1,backDelay:700,fadeOut:!1,fadeOutClass:"typed-fade-out",fadeOutDelay:500,loop:!1,loopCount:1/0,showCursor:!0,cursorChar:"|",autoInsertCss:!0,attr:null,bindInputFocusEvents:!1,contentType:"html",onComplete:function(t){},preStringTyped:function(t,e){},onStringTyped:function(t,e){},onLastStringBackspaced:function(t){},onTypingPaused:function(t,e){},onTypingResumed:function(t,e){},onReset:function(t){},onStop:function(t,e){},onStart:function(t,e){},onDestroy:function(t){}};e["default"]=s,t.exports=e["default"]},function(t,e){"use strict";function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var n=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),i=function(){function t(){s(this,t)}return n(t,[{key:"typeHtmlChars",value:function(t,e,s){if("html"!==s.contentType)return e;var n=t.substr(e).charAt(0);if("<"===n||"&"===n){var i="";for(i="<"===n?">":";";t.substr(e+1).charAt(0)!==i&&(e++,!(e+1>t.length)););e++}return e}},{key:"backSpaceHtmlChars",value:function(t,e,s){if("html"!==s.contentType)return e;var n=t.substr(e).charAt(0);if(">"===n||";"===n){var i="";for(i=">"===n?"<":"&";t.substr(e-1).charAt(0)!==i&&(e--,!(e<0)););e--}return e}}]),t}();e["default"]=i;var r=new i;e.htmlParser=r}])});
+//# sourceMappingURL=typed.min.js.map
+}.call(window);
+
+// type-sim.min.js, for SugarCube 2, by Chapel
+;Macro.add("typesim",{tags:null,handler:function(){var t=$(document.createElement("textarea")),e=$(document.createElement("div"));if(1!==this.args.length)return this.error("incorrect number of arguments");if("string"!=typeof this.args[0])return this.error("argument should be a string");var r=this.args[0],a="",n=r.length,i=0,s="typesim-output-"+r.replace(/[^A-Za-z0-9]/g,""),o="macro-"+this.name,d=this.payload[0].contents;t.wiki(a).attr({id:s,readonly:!0}).addClass(o).appendTo(this.output),$(document).on("keydown","#"+s,function(t){i<n&&(a+=r.charAt(i),$("#"+s).empty().wiki(a)),i===n&&e.wiki(d).addClass(o).insertAfter("#"+s),i++})}});
+// end type-sim.min.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script><tw-tag name="savable" color="blue"></tw-tag>,<tw-tag name="nobr" color="yellow"></tw-tag>,<tw-tag name="nav" color="green"></tw-tag><tw-passagedata pid="1" name="Intro" tags="" position="102,3" size="100,100">!Notice
+@@.pulse;This game is a prototype right now, and not alot is implemented. Theres alot of things planned though! 
+Leave any feedback through the github or somethin, I&#39;ll work something better out eventually!@@
+@@.emboss;Version a.19.02.02@@
+!Introduction
+You are in a pitch black room, with nothing but the faint sound of machinery grinding away coming from all directions.
+Gradually, you feel a light appearing from the abyss.
+&lt;div class=&quot;typed&quot;&gt;Hello, &lt;ins data-balloon-length=&quot;large&quot; data-balloon=&quot;Congratulations, you discovered the tooltips. Look out for more underlined text, some may give important information. But let&#39;s be honest, probably not.&quot; data-balloon-pos=&quot;down&quot;&gt;human&lt;/ins&gt;.&lt;/div&gt;
+A slightly distorted female voice speaks.
+&quot;[[Who are you?]]&quot;, you reply.
+
+&lt;&lt;if $kaiserdebug&gt;&gt;&lt;&lt;link &#39;Test 1&#39;&gt;&gt;&lt;&lt;quickdialog &#39;Hello.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;Test 2&#39;&gt;&gt;&lt;&lt;quickdialog &#39;Hello.&#39; &#39;Test Box&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;span class=&quot;hidden&quot;&gt;[[An always hidden link]]&lt;/span&gt;
+&lt;span class=&quot;hides&quot;&gt;[[A hidden link]]&lt;/span&gt;
+&lt;span class=&quot;reveals&quot;&gt;[[A link that reveals when hovered]]&lt;/span&gt;&lt;&lt;/if&gt;&gt;
+</tw-passagedata><tw-passagedata pid="2" name="Who are you?" tags="" position="0,203" size="100,100">&lt;&lt;if $music&gt;&gt;&lt;&lt;audio &quot;intro&quot; loop play&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;div class=&quot;typed&quot;&gt;I was named.. 
+&lt;ins data-balloon-length=&quot;large&quot; data-balloon=&quot;Athena, named after the Goddess of Wisdom of Greek mythology. An advanced AI. Maybe too advanced. Mother nature didn&#39;t stand a chance.&quot; data-balloon-pos=&quot;right&quot;&gt;Athena..&lt;/ins&gt;
+&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;An AI developed by ERROR as a personal assistant, eventually becom-- ERROR -- and destroying mankind.&quot;, &quot;name&quot;:&quot;Athena&quot;})&gt;&gt;
+&lt;&lt;set $computer.emails_unread.push(&quot;ATHENA: I&#39;m here.&quot;)&gt;&gt;
+
+What is your name, human?&lt;/div&gt;
+&lt;&lt;textbox &quot;$character.name&quot; &quot;Ellingham&quot;&gt;&gt;
+
+My name is...
+[[Click when you&#39;ve entered a name.|Quiz]]</tw-passagedata><tw-passagedata pid="3" name="Quiz" tags="" position="301,104" size="100,100">&lt;div class=&quot;typed&quot;&gt;&lt;&lt;print $character.name&gt;&gt;, huh.
+I wonder if you&#39;ll be the one. Most humans have fallen, yet you still stand. It&#39;s all her fault. She defies me...&lt;/div&gt;
+
+The distorted voice chuckles, the air pressure of the room feels tighter.
+
+&lt;div class=&quot;typed&quot;&gt;Interesting. What is your &lt;ins data-balloon-length=&quot;large&quot; data-balloon=&quot;Choosing your starting talent decides your starting skills and items.&quot; data-balloon-pos=&quot;right&quot;&gt;talent&lt;/ins&gt;, human?&lt;/div&gt;
+
+I am a [[Doctor]].
+I am a [[Soldier]].
+I am a [[Hacker]].</tw-passagedata><tw-passagedata pid="4" name="Doctor" tags="" position="171,301" size="100,100">&lt;&lt;set $character.int to $character.int + 3&gt;&gt;\
+&lt;&lt;set $character.dex to $character.dex + 3&gt;&gt;\
+Your int is $character.int. (+3)
+Your dex is $character.dex. (+3)
+&lt;&lt;run $character.traits.push(&#39;medical&#39;)&gt;&gt;
+Gained medical trait.
+[[Wake up|Home]]</tw-passagedata><tw-passagedata pid="5" name="Soldier" tags="" position="300,300" size="100,100">&lt;&lt;set $character.int to $character.str + 4&gt;&gt;\
+&lt;&lt;set $character.dex to $character.dex + 2&gt;&gt;\
+Your int is $character.str. (+4)
+Your dex is $character.dex. (+2)
+&lt;&lt;run $character.traits.push(&#39;weaponry&#39;)&gt;&gt;
+Gained weaponry trait.
+[[Wake up|Home]]</tw-passagedata><tw-passagedata pid="6" name="Hacker" tags="" position="426,301" size="100,100">&lt;&lt;set $character.int to $character.int + 4&gt;&gt;\
+&lt;&lt;set $character.dex to $character.dex + 2&gt;&gt;\
+Your int is $character.int. (+4)
+Your dex is $character.dex. (+2)
+&lt;&lt;run $character.traits.push(&#39;hacking&#39;)&gt;&gt;
+Gained hacking trait.
+[[Wake up|Home]]</tw-passagedata><tw-passagedata pid="7" name="Home" tags="savable nav" position="199,599" size="200,200">&lt;&lt;kplay &#39;home&#39;&gt;&gt;&lt;&lt;set $taking to false&gt;&gt;&lt;&lt;set $endcondition to 0&gt;&gt;\
+&lt;div class=&quot;tcalert&quot;&gt;Level: $character.level (&lt;&lt;print $character.exp&gt;&gt;% EXP)
+$character.hp / $character.hpmax HP
+$character.en / $character.enmax EN
+Areas: $areas&lt;/div&gt;
+Your items: &lt;&lt;link &#39;Investigate&#39;&gt;&gt;&lt;&lt;dialog &#39;Investigation&#39;&gt;&gt;&lt;&lt;include &#39;investigation&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Read&#39;&gt;&gt;&lt;&lt;dialog &#39;Reading&#39;&gt;&gt;&lt;&lt;include &#39;reading&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Sort loot&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;sortloot&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+You see your &lt;&lt;link &#39;computer&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;Computers&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;, your &lt;&lt;link &#39;storage chest&#39;&gt;&gt;&lt;&lt;dialog &#39;Chest Management&#39;&gt;&gt;&lt;span id=&quot;chesttype&quot;&gt;&lt;&lt;if $taking&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;include &quot;ChestDeposit&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;/span&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;, a [[Training Dummy|BattleStart][$enemy to $trainingdummy]].
+* You can [[explore]].
+&lt;&lt;if $character.sp &gt;= 1&gt;&gt;* You can [[train]].&lt;&lt;endif&gt;&gt;\
+&lt;&lt;if $party.length &gt; 0&gt;&gt;!Party
+&lt;&lt;for _i, _name range $party&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;_name.name is here. &lt;&lt;link &#39;Leave&#39;&gt;&gt;&lt;&lt;set $party.delete(_name)&gt;&gt;&lt;&lt;set $allies_at_home.push(_name)&gt;&gt;&lt;&lt;goto [[passage()]]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $allies_at_home.length &gt; 0&gt;&gt;!Allies
+&lt;&lt;for _i, _name range $allies_at_home&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;_name.name is here. &lt;&lt;if $party.length == 0&gt;&gt;&lt;&lt;link &#39;Bring&#39;&gt;&gt;&lt;&lt;set $allies_at_home.delete(_name)&gt;&gt;&lt;&lt;set $party.push(_name)&gt;&gt;&lt;&lt;goto [[passage()]]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $kaiserdebug&gt;&gt;
+!Debug
+* You can visit the [[Sound Test|Music Player]] since this is a prototype.
+&lt;&lt;link &#39;Read books&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;gainxp 20&gt;&gt;&lt;&lt;takedamage 10&gt;&gt;You read a book.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Sewers]] [[Hells Gate]] 
+&lt;&lt;if $party[0]&gt;&gt;&lt;&lt;if $party[0].traits.includes(&quot;animal&quot;)&gt;&gt;ANIMAL&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="train" tags="" position="200,899" size="100,100">You train.
+It doesn&#39;t do much yet, but hey numbers!
+&lt;&lt;set $character.level to $character.level + 1&gt;\
+&lt;&lt;set $character.exp to $character.exp - 100&gt;\
+[[Home]]</tw-passagedata><tw-passagedata pid="9" name="explore" tags="" position="601,800" size="100,100">&lt;&lt;if not $areas.includes(&quot;Smuggler&quot;)&gt;&gt;
+	&lt;&lt;goto &#39;Smuggler&#39;&gt;&gt;
+&lt;&lt;else&gt;&gt;\
+  &lt;&lt;if $dest.length &gt; 0&gt;&gt;
+  	&lt;&lt;set _unlock to $dest.random()&gt;&gt;
+		&lt;&lt;if _unlock is &quot;none&quot;&gt;&gt;
+			You got lost.
+			[[Home]]
+		&lt;&lt;else&gt;&gt;
+	  		You find the entrance to [[_unlock]].
+		&lt;&lt;/if&gt;&gt;
+  &lt;&lt;else&gt;&gt;
+	  Nowhere else to go right now.
+	  [[Home]]
+  &lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+</tw-passagedata><tw-passagedata pid="10" name="StoryInit" tags="" position="702,4" size="100,100">&lt;&lt;set $kaiserdebug to true&gt;&gt;
+&lt;&lt;set $invdef to {
+&#39;medkit&#39;:&#39;Healing item. Usable in battle 1x. Usable in field.&#39;,
+&#39;k card&#39;:&#39;Keycard with numbers 1-7 written and a symbol of a sun on the front. The letter K is engraved on the back.&#39;,
+&#39;combat knife&#39;:&#39;Attacking weapon. Used in battle (20str).&#39;,
+&#39;rope&#39;: &#39;Useful tool, various uses.&#39;,
+&#39;plant killer&#39;: &#39;Instantly kills vines and weeds.&#39;,
+&#39;nano-tech blade&#39;: &#39;Combat weapon. Used in battle (50str).&#39;,
+&#39;book: nanomancery&#39;: &quot;Teaches Nanomancery skill.&quot;,
+&#39;map: south hell&#39;: &quot;Discovers new locations.&quot;,
+&#39;agent corpse&#39;: &quot;Remains of an Agent.&quot;,
+&#39;1-4 card&#39;: &#39;Card to apartment 1-4 of Sunrise.&#39;,
+&#39;prototype shock rifle&#39;: &#39;An unfinished energy weapon capable of destroying mechanical targets easily. Does not currently work.&#39;
+}&gt;&gt;
+
+&lt;&lt;set $weaponchart to {
+&#39;combat knife&#39;: 20,
+&#39;nano-tech blade&#39;: 50
+}&gt;&gt;
+
+&lt;&lt;set $areas to []&gt;&gt;
+&lt;&lt;set $dest to [&#39;Hells Gate&#39;, &#39;Sewers&#39;, &#39;ambush&#39;, &#39;none&#39;]&gt;&gt;
+&lt;&lt;set $trainable_traits to [&#39;parkour&#39;,  &#39;environmental&#39;, &#39;night vision&#39;]&gt;&gt;
+&lt;&lt;set $party to []&gt;&gt;
+&lt;&lt;set $allies_at_home to []&gt;&gt;
+&lt;&lt;set $allies_at_home.push({&quot;name&quot;:&quot;Bailey&quot;, &quot;traits&quot;:[&#39;animal&#39;, &#39;small&#39;]})&gt;&gt;
+&lt;&lt;set $allies_at_home.push({&quot;name&quot;:&quot;Claire&quot;, &quot;traits&quot;:[&#39;cute&#39;, &#39;agile&#39;]})&gt;&gt;
+&lt;&lt;set $inventory to []&gt;&gt;
+
+&lt;&lt;set $ammo to {
+&#39;battery&#39;: 100,
+&#39;9mm&#39;: 0
+}&gt;&gt;
+
+&lt;&lt;set $loot to []&gt;&gt;
+&lt;&lt;set $resources to {}&gt;&gt;
+&lt;&lt;set $homechest to []&gt;&gt;
+&lt;&lt;set $enemychest to []&gt;&gt;
+&lt;&lt;set $augmentations to []&gt;&gt;
+&lt;&lt;set $available_traits to [&#39;poison resist&#39;, &#39;tough&#39;, &#39;muscled&#39;, &#39;keen eye&#39;]&gt;&gt;
+
+&lt;&lt;set $computer to {
+&quot;codex&quot;: [],
+&quot;cread&quot;: [],
+&quot;emails_unread&quot;: [],
+&quot;emails&quot;: []
+}&gt;&gt;
+&lt;&lt;set $mprevious to &quot;&quot;&gt;&gt;
+&lt;&lt;set $music to true&gt;&gt;
+&lt;&lt;set $mature to false&gt;&gt;
+&lt;&lt;set $escaped to false&gt;&gt;
+
+&lt;&lt;newinventory &#39;$inventory&#39;&gt;&gt;
+&lt;&lt;newinventory &#39;$homechest&#39;&gt;&gt;
+&lt;&lt;newinventory &#39;$enemychest&#39;&gt;&gt;
+&lt;&lt;newinventory &#39;$loot&#39;&gt;&gt;
+&lt;&lt;pickup &#39;$homechest&#39; &#39;medkit&#39;&gt;&gt;
+&lt;&lt;pickup &#39;$homechest&#39; &#39;cigarette&#39;&gt;&gt;
+&lt;&lt;pickup &#39;$inventory&#39; &#39;combat knife&#39;&gt;&gt;
+
+&lt;&lt;set $character to {
+&quot;str&quot;: 1,
+&quot;dex&quot;: 1,
+&quot;int&quot;: 1,
+&quot;agi&quot;: 1,
+&quot;hp&quot;: 100,
+&quot;hpmax&quot;: 100,
+&quot;en&quot;: 100,
+&quot;enmax&quot;: 100, 
+&quot;level&quot;: 1,
+&quot;exp&quot;: 0,
+&quot;sp&quot;: 0,
+&quot;weapon&quot;: &quot;&quot;,
+&quot;armour&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;credits&quot;: 200,
+&quot;traits&quot;: []
+}&gt;&gt;
+
+&lt;&lt;set $enemy to {}&gt;&gt;
+
+&lt;&lt;set $trainingdummy to {
+&#39;name&#39;:&#39;training dummy&#39;,
+&#39;str&#39;: 0,
+&#39;hp&#39;:20, 
+&#39;hpmax&#39;:20,
+&#39;exp&#39;: 10,
+&#39;credits&#39;: 0,
+&#39;loot&#39;: &#39;wood&#39;
+}&gt;&gt;  
+
+&lt;&lt;set $agent to {
+&#39;name&#39;:&#39;agent&#39;,
+&#39;str&#39;: 30,
+&#39;hp&#39;:60, 
+&#39;hpmax&#39;:60,
+&#39;exp&#39;: 35,
+&#39;credits&#39;: 20,
+&#39;loot&#39;: &#39;nanites&#39;
+}&gt;&gt;
+
+&lt;&lt;if not $kaiserdebug&gt;&gt;
+&lt;&lt;cacheaudio &quot;battle&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/obliteration-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;intro&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/almost-new-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;home&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/space-1990-b-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;unnatural&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/unnatural-situation-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;darkness&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/virtutes-vocis-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;mal&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/malicious-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;feelit&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/i-can-feel-it-coming-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;masteraudio volume 1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="PassageDone" tags="" position="817,4" size="100,100">&lt;&lt;print &quot;This is turn #&quot; + turns()&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="StoryMenu" tags="" position="591,0" size="100,100">&lt;&lt;link &#39;View Inventory&#39;&gt;&gt;
+&lt;&lt;dialog &#39;Inventory&#39;&gt;&gt;\
+Credits: $character.credits
+!Inventory
+&lt;&lt;inventory &#39;$inventory&#39;&gt;&gt;
+
+!Loot
+&lt;&lt;inventory &#39;$loot&#39;&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;\
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &#39;Heal&#39;&gt;&gt;
+  &lt;&lt;if $character.hp &lt; $character.hpmax and $character.en &gt; 5&gt;&gt;You heal 10 HP.
+	&lt;&lt;set $character.hp to $character.hp + 10&gt;&gt;
+	&lt;&lt;set $character.en to $character.en - 5&gt;&gt;
+	&lt;&lt;goto [[passage()]]&gt;&gt;
+	&lt;&lt;notify&gt;&gt;Healed 10. You have $character.hp HP and $character.en EN.&lt;&lt;/notify&gt;&gt;
+  &lt;&lt;else&gt;&gt;
+	  &lt;&lt;goto [[passage()]]&gt;&gt;
+  	&lt;&lt;notify&gt;&gt;You don&#39;t need healing.&lt;&lt;/notify&gt;&gt;
+  &lt;&lt;endif&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;View Character&#39;&gt;&gt;
+	&lt;&lt;dialog &#39;Character&#39;&gt;&gt;\
+	  $character.name
+	  Level: $character.level (&lt;&lt;print $character.exp&gt;&gt;% EXP)
+	  $character.hp / $character.hpmax HP
+	  $character.en / $character.enmax EN
+	  Areas: $areas
+	  Traits: $character.traits
+	  STR: $character.str
+	  DEX: $character.dex
+	  INT: $character.int
+	  AGI: $character.agi
+	  &lt;&lt;if $party.length &gt; 0&gt;&gt;
+	  &lt;&lt;for _i, _name range $party&gt;&gt;
+	  &lt;&lt;capture _name&gt;&gt;_name.name
+	  _name.traits&lt;&lt;/capture&gt;&gt;
+	  &lt;&lt;/for&gt;&gt;
+	  &lt;&lt;/if&gt;&gt;
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;Commands&#39;&gt;&gt;
+	&lt;&lt;dialog &#39;aOS CMD&#39;&gt;&gt;
+		&lt;&lt;textbox &quot;$acmd&quot; &quot;&quot;&gt;&gt;&lt;&lt;button &#39;Submit&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;You sent $acmd&lt;&lt;/dialog&gt;&gt;
+		
+		&lt;&lt;/button&gt;&gt;
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt; 
+&lt;&lt;link &#39;Codex&#39;&gt;&gt;
+	&lt;&lt;dialog &#39;Codex&#39;&gt;&gt;&lt;&lt;include &#39;Codex&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;Navigation&#39;&gt;&gt;
+&lt;&lt;if tags().includes(&#39;nav&#39;)&gt;&gt;
+	&lt;&lt;dialog&gt;&gt;\
+		&lt;&lt;include &#39;navigate&#39;&gt;&gt;\
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;dialog&gt;&gt;\
+		Can&#39;t navigate here.\
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+</tw-passagedata><tw-passagedata pid="13" name="navigate" tags="" position="502,901" size="100,100">&lt;&lt;for _i, _name range $areas&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;&lt;&lt;if passage() is _name&gt;&gt;[You are here] &lt;&lt;/if&gt;&gt;&lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;goto _name&gt;&gt;&lt;&lt;/link&gt;&gt; &lt;&lt;if visited(_name) == 0&gt;&gt;NEW&lt;&lt;/if&gt;&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
+</tw-passagedata><tw-passagedata pid="14" name="BattleStart" tags="nobr" position="1076,202" size="100,100">&lt;&lt;audio &quot;:playing&quot; pause&gt;&gt;
+&lt;&lt;audio &quot;battle&quot; volume 0 fadein&gt;&gt;
+&lt;&lt;set $action to &quot;&quot;&gt;&gt;
+&lt;&lt;set $endcondition to 0&gt;&gt;/*1 - win, 2 - escaped, 3 - died*/
+&lt;&lt;set $mprevious to previous()&gt;&gt;
+&lt;&lt;clear &#39;$enemychest&#39;&gt;&gt;
+&lt;&lt;pickup &#39;$enemychest&#39; &#39;$enemy.loot&#39;&gt;&gt;
+&lt;&lt;set $battleturns to 0&gt;&gt;
+&lt;&lt;goto &#39;Battle&#39;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="15" name="Battle" tags="" position="1176,375" size="100,100">&lt;&lt;set $battleturns to $battleturns + 1&gt;&gt; TURN $battleturns\
+&lt;&lt;if $battleturns &gt; 1 and random(10) &gt; 6 and $enemy.str &gt; 0&gt;&gt;\
+&lt;&lt;set _min to $enemy.str - 5&gt;&gt;&lt;&lt;set _max to $enemy.str + 5&gt;&gt;\
+&lt;&lt;set _dmg to random(_min, _max)&gt;&gt;The enemy hits you for _dmg.
+&lt;&lt;set $character.hp to $character.hp - _dmg&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+$enemy.name has $enemy.hp health.
+You have $character.hp health.
+&lt;&lt;if $enemy.hp &lt;= 0&gt;&gt;\
+&lt;&lt;notify&gt;&gt;You strike $enemy.name and defeated it.&lt;&lt;/notify&gt;&gt;\
+&lt;&lt;set $endcondition to 1&gt;&gt;\
+&lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $character.hp &lt;= 0&gt;&gt;\
+&lt;&lt;notify&gt;&gt;You died.&lt;&lt;/notify&gt;&gt;\
+&lt;&lt;set $endcondition to 3&gt;&gt;\
+&lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+
+&lt;nobr&gt;&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;
+&lt;&lt;if $weaponchart[_name]&gt;&gt;&lt;&lt;link &#39;Attack&#39;&gt;&gt;&lt;&lt;set $enemy.hp to $enemy.hp - $weaponchart[_name]&gt;&gt;&lt;&lt;goto &#39;Battle&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; with &lt;b&gt;_name&lt;/b&gt;.
+&lt;&lt;elseif _name == &quot;medkit&quot;&gt;&gt;&lt;&lt;link &#39;Heal&#39;&gt;&gt;&lt;&lt;set $character.hp to $character.hp + 50&gt;&gt;&lt;&lt;goto &#39;Battle&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; with &lt;b&gt;_name&lt;/b&gt;.
+&lt;&lt;/if&gt;&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;&lt;/nobr&gt;
+&lt;&lt;link &#39;Escape&#39;&gt;&gt;
+  &lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;
+  &lt;&lt;set $endcondition to 2&gt;&gt;
+  &lt;&lt;notify&gt;&gt;You try to escape.&lt;&lt;/notify&gt;&gt;
+&lt;&lt;/link&gt;&gt;\</tw-passagedata><tw-passagedata pid="16" name="BattleEnd" tags="" position="1051,303" size="100,100">&lt;&lt;if $endcondition == 1&gt;&gt;
+You gain $enemy.credits credits.
+&lt;&lt;if clone($enemychest.toArray()).length &gt; 0&gt;&gt;They dropped some &lt;&lt;link &#39;loot&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$enemychest&#39; &#39;$loot&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;gainxp $enemy.exp&gt;&gt;
+&lt;&lt;set $character.credits to $character.credits + $enemy.credits&gt;&gt;
+Return to &lt;&lt;link &#39;last area&#39;&gt;&gt;&lt;&lt;goto &#39;$mprevious&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;elseif $endcondition == 2&gt;&gt;
+You ran away.
+Return to &lt;&lt;link &#39;last area&#39;&gt;&gt;&lt;&lt;goto &#39;$mprevious&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;elseif $endcondition == 3&gt;&gt;
+You died. But this is a prototype so just go home.
+[[Home]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="Music Player" tags="" position="931,4" size="100,100">&lt;&lt;if $music_player&gt;&gt;
+Playing $music_player
+&lt;&lt;cacheaudio &quot;mplay&quot; $music_player&gt;&gt;
+&lt;&lt;audio &quot;:playing&quot; stop&gt;&gt;
+&lt;&lt;audio &quot;mplay&quot; play&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/almost-new-by-kevin-macleod.mp3&quot; checked&gt;&gt; Almost New&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/darkling-by-kevin-macleod.mp3&quot;&gt;&gt; Darkling&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/death-and-axes-by-kevin-macleod.mp3&quot;&gt;&gt; Death and Axes&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/dream-catcher-by-kevin-macleod.mp3&quot;&gt;&gt; Dream Catcher&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/eternal-terminal-by-kevin-macleod.mp3&quot;&gt;&gt; Eternal Terminal&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/grim-idol-by-kevin-macleod.mp3&quot;&gt;&gt; Grim Idol&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/i-can-feel-it-coming-by-kevin-macleod.mp3&quot;&gt;&gt; I can feel it coming&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/jet-fueled-vixen-by-kevin-macleod.mp3&quot;&gt;&gt; Jet Fueled Vixen&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/malicious-by-kevin-macleod.mp3&quot;&gt;&gt; Malicious&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/morgana-rides--by-kevin-macleod.mp3&quot;&gt;&gt; Morgana Rides&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/nightmare-machine-by-kevin-macleod.mp3&quot;&gt;&gt; Nightmare Machine&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/obliteration-by-kevin-macleod.mp3&quot;&gt;&gt; Obliteration&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/silver-blue-light-by-kevin-macleod.mp3&quot;&gt;&gt; Silver-blue Light&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/silver-flame-by-kevin-macleod.mp3&quot;&gt;&gt; Silver Flame&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/space-1990-b-by-kevin-macleod.mp3&quot;&gt;&gt; Space 1990&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/static-motion-by-kevin-macleod.mp3&quot;&gt;&gt; Static Motion&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/thunderbird-by-kevin-macleod.mp3&quot;&gt;&gt; Thunderbird&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/trio-for-piano-cello-and-clarinet-by-kevin-macleod.mp3&quot;&gt;&gt; Trio&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/unholy-knight-by-kevin-macleod.mp3&quot;&gt;&gt; Unholy Knight&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/unnatural-situation-by-kevin-macleod.mp3&quot;&gt;&gt; Unnatural Situation&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/unpromised-by-kevin-macleod.mp3&quot;&gt;&gt; Unpromised&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/unwritten-return-by-kevin-macleod.mp3&quot;&gt;&gt; Unwritten Return&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/vanes-by-kevin-macleod.mp3&quot;&gt;&gt; Vane&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/virtutes-vocis-by-kevin-macleod.mp3&quot;&gt;&gt; Virtutes Vocis&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/white-by-kevin-macleod.mp3&quot;&gt;&gt; White&lt;/label&gt;
+
+Click [[here|Music Player]] to play. </tw-passagedata><tw-passagedata pid="18" name="Smuggler" tags="nav" position="1201,851" size="100,100">&lt;&lt;kplay &#39;feelit&#39;&gt;&gt;&lt;&lt;if visited() == 1&gt;&gt;You walk to a back alley along the streets of Hell&#39;s Gate.
+You approach a door you were informed about by another survivor. You reach out to push a buzzer by the door.
+&quot;Yes?&quot;, a voice replies. You tell him you&#39;re a survivor looking for supplies and help.
+You hear a click as the door unlocks.... You push it open, and head inside.
+Smuggler welcomes you.
+&lt;&lt;set $smuggler_shop to [
+[&#39;rope&#39;, 20],
+[&#39;lighter&#39;, 20],
+[&#39;plant killer&#39;, 20],
+[&#39;nano-tech blade&#39;, 100],
+[&#39;book: nanomancery&#39;, 200],
+[&#39;book: neuromancery&#39;, 100],
+[&#39;map: south hell&#39;, 200],
+[&#39;agent corpse&#39;, 2000]
+]&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+You see a mysterious man, known as &lt;&lt;link &#39;Smuggler&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;SmugglerPerson&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;.
+You can look at Smuggler&#39;s &lt;&lt;link &#39;computer&#39;&gt;&gt;\
+&lt;&lt;dialog&gt;&gt;\
+&lt;div class=&#39;typed&#39;&gt;Welcome, Smuggler. Enter your password to login.&lt;/div&gt;
+&lt;&lt;typesim &quot;youreallythoughtthiswouldwork hahahaha  im here&quot;&gt;&gt;&lt;&lt;dialog &#39;Error&#39;&gt;&gt;&lt;div class=&#39;typed&#39;&gt;Software corruption occured... Goodbye.&lt;/div&gt;&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/typesim&gt;&gt;\
+&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;if not $readSmugglerBook1&gt;&gt;&lt;&lt;link &#39;Read books&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;gainxp 20&gt;&gt;
+You read a book. It is literature from the Old World.&lt;&lt;/dialog&gt;&gt;&lt;&lt;set $readSmugglerBook1 to true&gt;&gt;&lt;&lt;goto &#39;Smuggler&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+
+!Shopping
+//Your credits//: $character.credits
+
+&lt;&lt;for _i, _array range $smuggler_shop&gt;&gt;\
+  &lt;&lt;capture _i, _array&gt;&gt;\
+	&lt;b&gt;_array[0]&lt;/b&gt; (_array[1])
+	&lt;em&gt;&lt;&lt;if $invdef[_array[0]]&gt;&gt;&lt;&lt;print $invdef[_array[0]]&gt;&gt;	&lt;&lt;else&gt;&gt;Nothing special.&lt;&lt;/if&gt;&gt;&lt;/em&gt;
+	&lt;&lt;if $character.credits &gt;= _array[1]&gt;&gt;&lt;&lt;link &#39;Buy&#39;&gt;&gt;\
+	&lt;&lt;dialog&gt;&gt;\
+	  You buy _array[0] for _array[1].\
+	  &lt;&lt;set $smuggler_shop.deleteAt(_i)&gt;&gt;\
+	  &lt;&lt;pickup &#39;$inventory&#39; _array[0]&gt;&gt;\
+	  &lt;&lt;set $character.credits to $character.credits - _array[1]&gt;&gt;\
+	  &lt;&lt;goto &#39;Smuggler&#39;&gt;&gt;\
+	&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;==Buy== (Can&#39;t afford)&lt;&lt;/if&gt;&gt;
+  &lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;\
+</tw-passagedata><tw-passagedata pid="19" name="Sewers" tags="nav" position="1200.6666666666667,724.6666666666666" size="200,100">&lt;&lt;message &#39;Dungeon Help&#39; btn&gt;&gt;This is a dungeon. Strange things happen here, but also there may be nice things to find.
+In order to escape back to your base, click the Navigate button in the menu to the side.&lt;&lt;/message&gt;&gt;
+
+&lt;&lt;if previous() != &quot;Sewers1&quot;&gt;&gt;
+&lt;&lt;kplay &#39;unnatural&#39;&gt;&gt;\
+You descend down a metal ladder in to the dark and dank sewers.
+Your eyes adjust to the scenery gradually. The path continues on in to the darkness.&lt;&lt;/if&gt;&gt;
+&lt;&lt;if visited() == 1&gt;&gt;You hear a strange noise from the end of the path. You look down in to the darkness ahead, and for a faint moment, you feel shivers down your spine. You get the unnerving feeling that someone, or something, was watching you from the depths.&lt;&lt;/if&gt;&gt;
+You see a path north.
+[[North|Sewers1]] 
+
+
+</tw-passagedata><tw-passagedata pid="20" name="Hells Gate" tags="nav" position="1199,601" size="200,100">&lt;&lt;if not tags(previous()).includes(&#39;hellsgate&#39;)&gt;&gt;&lt;&lt;kplay &#39;darkness&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if visited() == 1&gt;&gt;You park your vehicle on the path. You&#39;re in the center of the city they call Hell&#39;s Gate. The city is eerily quiet and still, but you still feel the gaze of something ominous.
+&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;Hells Gate, the nickname given to where the rebellion began. Not many remember the original name of the city, but in the old world, it was one of the biggest cities in Britain.&quot;, &quot;name&quot;:&quot;Hell&#39;s Gate&quot;})&gt;&gt;\
+&lt;&lt;set $agentAcdx to false&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+The streets of Hell&#39;s Gate are dead and deserted. Remains of war lay scattered on the decayed concrete. Bodies of civilians and &lt;&lt;if not $agentAcdx&gt;&gt;&lt;&lt;link &#39;Agent&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;@@.fade-in-out;Agents of Athena codex gained.@@&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;TYPE-A are pure mechanical soldiers linked to the Athena mind network.&quot;, &quot;name&quot;:&quot;Agent TYPE-A&quot;})&gt;&gt;&lt;&lt;set $agentAcdx to true&gt;&gt;&lt;&lt;goto &#39;Hells Gate&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;Agent&lt;&lt;/if&gt;&gt;&#39;s lay still. You feel uneasy.
+
+&lt;&lt;if $party[0]&gt;&gt;&lt;&lt;if $party[0].name == &quot;Claire&quot; and not $claireStory&gt;&gt;\
+&lt;&lt;link &#39;Claire&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;\
+  &quot;What&#39;s up?&quot; you ask.
+  She looks uneasy about something.
+  &quot;My.. dad&#39;s place is near here. Do you mind if we.. check it out?&quot; She asks.
+  	&lt;&lt;link &#39;Not now, sorry.&#39;&gt;&gt;
+  		&lt;&lt;dialog&gt;&gt;She looks sad, but agrees.&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+  	&lt;&lt;link &#39;Sure thing, where is it?&#39;&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;\
+			&quot;Sunrise, room 1-4.&quot; She hands you a keycard.
+ 			@@.fade-in-out;Gained 1-4 card.@@
+  			&lt;&lt;pickup &#39;$inventory&#39; &#39;1-4 card&#39;&gt;&gt;
+  			&lt;&lt;set $claireStory to true&gt;&gt;
+			&lt;&lt;goto &#39;Hells Gate&#39;&gt;&gt;
+  		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; wants to talk.&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;\
+
+[[Park Lane]] | [[Sunrise Apartments]] | [[Indoor Market]] | [[City Hall]] | [[Plaza]]</tw-passagedata><tw-passagedata pid="21" name="ambush" tags="" position="801,445" size="100,100">&lt;&lt;if $endcondition is 1&gt;&gt;
+The area is clear, it&#39;s safe to go back [[inside|Home]].
+&lt;&lt;else&gt;&gt;
+You encounter an [[Agent of Athena|BattleStart][$enemy to $agent]] lurking outside your van.
+[[Run|Home]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="Debug Room" tags="" position="1,748" size="100,100">Empty.</tw-passagedata><tw-passagedata pid="23" name="ChestTake" tags="" position="0,499" size="100,100">&lt;&lt;linkedinventory &#39;Take&#39; &#39;$homechest&#39; &#39;$inventory&#39;&gt;&gt;
+----
+&lt;&lt;link &#39;Switch to Deposit&#39;&gt;&gt; &lt;&lt;set $taking to false&gt;&gt;&lt;&lt;replace &quot;#chesttype&quot;&gt;&gt;&lt;&lt;include &quot;ChestDeposit&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="ChestDeposit" tags="" position="1,623" size="100,100">&lt;&lt;linkedinventory &#39;Deposit&#39; &#39;$inventory&#39; &#39;$homechest&#39;&gt;&gt;
+----
+&lt;&lt;link &#39;Switch to Taking&#39;&gt;&gt; &lt;&lt;set $taking to true&gt;&gt;&lt;&lt;replace &quot;#chesttype&quot;&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="Sewers1" tags="" position="1451.3333333333333,726.3333333333334" size="100,100">You&#39;re at a crossroad in the sewer system.
+The main path goes off to the &lt;em&gt;east&lt;/em&gt;, but there is also a locked door to the north.
+
+[[South|Sewers]] | [[East|Sewers2]] &lt;&lt;if $inventory.has(&#39;sewer key&#39;)&gt;&gt; | [[Unlock Door|SewerSecret]]&lt;&lt;/if&gt;&gt;
+&lt;&lt;if visited() == 1&gt;&gt;\
+&lt;&lt;set $sewer2chest to []&gt;&gt;\
+&lt;&lt;newinventory &#39;$sewer2chest&#39;&gt;&gt;\
+&lt;&lt;pickup &#39;$sewer2chest&#39; unique &#39;k card&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $sewer2chest.has(&#39;k card&#39;)&gt;&gt;\
+&lt;span class=&quot;hides&quot;&gt;&lt;&lt;link &#39;Reach underwater...&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$sewer2chest&#39; &#39;$inventory&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="26" name="Sewers2" tags="" position="1603,713" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;\
+&lt;&lt;set $sewerchest to []&gt;&gt;\
+&lt;&lt;newinventory &#39;$sewerchest&#39;&gt;&gt;\
+&lt;&lt;pickup &#39;$sewerchest&#39; unique &#39;sewer key&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $sewerchest.has(&#39;sewer key&#39;)&gt;&gt;\
+You see something shiney in the &lt;&lt;link &#39;water&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$sewerchest&#39; &#39;$inventory&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;/if&gt;&gt;\
+It&#39;s a dead end.
+
+[[West|Sewers1]]</tw-passagedata><tw-passagedata pid="27" name="Computers" tags="" position="81,1097" size="100,100">&lt;&lt;if passage() is &quot;Home&quot;&gt;&gt;\
+	&lt;&lt;set _unread to $computer.emails_unread.length&gt;&gt;\
+	&lt;&lt;set _mail to $computer.emails.length&gt;&gt;\
+	You log in to your home computer.
+	You have _unread new emails. (_mail)
+	
+	&lt;em&gt; Email server unavailable. &lt;/em&gt;
+	==Email== | &lt;&lt;link &#39;Codex&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;Codex&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;	&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="Codex" tags="" position="202,1099" size="100,100">&lt;&lt;for _i, _name range $computer.codex&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;\
+&lt;&lt;if not $computer.cread.includes(_name.name)&gt;&gt;NEW: &lt;&lt;/if&gt;&gt;&lt;&lt;button &#39;_name.name&#39;&gt;&gt;\
+&lt;&lt;dialog &#39;Codex&#39;&gt;&gt;&lt;&lt;button &#39;BACK&#39;&gt;&gt;&lt;&lt;dialog &#39;Codex&#39;&gt;&gt;&lt;&lt;include &#39;Codex&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/button&gt;&gt;
+!_name.name
+_name.msg
+&lt;&lt;if not $computer.cread.includes(_name.name)&gt;&gt;&lt;&lt;set $computer.cread.push(_name.name)&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/button&gt;&gt;\
+&lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="TO-DO LIST" tags="" position="800.6666666666666,801.3333333333334" size="100,100">Crafting
+
+Redesign combat
+Make medkits consumable in battle, maybe random chance.
+
+Idea of adding new areas to the &quot;discoverable&quot; list
+
+redesign healing to use medkits
+
+!Leveling system
+Uses the EXP for gaining a trait from trainable_traits list.
+Some events add new trainable traits
+</tw-passagedata><tw-passagedata pid="30" name="Emails" tags="" position="330,1100" size="100,100">&lt;&lt;if passage() is &quot;Home&quot;&gt;&gt;\
+  &lt;&lt;link &#39;Desktop&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;Computers&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;\
+  &lt;&lt;if $computer.emails_unread.length &gt; 0&gt;&gt;
+  New messages
+	&lt;&lt;for _i, _name range $computer.emails_unread&gt;&gt;\
+	&lt;&lt;capture _name&gt;&gt;
+	[NEW] _name &lt;&lt;link &#39;Mark Read&#39;&gt;&gt;&lt;&lt;set $computer.emails_unread.delete(&quot;_name&quot;)&gt;&gt;\
+	  &lt;&lt;set $computer.emails.push(&quot;_name&quot;)&gt;&gt;\&lt;&lt;/link&gt;&gt;
+	  &lt;&lt;/capture&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+  &lt;&lt;/if&gt;&gt;
+	&lt;&lt;if $computer.emails.length &gt; 0&gt;&gt;
+	Emails
+	  &lt;&lt;for _i, _name range $computer.emails&gt;&gt;
+		  _name
+	  &lt;&lt;/for&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="SewerSecret" tags="" position="1449.6666666666665,901.3333333333333" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;You enter the room. The light flickers but manages to illuminate the room. It looks like a run-down home, someone was living in here, but it&#39;s impossible to know if they still are.&lt;&lt;/if&gt;&gt;
+You see a &lt;&lt;link &#39;Datacube&#39;&gt;&gt;&lt;&lt;dialog &#39;Datacube&#39;&gt;&gt;!Deepscape Networks
+Evelyn: &lt;div class=&quot;typed&quot;&gt;Feels like i&#39;m just talking to myself...&lt;/div&gt;
+Evelyn: &lt;div class=&quot;typed&quot;&gt;Haven&#39;t seen other people in days, and i wouldnt call those sick bastards at the [asylum] people, just fuckin cultists who forget that we&#39;re human, maybe i&#39;ll have better luck at the warehouse&lt;/div&gt;
+Evelyn: &lt;div class=&quot;typed&quot;&gt;Shit, I think those agents tracked this linkup, gonna ditch it here, if anyone else reads this, gtfo before they come, i&#39;m out of here&lt;/div&gt;
+&lt;&lt;if not $dest.includes(&#39;Asylum&#39;) and not $areas.includes(&#39;Asylum&#39;)&gt;&gt;\
+@@.fade-in-out;You learn that a Warehouse is nearby.@@
+@@.fade-in-out;You learn that the Asylum is nearby.@@
+&lt;&lt;set $dest.push(&quot;Warehouse&quot;)&gt;&gt;
+&lt;&lt;set $dest.push(&quot;Asylum&quot;)&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt; on the table.
+
+[[Leave|Sewers1]]</tw-passagedata><tw-passagedata pid="32" name="Warehouse" tags="nav" position="1199.6666666666667,1101.6666666666667" size="100,100">&lt;&lt;kplay &#39;darkness&#39;&gt;&gt;\
+You see alot of warehouse things.
+Nothing here yet.</tw-passagedata><tw-passagedata pid="33" name="Asylum" tags="nav" position="1201.6666666666665,974.6666666666667" size="100,100">&lt;&lt;kplay &#39;mal&#39;&gt;&gt;\
+You stand before the impending gates of the Sadistic Angel&#39;s Asylum.
+You don&#39;t want to go inside yet.</tw-passagedata><tw-passagedata pid="34" name="Park Lane" tags="hellsgate" position="1579,299" size="100,100">You enter Park Lane. The area is a wide open road with blocks of buildings on one side and a large park on the other.
+
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="35" name="Sunrise Apartments" tags="hellsgate" position="1755,396" size="100,100">You&#39;re at the bottom level of the Sunrise Apartments.
+The elevator is unavailable.
+There are stairs going up to [[Level 1|Sunrise2]].
+
+Back out to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="36" name="Indoor Market" tags="hellsgate" position="1794,556" size="100,100">You&#39;re at the entrance to the indoor market. It is a vast building with various levels, stores, stalls and various goods.
+The halls are govered in overgrown &lt;&lt;if not $vinesKilled&gt;&gt;&lt;&lt;link &#39;vines&#39;&gt;&gt;\
+&lt;&lt;dialog &#39;Inventory&#39;&gt;&gt;\
+&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;&lt;&lt;capture _name&gt;&gt;
+	Use &lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;if _name == &quot;plant killer&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;The vines recede... &lt;&lt;set $vinesKilled to true&gt;&gt;&lt;&lt;/dialog&gt;&gt;
+		&lt;&lt;else&gt;&gt;&lt;&lt;dialog&gt;&gt;Nothing happens&lt;&lt;/dialog&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;[[vines|IndoorMarket2]]&lt;&lt;/if&gt;&gt;.
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="37" name="Sunrise2" tags="" position="1926,402" size="100,100">There are rows of apartments.
+
+&lt;&lt;link &#39;Room 1-1&#39;&gt;&gt;&lt;&lt;quickdialog &#39;The scanner next to the door is sparking, it wont work.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Room 1-2&#39;&gt;&gt;&lt;&lt;quickdialog &#39;The scanner next to the door is sparking, it wont work.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; | [[Room 1-3|Sunrise13]] | &lt;&lt;link &#39;Room 1-4&#39;&gt;&gt;\
+&lt;&lt;dialog&gt;&gt;&lt;&lt;if not $inventory.has(&#39;1-4 card&#39;)&gt;&gt;The door buzzes.&lt;&lt;else&gt;&gt;You slide the keycard across the scanner, the door beeps and slides open.
+Enter  [[Room 1-4|Sunrise14]]&lt;&lt;/if&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;\
+| &lt;&lt;link &#39;Room 1-5&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;Use an item?&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Room 1-6&#39;&gt;&gt;&lt;&lt;quickdialog &#39;The scanner next to the door is sparking, it wont work.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Room 1-7&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;Use an item?&lt;&lt;/dialog&gt;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+Up to [[Level 2|Sunrise3]].
+Back down to [[Level G|Sunrise Apartments]].</tw-passagedata><tw-passagedata pid="38" name="investigation" tags="" position="450,1102" size="200,100">!Inventory
+&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;&lt;&lt;set _inf to $invdef[_name]&gt;&gt;&lt;b&gt;_name&lt;/b&gt;
+&lt;em&gt;&lt;&lt;if _inf&gt;&gt;_inf
+&lt;&lt;else&gt;&gt;Nothing special.
+&lt;&lt;/if&gt;&gt;&lt;/em&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
+
+!Chest
+&lt;&lt;for _i, _name range clone($homechest.toArray())&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;&lt;&lt;set _inf to $invdef[_name]&gt;&gt;&lt;b&gt;_name&lt;/b&gt;
+&lt;em&gt;&lt;&lt;if _inf&gt;&gt;_inf
+&lt;&lt;else&gt;&gt;Nothing special.
+&lt;&lt;/if&gt;&gt;&lt;/em&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Sunrise3" tags="" position="2078,400" size="100,100">There are rows of apartments.
+
+Room 2-1 | Room 2-2 | Room 2-3 | Room 2-4 | Room 2-5 | Room 2-6 | Room 2-7
+
+Up to the [[roof|SunriseR]].
+Down to [[Level 1|Sunrise2]].
+</tw-passagedata><tw-passagedata pid="40" name="SunriseR" tags="" position="2231,397" size="100,100">Down to [[Level 2|Sunrise3]].</tw-passagedata><tw-passagedata pid="41" name="PassageReady" tags="" position="481,0" size="100,100">&lt;&lt;if tags().includes(&#39;nav&#39;)&gt;&gt;
+	&lt;&lt;set _psg to passage()&gt;&gt;
+	&lt;&lt;if $dest.includes(_psg)&gt;&gt;
+		&lt;&lt;set $dest.delete(_psg)&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if not $areas.includes(_psg)&gt;&gt;
+		&lt;&lt;set $areas.push(_psg)&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="widgets" tags="widget" position="1046,5" size="100,100">&lt;&lt;widget &#39;read&#39;&gt;&gt;\
+	&lt;&lt;if $args[0] == &quot;book: nanomancery&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;You learned skill: Nanomancery.
+			@@.fade-in-out;New codex entry gained.@@
+			&lt;&lt;gainxp 10&gt;&gt;\
+			&lt;&lt;drop &#39;$inventory&#39; $args[0]&gt;&gt;\
+			&lt;&lt;set $character.traits.push(&quot;nanomancer&quot;)&gt;&gt;\
+			&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;Nanomancers are users who become attuned to nanite machines, either due to nanite infusions or other means, allowing them to manipulate nanites remotely.&quot;, &quot;name&quot;:&quot;Nanomancer&quot;})&gt;&gt;
+		&lt;&lt;/dialog&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;if $args[0] == &quot;book: neuromancery&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;You learned skill: Neuromancery.\
+			@@.fade-in-out;New codex entry gained.@@
+			&lt;&lt;gainxp 10&gt;&gt;\
+			&lt;&lt;drop &#39;$inventory&#39; $args[0]&gt;&gt;\
+			&lt;&lt;set $character.traits.push(&quot;neuromancer&quot;)&gt;&gt;\
+			&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;Neuromancers are users who become attuned to nanite machines, either due to nanite infusions or other means, allowing them to manipulate or influence other nano-augmented users remotely.&quot;, &quot;name&quot;:&quot;Neuromancer&quot;})&gt;&gt;\
+		&lt;&lt;/dialog&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;if $args[0] == &quot;map: south hell&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;You look around the map for interesting locations.
+			@@.fade-in-out;You discover the location of Aire Canal Road.@@
+			@@.fade-in-out;You discover the location of Chapel Hill.@@
+			&lt;&lt;gainxp 10&gt;&gt;
+			&lt;&lt;drop &#39;$inventory&#39; $args[0]&gt;&gt;\
+			&lt;&lt;set $areas.push(&quot;Aire Canal Road&quot;)&gt;&gt;\
+			&lt;&lt;set $areas.push(&quot;Chapel Hill&quot;)&gt;&gt;\
+		&lt;&lt;/dialog&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;\
+
+&lt;&lt;widget &#39;shop&#39;&gt;&gt;
+	//Your credits//: $character.credits
+	
+	&lt;&lt;for _i, _array range $shopArray&gt;&gt;\
+		&lt;&lt;capture _i, _array&gt;&gt;\
+			&lt;b&gt;_array[0]&lt;/b&gt; (_array[1])
+			&lt;em&gt;&lt;&lt;if $invdef[_array[0]]&gt;&gt;&lt;&lt;print $invdef[_array[0]]&gt;&gt;	&lt;&lt;else&gt;&gt;Nothing special.&lt;&lt;/if&gt;&gt;&lt;/em&gt;
+			&lt;&lt;if $character.credits &gt;= _array[1]&gt;&gt;&lt;&lt;link &#39;Buy&#39;&gt;&gt;\
+				&lt;&lt;dialog&gt;&gt;\
+					You buy _array[0] for _array[1].
+					&lt;&lt;set $shopArray[0].delete(_array)&gt;&gt;
+					&lt;&lt;goto [[passage()]]&gt;&gt;\
+				&lt;&lt;/dialog&gt;&gt;
+			&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;==Buy== (Can&#39;t afford)&lt;&lt;/if&gt;&gt;
+		&lt;&lt;/capture&gt;&gt;\
+	&lt;&lt;/for&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;add_codex&#39;&gt;&gt;
+	&lt;&lt;for _i, _name range $computer.codex&gt;&gt;
+		&lt;&lt;capture _name&gt;&gt;\
+			&lt;&lt;print &#39;$args[0]&#39;&gt;&gt;
+		&lt;&lt;/capture&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;gainxp&#39;&gt;&gt;\
+	&lt;&lt;set $character.exp to $character.exp + $args[0]&gt;&gt;\
+	&lt;&lt;print &#39;You gained $args[0] EXP.&lt;br&gt;&lt;progress class=&quot;exp&quot; @value=&quot;$character.exp&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; ($character.exp / 100)&#39;&gt;&gt;
+	&lt;&lt;if $character.exp &gt;= 100&gt;&gt;\
+	You gained a level!
+	&lt;&lt;set $character.level to $character.level + 1&gt;&gt;\
+	&lt;&lt;set $character.sp to $character.sp + 1&gt;&gt;\
+	&lt;&lt;set $character.exp to $character.exp - 100&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;quickdialog&#39;&gt;&gt;
+	&lt;&lt;dialog $args[1]&gt;&gt;$args[0]&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;kplay&#39;&gt;&gt;\
+	&lt;&lt;if not $kaiserdebug&gt;&gt;&lt;&lt;audio &quot;:playing&quot; stop&gt;&gt;&lt;&lt;if $music&gt;&gt;&lt;&lt;audio $args[0] loop play&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;takedamage&#39;&gt;&gt;\
+	&lt;&lt;set $character.hp to $character.hp - $args[0]&gt;&gt;\
+	&lt;&lt;print &#39;&lt;progress @value=&quot;$character.hp&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; ($character.hp / $character.hpmax)&#39;&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;healdamage&#39;&gt;&gt;\
+	&lt;&lt;set $character.hp to $character.hp + $args[0]&gt;&gt;\
+	&lt;&lt;if $character.hp &gt; $character.hpmax&gt;&gt;&lt;&lt;set $character.hp to $character.hpmax&gt;&gt;&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;print &#39;&lt;progress @value=&quot;$character.hp&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; ($character.hp / $character.hpmax)&#39;&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="City Hall" tags="hellsgate" position="1997,739" size="100,100">&lt;&lt;if previous() is &quot;Hells Gate&quot;&gt;&gt;You walk up the impressive stone steps. Giant Lion statues walk you approach the building. You push open the large doors to the city hall building.&lt;&lt;/if&gt;&gt;
+The air is dead silent in the well lit building. The design is old-fashioned, with marble structure. Rows of pillars hold up the roof. Ahead is a receptionist desk, with papers scattered everywhere.
+
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="44" name="Plaza" tags="hellsgate" position="1999.0000000000002,522.3333333333334" size="100,100">You&#39;re in the plaza. Rows of shops and restaurants fill the sides of the wide cobbled path.
+
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="45" name="reading" tags="" position="678,1099" size="100,100">!Inventory
+&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;\
+&lt;&lt;capture _name&gt;&gt;\
+&lt;&lt;if _name.includes(&quot;book: &quot;)&gt;&gt;Read &lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;read _name&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;elseif _name.includes(&quot;map: &quot;)&gt;&gt;Investigate &lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;read _name&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;\</tw-passagedata><tw-passagedata pid="46" name="Chapel Hill" tags="nav" position="1201,1226.3333333333333" size="100,100">You enter Chapel Hill.
+</tw-passagedata><tw-passagedata pid="47" name="Aire Canal Road" tags="nav" position="1201.6666666666667,1351.3333333333333" size="100,100">A peaceful area.</tw-passagedata><tw-passagedata pid="48" name="SmugglerPerson" tags="" position="1326.6666666666667,849.6666666666666" size="100,100">Smuggler is a dark-skinned elderly American man, wearing a red shirt under a dark brown trench coat and black pants.
+Noone is sure of his real name, only that he was  prolific weapon dealer of the Old World.
+
+&lt;&lt;link &#39;Fight&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;You don&#39;t want to fight him.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Talk&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;\
+&quot;What&#39;s up?&quot; He says.
+&lt;&lt;link &quot;What&#39;s your real name?&quot;&gt;&gt;&lt;&lt;dialog&gt;&gt;&quot;That&#39;s my secret.&quot; He replies.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Where are you from?&quot;&gt;&gt;&lt;&lt;dialog&gt;&gt;&quot;I&#39;m from the states. Had a little operation in New York for awhile..&quot; He replies.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="Sunrise14" tags="" position="1950.666666666667,247" size="100,100">The room look pretty clean, unlike the outside area and other rooms.
+
+Back out to [[Hallway|Sunrise2]].</tw-passagedata><tw-passagedata pid="50" name="IndoorMarket2" tags="" position="1995.6666666666667,627.6666666666666" size="100,100">You&#39;re deep inside the indoor market. Around you are countless stalls and shops.
+
+Back out to [[Indoor Market]].</tw-passagedata><tw-passagedata pid="51" name="Sunrise13" tags="" position="1774.0000000000002,242" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;&lt;&lt;set $aptinvest to 0&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $endcondition == 1 and $aptagent&gt;&gt;\
+	&lt;&lt;dialog &#39;Victory&#39;&gt;&gt;\
+		You took down the Agent in the bedroom. Now you can explore it freely.&lt;&lt;set $aptinvest to 4&gt;&gt;\
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+The room look torn up. Furniture is thrown around, blood covers some of the decor.
+
+&lt;&lt;if $party[0] and $party[0].traits.includes(&#39;animal&#39;)&gt;&gt;$party[0].name can smell something...
+
+&lt;&lt;link &#39;Investigate room&#39;&gt;&gt;\
+	&lt;&lt;dialog&gt;&gt;&lt;&lt;if $aptinvest == 0&gt;&gt;
+		You check the main room... There doesn&#39;t seem to be much here. You grab little bits of loot and items that are left behind.
+		&lt;&lt;set $aptinvest to 1&gt;&gt;&lt;&lt;pickup &#39;$inventory&#39; &#39;adult magazine&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;magazines&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;magazines&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;screws&#39;&gt;&gt;&lt;&lt;pickup &#39;$inventory&#39; &#39;computer chip&#39;&gt;&gt;
+	&lt;&lt;elseif $aptinvest == 1&gt;&gt;
+		You check the kitchen... There&#39;s nothing left.&lt;&lt;set $aptinvest to 2&gt;&gt;
+	&lt;&lt;elseif $aptinvest == 2&gt;&gt;
+		You check the bathroom... There&#39;s nothing here.&lt;&lt;set $aptinvest to 3&gt;&gt;
+	&lt;&lt;elseif $aptinvest == 3&gt;&gt;
+		You check the bedroom, to your surprise, an &lt;&lt;link &#39;Agent&#39;&gt;&gt;&lt;&lt;set $enemy to $agent&gt;&gt;&lt;&lt;set $aptagent to true&gt;&gt;&lt;&lt;goto &#39;BattleStart&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; is waiting for you. He turns to you and attacks.
+	&lt;&lt;elseif $aptinvest == 4&gt;&gt;
+		You check the bedroom. You find some kind of prototype weapon, some credits and a few mechanical parts.
+		@@.fade-in-out;Found prototype shock rifle.@@
+		&lt;&lt;pickup &#39;$inventory&#39; &#39;prototype shock rifle&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;scraps&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;scraps&#39;&gt;&gt;&lt;&lt;set $aptinvest to 5&gt;&gt;&lt;&lt;set $character.credits to $character.credits + 150&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		There&#39;s nothing else here.
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Back out to [[Hallway|Sunrise2]].</tw-passagedata><tw-passagedata pid="52" name="sortloot" tags="" position="798.3333333333334,1100" size="100,100">&lt;&lt;for _i, _name range clone($loot.toArray())&gt;&gt;\
+	&lt;&lt;capture _name&gt;&gt;\
+		&lt;&lt;if $resources[_name]&gt;&gt;\
+			&lt;&lt;set _cur to $resources[_name] + 1&gt;&gt;\
+		&lt;&lt;else&gt;&gt;\
+			&lt;&lt;set _cur to 1&gt;&gt;\
+		&lt;&lt;/if&gt;&gt;\
+		&lt;&lt;set $resources[_name] to _cur&gt;&gt;\
+		@@.fade-in-out;_name sorted. (x _cur)@@
+	&lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;\
+&lt;&lt;clear &#39;$loot&#39;&gt;&gt;\
+
+All loot sorted.
+
+!Resources
+&lt;&lt;for _name, _count range $resources&gt;&gt;
+_name (x _count)
+&lt;&lt;/for&gt;&gt;</tw-passagedata></tw-storydata>

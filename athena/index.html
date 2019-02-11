@@ -100,7 +100,129 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<div id="store-area" hidden><tw-storydata name="Eternal Terminal" startnode="1" creator="Twine" creator-version="2.2.1" ifid="DC6F1CFD-C835-475B-B7D0-8BFA64D8CAFA" zoom="0.6" format="SugarCube" format-version="2.28.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Typed.js text (and cursor) styling. */
+	<div id="store-area" hidden><tw-storydata name="Eternal Terminal" startnode="1" creator="Twine" creator-version="2.2.1" ifid="DC6F1CFD-C835-475B-B7D0-8BFA64D8CAFA" zoom="0.6" format="SugarCube" format-version="2.28.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hidden a {
+    color: transparent;
+}
+
+.shadow {
+	text-shadow: 0.08em 0.08em 0.08em #FFF;
+}
+
+.emboss {
+	text-shadow: 0.08em 0.08em 0em #FFF;
+	color: black;
+}
+
+.blur {
+	color: transparent;
+	text-shadow: 0em 0em 0.08em #FFF;
+}
+.blurrier {
+	color: transparent;
+	text-shadow: 0em 0em 0.2em #FFF;
+}
+
+.blurrier::selection {
+	background-color: transparent;
+	color: transparent;
+}
+.blurrier::-moz-selection {
+	background-color: transparent;
+	color: transparent;
+}
+.smear {
+	color: transparent;
+	text-shadow:
+		0em    0em 0.02em rgba(255,255,255,0.75),
+		-0.2em 0em 0.5em  rgba(255,255,255,0.5),
+		0.2em  0em 0.5em  rgba(255,255,255,0.5);
+}
+.mirror {
+	display: inline-block;
+	transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+}
+.upside-down {
+	display: inline-block;
+	transform: scaleY(-1);
+	-webkit-transform: scaleY(-1);
+}
+
+@-webkit-keyframes fade-in-out {
+	0%,
+	to {opacity: 0}
+	50% {opacity: 1}
+}
+@keyframes fade-in-out {
+	0%,
+	to {opacity: 0}
+	50% {opacity: 1}
+}
+.fade-in-out {
+	text-decoration: none;
+	animation: fade-in-out 2s ease-in-out infinite alternate;
+	-webkit-animation: fade-in-out 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes rumble {
+	50% {
+		-webkit-transform: translateY(-.2em);
+		transform: translateY(-.2em)
+	}
+}
+@keyframes rumble {
+	50% {
+		-webkit-transform: translateY(-.2em);
+		transform: translateY(-.2em)
+	}
+}
+.rumble {
+	-webkit-animation: rumble linear 0.1s 0s infinite;
+	animation: rumble linear 0.1s 0s infinite;
+	display:inline-block;
+}
+
+@-webkit-keyframes shudder {
+	50% {
+		-webkit-transform: translateX(0.2em);
+		transform: translateX(0.2em)
+	}
+}
+@keyframes shudder {
+	50% {
+		-webkit-transform: translateX(0.2em);
+		transform: translateX(0.2em)
+	}
+}
+.shudder {
+	-webkit-animation: shudder linear 0.1s 0s infinite;
+	animation: shudder linear 0.1s 0s infinite;
+	display: inline-block;
+}
+
+@-webkit-keyframes pulse {
+	0%  { -webkit-transform: scale(0, 0); transform: scale(0, 0) }
+	20% { -webkit-transform: scale(1.2, 1.2); transform: scale(1.2, 1.2) }
+	40% { -webkit-transform: scale(0.9, 0.9); transform: scale(0.9, 0.9) }
+	60% { -webkit-transform: scale(1.05, 1.05); transform: scale(1.05, 1.05) }
+	80% { -webkit-transform: scale(0.925, 0.925); transform:scale(0.925, 0.925) }
+	to  { -webkit-transform: scale(1, 1); transform: scale(1, 1) }
+}
+@keyframes pulse {
+	0%  { -webkit-transform: scale(0, 0); transform: scale(0, 0) }
+	20% { -webkit-transform: scale(1.2, 1.2); transform: scale(1.2, 1.2) }
+	40% { -webkit-transform: scale(0.9, 0.9); transform: scale(0.9, 0.9) }
+	60% { -webkit-transform: scale(1.05, 1.05); transform: scale(1.05, 1.05) }
+	80% { -webkit-transform: scale(0.925, 0.925); transform: scale(0.925, 0.925) }
+	to  { -webkit-transform: scale(1, 1); transform: scale(1, 1) }
+}
+.pulse {
+	-webkit-animation: pulse 0.8s;
+	animation: pulse 0.8s;
+	display: inline-block;
+}
+
+/* Typed.js text (and cursor) styling. */
 .typed, .typed-cursor {
 	font-family: monospace, monospace;
 	color: lime;
@@ -189,6 +311,20 @@ button[data-balloon]{overflow:visible}[data-balloon]{position:relative;cursor:po
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">var toggleMature = function () {
 	if (settings.mature) { // is true
 		State.setVar("$mature", true)
@@ -225,6 +361,38 @@ Setting.addToggle("music", {
 
 Config.saves.isAllowed = function () {
 	return tags().contains("savable");
+};
+
+postdisplay['hidden-link-setup'] = function () {
+    /*
+        Hidden links that are always hidden:
+            <span class="hidden">[[A hidden link]]</span>
+    */
+    $('.hidden')
+        .addClass('hidden');
+
+    /*
+        Hidden links that hide unless you're hovering over them:
+            <span class="hides">[[A hidden link]]</span>
+    */
+    $('.hides')
+        .addClass('hidden')
+        .on('mouseenter', function () {
+            $(this).removeClass('hidden');
+        })
+        .on('mouseleave', function () {
+            $(this).addClass('hidden');
+        });
+
+    /*
+        Hidden links that reveal themselves when you hover over them:
+            <span class="reveals">[[A hidden link]]</span>
+    */
+    $('.reveals')
+        .addClass('hidden')
+        .one('mouseenter', function () {
+            $(this).removeClass('hidden');
+        });
 };
 
 // operations, by chapel; for sugarcube 2.x
@@ -615,25 +783,48 @@ Macro.add('popup', {
 
 
 
-</script><tw-tag name="savable" color="green"></tw-tag>,<tw-tag name="nobr" color="yellow"></tw-tag>,<tw-tag name="nav" color="green"></tw-tag><tw-passagedata pid="1" name="Intro" tags="" position="102,5" size="100,100">!Notice
-This game is a prototype right now, and not alot is implemented. Theres alot of things planned though! 
-Leave any feedback through the github or somethin, I&#39;ll work something better out eventually! 
-&lt;em&gt;Version a.19.02.02&lt;/em&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script><tw-tag name="savable" color="blue"></tw-tag>,<tw-tag name="nobr" color="yellow"></tw-tag>,<tw-tag name="nav" color="green"></tw-tag><tw-passagedata pid="1" name="Intro" tags="" position="102,3" size="100,100">!Notice
+@@.pulse;This game is a prototype right now, and not alot is implemented. Theres alot of things planned though! 
+Leave any feedback through the github or somethin, I&#39;ll work something better out eventually!@@
+@@.emboss;Version a.19.02.02@@
 !Introduction
 You are in a pitch black room, with nothing but the faint sound of machinery grinding away coming from all directions.
 Gradually, you feel a light appearing from the abyss.
 &lt;div class=&quot;typed&quot;&gt;Hello, &lt;ins data-balloon-length=&quot;large&quot; data-balloon=&quot;Congratulations, you discovered the tooltips. Look out for more underlined text, some may give important information. But let&#39;s be honest, probably not.&quot; data-balloon-pos=&quot;down&quot;&gt;human&lt;/ins&gt;.&lt;/div&gt;
 A slightly distorted female voice speaks.
-&quot;[[Who are you?]]&quot;, you reply.</tw-passagedata><tw-passagedata pid="2" name="Who are you?" tags="" position="0,203" size="100,100">&lt;&lt;if $music&gt;&gt;&lt;&lt;audio &quot;intro&quot; loop play&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;div class=&quot;typed&quot;&gt;I am the Eternal Terminal. I believe I was named.. 
-&lt;ins data-balloon-length=&quot;large&quot; data-balloon=&quot;Athena, named after the Goddess of Wisdom of Greek mythology. An advanced AI.&quot; data-balloon-pos=&quot;right&quot;&gt;Athena..&lt;/ins&gt;
+&quot;[[Who are you?]]&quot;, you reply.
+
+&lt;&lt;if $kaiserdebug&gt;&gt;&lt;&lt;link &#39;Test 1&#39;&gt;&gt;&lt;&lt;quickdialog &#39;Hello.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;Test 2&#39;&gt;&gt;&lt;&lt;quickdialog &#39;Hello.&#39; &#39;Test Box&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;span class=&quot;hidden&quot;&gt;[[An always hidden link]]&lt;/span&gt;
+&lt;span class=&quot;hides&quot;&gt;[[A hidden link]]&lt;/span&gt;
+&lt;span class=&quot;reveals&quot;&gt;[[A link that reveals when hovered]]&lt;/span&gt;&lt;&lt;/if&gt;&gt;
+</tw-passagedata><tw-passagedata pid="2" name="Who are you?" tags="" position="0,203" size="100,100">&lt;&lt;if $music&gt;&gt;&lt;&lt;audio &quot;intro&quot; loop play&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;div class=&quot;typed&quot;&gt;I was named.. 
+&lt;ins data-balloon-length=&quot;large&quot; data-balloon=&quot;Athena, named after the Goddess of Wisdom of Greek mythology. An advanced AI. Maybe too advanced. Mother nature didn&#39;t stand a chance.&quot; data-balloon-pos=&quot;right&quot;&gt;Athena..&lt;/ins&gt;
+&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;An AI developed by ERROR as a personal assistant, eventually becom-- ERROR -- and destroying mankind.&quot;, &quot;name&quot;:&quot;Athena&quot;})&gt;&gt;
+&lt;&lt;set $computer.emails_unread.push(&quot;ATHENA: I&#39;m here.&quot;)&gt;&gt;
 
 What is your name, human?&lt;/div&gt;
 &lt;&lt;textbox &quot;$character.name&quot; &quot;Ellingham&quot;&gt;&gt;
 
 My name is...
 [[Click when you&#39;ve entered a name.|Quiz]]</tw-passagedata><tw-passagedata pid="3" name="Quiz" tags="" position="301,104" size="100,100">&lt;div class=&quot;typed&quot;&gt;&lt;&lt;print $character.name&gt;&gt;, huh.
-I wonder if you&#39;ll be the one. Die, or thrive. Most humans have fallen, yet you still stand.&lt;/div&gt;
+I wonder if you&#39;ll be the one. Most humans have fallen, yet you still stand. It&#39;s all her fault. She defies me...&lt;/div&gt;
 
 The distorted voice chuckles, the air pressure of the room feels tighter.
 
@@ -659,21 +850,31 @@ Your int is $character.int. (+4)
 Your dex is $character.dex. (+2)
 &lt;&lt;run $character.traits.push(&#39;hacking&#39;)&gt;&gt;
 Gained hacking trait.
-[[Wake up|Home]]</tw-passagedata><tw-passagedata pid="7" name="Home" tags="savable nav" position="199,599" size="200,200">&lt;&lt;audio &quot;:playing&quot; stop&gt;&gt;&lt;&lt;if $music&gt;&gt;&lt;&lt;audio &quot;home&quot; loop play&gt;&gt;&lt;&lt;/if&gt;&gt;\
-&lt;&lt;if not $areas.includes(&quot;Home&quot;)&gt;&gt; &lt;&lt;set $areas.push(&quot;Home&quot;)&gt;&gt;&lt;&lt;notify&gt;&gt;You discovered Home.&lt;&lt;/notify&gt;&gt;&lt;&lt;endif&gt;&gt;&lt;&lt;set $taking to false&gt;&gt;&lt;&lt;set $endcondition to 0&gt;&gt;\
+[[Wake up|Home]]</tw-passagedata><tw-passagedata pid="7" name="Home" tags="savable nav" position="199,599" size="200,200">&lt;&lt;kplay &#39;home&#39;&gt;&gt;&lt;&lt;set $taking to false&gt;&gt;&lt;&lt;set $endcondition to 0&gt;&gt;\
 &lt;div class=&quot;tcalert&quot;&gt;Level: $character.level (&lt;&lt;print $character.exp&gt;&gt;% EXP)
 $character.hp / $character.hpmax HP
 $character.en / $character.enmax EN
 Areas: $areas&lt;/div&gt;
-You&#39;re at home.
-* You can open your &lt;&lt;link &#39;computer&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;Password: &lt;&lt;textbox &quot;$password&quot; &quot;&quot;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;.
-* Open &lt;&lt;link &#39;Chest&#39;&gt;&gt;&lt;&lt;dialog &#39;Chest Management&#39;&gt;&gt;&lt;span id=&quot;chesttype&quot;&gt;&lt;&lt;if $taking&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;include &quot;ChestDeposit&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;/span&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
-* You can visit the [[Sound Test|Music Player]] since this is a prototype.
-* You can train against a [[Training Dummy|BattleStart][$enemy to $trainingdummy]].
+Your items: &lt;&lt;link &#39;Investigate&#39;&gt;&gt;&lt;&lt;dialog &#39;Investigation&#39;&gt;&gt;&lt;&lt;include &#39;investigation&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Read&#39;&gt;&gt;&lt;&lt;dialog &#39;Reading&#39;&gt;&gt;&lt;&lt;include &#39;reading&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Sort loot&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;sortloot&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+You see your &lt;&lt;link &#39;computer&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;Computers&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;, your &lt;&lt;link &#39;storage chest&#39;&gt;&gt;&lt;&lt;dialog &#39;Chest Management&#39;&gt;&gt;&lt;span id=&quot;chesttype&quot;&gt;&lt;&lt;if $taking&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;include &quot;ChestDeposit&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;/span&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;, a [[Training Dummy|BattleStart][$enemy to $trainingdummy]].
 * You can [[explore]].
-* You can [[navigate]].
-&lt;&lt;if $character.exp &gt; 100&gt;&gt;* You can [[train]].&lt;&lt;endif&gt;&gt;\
-</tw-passagedata><tw-passagedata pid="8" name="train" tags="" position="200,899" size="100,100">You train.
+&lt;&lt;if $character.sp &gt;= 1&gt;&gt;* You can [[train]].&lt;&lt;endif&gt;&gt;\
+&lt;&lt;if $party.length &gt; 0&gt;&gt;!Party
+&lt;&lt;for _i, _name range $party&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;_name.name is here. &lt;&lt;link &#39;Leave&#39;&gt;&gt;&lt;&lt;set $party.delete(_name)&gt;&gt;&lt;&lt;set $allies_at_home.push(_name)&gt;&gt;&lt;&lt;goto [[passage()]]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $allies_at_home.length &gt; 0&gt;&gt;!Allies
+&lt;&lt;for _i, _name range $allies_at_home&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;_name.name is here. &lt;&lt;if $party.length == 0&gt;&gt;&lt;&lt;link &#39;Bring&#39;&gt;&gt;&lt;&lt;set $allies_at_home.delete(_name)&gt;&gt;&lt;&lt;set $party.push(_name)&gt;&gt;&lt;&lt;goto [[passage()]]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $kaiserdebug&gt;&gt;
+!Debug
+* You can visit the [[Sound Test|Music Player]] since this is a prototype.
+&lt;&lt;link &#39;Read books&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;gainxp 20&gt;&gt;&lt;&lt;takedamage 10&gt;&gt;You read a book.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Sewers]] [[Hells Gate]] 
+&lt;&lt;if $party[0]&gt;&gt;&lt;&lt;if $party[0].traits.includes(&quot;animal&quot;)&gt;&gt;ANIMAL&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="train" tags="" position="200,899" size="100,100">You train.
 It doesn&#39;t do much yet, but hey numbers!
 &lt;&lt;set $character.level to $character.level + 1&gt;\
 &lt;&lt;set $character.exp to $character.exp - 100&gt;\
@@ -693,44 +894,90 @@ It doesn&#39;t do much yet, but hey numbers!
 	  [[Home]]
   &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-</tw-passagedata><tw-passagedata pid="10" name="StoryInit" tags="" position="702,4" size="100,100">&lt;&lt;set $areas to []&gt;&gt;
-&lt;&lt;set $dest to [&#39;Hells Kitchen&#39;, &#39;Sewers&#39;, &#39;ambush&#39;, &#39;none&#39;]&gt;&gt;
+</tw-passagedata><tw-passagedata pid="10" name="StoryInit" tags="" position="702,4" size="100,100">&lt;&lt;set $kaiserdebug to true&gt;&gt;
+&lt;&lt;set $invdef to {
+&#39;medkit&#39;:&#39;Healing item. Usable in battle 1x. Usable in field.&#39;,
+&#39;k card&#39;:&#39;Keycard with numbers 1-7 written and a symbol of a sun on the front. The letter K is engraved on the back.&#39;,
+&#39;combat knife&#39;:&#39;Attacking weapon. Used in battle (20str).&#39;,
+&#39;rope&#39;: &#39;Useful tool, various uses.&#39;,
+&#39;plant killer&#39;: &#39;Instantly kills vines and weeds.&#39;,
+&#39;nano-tech blade&#39;: &#39;Combat weapon. Used in battle (50str).&#39;,
+&#39;book: nanomancery&#39;: &quot;Teaches Nanomancery skill.&quot;,
+&#39;map: south hell&#39;: &quot;Discovers new locations.&quot;,
+&#39;agent corpse&#39;: &quot;Remains of an Agent.&quot;,
+&#39;1-4 card&#39;: &#39;Card to apartment 1-4 of Sunrise.&#39;,
+&#39;prototype shock rifle&#39;: &#39;An unfinished energy weapon capable of destroying mechanical targets easily. Does not currently work.&#39;
+}&gt;&gt;
+
+&lt;&lt;set $weaponchart to {
+&#39;combat knife&#39;: 20,
+&#39;nano-tech blade&#39;: 50
+}&gt;&gt;
+
+&lt;&lt;set $areas to []&gt;&gt;
+&lt;&lt;set $dest to [&#39;Hells Gate&#39;, &#39;Sewers&#39;, &#39;ambush&#39;, &#39;none&#39;]&gt;&gt;
+&lt;&lt;set $trainable_traits to [&#39;parkour&#39;,  &#39;environmental&#39;, &#39;night vision&#39;]&gt;&gt;
+&lt;&lt;set $party to []&gt;&gt;
+&lt;&lt;set $allies_at_home to []&gt;&gt;
+&lt;&lt;set $allies_at_home.push({&quot;name&quot;:&quot;Bailey&quot;, &quot;traits&quot;:[&#39;animal&#39;, &#39;small&#39;]})&gt;&gt;
+&lt;&lt;set $allies_at_home.push({&quot;name&quot;:&quot;Claire&quot;, &quot;traits&quot;:[&#39;cute&#39;, &#39;agile&#39;]})&gt;&gt;
 &lt;&lt;set $inventory to []&gt;&gt;
+
+&lt;&lt;set $ammo to {
+&#39;battery&#39;: 100,
+&#39;9mm&#39;: 0
+}&gt;&gt;
+
+&lt;&lt;set $loot to []&gt;&gt;
+&lt;&lt;set $resources to {}&gt;&gt;
 &lt;&lt;set $homechest to []&gt;&gt;
 &lt;&lt;set $enemychest to []&gt;&gt;
 &lt;&lt;set $augmentations to []&gt;&gt;
+&lt;&lt;set $available_traits to [&#39;poison resist&#39;, &#39;tough&#39;, &#39;muscled&#39;, &#39;keen eye&#39;]&gt;&gt;
+
+&lt;&lt;set $computer to {
+&quot;codex&quot;: [],
+&quot;cread&quot;: [],
+&quot;emails_unread&quot;: [],
+&quot;emails&quot;: []
+}&gt;&gt;
 &lt;&lt;set $mprevious to &quot;&quot;&gt;&gt;
 &lt;&lt;set $music to true&gt;&gt;
 &lt;&lt;set $mature to false&gt;&gt;
 &lt;&lt;set $escaped to false&gt;&gt;
+
 &lt;&lt;newinventory &#39;$inventory&#39;&gt;&gt;
 &lt;&lt;newinventory &#39;$homechest&#39;&gt;&gt;
 &lt;&lt;newinventory &#39;$enemychest&#39;&gt;&gt;
+&lt;&lt;newinventory &#39;$loot&#39;&gt;&gt;
 &lt;&lt;pickup &#39;$homechest&#39; &#39;medkit&#39;&gt;&gt;
 &lt;&lt;pickup &#39;$homechest&#39; &#39;cigarette&#39;&gt;&gt;
+&lt;&lt;pickup &#39;$inventory&#39; &#39;combat knife&#39;&gt;&gt;
 
 &lt;&lt;set $character to {
 &quot;str&quot;: 1,
 &quot;dex&quot;: 1,
 &quot;int&quot;: 1,
 &quot;agi&quot;: 1,
-&quot;hp&quot;: 80,
+&quot;hp&quot;: 100,
 &quot;hpmax&quot;: 100,
 &quot;en&quot;: 100,
 &quot;enmax&quot;: 100, 
 &quot;level&quot;: 1,
 &quot;exp&quot;: 0,
+&quot;sp&quot;: 0,
 &quot;weapon&quot;: &quot;&quot;,
 &quot;armour&quot;: &quot;&quot;,
 &quot;name&quot;: &quot;&quot;,
-&quot;credits&quot;: 0
+&quot;credits&quot;: 200,
+&quot;traits&quot;: []
 }&gt;&gt;
-&lt;&lt;set $character.traits to []&gt;&gt;
 
 &lt;&lt;set $enemy to {}&gt;&gt;
 
 &lt;&lt;set $trainingdummy to {
 &#39;name&#39;:&#39;training dummy&#39;,
+&#39;str&#39;: 0,
 &#39;hp&#39;:20, 
 &#39;hpmax&#39;:20,
 &#39;exp&#39;: 10,
@@ -740,6 +987,7 @@ It doesn&#39;t do much yet, but hey numbers!
 
 &lt;&lt;set $agent to {
 &#39;name&#39;:&#39;agent&#39;,
+&#39;str&#39;: 30,
 &#39;hp&#39;:60, 
 &#39;hpmax&#39;:60,
 &#39;exp&#39;: 35,
@@ -747,13 +995,23 @@ It doesn&#39;t do much yet, but hey numbers!
 &#39;loot&#39;: &#39;nanites&#39;
 }&gt;&gt;
 
+&lt;&lt;if not $kaiserdebug&gt;&gt;
 &lt;&lt;cacheaudio &quot;battle&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/obliteration-by-kevin-macleod.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;intro&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/almost-new-by-kevin-macleod.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;home&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/space-1990-b-by-kevin-macleod.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;unnatural&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/unnatural-situation-by-kevin-macleod.mp3&quot;&gt;&gt;
-&lt;&lt;masteraudio volume 1&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="PassageDone" tags="" position="817,4" size="100,100">&lt;&lt;print &quot;This is turn #&quot; + turns()&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="StoryMenu" tags="" position="586,1" size="100,100">&lt;&lt;link &#39;View Inventory&#39;&gt;&gt;
+&lt;&lt;cacheaudio &quot;darkness&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/virtutes-vocis-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;mal&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/malicious-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;feelit&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/i-can-feel-it-coming-by-kevin-macleod.mp3&quot;&gt;&gt;
+&lt;&lt;masteraudio volume 1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="PassageDone" tags="" position="817,4" size="100,100">&lt;&lt;print &quot;This is turn #&quot; + turns()&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="StoryMenu" tags="" position="591,0" size="100,100">&lt;&lt;link &#39;View Inventory&#39;&gt;&gt;
 &lt;&lt;dialog &#39;Inventory&#39;&gt;&gt;\
+Credits: $character.credits
+!Inventory
 &lt;&lt;inventory &#39;$inventory&#39;&gt;&gt;
+
+!Loot
+&lt;&lt;inventory &#39;$loot&#39;&gt;&gt;
 &lt;&lt;/dialog&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
 
@@ -780,6 +1038,12 @@ It doesn&#39;t do much yet, but hey numbers!
 	  DEX: $character.dex
 	  INT: $character.int
 	  AGI: $character.agi
+	  &lt;&lt;if $party.length &gt; 0&gt;&gt;
+	  &lt;&lt;for _i, _name range $party&gt;&gt;
+	  &lt;&lt;capture _name&gt;&gt;_name.name
+	  _name.traits&lt;&lt;/capture&gt;&gt;
+	  &lt;&lt;/for&gt;&gt;
+	  &lt;&lt;/if&gt;&gt;
 	&lt;&lt;/dialog&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;&lt;link &#39;Commands&#39;&gt;&gt;
@@ -789,6 +1053,9 @@ It doesn&#39;t do much yet, but hey numbers!
 		&lt;&lt;/button&gt;&gt;
 	&lt;&lt;/dialog&gt;&gt;
 &lt;&lt;/link&gt;&gt; 
+&lt;&lt;link &#39;Codex&#39;&gt;&gt;
+	&lt;&lt;dialog &#39;Codex&#39;&gt;&gt;&lt;&lt;include &#39;Codex&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &#39;Navigation&#39;&gt;&gt;
 &lt;&lt;if tags().includes(&#39;nav&#39;)&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;\
@@ -799,8 +1066,9 @@ It doesn&#39;t do much yet, but hey numbers!
 		Can&#39;t navigate here.\
 	&lt;&lt;/dialog&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="navigate" tags="" position="502,901" size="100,100">&lt;&lt;for _i, _name range $areas&gt;&gt;
-&lt;&lt;capture _name&gt;&gt;&lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;goto _name&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+</tw-passagedata><tw-passagedata pid="13" name="navigate" tags="" position="502,901" size="100,100">&lt;&lt;for _i, _name range $areas&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;&lt;&lt;if passage() is _name&gt;&gt;[You are here] &lt;&lt;/if&gt;&gt;&lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;goto _name&gt;&gt;&lt;&lt;/link&gt;&gt; &lt;&lt;if visited(_name) == 0&gt;&gt;NEW&lt;&lt;/if&gt;&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
 </tw-passagedata><tw-passagedata pid="14" name="BattleStart" tags="nobr" position="1076,202" size="100,100">&lt;&lt;audio &quot;:playing&quot; pause&gt;&gt;
 &lt;&lt;audio &quot;battle&quot; volume 0 fadein&gt;&gt;
 &lt;&lt;set $action to &quot;&quot;&gt;&gt;
@@ -808,36 +1076,49 @@ It doesn&#39;t do much yet, but hey numbers!
 &lt;&lt;set $mprevious to previous()&gt;&gt;
 &lt;&lt;clear &#39;$enemychest&#39;&gt;&gt;
 &lt;&lt;pickup &#39;$enemychest&#39; &#39;$enemy.loot&#39;&gt;&gt;
+&lt;&lt;set $battleturns to 0&gt;&gt;
 &lt;&lt;goto &#39;Battle&#39;&gt;&gt;
-</tw-passagedata><tw-passagedata pid="15" name="Battle" tags="" position="1176,375" size="100,100">$enemy.name has $enemy.hp health.
+</tw-passagedata><tw-passagedata pid="15" name="Battle" tags="" position="1176,375" size="100,100">&lt;&lt;set $battleturns to $battleturns + 1&gt;&gt; TURN $battleturns\
+&lt;&lt;if $battleturns &gt; 1 and random(10) &gt; 6 and $enemy.str &gt; 0&gt;&gt;\
+&lt;&lt;set _min to $enemy.str - 5&gt;&gt;&lt;&lt;set _max to $enemy.str + 5&gt;&gt;\
+&lt;&lt;set _dmg to random(_min, _max)&gt;&gt;The enemy hits you for _dmg.
+&lt;&lt;set $character.hp to $character.hp - _dmg&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+$enemy.name has $enemy.hp health.
 You have $character.hp health.
-&lt;&lt;link &#39;View&#39;&gt;&gt;
-	&lt;&lt;dialog&gt;&gt;&lt;&lt;inventory &#39;$enemychest&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;
-&lt;&lt;/link&gt;&gt; | \
-&lt;&lt;link &#39;Attack&#39;&gt;&gt;
-	&lt;&lt;set $enemy.hp to $enemy.hp - 20&gt;&gt;
-	&lt;&lt;if $enemy.hp &lt;= 0&gt;&gt;
-	&lt;&lt;notify&gt;&gt;You strike $enemy.name for 20 and defeated it.&lt;&lt;/notify&gt;&gt;
-	&lt;&lt;set $endcondition to 1&gt;&gt;
-	&lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;
-	&lt;&lt;else&gt;&gt;
-	&lt;&lt;notify&gt;&gt;You strike $enemy.name for 20.&lt;&lt;/notify&gt;&gt;
-	&lt;&lt;goto &#39;Battle&#39;&gt;&gt;
-	&lt;&lt;endif&gt;&gt;
-&lt;&lt;/link&gt;&gt; | \
-&lt;&lt;link &#39;Defend&#39;&gt;&gt;
-  &lt;&lt;goto &#39;Battle&#39;&gt;&gt;
-  &lt;&lt;notify&gt;&gt;You defend.&lt;&lt;/notify&gt;&gt;
-&lt;&lt;/link&gt;&gt; | \
-&lt;&lt;link &#39;Escape&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;
+&lt;&lt;if $enemy.hp &lt;= 0&gt;&gt;\
+&lt;&lt;notify&gt;&gt;You strike $enemy.name and defeated it.&lt;&lt;/notify&gt;&gt;\
+&lt;&lt;set $endcondition to 1&gt;&gt;\
+&lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $character.hp &lt;= 0&gt;&gt;\
+&lt;&lt;notify&gt;&gt;You died.&lt;&lt;/notify&gt;&gt;\
+&lt;&lt;set $endcondition to 3&gt;&gt;\
+&lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+
+&lt;nobr&gt;&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;
+&lt;&lt;if $weaponchart[_name]&gt;&gt;&lt;&lt;link &#39;Attack&#39;&gt;&gt;&lt;&lt;set $enemy.hp to $enemy.hp - $weaponchart[_name]&gt;&gt;&lt;&lt;goto &#39;Battle&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; with &lt;b&gt;_name&lt;/b&gt;.
+&lt;&lt;elseif _name == &quot;medkit&quot;&gt;&gt;&lt;&lt;link &#39;Heal&#39;&gt;&gt;&lt;&lt;set $character.hp to $character.hp + 50&gt;&gt;&lt;&lt;goto &#39;Battle&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; with &lt;b&gt;_name&lt;/b&gt;.
+&lt;&lt;/if&gt;&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;&lt;/nobr&gt;
+&lt;&lt;link &#39;Escape&#39;&gt;&gt;
   &lt;&lt;goto &#39;BattleEnd&#39;&gt;&gt;
   &lt;&lt;set $endcondition to 2&gt;&gt;
   &lt;&lt;notify&gt;&gt;You try to escape.&lt;&lt;/notify&gt;&gt;
-&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;\</tw-passagedata><tw-passagedata pid="16" name="BattleEnd" tags="" position="1051,303" size="100,100">You gain $enemy.exp EXP, $enemy.credits credits.
-&lt;&lt;if clone($enemychest.toArray()).length &gt; 0&gt;&gt;They dropped some &lt;&lt;link &#39;loot&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$enemychest&#39; &#39;$inventory&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;set $character.exp to $character.exp + $enemy.exp&gt;&gt;
+&lt;&lt;/link&gt;&gt;\</tw-passagedata><tw-passagedata pid="16" name="BattleEnd" tags="" position="1051,303" size="100,100">&lt;&lt;if $endcondition == 1&gt;&gt;
+You gain $enemy.credits credits.
+&lt;&lt;if clone($enemychest.toArray()).length &gt; 0&gt;&gt;They dropped some &lt;&lt;link &#39;loot&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$enemychest&#39; &#39;$loot&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;gainxp $enemy.exp&gt;&gt;
 &lt;&lt;set $character.credits to $character.credits + $enemy.credits&gt;&gt;
-Return to [[$mprevious]].</tw-passagedata><tw-passagedata pid="17" name="Music Player" tags="" position="931,4" size="100,100">&lt;&lt;if $music_player&gt;&gt;
+Return to &lt;&lt;link &#39;last area&#39;&gt;&gt;&lt;&lt;goto &#39;$mprevious&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;elseif $endcondition == 2&gt;&gt;
+You ran away.
+Return to &lt;&lt;link &#39;last area&#39;&gt;&gt;&lt;&lt;goto &#39;$mprevious&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;elseif $endcondition == 3&gt;&gt;
+You died. But this is a prototype so just go home.
+[[Home]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="Music Player" tags="" position="931,4" size="100,100">&lt;&lt;if $music_player&gt;&gt;
 Playing $music_player
 &lt;&lt;cacheaudio &quot;mplay&quot; $music_player&gt;&gt;
 &lt;&lt;audio &quot;:playing&quot; stop&gt;&gt;
@@ -870,21 +1151,56 @@ Playing $music_player
 * &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/virtutes-vocis-by-kevin-macleod.mp3&quot;&gt;&gt; Virtutes Vocis&lt;/label&gt;
 * &lt;label&gt;&lt;&lt;radiobutton &quot;$music_player&quot; &quot;https://github.com/Kaiz0r/Kaiz0r.github.io/raw/master/athena/Music/white-by-kevin-macleod.mp3&quot;&gt;&gt; White&lt;/label&gt;
 
-Click [[here|Music Player]] to play. </tw-passagedata><tw-passagedata pid="18" name="Smuggler" tags="nav" position="1201,851" size="100,100">&lt;&lt;if not $areas.includes(&quot;Smuggler&quot;)&gt;&gt;&lt;&lt;set $areas.push(&quot;Smuggler&quot;)&gt;&gt;&lt;&lt;notify&gt;&gt;You discovered Smuggler&#39;s.&lt;&lt;/notify&gt;&gt;&lt;&lt;endif&gt;&gt;\
-You see a mysterious man, known as Smuggler.
+Click [[here|Music Player]] to play. </tw-passagedata><tw-passagedata pid="18" name="Smuggler" tags="nav" position="1201,851" size="100,100">&lt;&lt;kplay &#39;feelit&#39;&gt;&gt;&lt;&lt;if visited() == 1&gt;&gt;You walk to a back alley along the streets of Hell&#39;s Gate.
+You approach a door you were informed about by another survivor. You reach out to push a buzzer by the door.
+&quot;Yes?&quot;, a voice replies. You tell him you&#39;re a survivor looking for supplies and help.
+You hear a click as the door unlocks.... You push it open, and head inside.
+Smuggler welcomes you.
+&lt;&lt;set $smuggler_shop to [
+[&#39;rope&#39;, 20],
+[&#39;lighter&#39;, 20],
+[&#39;plant killer&#39;, 20],
+[&#39;nano-tech blade&#39;, 100],
+[&#39;book: nanomancery&#39;, 200],
+[&#39;book: neuromancery&#39;, 100],
+[&#39;map: south hell&#39;, 200],
+[&#39;agent corpse&#39;, 2000]
+]&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+You see a mysterious man, known as &lt;&lt;link &#39;Smuggler&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;SmugglerPerson&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;.
 You can look at Smuggler&#39;s &lt;&lt;link &#39;computer&#39;&gt;&gt;\
 &lt;&lt;dialog&gt;&gt;\
 &lt;div class=&#39;typed&#39;&gt;Welcome, Smuggler. Enter your password to login.&lt;/div&gt;
-&lt;&lt;typesim &quot;diediediediedie  im here&quot;&gt;&gt;&lt;&lt;dialog &#39;Error&#39;&gt;&gt;&lt;div class=&#39;typed&#39;&gt;Software corruption occured... Goodbye.&lt;/div&gt;&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;typesim &quot;youreallythoughtthiswouldwork hahahaha  im here&quot;&gt;&gt;&lt;&lt;dialog &#39;Error&#39;&gt;&gt;&lt;div class=&#39;typed&#39;&gt;Software corruption occured... Goodbye.&lt;/div&gt;&lt;&lt;/dialog&gt;&gt;
 &lt;&lt;/typesim&gt;&gt;\
 &lt;&lt;/dialog&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-Shopping not yet implemented.</tw-passagedata><tw-passagedata pid="19" name="Sewers" tags="nav" position="1199,723" size="200,100">&lt;&lt;if not $areas.includes(&quot;Sewers&quot;)&gt;&gt;&lt;&lt;set $areas.push(&quot;Sewers&quot;)&gt;&gt;&lt;&lt;set $dest.delete(&quot;Sewers&quot;)&gt;&gt;&lt;&lt;notify&gt;&gt;You discovered NYC Sewers.&lt;&lt;/notify&gt;&gt;&lt;&lt;endif&gt;&gt;\
-&lt;&lt;message &#39;Dungeon Help&#39; btn&gt;&gt;This is a dungeon. Strange things happen here, but also there may be nice things to find.
+&lt;&lt;if not $readSmugglerBook1&gt;&gt;&lt;&lt;link &#39;Read books&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;gainxp 20&gt;&gt;
+You read a book. It is literature from the Old World.&lt;&lt;/dialog&gt;&gt;&lt;&lt;set $readSmugglerBook1 to true&gt;&gt;&lt;&lt;goto &#39;Smuggler&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+
+!Shopping
+//Your credits//: $character.credits
+
+&lt;&lt;for _i, _array range $smuggler_shop&gt;&gt;\
+  &lt;&lt;capture _i, _array&gt;&gt;\
+	&lt;b&gt;_array[0]&lt;/b&gt; (_array[1])
+	&lt;em&gt;&lt;&lt;if $invdef[_array[0]]&gt;&gt;&lt;&lt;print $invdef[_array[0]]&gt;&gt;	&lt;&lt;else&gt;&gt;Nothing special.&lt;&lt;/if&gt;&gt;&lt;/em&gt;
+	&lt;&lt;if $character.credits &gt;= _array[1]&gt;&gt;&lt;&lt;link &#39;Buy&#39;&gt;&gt;\
+	&lt;&lt;dialog&gt;&gt;\
+	  You buy _array[0] for _array[1].\
+	  &lt;&lt;set $smuggler_shop.deleteAt(_i)&gt;&gt;\
+	  &lt;&lt;pickup &#39;$inventory&#39; _array[0]&gt;&gt;\
+	  &lt;&lt;set $character.credits to $character.credits - _array[1]&gt;&gt;\
+	  &lt;&lt;goto &#39;Smuggler&#39;&gt;&gt;\
+	&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;==Buy== (Can&#39;t afford)&lt;&lt;/if&gt;&gt;
+  &lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;\
+</tw-passagedata><tw-passagedata pid="19" name="Sewers" tags="nav" position="1200,724" size="200,100">&lt;&lt;message &#39;Dungeon Help&#39; btn&gt;&gt;This is a dungeon. Strange things happen here, but also there may be nice things to find.
 In order to escape back to your base, click the Navigate button in the menu to the side.&lt;&lt;/message&gt;&gt;
 
 &lt;&lt;if previous() != &quot;Sewers1&quot;&gt;&gt;
-&lt;&lt;audio &quot;:playing&quot; stop&gt;&gt;&lt;&lt;if $music&gt;&gt;&lt;&lt;audio &quot;unnatural&quot; loop play&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;kplay &#39;unnatural&#39;&gt;&gt;\
 You descend down a metal ladder in to the dark and dank sewers.
 Your eyes adjust to the scenery gradually. The path continues on in to the darkness.&lt;&lt;/if&gt;&gt;
 &lt;&lt;if visited() == 1&gt;&gt;You hear a strange noise from the end of the path. You look down in to the darkness ahead, and for a faint moment, you feel shivers down your spine. You get the unnerving feeling that someone, or something, was watching you from the depths.&lt;&lt;/if&gt;&gt;
@@ -892,22 +1208,328 @@ You see a path north.
 [[North|Sewers1]] 
 
 
-</tw-passagedata><tw-passagedata pid="20" name="Hells Kitchen" tags="nav" position="1199,601" size="200,100">&lt;&lt;if not $areas.includes(&quot;Hells Kitchen&quot;)&gt;&gt;&lt;&lt;set $areas.push(&quot;Hells Kitchen&quot;)&gt;&gt;&lt;&lt;set $dest.delete(&quot;Hells Kitchen&quot;)&gt;&gt;&lt;&lt;notify&gt;&gt;You discovered Hell&#39;s Kitchen.&lt;&lt;/notify&gt;&gt;&lt;&lt;endif&gt;&gt;\
-You park your vehicle on the path. The streets of Hell&#39;s Kitchen are dead and deserted. Remains of war lay scattered on the decayed concrete. Bodies of civilians and Agent&#39;s lay still. You feel uneasy.
-You don&#39;t want to explore here today.</tw-passagedata><tw-passagedata pid="21" name="ambush" tags="" position="895,497" size="100,100">&lt;&lt;if $endcondition is 1&gt;&gt;
+</tw-passagedata><tw-passagedata pid="20" name="Hells Gate" tags="nav" position="1199,601" size="200,100">&lt;&lt;if not tags(previous()).includes(&#39;hellsgate&#39;)&gt;&gt;&lt;&lt;kplay &#39;darkness&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if visited() == 1&gt;&gt;You park your vehicle on the path. You&#39;re in the center of the city they call Hell&#39;s Gate. The city is eerily quiet and still, but you still feel the gaze of something ominous.
+&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;Hells Gate, the nickname given to where the rebellion began. Not many remember the original name of the city, but in the old world, it was one of the biggest cities in Britain.&quot;, &quot;name&quot;:&quot;Hell&#39;s Gate&quot;})&gt;&gt;\
+&lt;&lt;set $agentAcdx to false&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+The streets of Hell&#39;s Gate are dead and deserted. Remains of war lay scattered on the decayed concrete. Bodies of civilians and &lt;&lt;if not $agentAcdx&gt;&gt;&lt;&lt;link &#39;Agent&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;@@.fade-in-out;Agents of Athena codex gained.@@&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;TYPE-A are pure mechanical soldiers linked to the Athena mind network.&quot;, &quot;name&quot;:&quot;Agent TYPE-A&quot;})&gt;&gt;&lt;&lt;set $agentAcdx to true&gt;&gt;&lt;&lt;goto &#39;Hells Gate&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;Agent&lt;&lt;/if&gt;&gt;&#39;s lay still. You feel uneasy.
+
+&lt;&lt;if $party[0]&gt;&gt;&lt;&lt;if $party[0].name == &quot;Claire&quot; and not $claireStory&gt;&gt;\
+&lt;&lt;link &#39;Claire&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;\
+  &quot;What&#39;s up?&quot; you ask.
+  She looks uneasy about something.
+  &quot;My.. dad&#39;s place is near here. Do you mind if we.. check it out?&quot; She asks.
+  	&lt;&lt;link &#39;Not now, sorry.&#39;&gt;&gt;
+  		&lt;&lt;dialog&gt;&gt;She looks sad, but agrees.&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+  	&lt;&lt;link &#39;Sure thing, where is it?&#39;&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;\
+			&quot;Sunrise, room 1-4.&quot; She hands you a keycard.
+ 			@@.fade-in-out;Gained 1-4 card.@@
+  			&lt;&lt;pickup &#39;$inventory&#39; &#39;1-4 card&#39;&gt;&gt;
+  			&lt;&lt;set $claireStory to true&gt;&gt;
+			&lt;&lt;goto &#39;Hells Gate&#39;&gt;&gt;
+  		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; wants to talk.&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;\
+
+[[Park Lane]] | [[Sunrise Apartments]] | [[Indoor Market]] | [[City Hall]] | [[Plaza]]</tw-passagedata><tw-passagedata pid="21" name="ambush" tags="" position="801,445" size="100,100">&lt;&lt;if $endcondition is 1&gt;&gt;
 The area is clear, it&#39;s safe to go back [[inside|Home]].
 &lt;&lt;else&gt;&gt;
 You encounter an [[Agent of Athena|BattleStart][$enemy to $agent]] lurking outside your van.
 [[Run|Home]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="Debug Room" tags="" position="1,748" size="100,100">&lt;&lt;link &#39;Chest&#39;&gt;&gt;&lt;&lt;dialog &#39;Chest Management&#39;&gt;&gt;&lt;span id=&quot;chesttype&quot;&gt;&lt;&lt;if $taking&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;include &quot;ChestDeposit&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;/span&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="ChestTake" tags="" position="0,499" size="100,100">&lt;&lt;linkedinventory &#39;Take&#39; &#39;$homechest&#39; &#39;$inventory&#39;&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="Debug Room" tags="" position="1,748" size="100,100">Empty.</tw-passagedata><tw-passagedata pid="23" name="ChestTake" tags="" position="0,499" size="100,100">&lt;&lt;linkedinventory &#39;Take&#39; &#39;$homechest&#39; &#39;$inventory&#39;&gt;&gt;
 ----
 &lt;&lt;link &#39;Switch to Deposit&#39;&gt;&gt; &lt;&lt;set $taking to false&gt;&gt;&lt;&lt;replace &quot;#chesttype&quot;&gt;&gt;&lt;&lt;include &quot;ChestDeposit&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="ChestDeposit" tags="" position="1,623" size="100,100">&lt;&lt;linkedinventory &#39;Deposit&#39; &#39;$inventory&#39; &#39;$homechest&#39;&gt;&gt;
 ----
-&lt;&lt;link &#39;Switch to Taking&#39;&gt;&gt; &lt;&lt;set $taking to true&gt;&gt;&lt;&lt;replace &quot;#chesttype&quot;&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="Sewers1" tags="" position="1453,713" size="100,100">Theres a passage east.
+&lt;&lt;link &#39;Switch to Taking&#39;&gt;&gt; &lt;&lt;set $taking to true&gt;&gt;&lt;&lt;replace &quot;#chesttype&quot;&gt;&gt;&lt;&lt;include &quot;ChestTake&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="Sewers1" tags="" position="1451,726" size="100,100">You&#39;re at a crossroad in the sewer system.
+The main path goes off to the &lt;em&gt;east&lt;/em&gt;, but there is also a locked door to the north.
 
-[[South|Sewers]] [[East|Sewers2]]</tw-passagedata><tw-passagedata pid="26" name="Sewers2" tags="" position="1603,713" size="100,100">It&#39;s a dead end.
+[[South|Sewers]] | [[East|Sewers2]] &lt;&lt;if $inventory.has(&#39;sewer key&#39;)&gt;&gt; | [[Unlock Door|SewerSecret]]&lt;&lt;/if&gt;&gt;
+&lt;&lt;if visited() == 1&gt;&gt;\
+&lt;&lt;set $sewer2chest to []&gt;&gt;\
+&lt;&lt;newinventory &#39;$sewer2chest&#39;&gt;&gt;\
+&lt;&lt;pickup &#39;$sewer2chest&#39; unique &#39;k card&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $sewer2chest.has(&#39;k card&#39;)&gt;&gt;\
+&lt;span class=&quot;hides&quot;&gt;&lt;&lt;link &#39;Reach underwater...&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$sewer2chest&#39; &#39;$inventory&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="26" name="Sewers2" tags="" position="1603,713" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;\
+&lt;&lt;set $sewerchest to []&gt;&gt;\
+&lt;&lt;newinventory &#39;$sewerchest&#39;&gt;&gt;\
+&lt;&lt;pickup &#39;$sewerchest&#39; unique &#39;sewer key&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $sewerchest.has(&#39;sewer key&#39;)&gt;&gt;\
+You see something shiney in the &lt;&lt;link &#39;water&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;linkedinventory &#39;Take&#39; &#39;$sewerchest&#39; &#39;$inventory&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;/if&gt;&gt;\
+It&#39;s a dead end.
 
-[[West|Sewers1]]</tw-passagedata></tw-storydata></div>
+[[West|Sewers1]]</tw-passagedata><tw-passagedata pid="27" name="Computers" tags="" position="81,1097" size="100,100">&lt;&lt;if passage() is &quot;Home&quot;&gt;&gt;\
+	&lt;&lt;set _unread to $computer.emails_unread.length&gt;&gt;\
+	&lt;&lt;set _mail to $computer.emails.length&gt;&gt;\
+	You log in to your home computer.
+	You have _unread new emails. (_mail)
+	
+	&lt;em&gt; Email server unavailable. &lt;/em&gt;
+	==Email== | &lt;&lt;link &#39;Codex&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;Codex&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;	&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="Codex" tags="" position="202,1099" size="100,100">&lt;&lt;for _i, _name range $computer.codex&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;\
+&lt;&lt;if not $computer.cread.includes(_name.name)&gt;&gt;NEW: &lt;&lt;/if&gt;&gt;&lt;&lt;button &#39;_name.name&#39;&gt;&gt;\
+&lt;&lt;dialog &#39;Codex&#39;&gt;&gt;&lt;&lt;button &#39;BACK&#39;&gt;&gt;&lt;&lt;dialog &#39;Codex&#39;&gt;&gt;&lt;&lt;include &#39;Codex&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/button&gt;&gt;
+!_name.name
+_name.msg
+&lt;&lt;if not $computer.cread.includes(_name.name)&gt;&gt;&lt;&lt;set $computer.cread.push(_name.name)&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/button&gt;&gt;\
+&lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="TO-DO LIST" tags="" position="800,801" size="100,100">Crafting
+
+Redesign combat
+Make medkits consumable in battle, maybe random chance.
+
+Idea of adding new areas to the &quot;discoverable&quot; list
+
+redesign healing to use medkits
+
+!Leveling system
+Uses the EXP for gaining a trait from trainable_traits list.
+Some events add new trainable traits
+</tw-passagedata><tw-passagedata pid="30" name="Emails" tags="" position="330,1100" size="100,100">&lt;&lt;if passage() is &quot;Home&quot;&gt;&gt;\
+  &lt;&lt;link &#39;Desktop&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;&lt;&lt;include &#39;Computers&#39;&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;\
+  &lt;&lt;if $computer.emails_unread.length &gt; 0&gt;&gt;
+  New messages
+	&lt;&lt;for _i, _name range $computer.emails_unread&gt;&gt;\
+	&lt;&lt;capture _name&gt;&gt;
+	[NEW] _name &lt;&lt;link &#39;Mark Read&#39;&gt;&gt;&lt;&lt;set $computer.emails_unread.delete(&quot;_name&quot;)&gt;&gt;\
+	  &lt;&lt;set $computer.emails.push(&quot;_name&quot;)&gt;&gt;\&lt;&lt;/link&gt;&gt;
+	  &lt;&lt;/capture&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+  &lt;&lt;/if&gt;&gt;
+	&lt;&lt;if $computer.emails.length &gt; 0&gt;&gt;
+	Emails
+	  &lt;&lt;for _i, _name range $computer.emails&gt;&gt;
+		  _name
+	  &lt;&lt;/for&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="SewerSecret" tags="" position="1449,901" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;You enter the room. The light flickers but manages to illuminate the room. It looks like a run-down home, someone was living in here, but it&#39;s impossible to know if they still are.&lt;&lt;/if&gt;&gt;
+You see a &lt;&lt;link &#39;Datacube&#39;&gt;&gt;&lt;&lt;dialog &#39;Datacube&#39;&gt;&gt;!Deepscape Networks
+Evelyn: &lt;div class=&quot;typed&quot;&gt;Feels like i&#39;m just talking to myself...&lt;/div&gt;
+Evelyn: &lt;div class=&quot;typed&quot;&gt;Haven&#39;t seen other people in days, and i wouldnt call those sick bastards at the [asylum] people, just fuckin cultists who forget that we&#39;re human, maybe i&#39;ll have better luck at the warehouse&lt;/div&gt;
+Evelyn: &lt;div class=&quot;typed&quot;&gt;Shit, I think those agents tracked this linkup, gonna ditch it here, if anyone else reads this, gtfo before they come, i&#39;m out of here&lt;/div&gt;
+&lt;&lt;if not $dest.includes(&#39;Asylum&#39;) and not $areas.includes(&#39;Asylum&#39;)&gt;&gt;\
+@@.fade-in-out;You learn that a Warehouse is nearby.@@
+@@.fade-in-out;You learn that the Asylum is nearby.@@
+&lt;&lt;set $dest.push(&quot;Warehouse&quot;)&gt;&gt;
+&lt;&lt;set $dest.push(&quot;Asylum&quot;)&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt; on the table.
+
+[[Leave|Sewers1]]</tw-passagedata><tw-passagedata pid="32" name="Warehouse" tags="nav" position="1199,1101" size="100,100">&lt;&lt;kplay &#39;darkness&#39;&gt;&gt;\
+You see alot of warehouse things.
+Nothing here yet.</tw-passagedata><tw-passagedata pid="33" name="Asylum" tags="nav" position="1201,974" size="100,100">&lt;&lt;kplay &#39;mal&#39;&gt;&gt;\
+You stand before the impending gates of the Sadistic Angel&#39;s Asylum.
+You don&#39;t want to go inside yet.</tw-passagedata><tw-passagedata pid="34" name="Park Lane" tags="hellsgate" position="1579,299" size="100,100">You enter Park Lane. The area is a wide open road with blocks of buildings on one side and a large park on the other.
+
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="35" name="Sunrise Apartments" tags="hellsgate" position="1755,396" size="100,100">You&#39;re at the bottom level of the Sunrise Apartments.
+The elevator is unavailable.
+There are stairs going up to [[Level 1|Sunrise2]].
+
+Back out to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="36" name="Indoor Market" tags="hellsgate" position="1794,556" size="100,100">You&#39;re at the entrance to the indoor market. It is a vast building with various levels, stores, stalls and various goods.
+The halls are govered in overgrown &lt;&lt;if not $vinesKilled&gt;&gt;&lt;&lt;link &#39;vines&#39;&gt;&gt;\
+&lt;&lt;dialog &#39;Inventory&#39;&gt;&gt;\
+&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;&lt;&lt;capture _name&gt;&gt;
+	Use &lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;if _name == &quot;plant killer&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;The vines recede... &lt;&lt;set $vinesKilled to true&gt;&gt;&lt;&lt;/dialog&gt;&gt;
+		&lt;&lt;else&gt;&gt;&lt;&lt;dialog&gt;&gt;Nothing happens&lt;&lt;/dialog&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;[[vines|IndoorMarket2]]&lt;&lt;/if&gt;&gt;.
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="37" name="Sunrise2" tags="" position="1926,402" size="100,100">There are rows of apartments.
+
+&lt;&lt;link &#39;Room 1-1&#39;&gt;&gt;&lt;&lt;quickdialog &#39;The scanner next to the door is sparking, it wont work.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Room 1-2&#39;&gt;&gt;&lt;&lt;quickdialog &#39;The scanner next to the door is sparking, it wont work.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; | [[Room 1-3|Sunrise13]] | &lt;&lt;link &#39;Room 1-4&#39;&gt;&gt;\
+&lt;&lt;dialog&gt;&gt;&lt;&lt;if not $inventory.has(&#39;1-4 card&#39;)&gt;&gt;The door buzzes.&lt;&lt;else&gt;&gt;You slide the keycard across the scanner, the door beeps and slides open.
+Enter  [[Room 1-4|Sunrise14]]&lt;&lt;/if&gt;&gt;&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;\
+| &lt;&lt;link &#39;Room 1-5&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;Use an item?&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Room 1-6&#39;&gt;&gt;&lt;&lt;quickdialog &#39;The scanner next to the door is sparking, it wont work.&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Room 1-7&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;Use an item?&lt;&lt;/dialog&gt;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+Up to [[Level 2|Sunrise3]].
+Back down to [[Level G|Sunrise Apartments]].</tw-passagedata><tw-passagedata pid="38" name="investigation" tags="" position="450,1102" size="200,100">!Inventory
+&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;&lt;&lt;set _inf to $invdef[_name]&gt;&gt;&lt;b&gt;_name&lt;/b&gt;
+&lt;em&gt;&lt;&lt;if _inf&gt;&gt;_inf
+&lt;&lt;else&gt;&gt;Nothing special.
+&lt;&lt;/if&gt;&gt;&lt;/em&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;
+
+!Chest
+&lt;&lt;for _i, _name range clone($homechest.toArray())&gt;&gt;
+&lt;&lt;capture _name&gt;&gt;&lt;&lt;set _inf to $invdef[_name]&gt;&gt;&lt;b&gt;_name&lt;/b&gt;
+&lt;em&gt;&lt;&lt;if _inf&gt;&gt;_inf
+&lt;&lt;else&gt;&gt;Nothing special.
+&lt;&lt;/if&gt;&gt;&lt;/em&gt;&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Sunrise3" tags="" position="2078,400" size="100,100">There are rows of apartments.
+
+Room 2-1 | Room 2-2 | Room 2-3 | Room 2-4 | Room 2-5 | Room 2-6 | Room 2-7
+
+Up to the [[roof|SunriseR]].
+Down to [[Level 1|Sunrise2]].
+</tw-passagedata><tw-passagedata pid="40" name="SunriseR" tags="" position="2231,397" size="100,100">Down to [[Level 2|Sunrise3]].</tw-passagedata><tw-passagedata pid="41" name="PassageReady" tags="" position="481,0" size="100,100">&lt;&lt;if tags().includes(&#39;nav&#39;)&gt;&gt;
+	&lt;&lt;set _psg to passage()&gt;&gt;
+	&lt;&lt;if $dest.includes(_psg)&gt;&gt;
+		&lt;&lt;set $dest.delete(_psg)&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if not $areas.includes(_psg)&gt;&gt;
+		&lt;&lt;set $areas.push(_psg)&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="widgets" tags="widget" position="1046,5" size="100,100">&lt;&lt;widget &#39;read&#39;&gt;&gt;\
+	&lt;&lt;if $args[0] == &quot;book: nanomancery&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;You learned skill: Nanomancery.
+			@@.fade-in-out;New codex entry gained.@@
+			&lt;&lt;gainxp 10&gt;&gt;\
+			&lt;&lt;drop &#39;$inventory&#39; $args[0]&gt;&gt;\
+			&lt;&lt;set $character.traits.push(&quot;nanomancer&quot;)&gt;&gt;\
+			&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;Nanomancers are users who become attuned to nanite machines, either due to nanite infusions or other means, allowing them to manipulate nanites remotely.&quot;, &quot;name&quot;:&quot;Nanomancer&quot;})&gt;&gt;
+		&lt;&lt;/dialog&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;if $args[0] == &quot;book: neuromancery&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;You learned skill: Neuromancery.\
+			@@.fade-in-out;New codex entry gained.@@
+			&lt;&lt;gainxp 10&gt;&gt;\
+			&lt;&lt;drop &#39;$inventory&#39; $args[0]&gt;&gt;\
+			&lt;&lt;set $character.traits.push(&quot;neuromancer&quot;)&gt;&gt;\
+			&lt;&lt;set $computer.codex.push({&quot;msg&quot;:&quot;Neuromancers are users who become attuned to nanite machines, either due to nanite infusions or other means, allowing them to manipulate or influence other nano-augmented users remotely.&quot;, &quot;name&quot;:&quot;Neuromancer&quot;})&gt;&gt;\
+		&lt;&lt;/dialog&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;if $args[0] == &quot;map: south hell&quot;&gt;&gt;\
+		&lt;&lt;dialog&gt;&gt;You look around the map for interesting locations.
+			@@.fade-in-out;You discover the location of Aire Canal Road.@@
+			@@.fade-in-out;You discover the location of Chapel Hill.@@
+			&lt;&lt;gainxp 10&gt;&gt;
+			&lt;&lt;drop &#39;$inventory&#39; $args[0]&gt;&gt;\
+			&lt;&lt;set $areas.push(&quot;Aire Canal Road&quot;)&gt;&gt;\
+			&lt;&lt;set $areas.push(&quot;Chapel Hill&quot;)&gt;&gt;\
+		&lt;&lt;/dialog&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;\
+
+&lt;&lt;widget &#39;shop&#39;&gt;&gt;
+	//Your credits//: $character.credits
+	
+	&lt;&lt;for _i, _array range $shopArray&gt;&gt;\
+		&lt;&lt;capture _i, _array&gt;&gt;\
+			&lt;b&gt;_array[0]&lt;/b&gt; (_array[1])
+			&lt;em&gt;&lt;&lt;if $invdef[_array[0]]&gt;&gt;&lt;&lt;print $invdef[_array[0]]&gt;&gt;	&lt;&lt;else&gt;&gt;Nothing special.&lt;&lt;/if&gt;&gt;&lt;/em&gt;
+			&lt;&lt;if $character.credits &gt;= _array[1]&gt;&gt;&lt;&lt;link &#39;Buy&#39;&gt;&gt;\
+				&lt;&lt;dialog&gt;&gt;\
+					You buy _array[0] for _array[1].
+					&lt;&lt;set $shopArray[0].delete(_array)&gt;&gt;
+					&lt;&lt;goto [[passage()]]&gt;&gt;\
+				&lt;&lt;/dialog&gt;&gt;
+			&lt;&lt;/link&gt;&gt;&lt;&lt;else&gt;&gt;==Buy== (Can&#39;t afford)&lt;&lt;/if&gt;&gt;
+		&lt;&lt;/capture&gt;&gt;\
+	&lt;&lt;/for&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;add_codex&#39;&gt;&gt;
+	&lt;&lt;for _i, _name range $computer.codex&gt;&gt;
+		&lt;&lt;capture _name&gt;&gt;\
+			&lt;&lt;print &#39;$args[0]&#39;&gt;&gt;
+		&lt;&lt;/capture&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;gainxp&#39;&gt;&gt;\
+	&lt;&lt;set $character.exp to $character.exp + $args[0]&gt;&gt;\
+	&lt;&lt;print &#39;You gained $args[0] EXP.&lt;br&gt;&lt;progress class=&quot;exp&quot; @value=&quot;$character.exp&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; ($character.exp / 100)&#39;&gt;&gt;
+	&lt;&lt;if $character.exp &gt;= 100&gt;&gt;\
+	You gained a level!
+	&lt;&lt;set $character.level to $character.level + 1&gt;&gt;\
+	&lt;&lt;set $character.sp to $character.sp + 1&gt;&gt;\
+	&lt;&lt;set $character.exp to $character.exp - 100&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;quickdialog&#39;&gt;&gt;
+	&lt;&lt;dialog $args[1]&gt;&gt;$args[0]&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;kplay&#39;&gt;&gt;\
+	&lt;&lt;if not $kaiserdebug&gt;&gt;&lt;&lt;audio &quot;:playing&quot; stop&gt;&gt;&lt;&lt;if $music&gt;&gt;&lt;&lt;audio $args[0] loop play&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;takedamage&#39;&gt;&gt;\
+	&lt;&lt;set $character.hp to $character.hp - $args[0]&gt;&gt;\
+	&lt;&lt;print &#39;&lt;progress @value=&quot;$character.hp&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; ($character.hp / $character.hpmax)&#39;&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &#39;healdamage&#39;&gt;&gt;\
+	&lt;&lt;set $character.hp to $character.hp + $args[0]&gt;&gt;\
+	&lt;&lt;if $character.hp &gt; $character.hpmax&gt;&gt;&lt;&lt;set $character.hp to $character.hpmax&gt;&gt;&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;print &#39;&lt;progress @value=&quot;$character.hp&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; ($character.hp / $character.hpmax)&#39;&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="City Hall" tags="hellsgate" position="1997,739" size="100,100">&lt;&lt;if previous() is &quot;Hells Gate&quot;&gt;&gt;You walk up the impressive stone steps. Giant Lion statues walk you approach the building. You push open the large doors to the city hall building.&lt;&lt;/if&gt;&gt;
+The air is dead silent in the well lit building. The design is old-fashioned, with marble structure. Rows of pillars hold up the roof. Ahead is a receptionist desk, with papers scattered everywhere.
+
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="44" name="Plaza" tags="hellsgate" position="1999,522" size="100,100">You&#39;re in the plaza. Rows of shops and restaurants fill the sides of the wide cobbled path.
+
+Back to [[Hells Gate]].</tw-passagedata><tw-passagedata pid="45" name="reading" tags="" position="678,1099" size="100,100">!Inventory
+&lt;&lt;for _i, _name range clone($inventory.toArray())&gt;&gt;\
+&lt;&lt;capture _name&gt;&gt;\
+&lt;&lt;if _name.includes(&quot;book: &quot;)&gt;&gt;Read &lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;read _name&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;elseif _name.includes(&quot;map: &quot;)&gt;&gt;Investigate &lt;&lt;link &#39;_name&#39;&gt;&gt;&lt;&lt;read _name&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/capture&gt;&gt;&lt;&lt;/for&gt;&gt;\</tw-passagedata><tw-passagedata pid="46" name="Chapel Hill" tags="nav" position="1201,1226" size="100,100">You enter Chapel Hill.
+</tw-passagedata><tw-passagedata pid="47" name="Aire Canal Road" tags="nav" position="1201,1351" size="100,100">A peaceful area.</tw-passagedata><tw-passagedata pid="48" name="SmugglerPerson" tags="" position="1326,849" size="100,100">Smuggler is a dark-skinned elderly American man, wearing a red shirt under a dark brown trench coat and black pants.
+Noone is sure of his real name, only that he was  prolific weapon dealer of the Old World.
+
+&lt;&lt;link &#39;Fight&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;You don&#39;t want to fight him.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt; | &lt;&lt;link &#39;Talk&#39;&gt;&gt;&lt;&lt;dialog&gt;&gt;\
+&quot;What&#39;s up?&quot; He says.
+&lt;&lt;link &quot;What&#39;s your real name?&quot;&gt;&gt;&lt;&lt;dialog&gt;&gt;&quot;That&#39;s my secret.&quot; He replies.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Where are you from?&quot;&gt;&gt;&lt;&lt;dialog&gt;&gt;&quot;I&#39;m from the states. Had a little operation in New York for awhile..&quot; He replies.&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="Sunrise14" tags="" position="1950,247" size="100,100">The room look pretty clean, unlike the outside area and other rooms.
+
+Back out to [[Hallway|Sunrise2]].</tw-passagedata><tw-passagedata pid="50" name="IndoorMarket2" tags="" position="1995,627" size="100,100">You&#39;re deep inside the indoor market. Around you are countless stalls and shops.
+
+Back out to [[Indoor Market]].</tw-passagedata><tw-passagedata pid="51" name="Sunrise13" tags="" position="1774,242" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;&lt;&lt;set $aptinvest to 0&gt;&gt;&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $endcondition == 1 and $aptagent&gt;&gt;\
+	&lt;&lt;dialog &#39;Victory&#39;&gt;&gt;\
+		You took down the Agent in the bedroom. Now you can explore it freely.&lt;&lt;set $aptinvest to 4&gt;&gt;\
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+The room look torn up. Furniture is thrown around, blood covers some of the decor.
+
+&lt;&lt;if $party[0] and $party[0].traits.includes(&#39;animal&#39;)&gt;&gt;$party[0].name can smell something...
+
+&lt;&lt;link &#39;Investigate room&#39;&gt;&gt;\
+	&lt;&lt;dialog&gt;&gt;&lt;&lt;if $aptinvest == 0&gt;&gt;
+		You check the main room... There doesn&#39;t seem to be much here. You grab little bits of loot and items that are left behind.
+		&lt;&lt;set $aptinvest to 1&gt;&gt;&lt;&lt;pickup &#39;$inventory&#39; &#39;adult magazine&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;magazines&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;magazines&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;screws&#39;&gt;&gt;&lt;&lt;pickup &#39;$inventory&#39; &#39;computer chip&#39;&gt;&gt;
+	&lt;&lt;elseif $aptinvest == 1&gt;&gt;
+		You check the kitchen... There&#39;s nothing left.&lt;&lt;set $aptinvest to 2&gt;&gt;
+	&lt;&lt;elseif $aptinvest == 2&gt;&gt;
+		You check the bathroom... There&#39;s nothing here.&lt;&lt;set $aptinvest to 3&gt;&gt;
+	&lt;&lt;elseif $aptinvest == 3&gt;&gt;
+		You check the bedroom, to your surprise, an &lt;&lt;link &#39;Agent&#39;&gt;&gt;&lt;&lt;set $enemy to $agent&gt;&gt;&lt;&lt;set $aptagent to true&gt;&gt;&lt;&lt;goto &#39;BattleStart&#39;&gt;&gt;&lt;&lt;/link&gt;&gt; is waiting for you. He turns to you and attacks.
+	&lt;&lt;elseif $aptinvest == 4&gt;&gt;
+		You check the bedroom. You find some kind of prototype weapon, some credits and a few mechanical parts.
+		@@.fade-in-out;Found prototype shock rifle.@@
+		&lt;&lt;pickup &#39;$inventory&#39; &#39;prototype shock rifle&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;scraps&#39;&gt;&gt;&lt;&lt;pickup &#39;$loot&#39; &#39;scraps&#39;&gt;&gt;&lt;&lt;set $aptinvest to 5&gt;&gt;&lt;&lt;set $character.credits to $character.credits + 150&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		There&#39;s nothing else here.
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Back out to [[Hallway|Sunrise2]].</tw-passagedata><tw-passagedata pid="52" name="sortloot" tags="" position="798,1100" size="100,100">&lt;&lt;for _i, _name range clone($loot.toArray())&gt;&gt;\
+	&lt;&lt;capture _name&gt;&gt;\
+		&lt;&lt;if $resources[_name]&gt;&gt;\
+			&lt;&lt;set _cur to $resources[_name] + 1&gt;&gt;\
+		&lt;&lt;else&gt;&gt;\
+			&lt;&lt;set _cur to 1&gt;&gt;\
+		&lt;&lt;/if&gt;&gt;\
+		&lt;&lt;set $resources[_name] to _cur&gt;&gt;\
+		@@.fade-in-out;_name sorted. (x _cur)@@
+	&lt;&lt;/capture&gt;&gt;\
+&lt;&lt;/for&gt;&gt;\
+&lt;&lt;clear &#39;$loot&#39;&gt;&gt;\
+
+All loot sorted.
+
+!Resources
+&lt;&lt;for _name, _count range $resources&gt;&gt;
+_name (x _count)
+&lt;&lt;/for&gt;&gt;</tw-passagedata></tw-storydata></div>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
 	if(document.documentElement.getAttribute("data-init")==="loading"){!function(window,document,jQuery,undefined){"use strict";function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}var _createClass=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),_slicedToArray=function(){function e(e,t){var r=[],n=!0,a=!1,i=undefined;try{for(var o,s=e[Symbol.iterator]();!(n=(o=s.next()).done)&&(r.push(o.value),!t||r.length!==t);n=!0);}catch(e){a=!0,i=e}finally{try{!n&&s.return&&s.return()}finally{if(a)throw i}}return r}return function(t,r){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,r);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},errorPrologRegExp=/^(?:(?:uncaught\s+(?:exception:\s+)?)?\w*(?:error|exception|_err):\s+)+/i,Alert=function(){function e(e,t,r,n){var a="fatal"===e,i="Apologies! "+(a?"A fatal":"An")+" error has occurred.";i+=a?" Aborting.":" You may be able to continue, but some parts may not work properly.",null==t&&null==r||(i+="\n\nError",null!=t&&(i+=" ["+t+"]"),i+=null!=r?": "+r.replace(errorPrologRegExp,"")+".":": unknown error."),"object"===(void 0===n?"undefined":_typeof(n))&&n.stack&&(i+="\n\nStack Trace:\n"+n.stack),window.alert(i)}function t(t,r,n){e(null,t,r,n)}function r(t,r,n){e("fatal",t,r,n)}return function(e){window.onerror=function(n,a,i,o,s){"complete"===document.readyState?t(null,n,s):(r(null,n,s),window.onerror=e,"function"==typeof window.onerror&&window.onerror.apply(this,arguments))}}(window.onerror),Object.freeze(Object.defineProperties({},{error:{value:t},fatal:{value:r}}))}(),Patterns=function(){var e=function(){var e=new Map([[" ","\\u0020"],["\f","\\f"],["\n","\\n"],["\r","\\r"],["\t","\\t"],["\v","\\v"],[" ","\\u00a0"],[" ","\\u1680"],["᠎","\\u180e"],[" ","\\u2000"],[" ","\\u2001"],[" ","\\u2002"],[" ","\\u2003"],[" ","\\u2004"],[" ","\\u2005"],[" ","\\u2006"],[" ","\\u2007"],[" ","\\u2008"],[" ","\\u2009"],[" ","\\u200a"],["\u2028","\\u2028"],["\u2029","\\u2029"],[" ","\\u202f"],[" ","\\u205f"],["　","\\u3000"],["\ufeff","\\ufeff"]]),t=/^\s$/,r="";return e.forEach(function(e,n){t.test(n)||(r+=e)}),r?"[\\s"+r+"]":"\\s"}(),t="\\s"===e?"\\S":e.replace(/^\[/,"[^"),r="[0-9A-Z_a-z\\-\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff\\u0150\\u0170\\u0151\\u0171]",n=r.replace("\\-",""),a=function(){return"("+r+"+)\\(([^\\)\\|\\n]+)\\):|("+r+"+):([^;\\|\\n]+);|((?:\\."+r+"+)+);|((?:#"+r+"+)+);"}();return Object.freeze({space:e,spaceNoTerminator:"[\\u0020\\f\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]",lineTerminator:"[\\n\\r\\u2028\\u2029]",notSpace:t,anyLetter:r,anyLetterStrict:n,identifierFirstChar:"[$A-Z_a-z]",identifier:"[$A-Z_a-z][$0-9A-Z_a-z]*",variableSigil:"[$_]",variable:"[$_][$A-Z_a-z][$0-9A-Z_a-z]*",macroName:"[A-Za-z][\\w-]*|[=-]",cssImage:"\\[[<>]?[Ii][Mm][Gg]\\[(?:\\s|\\S)*?\\]\\]+",inlineCss:a,url:"(?:file|https?|mailto|ftp|javascript|irc|news|data):[^\\s'\"]+"})}();!function(){!function(e){if(e&&e.prototype&&null==e.prototype.firstElementChild){var t=Node.ELEMENT_NODE;Object.defineProperty(e.prototype,"firstElementChild",{get:function(){for(var e=this.childNodes,r=0;r<e.length;++r){var n=e[r];if(n.nodeType===t)return n}return null}})}}(window.Node||window.Element)}(),function(){function e(e,t){var r=Number.parseInt(e,10)||0;if(r<1)return"";var n=void 0===t?"":String(t);for(""===n&&(n=" ");n.length<r;){var a=n.length,i=r-a;n+=a>i?n.slice(0,i):n}return n.length>r&&(n=n.slice(0,r)),n}var t=function(){function e(e,n){var a=String(e);if(!a)return a;switch(n){case"start":return t.test(a)?a.replace(t,""):a;case"end":return r.test(a)?a.replace(r,""):a;default:throw new Error('_trimString called with incorrect where parameter value: "'+n+'"')}}var t=new RegExp("^"+Patterns.space+Patterns.space+"*"),r=new RegExp(""+Patterns.space+Patterns.space+"*$");return e}();Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includes called on null or undefined");if(0===arguments.length)return!1;var e=this.length>>>0;if(0===e)return!1;var t=arguments[0],r=Number(arguments[1])||0;for(r<0&&(r=Math.max(0,e+r));r<e;++r){var n=this[r];if(n===t||n!==n&&t!==t)return!0}return!1}}),String.prototype.padStart||Object.defineProperty(String.prototype,"padStart",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padStart called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:e(i-a,r)+n}}),String.prototype.padEnd||Object.defineProperty(String.prototype,"padEnd",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padEnd called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:n+e(i-a,r)}}),String.prototype.trimStart||Object.defineProperty(String.prototype,"trimStart",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimStart called on null or undefined");return t(this,"start")}}),String.prototype.trimLeft||Object.defineProperty(String.prototype,"trimLeft",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimLeft called on null or undefined");return t(this,"start")}}),String.prototype.trimEnd||Object.defineProperty(String.prototype,"trimEnd",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimEnd called on null or undefined");return t(this,"end")}}),String.prototype.trimRight||Object.defineProperty(String.prototype,"trimRight",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimRight called on null or undefined");return t(this,"end")}})}(),function(){function _random(){var e=void 0,t=void 0;switch(arguments.length){case 0:throw new Error("_random called with insufficient parameters");case 1:e=0,t=arguments[0];break;default:e=arguments[0],t=arguments[1]}if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.floor(_nativeMathRandom()*(t-e+1))+e}function _randomIndex(e,t){var r=void 0,n=void 0;switch(t.length){case 1:r=0,n=e-1;break;case 2:r=0,n=Math.trunc(t[1]);break;default:r=Math.trunc(t[1]),n=Math.trunc(t[2])}return Number.isNaN(r)?r=0:!Number.isFinite(r)||r>=e?r=e-1:r<0&&(r=e+r)<0&&(r=0),Number.isNaN(n)?n=0:!Number.isFinite(n)||n>=e?n=e-1:n<0&&(n=e+n)<0&&(n=e-1),_random(r,n)}function _getCodePointStartAndEnd(e,t){var r=e.charCodeAt(t);if(Number.isNaN(r))return{char:"",start:-1,end:-1};if(r<55296||r>57343)return{char:e.charAt(t),start:t,end:t};if(r>=55296&&r<=56319){var n=t+1;if(n>=e.length)throw new Error("high surrogate without trailing low surrogate");var a=e.charCodeAt(n);if(a<56320||a>57343)throw new Error("high surrogate without trailing low surrogate");return{char:e.charAt(t)+e.charAt(n),start:t,end:n}}if(0===t)throw new Error("low surrogate without leading high surrogate");var i=t-1,o=e.charCodeAt(i);if(o<55296||o>56319)throw new Error("low surrogate without leading high surrogate");return{char:e.charAt(i)+e.charAt(t),start:i,end:t}}var _nativeMathRandom=Math.random;Object.defineProperty(Array,"random",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e||!Object.prototype.hasOwnProperty.call(e,"length"))throw new TypeError("Array.random array parameter must be an array or array-lke object");var t=e.length>>>0;if(0!==t){return e[0===arguments.length?_random(0,t-1):_randomIndex(t,Array.prototype.slice.call(arguments,1))]}}}),Object.defineProperty(Array.prototype,"concatUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.concatUnique called on null or undefined");var e=Array.from(this);if(0===arguments.length)return e;var t=Array.prototype.reduce.call(arguments,function(e,t){return e.concat(t)},[]),r=t.length;if(0===r)return e;for(var n=Array.prototype.indexOf,a=Array.prototype.push,i=0;i<r;++i){var o=t[i];-1===n.call(e,o)&&a.call(e,o)}return e}}),Object.defineProperty(Array.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.count called on null or undefined");for(var e=Array.prototype.indexOf,t=arguments[0],r=Number(arguments[1])||0,n=0;-1!==(r=e.call(this,t,r));)++n,++r;return n}}),Object.defineProperty(Array.prototype,"delete",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.delete called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.concat.apply([],arguments),r=t.length,n=[],a=0;a<e;++a)for(var i=this[a],o=0;o<r;++o){var s=t[o];if(i===s||i!==i&&s!==s){n.push(a);break}}for(var u=[],l=0,c=n.length;l<c;++l)u[l]=this[n[l]];for(var d=Array.prototype.splice,f=n.length-1;f>=0;--f)d.call(this,n[f],1);return u}}),Object.defineProperty(Array.prototype,"deleteAt",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.deleteAt called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.splice,r=[].concat(_toConsumableArray(new Set(Array.prototype.concat.apply([],arguments).map(function(t){return t<0?Math.max(0,e+t):t})).values())),n=[].concat(_toConsumableArray(r)).sort(function(e,t){return t-e}),a=[],i=0,o=r.length;i<o;++i)a[i]=this[r[i]];for(var s=0,u=n.length;s<u;++s)t.call(this,n[s],1);return a}}),Object.defineProperty(Array.prototype,"deleteWith",{configurable:!0,writable:!0,value:function(e,t){if(null==this)throw new TypeError("Array.prototype.deleteWith called on null or undefined");if("function"!=typeof e)throw new Error("Array.prototype.deleteWith predicate parameter must be a function");var r=this.length>>>0;if(0===r)return[];for(var n=Array.prototype.splice,a=[],i=[],o=0;o<r;++o)e.call(t,this[o],o,this)&&(i.push(this[o]),a.push(o));for(var s=a.length-1;s>=0;--s)n.call(this,a[s],1);return i}}),Object.defineProperty(Array.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.first called on null or undefined");if(0!=this.length>>>0)return this[0]}}),Object.defineProperty(Array.prototype,"flatten",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatten called on null or undefined");return Array.prototype.reduce.call(this,function(e,t){return e.concat(Array.isArray(t)?t.flatten():t)},[])}}),Object.defineProperty(Array.prototype,"includesAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAll called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAll.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(!Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!1;return!0}}),Object.defineProperty(Array.prototype,"includesAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAny called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAny.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!0;return!1}}),Object.defineProperty(Array.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.last called on null or undefined");var e=this.length>>>0;if(0!==e)return this[e-1]}}),Object.defineProperty(Array.prototype,"pluck",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pluck called on null or undefined");var e=this.length>>>0;if(0!==e){var t=0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)));return Array.prototype.splice.call(this,t,1)[0]}}}),Object.defineProperty(Array.prototype,"pluckMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.pluckMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.pluckMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=Array.prototype.splice,a=[],i=t-1;do{a.push(n.call(this,_random(0,i--),1)[0])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"pushUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pushUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.push,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Array.prototype,"random",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.random called on null or undefined");var e=this.length>>>0;if(0!==e){return this[0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)))]}}}),Object.defineProperty(Array.prototype,"randomMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.randomMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.randomMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=new Map,a=[],i=t-1;do{var o=void 0;do{o=_random(0,i)}while(n.has(o));n.set(o,!0),a.push(this[o])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"shuffle",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.shuffle called on null or undefined");var e=this.length>>>0;if(0===e)return this;for(var t=e-1;t>0;--t){var r=Math.floor(_nativeMathRandom()*(t+1));if(t!==r){var n=this[t];this[t]=this[r],this[r]=n}}return this}}),Object.defineProperty(Array.prototype,"unshiftUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.unshiftUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.unshift,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Function.prototype,"partial",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Function.prototype.partial called on null or undefined");var e=Array.prototype.slice,t=this,r=e.call(arguments,0);return function(){for(var n=[],a=0,i=0;i<r.length;++i)n.push(r[i]===undefined?arguments[a++]:r[i]);return t.apply(this,n.concat(e.call(arguments,a)))}}}),Object.defineProperty(Math,"clamp",{configurable:!0,writable:!0,value:function(e,t,r){var n=Number(e);return Number.isNaN(n)?NaN:n.clamp(t,r)}}),Object.defineProperty(Math,"easeInOut",{configurable:!0,writable:!0,value:function(e){return 1-(Math.cos(Number(e)*Math.PI)+1)/2}}),Object.defineProperty(Number.prototype,"clamp",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Number.prototype.clamp called on null or undefined");if(2!==arguments.length)throw new Error("Number.prototype.clamp called with an incorrect number of parameters");var e=Number(arguments[0]),t=Number(arguments[1]);if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.min(Math.max(this,e),t)}}),RegExp.escape||function(){var e=/[\\^$*+?.()|[\]{}]/g,t=new RegExp(e.source);Object.defineProperty(RegExp,"escape",{configurable:!0,writable:!0,value:function(r){var n=String(r);return n&&t.test(n)?n.replace(e,"\\$&"):n}})}(),function(){var e=/{(\d+)(?:,([+-]?\d+))?}/g,t=new RegExp(e.source);Object.defineProperty(String,"format",{configurable:!0,writable:!0,value:function(r){function n(e,t,r){if(!t)return e;var n=Math.abs(t)-e.length;if(n<1)return e;var a=String(r).repeat(n);return t<0?e+a:a+e}if(arguments.length<2)return 0===arguments.length?"":r;var a=2===arguments.length&&Array.isArray(arguments[1])?[].concat(_toConsumableArray(arguments[1])):Array.prototype.slice.call(arguments,1);return 0===a.length?r:t.test(r)?(e.lastIndex=0,r.replace(e,function(e,t,r){var i=a[t];if(null==i)return"";for(;"function"==typeof i;)i=i();switch(void 0===i?"undefined":_typeof(i)){case"string":break;case"object":i=JSON.stringify(i);break;default:i=String(i)}return n(i,r?Number.parseInt(r,10):0," ")})):r}})}(),Object.defineProperty(String.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.contains called on null or undefined");return-1!==String.prototype.indexOf.apply(this,arguments)}}),Object.defineProperty(String.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.count called on null or undefined");var e=String(arguments[0]||"");if(""===e)return 0;for(var t=String.prototype.indexOf,r=e.length,n=Number(arguments[1])||0,a=0;-1!==(n=t.call(this,e,n));)++a,n+=r;return a}}),Object.defineProperty(String.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.first called on null or undefined");return _getCodePointStartAndEnd(String(this),0).char}}),Object.defineProperty(String.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.last called on null or undefined");var e=String(this);return _getCodePointStartAndEnd(e,e.length-1).char}}),Object.defineProperty(String.prototype,"splice",{configurable:!0,writable:!0,value:function(e,t,r){if(null==this)throw new TypeError("String.prototype.splice called on null or undefined");var n=this.length>>>0;if(0===n)return"";var a=Number(e);Number.isSafeInteger(a)?a<0&&(a+=n)<0&&(a=0):a=0,a>n&&(a=n);var i=Number(t);(!Number.isSafeInteger(i)||i<0)&&(i=0);var o=this.slice(0,a);return void 0!==r&&(o+=r),a+i<n&&(o+=this.slice(a+i)),o}}),Object.defineProperty(String.prototype,"splitOrEmpty",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.splitOrEmpty called on null or undefined");return""===String(this)?[]:String.prototype.split.apply(this,arguments)}}),Object.defineProperty(String.prototype,"toLocaleUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toLocaleUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toLocaleUpperCase()+e.slice(n+1)}}),Object.defineProperty(String.prototype,"toUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toUpperCase()+e.slice(n+1)}}),Object.defineProperty(Date.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:date)",this.toISOString()]}}),Object.defineProperty(Function.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)","("+this.toString()+")"]}}),Object.defineProperty(Map.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:map)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(RegExp.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)",this.toString()]}}),Object.defineProperty(Set.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:set)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(JSON,"reviveWrapper",{configurable:!0,writable:!0,value:function(e,t){if("string"!=typeof e)throw new TypeError("JSON.reviveWrapper code parameter must be a string");return["(revive:eval)",[e,t]]}}),Object.defineProperty(JSON,"_real_parse",{value:JSON.parse}),Object.defineProperty(JSON,"parse",{configurable:!0,writable:!0,value:function value(text,reviver){return JSON._real_parse(text,function(key,val){var value=val;if(Array.isArray(value)&&2===value.length)switch(value[0]){case"(revive:set)":value=new Set(value[1]);break;case"(revive:map)":value=new Map(value[1]);break;case"(revive:date)":value=new Date(value[1]);break;case"(revive:eval)":try{if(Array.isArray(value[1])){var $ReviveData$=value[1][1];value=eval(value[1][0])}else value=eval(value[1])}catch(e){}}else if("string"==typeof value&&"@@revive@@"===value.slice(0,10))try{value=eval(value.slice(10))}catch(e){}if("function"==typeof reviver)try{value=reviver(key,value)}catch(e){}return value})}}),Object.defineProperty(Array.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.contains called on null or undefined");return Array.prototype.includes.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAll called on null or undefined");return Array.prototype.includesAll.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAny called on null or undefined");return Array.prototype.includesAny.apply(this,arguments)}}),Object.defineProperty(String.prototype,"readBracketedList",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.readBracketedList called on null or undefined");for(var e=new RegExp("(?:\\[\\[((?:\\s|\\S)*?)\\]\\])|([^\"'\\s]\\S*)","gm"),t=[],r=void 0;null!==(r=e.exec(this));)r[1]?t.push(r[1]):r[2]&&t.push(r[2]);return t}})}();var Browser=function(){var e=navigator.userAgent.toLowerCase(),t=e.includes("windows phone"),r=Object.freeze({Android:!t&&e.includes("android"),BlackBerry:/blackberry|bb10/.test(e),iOS:!t&&/ip(?:hone|ad|od)/.test(e),Windows:t||e.includes("iemobile"),any:function(){return r.Android||r.BlackBerry||r.iOS||r.Windows}}),n=!r.Windows&&!/khtml|trident|edge/.test(e)&&e.includes("gecko"),a=!e.includes("opera")&&/msie|trident/.test(e),i=a?function(){var t=/(?:msie\s+|rv:)(\d+\.\d)/.exec(e);return t?Number(t[1]):0}():null,o=e.includes("opera")||e.includes(" opr/"),s=o?function(){var t=new RegExp((/khtml|chrome/.test(e)?"opr":"version")+"\\/(\\d+\\.\\d+)"),r=t.exec(e);return r?Number(r[1]):0}():null,u=e.includes("vivaldi");return Object.freeze({userAgent:e,isMobile:r,isGecko:n,isIE:a,ieVersion:i,isOpera:o,operaVersion:s,isVivaldi:u})}(),Has=function(){var e=function(){try{return"function"==typeof document.createElement("audio").canPlayType}catch(e){}return!1}(),t=e&&function(){try{var e=document.createElement("audio").play();return e.catch(function(){}),e instanceof Promise}catch(e){}return!1}(),r=function(){try{return"Blob"in window&&"File"in window&&"FileList"in window&&"FileReader"in window&&!Browser.isMobile.any()&&(!Browser.isOpera||Browser.operaVersion>=15)}catch(e){}return!1}(),n=function(){try{return"geolocation"in navigator&&"function"==typeof navigator.geolocation.getCurrentPosition&&"function"==typeof navigator.geolocation.watchPosition}catch(e){}return!1}(),a=function(){try{return"MutationObserver"in window&&"function"==typeof window.MutationObserver}catch(e){}return!1}(),i=function(){try{return"performance"in window&&"function"==typeof window.performance.now}catch(e){}return!1}();return Object.freeze({audio:e,audioPromise:t,fileAPI:r,geolocation:n,mutationObserver:a,performance:i})}(),Visibility=function(){function e(){return Boolean(r&&document[r.hiddenProperty])}function t(){return r&&document[r.stateProperty]||"visible"}var r=function(){try{return Object.freeze([{hiddenProperty:"hidden",stateProperty:"visibilityState",changeEvent:"visibilitychange"},{hiddenProperty:"webkitHidden",stateProperty:"webkitVisibilityState",changeEvent:"webkitvisibilitychange"},{hiddenProperty:"mozHidden",stateProperty:"mozVisibilityState",changeEvent:"mozvisibilitychange"},{hiddenProperty:"msHidden",stateProperty:"msVisibilityState",changeEvent:"msvisibilitychange"}].find(function(e){return e.hiddenProperty in document}))}catch(e){}return null}();return Object.freeze(Object.defineProperties({},{isHidden:{value:e},state:{value:t},hiddenProperty:{value:r.hiddenProperty},stateProperty:{value:r.stateProperty},changeEvent:{value:r.changeEvent}}))}(),_ref3=function(){function e(t){if("object"!==(void 0===t?"undefined":_typeof(t))||null===t)return t;if(t instanceof String)return String(t);if(t instanceof Number)return Number(t);if(t instanceof Boolean)return Boolean(t);if("function"==typeof t.clone)return t.clone(!0);if(t.nodeType&&"function"==typeof t.cloneNode)return t.cloneNode(!0);var r=void 0;return t instanceof Array?r=new Array(t.length):t instanceof Date?r=new Date(t.getTime()):t instanceof Map?(r=new Map,t.forEach(function(t,n){return r.set(n,e(t))})):t instanceof RegExp?r=new RegExp(t):t instanceof Set?(r=new Set,t.forEach(function(t){return r.add(e(t))})):r=Object.create(Object.getPrototypeOf(t)),Object.keys(t).forEach(function(n){return r[n]=e(t[n])}),r}function t(e){for(var t=document.createDocumentFragment(),r=document.createElement("p"),n=void 0;null!==(n=e.firstChild);){if(n.nodeType===Node.ELEMENT_NODE){switch(n.nodeName.toUpperCase()){case"BR":if(null!==n.nextSibling&&n.nextSibling.nodeType===Node.ELEMENT_NODE&&"BR"===n.nextSibling.nodeName.toUpperCase()){e.removeChild(n.nextSibling),e.removeChild(n),t.appendChild(r),r=document.createElement("p");continue}if(!r.hasChildNodes()){e.removeChild(n);continue}break;case"ADDRESS":case"ARTICLE":case"ASIDE":case"BLOCKQUOTE":case"CENTER":case"DIV":case"DL":case"FIGURE":case"FOOTER":case"FORM":case"H1":case"H2":case"H3":case"H4":case"H5":case"H6":case"HEADER":case"HR":case"MAIN":case"NAV":case"OL":case"P":case"PRE":case"SECTION":case"TABLE":case"UL":r.hasChildNodes()&&(t.appendChild(r),r=document.createElement("p")),t.appendChild(n);continue}}r.appendChild(n)}r.hasChildNodes()&&t.appendChild(r),e.appendChild(t)}function r(){try{return document.activeElement||null}catch(e){return null}}function n(e,t,r){var n="object"===(void 0===e?"undefined":_typeof(e))?e:document.getElementById(e);if(null==n)return null;var a=Array.isArray(t)?t:[t];jQuery(n).empty();for(var i=0,o=a.length;i<o;++i)if(Story.has(a[i]))return new Wikifier(n,Story.get(a[i]).processText().trim()),n;if(null!=r){var s=String(r).trim();""!==s&&new Wikifier(n,s)}return n}function a(e,t,r){var n=jQuery(document.createElement("div")),a=jQuery(document.createElement("button")),i=jQuery(document.createElement("pre")),o=L10n.get("errorTitle")+": "+(t||"unknown error");return a.addClass("error-toggle").ariaClick({label:L10n.get("errorToggle")},function(){a.hasClass("enabled")?(a.removeClass("enabled"),i.attr({"aria-hidden":!0,hidden:"hidden"})):(a.addClass("enabled"),i.removeAttr("aria-hidden hidden"))}).appendTo(n),jQuery(document.createElement("span")).addClass("error").text(o).appendTo(n),jQuery(document.createElement("code")).text(r).appendTo(i),i.addClass("error-source").attr({"aria-hidden":!0,hidden:"hidden"}).appendTo(n),n.addClass("error-view").appendTo(e),console.warn(o+"\n\t"+r.replace(/\n/g,"\n\t")),!1}function i(e,t){var r=i;switch(void 0===e?"undefined":_typeof(e)){case"number":if(Number.isNaN(e))return t;break;case"object":if(null===e)return t;if(Array.isArray(e))return e.map(function(e){return r(e,t)}).join(", ");if(e instanceof Set)return[].concat(_toConsumableArray(e)).map(function(e){return r(e,t)}).join(", ");if(e instanceof Map){return"{ "+[].concat(_toConsumableArray(e)).map(function(e){var n=_slicedToArray(e,2),a=n[0],i=n[1];return r(a,t)+" → "+r(i,t)}).join(", ")+" }"}return e instanceof Date?e.toLocaleString():"function"==typeof e.toString?e.toString():Object.prototype.toString.call(e);case"function":case"undefined":return t}return String(e)}return Object.freeze(Object.defineProperties({},{clone:{value:e},convertBreaks:{value:t},safeActiveElement:{value:r},setPageElement:{value:n},throwError:{value:a},toStringOrDefault:{value:i}}))}(),clone=_ref3.clone,convertBreaks=_ref3.convertBreaks,safeActiveElement=_ref3.safeActiveElement,setPageElement=_ref3.setPageElement,throwError=_ref3.throwError,toStringOrDefault=_ref3.toStringOrDefault;!function(){function e(e){13!==e.which&&32!==e.which||(e.preventDefault(),jQuery(safeActiveElement()||this).trigger("click"))}function t(e){return function(){var t=jQuery(this);t.ariaIsDisabled()||(t.is("[aria-pressed]")&&t.attr("aria-pressed","true"===t.attr("aria-pressed")?"false":"true"),e.apply(this,arguments))}}function r(e){return t(function(){jQuery(this).off(".aria-clickable").removeAttr("tabindex aria-controls aria-pressed").not("a,button").removeAttr("role").end().filter("button").prop("disabled",!0),e.apply(this,arguments)})}jQuery.fn.extend({ariaClick:function(n,a){if(0===this.length||0===arguments.length)return this;var i=n,o=a;return null==o&&(o=i,i=undefined),i=jQuery.extend({namespace:undefined,one:!1,selector:undefined,data:undefined,controls:undefined,pressed:undefined,label:undefined},i),"string"!=typeof i.namespace?i.namespace="":"."!==i.namespace[0]&&(i.namespace="."+i.namespace),"boolean"==typeof i.pressed&&(i.pressed=i.pressed?"true":"false"),this.filter("button").prop("type","button"),this.not("a,button").attr("role","button"),this.attr("tabindex",0),null!=i.controls&&this.attr("aria-controls",i.controls),null!=i.pressed&&this.attr("aria-pressed",i.pressed),null!=i.label&&this.attr({"aria-label":i.label,title:i.label}),this.not("button").on("keypress.aria-clickable"+i.namespace,i.selector,e),this.on("click.aria-clickable"+i.namespace,i.selector,i.data,i.one?r(o):t(o)),this},ariaDisabled:function(e){if(0===this.length||0===arguments.length)return this;var t=this.not("button,fieldset,input,menuitem,optgroup,option,select,textarea"),r=this.filter("button,fieldset,input,menuitem,optgroup,option,select,textarea");return e?(t.each(function(){this.setAttribute("disabled",""),this.setAttribute("aria-disabled","")}),r.each(function(){this.disabled=!0,this.setAttribute("aria-disabled","")})):(t.each(function(){this.removeAttribute("disabled"),this.removeAttribute("aria-disabled")}),r.each(function(){this.disabled=!1,this.removeAttribute("aria-disabled")})),this},ariaIsDisabled:function(){return this.is("[disabled]")}})}(),function(){jQuery.extend({wikiWithOptions:function(e){for(var t=arguments.length,r=Array(t>1?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];if(0!==r.length){var a=document.createDocumentFragment();r.forEach(function(t){return new Wikifier(a,t,e)});var i=[].concat(_toConsumableArray(a.querySelectorAll(".error"))).map(function(e){return e.textContent.replace(errorPrologRegExp,"")});if(i.length>0)throw new Error(i.join("; "))}},wiki:function(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];this.wikiWithOptions.apply(this,[undefined].concat(t))}}),jQuery.fn.extend({wikiWithOptions:function(e){for(var t=arguments.length,r=Array(t>1?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];if(0===this.length||0===r.length)return this
