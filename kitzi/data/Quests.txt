@@ -1,0 +1,40 @@
+<quest 0:Castle Kerfuffle|1|0>
+Head to the Throne Room
+The throne room was found
+Something weird is going on
+in the castle. Maybe Father 
+would know. He'll be in 
+the throne room.
+</quest> 
+
+<quest 1:The Grave of the Unknown|1|2>
+???
+You discovered the truth.
+A lonely grave sits in 
+Kitzi's garden.
+</quest> 
+
+<quest 2:Restoring Lost Souls|1|0>
+Save everyone!,Visit the Library,Visit the King's Office,Find the Vault
+The day was saved.
+Something has happened.
+</quest> 
+
+<quest 3:Guarded Memories|1|0>
+Find a way out.
+You escaped the Guarded Memory.
+The Heartstone might be in here..
+</quest> 
+
+<quest 4:A Storm in the Woods|1|0>
+Gain access to Castletown's crystal.
+Castletown was saved!
+Find the Mayor in the
+woods.
+</quest> 
+
+<quest 4:A Storm in the Woods|10|3>
+Defeat Wirewolf.
+Wirewolf was defeated.
+Defeat Wirewolf.
+</quest> 

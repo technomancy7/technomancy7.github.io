@@ -1,0 +1,103 @@
+:: Interrogating the commander {"position":"975,600"}
+You round the stairs, with your weapon held at the ready.
+In the back of the attic of the, an older man[<<link '?'>>\
+<<diag Leo Gold>>
+Profile for Leo Gold
+<hr>
+''Occupation'': Colonel/ Special Operation of NSF
+''Age'': Unknown
+''Height'': 187CM
+''Weight'': 98KG
+''Eyes'': Brown
+''Hair'': None
+''Suspected residence'': New York City, Hells Kitchen
+''Contacts'': In frequent contact with JoJo Fine, Juan Ivanovich Lebedev, and other sympathisers.
+<</diag>>
+<</link>>] is crouched down. He seems unarmed. He see's you, and seems startled.
+
+"Don't shoot! I surrender!" He shouts, his hands raised.
+You keep your weapon aimed at him, and begin your informal interrogation. "So you think you know better than FEMA what to do with this month's Ambrosia shipment..."
+"You're too late. It's on its way back to the people, and you can't do a damn thing about it." He lets out a slight smirk, and lowers his arms. He seems tense, as if ready to attack.
+
+* [[Except send YOU back to the people -- in a body bag.|Interrogating the commander aggressively]]
+* [[Tell me about the shipment and I'll order the troops to pick you up as a prisoner instead of a corpse.|Interrogating the commander more]]
+
+:: Interrogating the commander aggressively {"position":"975,600"}
+"I AM the people."
+
+<<alex>><<type 25s>>That might have been over the line, JC. I don't know. Better head back to base on the west side of the island. Objective complete.<</type>><</alex>>
+
+:: Interrogating the commander more {"position":"975,625"}
+"Ask away. We already won this round." He relaxes for a moment.
+"Where are you taking it?"
+"We're just giving the ordinary people the same chance to survive as the bureaucrats in Washington."
+"You'll have to unload in New York because the choppers would spot you at sea."
+"I think the government made the plague on purpose to get rid of population growth."
+
+<<alex>><<type 25s>>Well done. I will pass on your orders to the troopers. Report back to base on
+the west side of the island. Mission complete.<</type>><</alex>>
+
+* <[[Leave the conversation|Statue: Top]]>
+* [[Just answer the question.|Deep debate with the commander]]
+
+:: Deep debate with the commander {"position":"950,600"}
+
+"Don't believe me? It's all in the numbers. For a hundred years, there's been a conspiracy of plutocrats against ordinary people."
+
+"Do you have a single fact to back that up?"
+
+"Number one: In 1945 corporations paid 50 percent of federal taxes. Now they pay about 5 percent. Number two: In 1900 90 percent of Americans were self-employed; now it's about two percent."
+
+"So?"
+
+"It's called consolidation. Strengthen governments and corporations, weakenin dividuals. With taxes, this can be done imperceptibly over time."
+
+"I guarantee you that the interrogation staff at UNATCO will not be as forbearingas I am."
+
+"Yeah, the secret police. You're just bullies for a completely illegitimat egovernment in Washington."
+
+"We will locate that shipment one way or another."
+
+"The entire executive branch is hand-picked. Nineteen of the last twenty-three U.S. presidents have been members of the Trilateral Commission. The Trilateral Commission is financed by the Rockefellers and the Rotschilds. Don't tell me --"
+
+"That's a think-tank. Anyone can become a member."
+
+"But not everyone does. That's why they call it the 'secret government.'"
+
+
+
+
+:: Killed the commander {"position":"975,600"}
+(CONTACT: ALEX JACOBSON
+
+ALEX
+That's over the line. What did I just tell you? We won already. Report back to
+base.)
+
+
+:: Talking with Kaplan {"position":"325,250"}
+KAPLAN
+Heard you cleaned the place out.
+
+JC DENTON
+They crossed the line by going into the Statue.
+
+KAPLAN
+That's exactly right. We're already gearing up to hunt these sons-of-bitches
+door-to-door in Manhattan. Need some hardware? I scored an extra scope from a
+couple of thugs we dropped down by the dock; you can have it for 700 credits. I
+also picked up 10 mm ammo and some crossbow darts -- say 200 for one and 60 for
+the other.
+
+JC DENTON
+Shouldn't you turn that stuff over to the quartermaster?
+
+KAPLAN
+Carter? He don't care. NSF goods are the spoils of war. Hey, we're risking our
+lives out here.
+
+JC DENTON
+I'll check back with you later.
+
+KAPLAN
+Glad you're coming around to our way of doing things. Need some hardware?

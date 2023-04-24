@@ -1,0 +1,1703 @@
+{
+    "classes": {
+        "Commandlet.uc": {
+            "body": "//=============================================================================\n/// UnrealScript Commandlet (command-line applet) class.\n///\n/// Commandlets are executed from the ucc.exe command line utility, using the\n/// following syntax:\n///\n///     UCC.exe package_name.commandlet_class_name [parm=value]...\n///\n/// for example:\n///\n///     UCC.exe Core.HelloWorldCommandlet\n///     UCC.exe Editor.MakeCommandlet\n///\n/// In addition, if you list your commandlet in the public section of your\n/// package's .int file (see Engine.int for example), then your commandlet\n/// can be executed without requiring a fully qualified name, for example:\n///\n///     UCC.exe MakeCommandlet\n///\n/// As a convenience, if a user tries to run a commandlet and the exact\n/// name he types isn't found, then ucc.exe appends the text \"commandlet\"\n/// onto the name and tries again.  Therefore, the following shortcuts\n/// perform identically to the above:\n///\n///     UCC.exe Core.HelloWorld\n///     UCC.exe Editor.Make\n///     UCC.exe Make\n///\n/// It is also perfectly valid to call the Main method of a\n/// commandlet class directly, for example from within the body\n/// of another commandlet.\n///\n/// Commandlets are executed in a \"raw\" UnrealScript environment, in which\n/// the game isn't loaded, the client code isn't loaded, no levels are\n/// loaded, and no actors exist.\n//=============================================================================\nclass Commandlet\n\texpands Object\n\tabstract\n\ttransient\n\tnoexport\n\tnative;\n\n/// Command name to show for \"ucc help\".\nvar localized string HelpCmd;\n\n/// Command description to show for \"ucc help\".\nvar localized string HelpOneLiner;\n\n/// Usage template to show for \"ucc help\".\nvar localized string HelpUsage;\n\n/// Hyperlink for more info.\nvar localized string HelpWebLink;\n\n/// Parameters and descriptions for \"ucc help <this command>\".\nvar localized string HelpParm[16];\nvar localized string HelpDesc[16];\n\n/// Whether to redirect log output to console stdout.\nvar bool LogToStdout;\n\n/// Whether to load objects required in server, client, and editor context.\nvar bool IsServer, IsClient, IsEditor;\n\n/// Whether to load objects immediately, or only on demand.\nvar bool LazyLoad;\n\n/// Whether to show standard error and warning count on exit.\nvar bool ShowErrorCount;\n\n/// Whether to show Unreal banner on startup.\nvar bool ShowBanner;\n\n/// Entry point.\nnative event int Main( string Parms );\n\ndefaultproperties\n{\n     LogToStdout=True\n     IsServer=True\n     IsClient=True\n     IsEditor=True\n     LazyLoad=True\n     ShowBanner=True\n}\n",
+            "name": "Commandlet.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [
+                    "LogToStdout=True",
+                    "IsServer=True",
+                    "IsClient=True",
+                    "IsEditor=True",
+                    "LazyLoad=True",
+                    "ShowBanner=True"
+                ],
+                "exec": [],
+                "extends": "",
+                "functions": {
+                    "Main": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Main",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "Parms"
+                            ]
+                        ],
+                        "return": "int"
+                    }
+                },
+                "header": [],
+                "instructions": [],
+                "loc": 87,
+                "replication": "",
+                "states": [],
+                "variables": [
+                    "var localized string HelpCmd;",
+                    "var localized string HelpOneLiner;",
+                    "var localized string HelpUsage;",
+                    "var localized string HelpWebLink;",
+                    "var localized string HelpParm[16];",
+                    "var localized string HelpDesc[16];",
+                    "var bool LogToStdout;",
+                    "var bool IsServer, IsClient, IsEditor;",
+                    "var bool LazyLoad;",
+                    "var bool ShowErrorCount;",
+                    "var bool ShowBanner;"
+                ]
+            }
+        },
+        "DebugInfo.uc": {
+            "body": "//=============================================================================\n// DebugInfo\n//=============================================================================\nclass DebugInfo extends Object\n\ttransient\n\tnative\n\tnoexport;\n\nnative(4000) final function AddTimingData(string obj, string objName, int time);\nnative(4001) final function Command(string cmd);\n\nnative(4002) final function SetString(string Hash, string Value);\nnative(4003) final function string GetString(string Hash);\n\ndefaultproperties\n{\n}\n",
+            "name": "DebugInfo.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [],
+                "exec": [],
+                "extends": "Object",
+                "functions": {
+                    "AddTimingData": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "AddTimingData",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "obj"
+                            ],
+                            [
+                                "string",
+                                "objName"
+                            ],
+                            [
+                                "int",
+                                "time"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Command": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Command",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "cmd"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "GetString": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GetString",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "Hash"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "SetString": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "SetString",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "Hash"
+                            ],
+                            [
+                                "string",
+                                "Value"
+                            ]
+                        ],
+                        "return": ""
+                    }
+                },
+                "header": [],
+                "instructions": [],
+                "loc": 18,
+                "replication": "",
+                "states": [],
+                "variables": []
+            }
+        },
+        "HelloWorldCommandlet.uc": {
+            "body": "//=============================================================================\n/// UnrealScript \"hello world\" sample Commandlet.\n///\n/// Usage:\n///     ucc.exe HelloWorld\n//=============================================================================\nclass HelloWorldCommandlet\n\texpands Commandlet;\n\nvar int intparm;\nvar string strparm;\n\nfunction int Main( string Parms )\n{\n\tlog( \"Hello, world!\" );\n\tif( Parms!=\"\" )\n\t\tlog( \"Command line parameters=\" $ Parms );\n\tif( intparm!=0 )\n\t\tlog( \"You specified intparm=\" $ intparm );\n\tif( strparm!=\"\" )\n\t\tlog( \"You specified strparm=\" $ strparm );\n}\n\ndefaultproperties\n{\n     HelpCmd=\"HelloWorld\"\n     HelpOneLiner=\"Sample\"\n     HelpUsage=\"HelloWorld\"\n     HelpParm(0)=\"IntParm\"\n     HelpParm(1)=\"StrParm\"\n     HelpDesc(0)=\"An integer parameter\"\n     HelpDesc(1)=\"A string parameter\"\n}\n",
+            "name": "HelloWorldCommandlet.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [
+                    "HelpCmd=\"HelloWorld\"",
+                    "HelpOneLiner=\"Sample\"",
+                    "HelpUsage=\"HelloWorld\"",
+                    "HelpParm(0)=\"IntParm\"",
+                    "HelpParm(1)=\"StrParm\"",
+                    "HelpDesc(0)=\"An integer parameter\"",
+                    "HelpDesc(1)=\"A string parameter\""
+                ],
+                "exec": [],
+                "extends": "",
+                "functions": {
+                    "Main": {
+                        "body": "{\n\tlog( \"Hello, world!\" );\n\tif( Parms!=\"\" )\n\t\tlog( \"Command line parameters=\" $ Parms );\n\tif( intparm!=0 )\n\t\tlog( \"You specified intparm=\" $ intparm );\n\tif( strparm!=\"\" )\n\t\tlog( \"You specified strparm=\" $ strparm );\n}",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Main",
+                        "native": false,
+                        "param": [
+                            [
+                                "string",
+                                "Parms"
+                            ]
+                        ],
+                        "return": "int"
+                    }
+                },
+                "header": [],
+                "instructions": [],
+                "loc": 34,
+                "replication": "",
+                "states": [],
+                "variables": [
+                    "var int intparm;",
+                    "var string strparm;"
+                ]
+            }
+        },
+        "Locale.uc": {
+            "body": "//=============================================================================\n/// Locale: Locale management class.\n/// Not yet implemented.\n/// This is a built-in Unreal class and it shouldn't be modified.\n//=============================================================================\nclass Locale\n\texpands Object\n\ttransient;\n\n/*\n//\n// Information about this locale.\n//\n\n//!!System.GetLocale( language, variant, local )\n///@reference: !!look at java getISO3Language for std 3-char language abbreviations\nvar const string ISO3Language;\nvar const localized string DisplayLanguage;\n\n//\n// Locale language support.\n//\n\n/// Returns the currently active language's ISO 3 language code.\nnative function string GetLanguage();\n\n/// Returns the localized, human-readable display name of the ISO 3 language code Language.\nnative function string GetDisplayLanguage( string Language );\n\n/// Set the current ISO 3 language. Causes all class' and objects' localized variables to be reloaded.\nnative function bool SetLanguage( string NewLanguage );\n\n//\n// Locale string processing.\n//\n\n/// Convert to locale-specific uppercase.\nfunction string ToUpper( string S );\n\n/// Convert to locale-specific lowercase.\nfunction string ToLower( string S );\n\n/// Compare two strings using locale-specific sorting.\nfunction int Compare( string A, string B );\n\n//\n// Locale number and currency handling.\n//\n\n/// Leading and trailing percentage symbols.\nvar const localized string PrePercent, PostPercent;\n\n/// Leading and trailing currency symbols.\nvar const localized string PreCurrencySymbol, PostCurrencySymbol;\n\n/// Percentage scale, i.e. 100 for 100%.\nvar const localized int PercentScaler;\n\n/// Number of digits between \"thousands\" delimitor.\nvar const localized int ThousandsCount, ThousandsCountCurrency;\n\n/// Positive and negative currency indicators.\nvar const localized string\n\tPrePositiveCurrency, PostPositiveCurrency,\n\tPreNegativeCurrency, PostNegativeCurrency;\n\n// Thousands delimitor.\nvar const localized string ThousandsDelimitor, ThousandsDelimitorCurrency;\n\n// Decimal point.\nvar const localized string Decimal, DecimalCurrency;\n\n// Decimal count.\nvar const localized int DecimalCount;\n\n/// Convert a float number to a string using the locale's formatting instructions.\nfunction string NumberToString( float Number );\n\n/// Convert a float number to a currency string using the locale's formatting instructions.\nfunction string CurrencyToString( float Currency );\n\n/// Convert a fraction from 0.0-1.0 to a percentage string.\nfunction string PercentToString( float Fraction )\n{\n\treturn PrePercent $ int(Fraction * PercentScaler) $ PostPercent;\n}\n\n//\n// Locale date and time support.\n//\n\n/// Human readable names of months.\nvar const localized string Months[12];\n\n/// Human readable names of days-of-week.\nvar const localized string DaysOfWeek[7];\n\n/// Human-readable AM/PM.\nvar const localized string AMPM[2];\n\n/// Whether to display AM/PM, otherwise uses 24-hour notation.\nvar const localized ShowAMPM;\n\n/// List of TimeToMap fields which should be exposed for editing in this locale.\nvar const localized array<string> EditableTimeFields;\n\n/// Format string for generating human-readable time in AM/PM and 24-hour formats; \n/// may be ignored by Locale subclasses who display times using a different calendar,\n/// for example Chinese.\nvar const localized string\n\tTimeFormatAMPM, TimeFormat24Hour,\n\tBriefTimeFormatAMPM, BriefTimeFormat24Hour,\n\tCountdownTimeFormat;\n\n/// Format string for generating human-readable dates.\nvar const localized string DateFormat;\n\n/// Return a map containing time parameters suitable for formatting.\nfunction map<string,string> DateTimeToMap( long T )\n{\n\tlocal map<string,string> M;\n\tM.Set(\"Year\",       Time.GetYear(T));\n\tM.Set(\"Month\",      Time.GetMonth(T));\n\tM.Set(\"MonthName\",  Months(Time.GetMonth(T)));\n\tM.Set(\"Day\",        Time.GetDay(T));\n\tM.Set(\"DayName\",    DaysOfWeek(Time.GetDay(T)));\n\tM.Set(\"Hour24\",     Time.GetHour(T));\n\tM.Set(\"Hour12\",     Time.GetHour(T)%12);\n\tM.Set(\"AMPM\",       AMPM(Time.GetHour(T)/12);\n\tM.Set(\"Minute\",     Time.GetMinute(T));\n\tM.Set(\"Second\",     Time.GetSecond(T));\n\tM.Set(\"MSec\",       Time.GetMSec(T));\n\tM.Set(\"USec\",       Time.GetUSec(T));\n\tM.Set(\"NSec\",       Time.GetNSec(T));\n\treturn M;\n}\n\n/// Convert a map of TimeToMap key-values to a time; returns true if successful.\nfunction bool MapToDateTime( map<string,string> Map, out long T )\n{\n\t//!!\n}\n\n/// Converts the time to a human-readable string, depending on the current locale.\nfunction string TimeToString( long T, bool Brief, bool Countdown )\n{\n\tlocal string S;\n\tif( Brief )\n\t{\n\t\tif( ShowAMPM ) S = BriefTimeFormatAMPM;\n\t\telse           S = BriefTimeFormat24Hour, \n\t}\n\telse if( !Countdown )\n\t{\n\t\tif( ShowAMPM ) S = TimeFormatAMPM;\n\t\telse           S = TimeFormat24Hour, \n\t}\n\telse\n\t{\n\t\tS = CountdownTimeFormat;\n\t}\n\treturn string.Format( S, DateTimeToMap(T) );\n}\n\n// Convert the date to a human-readable string, depending on the current locale.\nfunction string DateToString( long T )\n{\n\treturn string.Format( DateFormat, DateTimeToMap(T) );\n}\n\n_defaultproperties\n{\n\tMonths(0)=January\n\tMonths(1)=February\n\tMonths(2)=March\n\tMonths(3)=April\n\tMonths(4)=May\n\tMonths(5)=June\n\tMonths(6)=July\n\tMonths(7)=August\n\tMonths(8)=September\n\tMonths(9)=October\n\tMonths(10)=November\n\tMonths(11)=December\n\tDaysOfWeek(0)=Sunday\n\tDaysOfWeek(1)=Monday\n\tDaysOfWeek(2)=Tuesday\n\tDaysOfWeek(3)=Wednesday\n\tDaysOfWeek(4)=Thursday\n\tDaysOfWeek(5)=Friday\n\tDaysOfWeek(6)=Saturday\n\tAMPM(0)=AM\n\tAMPM(1)=PM\n\tTimeFormatAMPM=%Hour12:02%.%Minute:02%.%Seconds:02% %AMPM%\n\tTimeFormat24Hour=%Hour24:02%.%Minute:02%.%Seconds:02%\n\tBriefTimeFormatAMPM=%Hour12:02%.%Minute:02% %AMPM%\n\tBriefTimeFormat24Hour=%Hour24:02%.%Minute:02%\n\tCountdownTimeFormat=%Hour24:02%.%Minute:02%.%Seconds:02%\n\tDateFormat=%DayName% %MonthName% %Day%, %Year%\n\tEditableTimeFields(0)=Year\n\tEditableTimeFields(1)=Month\n\tEditableTimeFields(2)=Day\n\tEditableTimeFields(3)=Hour12\n\tEditableTimeFields(4)=AMPM\n\tEditableTimeFields(5)=Minute\n\tEditableTimeFields(6)=Second\n\tPreCurrencySymbol=$\n\tPostCurrencySymbol=\n\tPrePercent=\n\tPostPercent=%\n\tPercentScaler=100\n\tThousandsCount=1000\n\tThousandsCountCurrency=1000\n\tThousandsDelimitor=\",\"\n\tThousandsDelimitorCurrency=\",\"\n\tDecimal=\".\"\n\tDecimalCurrency=\".\"\n\tPrePositiveCurrency=\n\tPostPositiveCurrency=\n\tPreNegativeCurrency=-\n\tPostNegativeCurrency=\n\tDecimalCount=2\n}\n*/\n\ndefaultproperties\n{\n}\n",
+            "name": "Locale.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [],
+                "exec": [],
+                "extends": "",
+                "functions": {
+                    "Compare": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Compare",
+                        "native": false,
+                        "param": [
+                            [
+                                "string",
+                                "A"
+                            ],
+                            [
+                                "string",
+                                "B"
+                            ]
+                        ],
+                        "return": "int"
+                    },
+                    "CurrencyToString": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "CurrencyToString",
+                        "native": false,
+                        "param": [
+                            [
+                                "float",
+                                "Currency"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "DateTimeToMap": {
+                        "body": "{\n\tM.Set(\"Year\",       Time.GetYear(T));\n\tM.Set(\"Month\",      Time.GetMonth(T));\n\tM.Set(\"MonthName\",  Months(Time.GetMonth(T)));\n\tM.Set(\"Day\",        Time.GetDay(T));\n\tM.Set(\"DayName\",    DaysOfWeek(Time.GetDay(T)));\n\tM.Set(\"Hour24\",     Time.GetHour(T));\n\tM.Set(\"Hour12\",     Time.GetHour(T)%12);\n\tM.Set(\"AMPM\",       AMPM(Time.GetHour(T)/12);\n\tM.Set(\"Minute\",     Time.GetMinute(T));\n\tM.Set(\"Second\",     Time.GetSecond(T));\n\tM.Set(\"MSec\",       Time.GetMSec(T));\n\tM.Set(\"USec\",       Time.GetUSec(T));\n\tM.Set(\"NSec\",       Time.GetNSec(T));\n\treturn M;\n}",
+                        "locals": [
+                            "local map<string,string> M;"
+                        ],
+                        "modifiers": [],
+                        "name": "DateTimeToMap",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "T"
+                            ]
+                        ],
+                        "return": "map<string,string>"
+                    },
+                    "DateToString": {
+                        "body": "{\n\treturn string.Format( DateFormat, DateTimeToMap(T) );\n}",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "DateToString",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "T"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "GetDisplayLanguage": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GetDisplayLanguage",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "Language"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "GetLanguage": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GetLanguage",
+                        "native": true,
+                        "param": [],
+                        "return": "string"
+                    },
+                    "MapToDateTime": {
+                        "body": "{\n\t//!!\n}",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "MapToDateTime",
+                        "native": false,
+                        "param": [
+                            [
+                                "map<string"
+                            ],
+                            [
+                                "string>",
+                                "Map"
+                            ],
+                            [
+                                "out",
+                                "long",
+                                "T"
+                            ]
+                        ],
+                        "return": "bool"
+                    },
+                    "NumberToString": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "NumberToString",
+                        "native": false,
+                        "param": [
+                            [
+                                "float",
+                                "Number"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "PercentToString": {
+                        "body": "{\n\treturn PrePercent $ int(Fraction * PercentScaler) $ PostPercent;\n}",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "PercentToString",
+                        "native": false,
+                        "param": [
+                            [
+                                "float",
+                                "Fraction"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "SetLanguage": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "SetLanguage",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "NewLanguage"
+                            ]
+                        ],
+                        "return": "bool"
+                    },
+                    "TimeToString": {
+                        "body": "{\n\tif( Brief )\n\t{\n\t\tif( ShowAMPM ) S = BriefTimeFormatAMPM;\n\t\telse           S = BriefTimeFormat24Hour, \n\t}\n\telse if( !Countdown )\n\t{\n\t\tif( ShowAMPM ) S = TimeFormatAMPM;\n\t\telse           S = TimeFormat24Hour, \n\t}\n\telse\n\t{\n\t\tS = CountdownTimeFormat;\n\t}\n\treturn string.Format( S, DateTimeToMap(T) );\n}",
+                        "locals": [
+                            "local string S;"
+                        ],
+                        "modifiers": [],
+                        "name": "TimeToString",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "T"
+                            ],
+                            [
+                                "bool",
+                                "Brief"
+                            ],
+                            [
+                                "bool",
+                                "Countdown"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "ToLower": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "ToLower",
+                        "native": false,
+                        "param": [
+                            [
+                                "string",
+                                "S"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "ToUpper": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "ToUpper",
+                        "native": false,
+                        "param": [
+                            [
+                                "string",
+                                "S"
+                            ]
+                        ],
+                        "return": "string"
+                    }
+                },
+                "header": [],
+                "instructions": [],
+                "loc": 229,
+                "replication": "",
+                "states": [],
+                "variables": [
+                    "var const string ISO3Language;",
+                    "var const localized string DisplayLanguage;",
+                    "var const localized string PrePercent, PostPercent;",
+                    "var const localized string PreCurrencySymbol, PostCurrencySymbol;",
+                    "var const localized int PercentScaler;",
+                    "var const localized int ThousandsCount, ThousandsCountCurrency;",
+                    "var const localized string",
+                    "var const localized string ThousandsDelimitor, ThousandsDelimitorCurrency;",
+                    "var const localized string Decimal, DecimalCurrency;",
+                    "var const localized int DecimalCount;",
+                    "var const localized string Months[12];",
+                    "var const localized string DaysOfWeek[7];",
+                    "var const localized string AMPM[2];",
+                    "var const localized ShowAMPM;",
+                    "var const localized array<string> EditableTimeFields;",
+                    "var const localized string",
+                    "var const localized string DateFormat;"
+                ]
+            }
+        },
+        "Object.uc": {
+            "body": "//=============================================================================\n// Object: The base class all objects.\n// This is a built-in Unreal class and it shouldn't be modified.\n//=============================================================================\nclass Object\n\tnative\n\tnoexport;\n\n//=============================================================================\n// UObject variables.\n\n// Internal variables.\nvar native private const int ObjectInternal[6];\nvar native const object Outer;\nvar native const int ObjectFlags;\nvar(Object) native const editconst name Name;\nvar(Object) native const editconst class Class;\n\n//=============================================================================\n// Unreal base structures.\n\n// Object flags.\nconst RF_Transactional\t= 0x00000001; // Supports editor undo/redo.\nconst RF_Public         = 0x00000004; // Can be referenced by external package files.\nconst RF_Transient      = 0x00004000; // Can't be saved or loaded.\nconst RF_NotForClient\t= 0x00100000; // Don't load for game client.\nconst RF_NotForServer\t= 0x00200000; // Don't load for game server.\nconst RF_NotForEdit\t\t= 0x00400000; // Don't load for editor.\n\n// A globally unique identifier.\nstruct Guid\n{\n\tvar int A, B, C, D;\n};\n\n// A point or direction vector in 3d space.\nstruct Vector\n{\n\tvar() config float X, Y, Z;\n};\n\n// A plane definition in 3d space.\nstruct Plane extends Vector\n{\n\tvar() config float W;\n};\n\n// An orthogonal rotation in 3d space.\nstruct Rotator\n{\n\tvar() config int Pitch, Yaw, Roll;\n};\n\n// An arbitrary coordinate system in 3d space.\nstruct Coords\n{\n\tvar() config vector Origin, XAxis, YAxis, ZAxis;\n};\n\n// A scale and sheering.\nstruct Scale\n{\n\tvar() config vector Scale;\n\tvar() config float SheerRate;\n\tvar() config enum ESheerAxis\n\t{\n\t\tSHEER_None,\n\t\tSHEER_XY,\n\t\tSHEER_XZ,\n\t\tSHEER_YX,\n\t\tSHEER_YZ,\n\t\tSHEER_ZX,\n\t\tSHEER_ZY,\n\t} SheerAxis;\n};\n\n// A color.\nstruct Color\n{\n\tvar() config byte R, G, B, A;\n};\n\n// A bounding box.\nstruct BoundingBox\n{\n\tvar vector Min, Max;\n\tvar byte IsValid;\n};\n\n// A bounding box sphere together.\nstruct BoundingVolume extends boundingbox\n{\n\tvar plane Sphere;\n};\n\n//=============================================================================\n// Constants.\n\nconst MaxInt = 0x7fffffff;\nconst Pi     = 3.1415926535897932;\n\n//=============================================================================\n// Basic native operators and functions.\n\n// Bool operators.\nnative(129) static final preoperator  bool  !  ( bool A );\nnative(242) static final operator(24) bool  == ( bool A, bool B );\nnative(243) static final operator(26) bool  != ( bool A, bool B );\nnative(130) static final operator(30) bool  && ( bool A, skip bool B );\nnative(131) static final operator(30) bool  ^^ ( bool A, bool B );\nnative(132) static final operator(32) bool  || ( bool A, skip bool B );\n\n// Byte operators.\nnative(133) static final operator(34) byte *= ( out byte A, byte B );\nnative(134) static final operator(34) byte /= ( out byte A, byte B );\nnative(135) static final operator(34) byte += ( out byte A, byte B );\nnative(136) static final operator(34) byte -= ( out byte A, byte B );\nnative(137) static final preoperator  byte ++ ( out byte A );\nnative(138) static final preoperator  byte -- ( out byte A );\nnative(139) static final postoperator byte ++ ( out byte A );\nnative(140) static final postoperator byte -- ( out byte A );\n\n// Integer operators.\nnative(141) static final preoperator  int  ~  ( int A );\nnative(143) static final preoperator  int  -  ( int A );\nnative(144) static final operator(16) int  *  ( int A, int B );\nnative(145) static final operator(16) int  /  ( int A, int B );\nnative(146) static final operator(20) int  +  ( int A, int B );\nnative(147) static final operator(20) int  -  ( int A, int B );\nnative(148) static final operator(22) int  << ( int A, int B );\nnative(149) static final operator(22) int  >> ( int A, int B );\nnative(196) static final operator(22) int  >>>( int A, int B );\nnative(150) static final operator(24) bool <  ( int A, int B );\nnative(151) static final operator(24) bool >  ( int A, int B );\nnative(152) static final operator(24) bool <= ( int A, int B );\nnative(153) static final operator(24) bool >= ( int A, int B );\nnative(154) static final operator(24) bool == ( int A, int B );\nnative(155) static final operator(26) bool != ( int A, int B );\nnative(156) static final operator(28) int  &  ( int A, int B );\nnative(157) static final operator(28) int  ^  ( int A, int B );\nnative(158) static final operator(28) int  |  ( int A, int B );\nnative(159) static final operator(34) int  *= ( out int A, float B );\nnative(160) static final operator(34) int  /= ( out int A, float B );\nnative(161) static final operator(34) int  += ( out int A, int B );\nnative(162) static final operator(34) int  -= ( out int A, int B );\nnative(163) static final preoperator  int  ++ ( out int A );\nnative(164) static final preoperator  int  -- ( out int A );\nnative(165) static final postoperator int  ++ ( out int A );\nnative(166) static final postoperator int  -- ( out int A );\n\n// Integer functions.\nnative(167) static final Function     int  Rand  ( int Max );\nnative(249) static final function     int  Min   ( int A, int B );\nnative(250) static final function     int  Max   ( int A, int B );\nnative(251) static final function     int  Clamp ( int V, int A, int B );\n\n// Float operators.\nnative(169) static final preoperator  float -  ( float A );\nnative(170) static final operator(12) float ** ( float A, float B );\nnative(171) static final operator(16) float *  ( float A, float B );\nnative(172) static final operator(16) float /  ( float A, float B );\nnative(173) static final operator(18) float %  ( float A, float B );\nnative(174) static final operator(20) float +  ( float A, float B );\nnative(175) static final operator(20) float -  ( float A, float B );\nnative(176) static final operator(24) bool  <  ( float A, float B );\nnative(177) static final operator(24) bool  >  ( float A, float B );\nnative(178) static final operator(24) bool  <= ( float A, float B );\nnative(179) static final operator(24) bool  >= ( float A, float B );\nnative(180) static final operator(24) bool  == ( float A, float B );\nnative(210) static final operator(24) bool  ~= ( float A, float B );\nnative(181) static final operator(26) bool  != ( float A, float B );\nnative(182) static final operator(34) float *= ( out float A, float B );\nnative(183) static final operator(34) float /= ( out float A, float B );\nnative(184) static final operator(34) float += ( out float A, float B );\nnative(185) static final operator(34) float -= ( out float A, float B );\n\n// Float functions.\nnative(186) static final function     float Abs   ( float A );\nnative(187) static final function     float Sin   ( float A );\nnative(188) static final function     float Cos   ( float A );\nnative(189) static final function     float Tan   ( float A );\nnative(190) static final function     float Atan  ( float A );\nnative(191) static final function     float Exp   ( float A );\nnative(192) static final function     float Loge  ( float A );\nnative(193) static final function     float Sqrt  ( float A );\nnative(194) static final function     float Square( float A );\nnative(195) static final function     float FRand ();\nnative(244) static final function     float FMin  ( float A, float B );\nnative(245) static final function     float FMax  ( float A, float B );\nnative(246) static final function     float FClamp( float V, float A, float B );\nnative(247) static final function     float Lerp  ( float Alpha, float A, float B );\nnative(248) static final function     float Smerp ( float Alpha, float A, float B );\n\n// Vector operators.\nnative(211) static final preoperator  vector -     ( vector A );\nnative(212) static final operator(16) vector *     ( vector A, float B );\nnative(213) static final operator(16) vector *     ( float A, vector B );\nnative(296) static final operator(16) vector *     ( vector A, vector B );\nnative(214) static final operator(16) vector /     ( vector A, float B );\nnative(215) static final operator(20) vector +     ( vector A, vector B );\nnative(216) static final operator(20) vector -     ( vector A, vector B );\nnative(275) static final operator(22) vector <<    ( vector A, rotator B );\nnative(276) static final operator(22) vector >>    ( vector A, rotator B );\nnative(217) static final operator(24) bool   ==    ( vector A, vector B );\nnative(218) static final operator(26) bool   !=    ( vector A, vector B );\nnative(219) static final operator(16) float  Dot   ( vector A, vector B );\nnative(220) static final operator(16) vector Cross ( vector A, vector B );\nnative(221) static final operator(34) vector *=    ( out vector A, float B );\nnative(297) static final operator(34) vector *=    ( out vector A, vector B );\nnative(222) static final operator(34) vector /=    ( out vector A, float B );\nnative(223) static final operator(34) vector +=    ( out vector A, vector B );\nnative(224) static final operator(34) vector -=    ( out vector A, vector B );\n\n// Vector functions.\nnative(225) static final function float  VSize  ( vector A );\nnative(226) static final function vector Normal ( vector A );\nnative(227) static final function        Invert ( out vector X, out vector Y, out vector Z );\nnative(252) static final function vector VRand  ( );\nnative(300) static final function vector MirrorVectorByNormal( vector Vect, vector Normal );\n\n// Rotator operators and functions.\nnative(142) static final operator(24) bool ==     ( rotator A, rotator B );\nnative(203) static final operator(26) bool !=     ( rotator A, rotator B );\nnative(287) static final operator(16) rotator *   ( rotator A, float    B );\nnative(288) static final operator(16) rotator *   ( float    A, rotator B );\nnative(289) static final operator(16) rotator /   ( rotator A, float    B );\nnative(290) static final operator(34) rotator *=  ( out rotator A, float B  );\nnative(291) static final operator(34) rotator /=  ( out rotator A, float B  );\nnative(316) static final operator(20) rotator +   ( rotator A, rotator B );\nnative(317) static final operator(20) rotator -   ( rotator A, rotator B );\nnative(318) static final operator(34) rotator +=  ( out rotator A, rotator B );\nnative(319) static final operator(34) rotator -=  ( out rotator A, rotator B );\nnative(229) static final function GetAxes         ( rotator A, out vector X, out vector Y, out vector Z );\nnative(230) static final function GetUnAxes       ( rotator A, out vector X, out vector Y, out vector Z );\nnative(320) static final function rotator RotRand ( optional bool bRoll );\nnative      static final function rotator OrthoRotation( vector X, vector Y, vector Z );\nnative      static final function rotator Normalize( rotator Rot );\n\n// String operators.\nnative(112) static final operator(40) string $  ( coerce string A, coerce string B );\nnative(168) static final operator(40) string @  ( coerce string A, coerce string B );\nnative(115) static final operator(24) bool   <  ( string A, string B );\nnative(116) static final operator(24) bool   >  ( string A, string B );\nnative(120) static final operator(24) bool   <= ( string A, string B );\nnative(121) static final operator(24) bool   >= ( string A, string B );\nnative(122) static final operator(24) bool   == ( string A, string B );\nnative(123) static final operator(26) bool   != ( string A, string B );\nnative(124) static final operator(24) bool   ~= ( string A, string B );\n\n// String functions.\nnative(125) static final function int    Len    ( coerce string S );\nnative(126) static final function int    InStr  ( coerce string S, coerce string t );\nnative(127) static final function string Mid    ( coerce string S, int i, optional int j );\nnative(128) static final function string Left   ( coerce string S, int i );\nnative(234) static final function string Right  ( coerce string S, int i );\nnative(235) static final function string Caps   ( coerce string S );\nnative(236) static final function string Chr    ( int i );\nnative(237) static final function int    Asc    ( string S );\n\n// Object operators.\nnative(114) static final operator(24) bool == ( Object A, Object B );\nnative(119) static final operator(26) bool != ( Object A, Object B );\n\n// Name operators.\nnative(254) static final operator(24) bool == ( name A, name B );\nnative(255) static final operator(26) bool != ( name A, name B );\n\n//=============================================================================\n// General functions.\n\n// Logging.\nnative(231) final static function Log( coerce string S, optional name Tag );\nnative(232) final static function Warn( coerce string S );\nnative static function string Localize( string SectionName, string KeyName, string PackageName );\n\n// Goto state and label.\nnative(113) final function GotoState( optional name NewState, optional name Label );\nnative(281) final function bool IsInState( name TestState );\nnative(284) final function name GetStateName();\n\n// Objects.\nnative(258) static final function bool ClassIsChildOf( class TestClass, class ParentClass );\nnative(751) static final function int  CriticalDelete (Object myObject);\t// DEUS_EX AJY\nnative(303) final function bool IsA( name ClassName );\n\n// Probe messages.\nnative(117) final function Enable( name ProbeFunc );\nnative(118) final function Disable( name ProbeFunc );\n\n// Properties.\nnative final function string GetPropertyText( string PropName );\nnative final function SetPropertyText( string PropName, string PropValue );\nnative static final function name GetEnum( object E, int i );\nnative static final function object DynamicLoadObject( string ObjectName, class ObjectClass, optional bool MayFail );\n\n// Configuration.\nnative static final function string GetConfig( string ConfigSection, string ConfigKey);  // DEUS_EX CAC\nnative(536) final function SaveConfig();\nnative static final function StaticSaveConfig();\nnative static final function ResetConfig();\n\n// DEUS_EX CNN - Iterators\nnative(1001) final iterator function AllObjects(class<object> BaseClass, out object Object);\n\n// DEUS_EX STM - Clock/unclock for optimization testing\nnative(1005) final function clock(out int cycles);\nnative(1006) final function unclock(out int cycles);\nnative(1007) final function float CyclesToSeconds(int cycles);\n\n// Return a random number within the given range.\nfinal function float RandRange( float Min, float Max )\n{\n    return Min + (Max - Min) * FRand();\n}\n\n//=============================================================================\n// Engine notification functions.\n\n//\n// Called immediately when entering a state, while within\n// the GotoState call that caused the state change.\n//\nevent BeginState();\n\n//\n// Called immediately before going out of the current state,\n// while within the GotoState call that caused the state change.\n// \nevent EndState();\n\n//\n// DEUS_EX CNN - Sprintf function for simple string formatting\n// mostly useful for localized strings\n//\n// Format specifiers are - %s for string and %d for integer\n// (Though, really, %any_single_character will work)\n// Use %% to actually print the percent sign\n//\n\nfinal function string Sprintf\t(string fmt,\n\t\t\t\t\t\t\t\toptional coerce string s0,\n\t\t\t\t\t\t\t\toptional coerce string s1,\n\t\t\t\t\t\t\t\toptional coerce string s2,\n\t\t\t\t\t\t\t\toptional coerce string s3)\n{\n\tlocal string str, s[4];\n\tlocal int pos, index;\n\n\t// init the parameters since we can't pass in parms in arrays\n\ts[0] = s0;\n\ts[1] = s1;\n\ts[2] = s2;\n\ts[3] = s3;\n\n\t// init the counters\n\tindex = 0;\n\tpos = 0;\n\tstr = \"\";\n\n\t// parse the string\n\tdo\n\t{\n\t\tpos = InStr(fmt, \"%\");\n\n\t\t// end of string?\n\t\tif (pos == -1)\n\t\t{\n\t\t\tstr = str $ fmt;\n\t\t\tfmt = \"\";\n\t\t}\n\t\telse\t// else, parse the parameter\n\t\t{\n\t\t\tstr = str $ Left(fmt, pos);\n\n\t\t\t// check for %% special case\n\t\t\tif ((pos < Len(fmt)) && (Mid(fmt, pos+1, 1) == \"%\"))\n\t\t\t\tstr = str $ \"%\";\n\t\t\telse\n\t\t\t\tstr = str $ s[index++];\n\n\t\t\t// trim the format string including the parameter\n\t\t\tfmt = Right(fmt, Len(fmt) - pos - 2);\n\t\t}\n\t}\n\tuntil ((pos == -1) || (index == 4));\n\n\t// if there's anything left\n\tif (fmt != \"\")\n\t\tstr = str $ fmt;\n\n\treturn str;\n}\n\ndefaultproperties\n{\n}\n",
+            "name": "Object.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [],
+                "exec": [],
+                "extends": "",
+                "functions": {
+                    "Abs": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Abs",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "AllObjects": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "AllObjects",
+                        "native": true,
+                        "param": [
+                            [
+                                "class<object>",
+                                "BaseClass"
+                            ],
+                            [
+                                "out",
+                                "object",
+                                "Object"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Asc": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Asc",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "S"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Atan": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Atan",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "BeginState": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "BeginState",
+                        "native": false,
+                        "param": [],
+                        "return": ""
+                    },
+                    "Caps": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Caps",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Chr": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Chr",
+                        "native": true,
+                        "param": [
+                            [
+                                "int",
+                                "i"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Clamp": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Clamp",
+                        "native": true,
+                        "param": [
+                            [
+                                "int",
+                                "V"
+                            ],
+                            [
+                                "int",
+                                "A"
+                            ],
+                            [
+                                "int",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Cos": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Cos",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "CyclesToSeconds": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "CyclesToSeconds",
+                        "native": true,
+                        "param": [
+                            [
+                                "int",
+                                "cycles"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Disable": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Disable",
+                        "native": true,
+                        "param": [
+                            [
+                                "name",
+                                "ProbeFunc"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Enable": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Enable",
+                        "native": true,
+                        "param": [
+                            [
+                                "name",
+                                "ProbeFunc"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "EndState": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "EndState",
+                        "native": false,
+                        "param": [],
+                        "return": ""
+                    },
+                    "Exp": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Exp",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "FClamp": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "FClamp",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "V"
+                            ],
+                            [
+                                "float",
+                                "A"
+                            ],
+                            [
+                                "float",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "FMax": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "FMax",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ],
+                            [
+                                "float",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "FMin": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "FMin",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ],
+                            [
+                                "float",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "FRand": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "FRand",
+                        "native": true,
+                        "param": [],
+                        "return": ""
+                    },
+                    "GetAxes": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GetAxes",
+                        "native": true,
+                        "param": [
+                            [
+                                "rotator",
+                                "A"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "X"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "Y"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "Z"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "GetEnum": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetEnum",
+                        "native": true,
+                        "param": [
+                            [
+                                "object",
+                                "E"
+                            ],
+                            [
+                                "int",
+                                "i"
+                            ]
+                        ],
+                        "return": "name"
+                    },
+                    "GetPropertyText": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final"
+                        ],
+                        "name": "GetPropertyText",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "PropName"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "GetStateName": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GetStateName",
+                        "native": true,
+                        "param": [],
+                        "return": ""
+                    },
+                    "GetUnAxes": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GetUnAxes",
+                        "native": true,
+                        "param": [
+                            [
+                                "rotator",
+                                "A"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "X"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "Y"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "Z"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "GotoState": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "GotoState",
+                        "native": true,
+                        "param": [
+                            [
+                                "optional",
+                                "name",
+                                "NewState"
+                            ],
+                            [
+                                "optional",
+                                "name",
+                                "Label"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "InStr": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "InStr",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ],
+                            [
+                                "coerce",
+                                "string",
+                                "t"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Invert": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Invert",
+                        "native": true,
+                        "param": [
+                            [
+                                "out",
+                                "vector",
+                                "X"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "Y"
+                            ],
+                            [
+                                "out",
+                                "vector",
+                                "Z"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "IsA": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "IsA",
+                        "native": true,
+                        "param": [
+                            [
+                                "name",
+                                "ClassName"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "IsInState": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "IsInState",
+                        "native": true,
+                        "param": [
+                            [
+                                "name",
+                                "TestState"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Left": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Left",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ],
+                            [
+                                "int",
+                                "i"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Len": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Len",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Lerp": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Lerp",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "Alpha"
+                            ],
+                            [
+                                "float",
+                                "A"
+                            ],
+                            [
+                                "float",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Localize": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "static"
+                        ],
+                        "name": "Localize",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "SectionName"
+                            ],
+                            [
+                                "string",
+                                "KeyName"
+                            ],
+                            [
+                                "string",
+                                "PackageName"
+                            ]
+                        ],
+                        "return": "string"
+                    },
+                    "Log": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Log",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ],
+                            [
+                                "optional",
+                                "name",
+                                "Tag"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Loge": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Loge",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Max": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Max",
+                        "native": true,
+                        "param": [
+                            [
+                                "int",
+                                "A"
+                            ],
+                            [
+                                "int",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Mid": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Mid",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ],
+                            [
+                                "int",
+                                "i"
+                            ],
+                            [
+                                "optional",
+                                "int",
+                                "j"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Min": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Min",
+                        "native": true,
+                        "param": [
+                            [
+                                "int",
+                                "A"
+                            ],
+                            [
+                                "int",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "MirrorVectorByNormal": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "MirrorVectorByNormal",
+                        "native": true,
+                        "param": [
+                            [
+                                "vector",
+                                "Vect"
+                            ],
+                            [
+                                "vector",
+                                "Normal"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Normal": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Normal",
+                        "native": true,
+                        "param": [
+                            [
+                                "vector",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Normalize": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "Normalize",
+                        "native": true,
+                        "param": [
+                            [
+                                "rotator",
+                                "Rot"
+                            ]
+                        ],
+                        "return": "rotator"
+                    },
+                    "OrthoRotation": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "OrthoRotation",
+                        "native": true,
+                        "param": [
+                            [
+                                "vector",
+                                "X"
+                            ],
+                            [
+                                "vector",
+                                "Y"
+                            ],
+                            [
+                                "vector",
+                                "Z"
+                            ]
+                        ],
+                        "return": "rotator"
+                    },
+                    "Rand": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Rand",
+                        "native": true,
+                        "param": [
+                            [
+                                "int",
+                                "Max"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "RandRange": {
+                        "body": "{\n    return Min + (Max - Min) * FRand();\n}",
+                        "locals": [],
+                        "modifiers": [
+                            "final"
+                        ],
+                        "name": "RandRange",
+                        "native": false,
+                        "param": [
+                            [
+                                "float",
+                                "Min"
+                            ],
+                            [
+                                "float",
+                                "Max"
+                            ]
+                        ],
+                        "return": "float"
+                    },
+                    "ResetConfig": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "ResetConfig",
+                        "native": true,
+                        "param": [],
+                        "return": ""
+                    },
+                    "Right": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Right",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ],
+                            [
+                                "int",
+                                "i"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "RotRand": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "RotRand",
+                        "native": true,
+                        "param": [
+                            [
+                                "optional",
+                                "bool",
+                                "bRoll"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "SaveConfig": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "SaveConfig",
+                        "native": true,
+                        "param": [],
+                        "return": ""
+                    },
+                    "SetPropertyText": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final"
+                        ],
+                        "name": "SetPropertyText",
+                        "native": true,
+                        "param": [
+                            [
+                                "string",
+                                "PropName"
+                            ],
+                            [
+                                "string",
+                                "PropValue"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Sin": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Sin",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Smerp": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Smerp",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "Alpha"
+                            ],
+                            [
+                                "float",
+                                "A"
+                            ],
+                            [
+                                "float",
+                                "B"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Sqrt": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Sqrt",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Square": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Square",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "StaticSaveConfig": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "StaticSaveConfig",
+                        "native": true,
+                        "param": [],
+                        "return": ""
+                    },
+                    "Tan": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Tan",
+                        "native": true,
+                        "param": [
+                            [
+                                "float",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "VRand": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "VRand",
+                        "native": true,
+                        "param": [],
+                        "return": ""
+                    },
+                    "VSize": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "VSize",
+                        "native": true,
+                        "param": [
+                            [
+                                "vector",
+                                "A"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "Warn": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "Warn",
+                        "native": true,
+                        "param": [
+                            [
+                                "coerce",
+                                "string",
+                                "S"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "clock": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "clock",
+                        "native": true,
+                        "param": [
+                            [
+                                "out",
+                                "int",
+                                "cycles"
+                            ]
+                        ],
+                        "return": ""
+                    },
+                    "unclock": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [],
+                        "name": "unclock",
+                        "native": true,
+                        "param": [
+                            [
+                                "out",
+                                "int",
+                                "cycles"
+                            ]
+                        ],
+                        "return": ""
+                    }
+                },
+                "header": [],
+                "instructions": [],
+                "loc": 397,
+                "replication": "",
+                "states": [],
+                "variables": [
+                    "var native private const int ObjectInternal[6];",
+                    "var native const object Outer;",
+                    "var native const int ObjectFlags;",
+                    "var(Object) native const editconst name Name;",
+                    "var(Object) native const editconst class Class;",
+                    "var int A, B, C, D;",
+                    "var() config float X, Y, Z;",
+                    "var() config float W;",
+                    "var() config int Pitch, Yaw, Roll;",
+                    "var() config vector Origin, XAxis, YAxis, ZAxis;",
+                    "var() config vector Scale;",
+                    "var() config float SheerRate;",
+                    "var() config enum ESheerAxis",
+                    "var() config byte R, G, B, A;",
+                    "var vector Min, Max;",
+                    "var byte IsValid;",
+                    "var plane Sphere;"
+                ]
+            }
+        },
+        "Subsystem.uc": {
+            "body": "//=============================================================================\n// Subsystem: The base class all subsystems. Subsystems usually\n// correspond to large C++ classes. The benefit of defining a C++ class as\n// a subsystem is that you can make some of its variables script-accessible,\n// and you can make some of its properties automatically saveable as part\n// of the configuration.\n//\n// This is a built-in Unreal class and it shouldn't be modified.\n//=============================================================================\nclass Subsystem extends Object\n\tnative\n\tnoexport;\n\n// Internal.\nvar private native const int ExecVtbl;\n\ndefaultproperties\n{\n}\n",
+            "name": "Subsystem.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [],
+                "exec": [],
+                "extends": "Object",
+                "functions": {},
+                "header": [],
+                "instructions": [],
+                "loc": 20,
+                "replication": "",
+                "states": [],
+                "variables": [
+                    "var private native const int ExecVtbl;"
+                ]
+            }
+        },
+        "Time.uc": {
+            "body": "//=============================================================================\n/// Time-management class.\n/// Not yet implemented.\n/// This is a built-in Unreal class and it shouldn't be modified.\n///\n/// Coordinated Universal Time or UCT is the world standard time \n/// representation which is independent of time zone and daylight\n/// savings time.  The UCT standard supercedes the obsolete Grenwich\n/// Mean Time (GMT).\n///\n/// UCT is technically the time on the zeroth meridian plus 12 hours.\n/// For example, to convert UCT to EST (Eastern Standard Time), subtract \n/// 5 hours from UCT and then (??if dst).\n///\n/// By definition, UCT experiences a discontinuity when a leap second \n/// is reached. However, this discontinuity is never exposed while Unreal is\n/// running, as UCT is determined at startup time, and UCT is updated\n/// continuously during gameplay according to the CPU clock.\n///\n/// Unreal time is exposed as a long (a 64-bit signed quantity) and\n/// is defined as nanoseconds elapsed since \n/// midnight (00:00:00), January 1, 1970.\n///\n/// For more information about UCT and time, see\n///  http://www.bldrdoc.gov/timefreq/faq/faq.htm\n///  http://www.boulder.nist.gov/timefreq/glossary.htm\n///  http://www.jat.org/jtt/datetime.html\n///  http://www.eunet.pt/ano2000/gen_8601.htm\n//=============================================================================\nclass Time\n\texpands Object\n\ttransient;\n\n/*\n/// Returns current globally-consistent Coordinated Universal Time.\nstatic final function long GetGlobalTime();\n\n/// Converts global time to local time, taking into account the\n/// local timezone and daylight savings time.\nstatic final function long GlobalToLocal();\n\n/// Converts local time to global time, taking into account the\n/// local timezone and daylight savings time.\nstatic final function long LocalToGlobal();\n\n/// Return nanoseconds part of Time, 0-999.\nstatic final invariant function long GetNSecs( long Time );\n\n/// Returns microseconds part of Time, 0-999.\nstatic final invariant function long GetUSecs( long Time );\n\n/// Returns milliseconds part of Time, 0-999.\nstatic final invariant function long GetMSecs( long Time );\n\n/// Returns seconds part of Time, 0-59.\nstatic final invariant function long GetSeconds( long Time );\n\n/// Returns minutes part of Time, 0-59.\nstatic final invariant function long GetMinutes( long Time );\n\n/// Returns hours part of Time, 0-23.\nstatic final invariant function long GetHours( long Time );\n\n/// Returns days part of Time, 0 (first day of month)-31 (or last day, depends on month)\nstatic final invariant function long GetDays( long Time );\n\n/// Return day of week, 0 (Sunday)-6 (Saturday)\nstatic final invariant function long DayOfWeek( long Time );\n\n/// Return months part of Time, 0 (January) - 11 (December)\nstatic final invariant function long GetMonths( long Time );\n\n/// Return year.\nstatic final invariant function long GetYears( long Time );\n\n/// Convert the difference between times Later and Earlier to\n/// a floating point value expressed in seconds.\nstatic final invariant function float SpanSeconds( long Later, long Earlier );\n*/\n\ndefaultproperties\n{\n}\n",
+            "name": "Time.uc",
+            "uc": {
+                "comments": [],
+                "default_properties": [],
+                "exec": [],
+                "extends": "",
+                "functions": {
+                    "DayOfWeek": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "DayOfWeek",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetDays": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetDays",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetGlobalTime": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetGlobalTime",
+                        "native": false,
+                        "param": [],
+                        "return": "long"
+                    },
+                    "GetHours": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetHours",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetMSecs": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetMSecs",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetMinutes": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetMinutes",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetMonths": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetMonths",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetNSecs": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetNSecs",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetSeconds": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetSeconds",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetUSecs": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetUSecs",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GetYears": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GetYears",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Time"
+                            ]
+                        ],
+                        "return": "long"
+                    },
+                    "GlobalToLocal": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "GlobalToLocal",
+                        "native": false,
+                        "param": [],
+                        "return": "long"
+                    },
+                    "LocalToGlobal": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "LocalToGlobal",
+                        "native": false,
+                        "param": [],
+                        "return": "long"
+                    },
+                    "SpanSeconds": {
+                        "body": "",
+                        "locals": [],
+                        "modifiers": [
+                            "final",
+                            "static"
+                        ],
+                        "name": "SpanSeconds",
+                        "native": false,
+                        "param": [
+                            [
+                                "long",
+                                "Later"
+                            ],
+                            [
+                                "long",
+                                "Earlier"
+                            ]
+                        ],
+                        "return": "float"
+                    }
+                },
+                "header": [],
+                "instructions": [],
+                "loc": 84,
+                "replication": "",
+                "states": [],
+                "variables": []
+            }
+        }
+    },
+    "models": {},
+    "sounds": {},
+    "textures": {}
+}

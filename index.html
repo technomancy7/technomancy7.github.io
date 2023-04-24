@@ -1,38 +1,220 @@
- <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Kaiser's Web Apps</title>
+	<meta charset="utf-8">
+
+	<title>Coded Mind</title>
+	<meta name="description" content="A portal of web stuff.">
+	<meta name="author" content="Kaiser">
+
+	<link rel="stylesheet" href="styles.css">
+	<script src="kaiser.js"></script>
+	
   </head>
   <body>
-<div class="c1784">Kaiser's Web Apps
-</div>
-<div class="row">
-  <div class="cell">
-    <div class="c2131">Working Projects
-    </div>
-    <a href="https://kaiz0r.github.io/nodewords/" class="c2438">Nodewords</a>
-    <div class="c2347">Nodewords is a simple word guessing game written in pure Javascript, CSS and HTML.
-    </div>
-    <a href="https://kaiz0r.github.io/nodewords_v2/" class="c2438">Nodewords V2</a>
-    <div class="c2347">Remake of Nodewords in a new engine.
-    </div>
-  </div>
-  <div class="cell">
-    <div class="c2199">Prototypes
-    </div>
-    <a href="https://kaiz0r.github.io/athena/" class="c2438">Eternal Terminal</a>
-    <div class="c2786">This is planned to be an indepth text-adventure story, mixing elements of Deus Ex and other scifi-fantasy elements with simple RPG gameplay in a dark psuedo-horror setting.
-    </div>
-  </div>
-  <div class="cell">
-    <div class="c2267">Planned projects
-    </div>
-    <div class="c3230">Open-Bestiary, an open-source catalogue of mobs and monsters for any RPG.
-    </div>
-    <div class="c3306">More text games.
-    </div>
-  </div>
-</div>
+	<header><h2>Coded Mind::Home</h2></header>
+	<section>
+	  <nav>
+		<ul>
+		  <li><a href="about.html">About</a></li>
+		  <li><a href="chat.html">Chat</a></li>
+	    <li><a href="https://twitter.com/_technomancer">Twitter</a></li>
+	    <li><a href="https://gitlab.com/technomancer7/">Gitlab</a></li>
+        <li><a href="https://discord.gg/jCFJ3A6">Discord</a></li>
+		</ul>
+	  </nav>
+        <button onclick="topFunction()" id="btt" title="Go to top">Top</button>
+	  <article>
+
+	    <a name="projects" href="#projects"><font size=10>Current Projects</font></a> <br>
+	    <a name="dxdocs" href="https://codedmind.gitlab.io/doc/Engine.html">DX Docs</a><br>
+	    <a name="pyus" href="https://gitlab.com/technomancer7/pyus">PYUS</a><br>
+        <a name="artifice" href="https://gitlab.com/technomancer7/artifice">Artifice</a></br>
+        <a name="odync" href="https://gitlab.com/technomancer7/odyn">Odyn</a><br>
+	    
+	    <a name="python" href="#python"><font size=10>Python</font></a> <br>
+        
+        <a name="odyn" href="#odyn"><optitle>Odyn</optitle></a> <br>
+	    A note taking application.<br>
+	    <a href="https://gitlab.com/technomancer7/Merry">Source</a>
+	    <br><br>
+	    
+        <a name="PYUS" href="#pyus"><optitle>PYUS</optitle></a> <br>
+	    Utilities for Deus Ex.<br>
+	    <a href="https://gitlab.com/technomancer7/pyus">Source</a>
+	    <br><br>
+	    
+	    
+	    <a name="merry" href="#merry"><optitle>Merry</optitle></a> <br>
+	    A GUI around Pip.<br>
+	    <a href="https://gitlab.com/technomancer7/Merry">Source</a>
+	    <br><br>
+
+	    <a name="card" href="#card"><optitle>Cardpacks</optitle></a> <br>
+	    An extendible library for generating digital card packs.<br>
+	    Useful for making digital solitaire, poker etc, without having to write bespoke card logic.<br>
+	    <a href="https://gitlab.com/technomancer7/cardpacks">Source</a> |
+	    <a href="https://pypi.org/project/cardpacks/">PYPI</a>
+	    <br><br>
+	    
+	    <a name="tyr" href="#tyr"><optitle>Tyr</optitle></a> <br>
+	    A WIP library for writing text adventure games in Python, using a simplistic API, JSON<br>
+	    structure, and plug-n-play extendibility.<br>
+	    <a href="https://gitlab.com/technomancer7/tyr">Source</a>
+	    <br><br>
+	    
+	    <a name="memory" href="#memory"><optitle>Memory3</optitle></a> <br>
+	    A library for rapid config management. Supports JSON and TOML backends currently.<br>
+	    <a href="https://gitlab.com/technomancer7/memory3">Source</a> |
+	    <a href="https://pypi.org/project/memory3/">PYPI</a>
+	    <br><br>
+	    
+	    <a name="mog" href="#mog"><optitle>Mogscript</optitle></a><br>
+	    A library for scripting and automating text processing logic.<br>
+	    <a href="https://gitlab.com/technomancer7/mogscript">Source</a>
+	    <br><br>
+	    
+	    <a name="bestiary" href="#bestiary"><optitle>Bestiary</optitle></a> <br>
+	    A GUI Bestiary app, letting a user categorize and label arbitrary indexed objects.<br>
+	    <a href="https://gitlab.com/technomancer7/OpenBestiary">Source</a>
+	    <br><br>
+	    <br>
+	    
+	    <a name="nim" href="#nim"><font size=10>Nim</font></a> <br>
+	    
+        <a name="nt" href="#nt"><optitle>NGL</optitle></a> <br>
+	    Nim Generic Launcher, a CLI application for organizing launchers.<br>
+	    <a href="https://gitlab.com/codedmind/ngl">Source</a>
+	    <br><br>
+	    
+        <a name="nt" href="#nt"><optitle>NT: Nim Text storage</optitle></a> <br>
+	    Nim-based snippet/note app for CLI.<br>
+	    <a href="https://gitlab.com/technomancer7/nt">Source</a> |
+	    <a href="https://gitlab.com/technomancer7/nt/releases">Download</a>
+	    <br><br>
+
+	    
+	    <a name="dchk" href="#dchk"><optitle>dchk</optitle></a> <br>
+	    A command-line utility for quick directory scanning,<br>
+	    searching file bodies for specific text.<br>
+	    <a href="https://gitlab.com/technomancer7/dchk">Source</a> | 
+	    <a href="https://gitlab.com/technomancer7/dchk/releases">Download</a>
+	    <br><br>
+	    <br>
+	    
+	    <a name="ruby" href="#ruby"><font size=10>Ruby</font></a> <br>
+
+	    <a name="pokedex" href="#pokedex"><optitle>Pokedex</optitle></a> 
+	    A wrapper around PokeAPI and a GUI pokedex application.<br>
+	    <a href="https://gitlab.com/technomancer7/ruby-pokeapi">Source</a>
+	    <br><br>
+
+	    <a name="ridea" href="#ridea"><optitle>ridea</optitle></a> 
+	    A Ruby IDE Application! Super work-in-progress, planned to be Emacs-lite but for Ruby, not lisp.<br>
+	    <a href="https://gitlab.com/technomancer7/ridea">Source</a>
+	    <br><br>
+	    
+	    <a name="fountain" href="#fountain"><optitle>fountain</optitle></a> 
+	    A WIP extendible novel writing software.<br>
+	    <a href="https://gitlab.com/technomancer7/fountain">Source</a>
+	    <br><br>
+	    
+	    <a name="memrb" href="#memrb"><optitle>Memory-rb</optitle></a> 
+	    Memory library, but for ruby. Weird!<br>
+	    <a href="https://gitlab.com/technomancer7/Memory-rb">Source</a>
+	    <br><br>
+	    
+	    <a name="valkrb" href="#valkrb"><optitle>Valkyrie-rb</optitle></a> 
+	    Experimental source code for a Ruby discord bot.<br>
+	    Contains working functionality for a hunger games simulator.<br>
+	    <a href="https://gitlab.com/technomancer7/Valkyrie-rb">Source</a>
+	    <br><br>
+	    
+	    <a name="libkaiserrb" href="#libkaiserrb"><optitle>libkaiser.rb</optitle></a> 
+	    Random assorted utilities.<br>
+	    <a href="https://gitlab.com/technomancer7/libkaiser-rb">Source</a>
+	    <br><br>
+
+	    
+	    <a name="javascript" href="#javascript"><font size=10>Javascript</font></a> <br>
+	    
+	    <a name="valkyrie" href="#valkyrie"><optitle>Valkyrie</optitle></a> 
+	    Source code for my Valkyrie discord bot.<br>
+	    <a href="https://gitlab.com/technomancer7/valkyrie">Source</a>
+	    <br><br>
+	    
+	    <a name="libkaiserjs" href="#libkaiserjs"><optitle>libkaiser.js</optitle></a> 
+	    Random assorted utilities.<br>
+	    <a href="https://gitlab.com/technomancer7/libkaiser-js">Source</a> | <a href="https://github.com/Kaiz0r/libkaiser-js/raw/master/libkaiser.js">Direct</a>	
+	    <br><br>
+
+	    <a name="dlang" href="#dlang"><font size=10>D</font></a> <br>
+	    <a name="dgames" href="#dgames"><optitle>dgames</optitle></a> 
+	    A WIP command-line extendable games collection.<br>
+	    <a href="https://gitlab.com/technomancer7/d-games">Source</a>
+	    <a href="https://gitlab.com/technomancer7/dggames-extensions">Extensions</a>
+	    <br><br>
+	    
+	    <a name="other" href="#other"><font size=10>Other</font></a> <br>
+	    
+	    <a name="winter" href="#winter"><optitle>Winter</optitle></a> <br>
+	    A WIP text adventure survival game.<br>
+	    <a href="https://codedmind.gitlab.io/winter">Play</a>
+	    <br><br>
+	    
+	    <a name="cc" href="#cc"><optitle>Code Clicker</optitle></a> <br>
+	    A WIP iterative clicker game. Not really anything serious, just playing with JS.<br>
+	    <a href="https://codedmind.gitlab.io/codeclicker">Play</a>
+	    <br><br>
+	    
+	    <a name="nodewords" href="#nodewords"><optitle>Nodewords</optitle></a><br>
+	    A word guessing game.<br>
+	    <a href="https://codedmind.gitlab.io/nodewords">Play Javascript Ver.</a> |
+	    <a href="https://codedmind.gitlab.io/nodewords_v2">Play Twine Ver.</a>
+	    <br><br>
+	    
+	    <a name="trivia" href="#trivia"><optitle>Trivia</optitle></a> <br>
+	    Web trivia game.<br>
+	    <a href="https://codedmind.gitlab.io/trivia">Play</a>
+	    <br><br>
+	    
+	    <a name="openbestiary" href="#openbestiary"><optitle>OpenBestiary</optitle></a> <br>
+	    TODO: Web version of bestiary app.<br>
+	    N/A
+	    <br><br>
+	    
+	    <a name="dxd" href="#dxd"><optitle>Deus Ex Docs</optitle></a> <br>
+	    DX knowledge base.<br>
+	    Link WIP
+	    <br><br>
+	    <br>
+	    
+	    <a name="unreal" href="#unreal"><font size=10>Unreal</font></a> <br>
+	    <a name="opendx" href="#opendx"><optitle>OpenDX</optitle></a> <br>
+	    <a href="https://gitlab.com/deus-ex/opendx">Source</a>
+	    <br><br>
+	    
+	    <a name="partystuff" href="#partystuff"><optitle>PartyStuff</optitle></a> <br>
+	    <a href="https://gitlab.com/deus-ex/PartyStuff">Source</a>
+	    <br><br>
+	    
+	    <a name="rcon" href="#rcon"><optitle>RCON</optitle></a> <br>
+	    <a href="https://gitlab.com/deus-ex/RCON">Source</a>
+	    <br><br>
+	    
+	    <a name="cdx" href="#cdx"><optitle>CDX</optitle></a> <br>
+	    <a href="https://gitlab.com/deus-ex/CDX">Source</a>
+	    <br><br>
+	    
+	    <a name="tcc" href="#tcc"><optitle>tccore</optitle></a> <br>
+	    <a href="https://gitlab.com/deus-ex/tccore">Source</a>
+	    <br><br>
+
+	    <a name="dyn" href="#dyn"><optitle>DynMusic</optitle></a> <br>
+	    <a href="https://gitlab.com/deus-ex/dynmusic">Source</a>
+	    <br><br>
+	  </article>
+	</section>
+
+	<footer> By Kaiser, The Coded Mind (C) 2021</footer>
   </body>
 </html>

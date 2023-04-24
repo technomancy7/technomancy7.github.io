@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<title>The Coded Mind</title>
+	<meta name="description" content="A portal of web stuff.">
+	<meta name="author" content="Kaiser">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<!--<link rel="stylesheet" href="../../styles.css">*/-->
+	<script src="../../kaiser.js"></script>
+  </head>
+  <body>
+        <!-- SVG code -->
+        <svg width="600px" height="150px" xmlns="https://www.w3.org/2000/svg" id="dxsg">
+            <rect width="600px" height="150px" style="fill:rgb(23, 23, 58);stroke-width:3;stroke:rgb(0,0,0);border-color:blueviolet" />
+        </svg>
+  </body>
+  <script>
+      const svgns = "http://www.w3.org/2000/svg";
+      const m = "http://333networks.com/json/deusex/"
+      const textcolour = "white"
+      function fmtSvg(host){
+        $.getJSON( m+host ).done(function( data ) {
+
+            // getting main svg element
+            const svg = document.getElementById("dxsg");
+
+            
+            //server name
+            var hostname = document.createElementNS(svgns, "text");
+            hostname.setAttributeNS(null, "x", 50);
+            hostname.setAttributeNS(null, "y", 30);
+            hostname.setAttributeNS(null, "r",  20);
+            hostname.setAttributeNS(null, "fill", textcolour); 
+            hostname.innerHTML = data.hostname
+            svg.appendChild(hostname);
+
+            var players = document.createElementNS(svgns, "text");
+            players.setAttributeNS(null, "x", 10);
+            players.setAttributeNS(null, "y", 60);
+            players.setAttributeNS(null, "fill", textcolour); 
+            players.innerHTML = `Players: ${data.numplayers}/${data.maxplayers}`
+            svg.appendChild(players);
+
+            var icon = document.createElementNS(svgns, "image");
+            icon.setAttributeNS(null, "x", 10);
+            icon.setAttributeNS(null, "y", 10);
+            icon.setAttributeNS(null, "href", "DeusEx.ico");
+            svg.appendChild(icon);
+        });
+
+      }
+
+      fmtSvg("207.180.246.62:7790");
+
+
+</script>
+</html>

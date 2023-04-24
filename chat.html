@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+
+	<title>The Coded Mind</title>
+	<meta name="description" content="A portal of web stuff.">
+	<meta name="author" content="Kaiser">
+
+	<link rel="stylesheet" href="styles.css">
+	<script src="kaiser.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script>
+	  	$(document).keypress(function (e) {
+		  if (e.which == 13 || e.keycode == 13 || e.code == "Enter" || e.key == "Enter") {
+			  send();
+		  }
+		});
+	</script>
+  </head>
+  <body>
+	<header><h2>The Coded Mind::Chat</h2></header>
+	<section>
+	  <nav>
+		<ul>
+		  <li><a href="index.html">Home</a></li>
+		  <li><a href="about.html">About</a></li>
+		  <li><a href="https://twitter.com/thecodedmind">Twitter</a></li>
+		  <li><a href="https://twitter.com/themindofathena">Twitter (Athena)</a></li>
+		  <li><a href="https://gitlab.com/technomancer7/">Git</a></li>
+		</ul>
+	  </nav>
+ 
+	  <textarea id="chatbox" disabled=1></textarea><br>
+	  <input id="chatinput" type="text" placeholder="Message to chat">
+	  <button type="button" onclick="send()">Send</button>
+	</section>
+
+	
+  </body>
+</html>

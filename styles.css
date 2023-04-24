@@ -1,0 +1,176 @@
+body {
+	background-colour: black;
+}
+
+h1 {
+	colour: blue;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #222222;
+}
+
+tcmcode {
+    background-color: #222222;
+    color: #888888;
+}
+tcminfobox {
+    background-color: #C4C6C7;
+    width: 520px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+  background-color: black;
+  text-align: center;
+  padding: 10px;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other height: 400%; */
+nav {
+  float: left;
+  width: 15%;
+  
+  background: #222222;
+  padding: 10px;
+}
+
+nav:hover {
+	background: #111111;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+optitle {
+	font-size: 20px;
+	color: #bb4400;
+}
+
+/*height: 400%;*/
+article {
+  float: left;
+  padding: 20px;
+  width: 85%;
+  background-color: #aaaaaa;
+  
+}
+
+article:hover {
+  background-color: #999999;
+}
+
+a, a:link, a:visited {
+    text-decoration: underline;
+    color: darkcyan;
+}
+
+a:hover {
+    color: #00ff;
+}
+
+a:active {
+	color: darkcyan;
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+footer:hover {
+	background-color: #666;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.code {
+    font-family: Courier New, Courier, sans-serif;
+    border: 1px solid #009900;
+    color: #009900;
+    background-color: #01091E;
+    display: block;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: left;
+    white-space: pre;
+} 
+
+#btt {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #555; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#btt:hover {
+  background-color: #111; /* Add a dark-grey background on hover */
+}

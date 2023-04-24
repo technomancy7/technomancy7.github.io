@@ -1,0 +1,178 @@
+:: StoryTitle
+Winter
+
+:: StoryInit
+<<set $varcaption to ''>>
+<<set $days to 0>>
+<<defskill 'Axes' '650'>>
+<<defskill 'Fishing' '650'>>
+<<defskill 'Gathering' '650'>>
+<<defskill 'Perception' '650'>>
+<<defskill 'Building' '650'>>
+
+<<defhook 'homestead' 'give'>><<set $built_homestead to true>><</defhook>>
+
+
+:: StoryMenu
+<<link 'Wait'>><<reload>><</link>>
+<<link 'View Inventory'>><<inventory>><</link>>
+<<link 'Crafting'>><<crafting>><</link>>
+<<link 'Goals'>><<goals>><</link>>
+<<link 'Notes'>><<notes>><</link>>
+<<link 'Skills'>><<skills>><</link>>
+<<link 'Characters'>><<focusmenu>><</link>>
+
+:: PassageReady
+<<if tags().includes('named')>><<set $varcaption to "''Area'': "+passage()>>\
+     <<else>>\
+     <<set $varcaption to "">>
+<</if>>
+<<run setLocation(null, passage())>>
+
+:: StoryCaption 
+<<print $varcaption>>
+<<if tags().includes("underwater")>>\
+<<if getOxygen() > 0>>''You are underwater and losing oxygen.'' <<run takeOxygen(null, 20)>><<getoxygen>><<else>>''You need air! Taking health damage.''\
+<<run takeDamage(null, 10)>><</if>>\
+<<else>><<if getOxygen() < 100>> Catching your breath. <<run giveOxygen(null, 10)>><<getoxygen>><</if>><</if>>
+<<showhealth>>
+<<showenergy>>
+<<showoxygen>>
+<<if zoneHasItems('here')>>\
+There are items here:
+<<zoneitems>>
+<</if>>
+
+:: The Clearing [named]
+<<if visited() == 1>>\
+<<nobr>>
+    <<run setupRPG()>>
+    <<newcharacter The Wanderer>> <<focus The Wanderer>> <<addfocus The Wanderer>>
+    <<newcharacter The Hunted>> <<addfocus The Hunted>>
+    <<run setLocation('The Hunted', 'The Lake')>>
+    <<forcetrainskill 'all'>>
+    <<givesp 1000>>
+    <<run setLocation(null, passage())>>
+<</nobr>>\
+You awaken in a vast clearing of green and white. 
+The snow is falling endlessly.
+You should probably consider making some shelter for the night. If i could <em>gather</em> some wood and <em>craft</em> myself a small house, I could <em>use</em> that.
+<<addblueprint 'homestead' '8 wood'>>     
+<<addblueprint 'bed' '2 wood'>>   
+<<else>>
+You are in the clearing.<</if>>
+<<if $built_homestead is true>>You see your [[homestead|Homestead]] standing firm in the snow.<</if>>
+
+<<link 'Get wood lying around the clearing'>><<gather 'wood'>><</link>>
+
+<<if $days > 0>>A path to the [[south|Forest Path]] leads deeper in to the forest.<</if>>
+
+
+
+
+
+
+:: Homestead [named]
+You are home.
+Storage chest.
+Option to build bed.
+If bed built, option to sleep.
+<<button 'Exit'>><<goto 'The Clearing'>><</button>>
+
+
+:: sleeping
+<<switch $days>>
+	<<case 0>><<glitch 'Your first day in the clearing, you did well.' 'I\'ll be waiting for you in the sky.'>>
+	<<case 1>>Second day.
+<</switch>>
+<<set $days to $days + 1>>\
+Heal HP and energy.
+You sleep until tomorrow, and so begins day $days.
+
+<<link 'Wake up'>><<goto [[previous()]]>><</link>>
+
+
+:: Forest Path [named]
+<<if visited() == 1>>\
+You take in the surroundings and decide your next move. You see some water and some mountains around, and get the idea to use some of the natural resources to enhance your equipment.
+TOTO learn to craft:
+stone sword
+axe
+pickaxe
+stone spear
+<</if>>\
+
+<<link 'Gather'>><<gather 5 'leaves' 'berries'>><</link>>
+North leads to [[The Clearing]].
+South leads to [[The Lake]].
+East leads to [[The Mountain Path]].
+
+
+:: The Lake [named]
+TODO fishing with either a spear or fishing rod
+North leads to the [[Forest Path]].
+You can follow the path to [[The Shore]].
+<<if visited() == 1>>\
+You're at the shore of a lake. The area is vast and wide open.
+
+TODO learn to craft fishing rod
+<</if>>
+
+
+:: The Mountain Path [named]
+TODO mine for stones if have pickaxe
+West leads to the [[Forest Path]].
+
+You can go in to the [[Mountain Passage]].
+
+
+
+
+:: Mountain Passage [named]
+<<if previous() == "The Mountain Path">>\
+You enter in to the darkly lit caverns.
+<</if>>
+<<if playerHasItem("lantern")>>\
+You can go deeper in to [[The Mountain Caves]].
+<<else>>\
+It's too dark, you need some light to go in deeper.
+TODO learn to craft lantern
+<</if>>
+Outside to [[The Mountain Path]].
+
+
+:: The Shore [named]
+You can see [[The Lake]] from here.
+The shore line is quiet. No sounds can be heard except for the flow of the ocean crashing against the beach.
+<<if playerHasItem("lantern")>>\
+There is a small opening leading in to [[The Ocean Caves]].
+<<else>>\
+There is a small opening leading in to The Ocean Caves but it's too dark to go inside.
+TODO learn to craft lantern once
+<</if>>
+<<if visited() == 1>>\
+You look out towards the vast ocean. You can see some mysterious structure out in the distance. If only you had a way to traverse the seas. Until then, maybe some fishing would be nice.
+TODO learn to craft a raft
+<</if>>
+
+
+:: The Ocean Caves [named]
+A path out leads to [[The Shore]].
+You can also go deeper in to [[The Mountain Caves]].
+
+
+:: The Mountain Caves [named]
+A path leading to [[Mountain Passage]] goes north.
+To the south leads to [[The Ocean Caves]].
+
+
+
+
+
+
+:: StoryData
+{
+	"ifid": "935487F1-8031-4BF1-8111-98262BE1BF4D",
+	"start": "The Clearing"
+}
+

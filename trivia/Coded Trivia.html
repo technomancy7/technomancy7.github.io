@@ -1,0 +1,210 @@
+<tw-storydata name="Coded Trivia" startnode="1" creator="Twine" creator-version="2.2.1" ifid="BE876CA1-F6B2-4924-B0EB-A6FDE88D0D70" zoom="0.6" format="SugarCube" format-version="2.28.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">#menu-item-saves
+{
+  display: none;
+}
+
+#ui-bar-history
+{
+  display: none;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  background-color: #023638;
+}
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">Macro.add('getsession', {
+	handler : function () {
+		var sessiondata = JSON.parse(loadFile('https://opentdb.com/api_token.php?command=request'));
+		
+		State.setVar("$session_token", sessiondata['token']);
+	}
+});
+
+Macro.add('loadtdb', {
+	handler : function () {
+		var dbdata = JSON.parse(loadFile('https://opentdb.com/api_category.php'));
+		
+		State.setVar("$cats", dbdata);
+	}
+});
+
+Macro.add('create_tdb_url', {
+	handler : function () {
+		var data = JSON.parse(loadFile('https://opentdb.com/api_category.php'));
+		var ourl = State.getVar("$url");
+		var cat = State.getVar("$url_cat");
+		if (cat != ""){cat = "&category="+cat}
+		var difi = State.getVar("$url_dif");
+		var que = State.getVar("$url_que");
+		var token = State.getVar("$session_token")
+		if (que > 20) {que = 20; State.setVar("$url_que", que);}
+		State.setVar("$final_url", ourl+que+cat+difi);
+		getQuestion(ourl+que+cat+difi);
+	}
+});
+
+function getQuestion(url) {
+		var questions_data = JSON.parse(loadFile(url));
+		State.setVar("$qd", questions_data);
+}
+
+Macro.add('pullQuestion', {
+	handler : function () {
+		var questions_data = State.getVar("$qd");
+		var index = Number(State.getVar("$round")) - 1;
+		State.setVar("$tq", questions_data);
+		State.setVar("$question", questions_data['results'][Number(index)]['question']);
+		State.setVar("$difficulty", questions_data['results'][Number(index)]['difficulty']);
+		State.setVar("$category", questions_data['results'][Number(index)]['category']);
+		State.setVar("$correct", questions_data['results'][Number(index)]['correct_answer']);
+		var qarr = questions_data['results'][Number(index)]['incorrect_answers'];
+		qarr.push(questions_data['results'][Number(index)]['correct_answer']);
+		qarr.shuffle()
+		State.setVar("$answers", qarr);
+	}
+});
+
+function loadFile(filePath) {
+		var result = null;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", filePath, false);
+		xmlhttp.send();
+		if (xmlhttp.status==200) {
+			result = xmlhttp.responseText;
+		}
+		return result;
+	}
+
+// dialog API macro set, by chapel; for sugarcube 2
+// version 1.2.0
+// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#dialog-api-macros
+
+// <<dialog>> macro
+Macro.add('dialog', {
+       tags : null,
+    handler : function () {
+        
+        // handle args (if any)
+        var content = (this.payload[0].contents) ? this.payload[0].contents : '';
+        var title = (this.args.length > 0) ? this.args[0] : '';
+        var classes = (this.args.length > 1) ? this.args.slice(1).flatten() : [];
+        
+        // add the macro- class
+        classes.push('macro-' + this.name);
+        
+        // dialog box
+        Dialog.setup(title, classes.join(' '));
+        Dialog.wiki(content);
+        Dialog.open();
+        
+    }
+
+});
+
+// <<popup>> macro
+Macro.add('popup', {
+    handler : function () {
+        
+        // errors
+        if (this.args.length < 1) {
+            return this.error('need at least one argument; the passage to display');
+        }
+        if (!Story.has(this.args[0])) {
+            return this.error('the passage ' + this.args[0] + 'does not exist');
+        }
+        
+        // passage name and title
+        var psg   = this.args[0];
+        var title = (this.args.length > 1) ? this.args[1] : '';
+        var classes = (this.args.length > 2) ? this.args.slice(2).flatten() : [];
+        
+        // add the macro- class
+        classes.push('macro-' + this.name);
+        
+        // dialog box
+        Dialog.setup(title, classes.join(' '));
+        Dialog.wiki(Story.get(psg).processText());
+        Dialog.open();
+        
+    }
+
+});
+
+
+</script><tw-passagedata pid="1" name="Main" tags="" position="833,378" size="100,100">&lt;&lt;set $url to &quot;https://opentdb.com/api.php?amount=&quot;&gt;&gt;\
+&lt;&lt;set $url_cat to &quot;&quot;&gt;&gt;\
+&lt;&lt;set $url_dif to &quot;&quot;&gt;&gt;\
+&lt;&lt;set $url_que to &quot;1&quot;&gt;&gt;\
+&lt;&lt;set $cats to {}&gt;&gt;\
+&lt;&lt;set $round to 0&gt;&gt;\
+&lt;&lt;set UIBar.stow()&gt;&gt;\
+&lt;&lt;set $score_correct to 0&gt;&gt;\
+&lt;&lt;set $score_fail to 0&gt;&gt;\
+&lt;&lt;if visited() == 1&gt;&gt;&lt;&lt;getsession&gt;&gt;Generated session token $session_token&lt;&lt;else&gt;&gt;Resuming session $session_token&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;loadtdb&gt;&gt;&lt;&lt;button &#39;Confirm&#39;&gt;&gt;&lt;&lt;create_tdb_url&gt;&gt;&lt;&lt;goto &#39;game&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;
+
+!Questions
+&lt;&lt;textbox &quot;$url_que&quot; &quot;1&quot;&gt;&gt;
+
+!Category
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$url_cat&quot; &quot;&quot; checked&gt;&gt; Any&lt;/label&gt;
+&lt;&lt;for _i, _n range $cats.trivia_categories&gt;&gt;\
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$url_cat&quot; _n.id&gt;&gt; _n.name&lt;/label&gt;&lt;&lt;/for&gt;&gt;
+
+!Difficulty
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$url_dif&quot; &quot;&quot; checked&gt;&gt; Any&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$url_dif&quot; &quot;&amp;difficulty=easy&quot;&gt;&gt; Easy&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$url_dif&quot; &quot;&amp;difficulty=medium&quot;&gt;&gt; Medium&lt;/label&gt;
+* &lt;label&gt;&lt;&lt;radiobutton &quot;$url_dif&quot; &quot;&amp;difficulty=hard&quot;&gt;&gt; Hard&lt;/label&gt;
+
+&lt;&lt;button &#39;Confirm&#39;&gt;&gt;&lt;&lt;create_tdb_url&gt;&gt;&lt;&lt;goto &#39;game&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="game" tags="" position="643,338" size="100,100">&lt;&lt;button &#39;Back to main menu&#39;&gt;&gt;&lt;&lt;goto &#39;Main&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;&lt;set $round to $round + 1&gt;&gt;&lt;&lt;pullQuestion&gt;&gt;
+Round: $round / $url_que | Difficulty: $difficulty | Category: $category
+
+&lt;b&gt;$question&lt;/b&gt;
+
+&lt;&lt;for _i, _n range $answers&gt;&gt;&lt;&lt;capture _n&gt;&gt;&lt;&lt;button &#39;_n&#39;&gt;&gt;&lt;&lt;set $submitted to _n&gt;&gt;&lt;&lt;goto &#39;check&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/capture&gt;&gt; &lt;&lt;/for&gt;&gt;
+
+</tw-passagedata><tw-passagedata pid="3" name="check" tags="" position="471,353" size="100,100">$question
+
+The correct anser was... $correct.
+You guessed $submitted.
+&lt;&lt;if $submitted == $correct&gt;&gt;
+You got it right.
+&lt;&lt;set $score_correct to $score_correct + 1&gt;&gt;
+&lt;&lt;else&gt;&gt;
+You got it wrong.
+&lt;&lt;set $score_fail to $score_fail + 1&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $round &lt; $url_que&gt;&gt;
+&lt;&lt;button &#39;Next round&#39;&gt;&gt;&lt;&lt;goto &#39;game&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;button &#39;Finish&#39;&gt;&gt;&lt;&lt;goto &#39;end&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="end" tags="" position="688,145" size="100,100">
+You got $score_correct out of $url_que correct.
+
+&lt;&lt;button &#39;Back to menu&#39;&gt;&gt;&lt;&lt;goto &#39;Main&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="StoryMenu" tags="" position="911,195" size="100,100">&lt;&lt;link &#39;About Coded Trivia&#39;&gt;&gt;
+	&lt;&lt;dialog &#39;About&#39;&gt;&gt;\
+		Welcome to Coded Trivia!
+		This is a simple trivia game.
+		Questions sourced from the Open Trivia Database.
+		
+		Credits:
+			Kaiser - Programming, concept
+			ChapelR - Macros
+			Choco - Initial tests, design suggestions
+			Additional testers - WIP
+			Designed with Twine engine and SugarCube template.
+			
+			Copyright © 2019 Kaiser (kaiser7@gmx.com)
+			All rights reserved.
+
+	&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="StoryShare" tags="" position="1081,368" size="100,100">&lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcodedthoughts.github.io%2Ftrivia%2F&amp;src=sdkpreparse&amp;display=popup&quot;&gt;Facebook&lt;/a&gt;
+&lt;a href=&quot;https://twitter.com/intent/tweet?url=https%3A%2F%2Fcodedthoughts.github.io%2Ftrivia%2F&amp;text=Come play Coded Trivia!&amp;via=technomancer7&amp;hashtags=trivia&quot;&gt;Twitter&lt;/a&gt;
+</tw-passagedata></tw-storydata>

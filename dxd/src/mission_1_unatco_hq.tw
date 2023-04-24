@@ -1,0 +1,103 @@
+:: UNATCO HQ Courtyard {"position":"200,125"}
+<<if $mission == 1>>[[Liberty Island: Crossroad]] stands behind the gate of the courtyard.<</if>>
+<<if $unatcohq_open is true>>You can go [[inside|UNATCO HQ Lobby]] to the lobby.<<else>>\<</if>>
+Around the side of the building is a [[communication building|UNATCO HQ Comms]].
+<<if $mission_1_complete is true>>\
+Your brother Paul stands in front of the door.
+<</if>>
+<<link 'Kaplan'>><<goto 'Talking with Kaplan'>><</link>> is patrolling the gate.
+
+
+:: UNATCO HQ Comms {"position":"375,0"}
+<<initzoneitems 'Crowbar'>>The [[UNATCO HQ Courtyard]] is behind you.
+<<if $uhqcommpanel is true>>You can go [[down|Under UNATCO HQ Comms]] to a maintenance room.<<else>>There is a locked panel leading downwards.<</if>>
+<<container "lpcratec1" "General" "Lockpick">>
+<<container "lpcratec2" "General" "Lockpick">>
+<<if getZoneFlag('here', 'unlocked') is "true">>\
+You can go [[inside|UNATCO HQ Comms Room]] the comms room.
+<<else>>
+The door that leads inside the comms room is sealed.
+On the wall below a security camera is a <<link 'Keypad'>>\
+<<keypad '0451'>><<setzoneflag 'unlocked' 'true'>><<reload>><</keypad>>\
+<</link>>
+<</if>>
+
+
+
+:: UNATCO HQ Comms Room {"position":"475,50"}
+The [[door|UNATCO HQ Comms]] leads outward.
+<<initzoneitems 'Medkit' 'Tranq Darts'>>
+
+
+
+:: Under UNATCO HQ Comms {"position":"575,50"}
+[[UNATCO HQ Comms]]
+<<initzoneitems 'EMP Grenade'>>
+
+
+:: UNATCO HQ Lobby {"position":"325,100"}
+Out to [[UNATCO HQ Courtyard]], or down to [[UNATCO HQ Checkpoint]].
+<<initzoneitems 'Candy Bar' 'Soda'>>
+
+
+
+:: UNATCO HQ Checkpoint {"position":"475,175"}
+
+
+
+:: UNATCO HQ Level 2 Upstairs {"position":"950,100"}
+
+
+
+:: UNATCO HQ Level 2 Right Office {"position":"850,125"}
+<<initzoneitems 'Lockpick' 'Multitool'>>
+
+
+
+:: UNATCO HQ Level 2 Left Office {"position":"800,100"}
+<<initzoneitems 'Baton' 'Office Key' 'Accuracy Mod'>>
+
+
+
+:: UNATCO HQ Level 2 Downstairs {"position":"775,75"}
+//TODO Closets
+
+:: UNATCO HQ Level 2 JCs Office {"position":"700,50"}
+:: UNATCO HQ Level 2 Meeting Room {"position":"675,50"}
+//TODO locked cabinet with one set of all dart types
+
+:: UNATCO HQ Level 2 Break Room {"position":"725,75"}
+:: UNATCO HQ Secretary Office {"position":"675,50"}
+<<initzoneitems 'Closet Key'>>
+
+:: UNATCO HQ Manderleys Office {"position":"675,75"}
+<<initzoneitems 'Candy Bar' 'Soda'>>
+
+:: UNATCO HQ Level 3 {"position":"1000,75"}
+// :: UNATCO HQ Level 3 Mens Bathroom
+// :: UNATCO HQ Level 3 Womens Bathroom
+// :: UNATCO HQ Level 3 Armory
+
+:: UNATCO HQ Level 3 Medical {"position":"650,50"}
+<<initzoneitems 'Soda' 'Medlab Closet Key'>>
+//Todo examine corpse for shurikens
+
+//:: UNATCO HQ Level 3 Medical Closet
+<<container 'uhql3mc' 'Medical' 'Medkit'>>
+
+
+:: UNATCO HQ Level 3 Tech {"position":"875,75"}
+<<initzoneitems 'Soda' 'Soda' 'Soda' 'Candy Bar' 'Candy Bar'>>
+//Code to closet 2001
+
+//:: UNATCO HQ Level 3 Tech Closet
+// Two flares
+<<container 'uhql3tc1' 'General' 'Lockpick'>>
+<<container 'uhql3tc2' 'General' 'Biocell'>>
+
+//:: UNATCO HQ Level 3 Secret Area
+<<initzoneitems 'Office Door Key' 'Cigarettes' 'Scope Mod'>>
+<<container 'uhql3sa' 'Combat' '3006'>>
+
+//:: UNATCO HQ Level 3 Hermann and Navarres office
+'Cigarettes' 'Darts' 'Soda' 'Biocell'

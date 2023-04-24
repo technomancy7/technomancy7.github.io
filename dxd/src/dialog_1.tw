@@ -1,0 +1,164 @@
+:: conv paul docks 1 [conversation] {"position":"225,525"}
+<<completegoal 'm01_talk_paul'>>
+Your brother, Paul, who looks alot like you, runs up to you from across the pier.
+
+"Paul! I thought you were <span class="glitch" data-text="dead? No..">in Hong Kong.</span>", you exclaim, wondering why he's back in New York so early.
+
+"Welcome to the Coalition, JC... I might as well start using your codename. Think I'd miss my brother's first day?" he replies jokingly.
+
+"Didn't think you'd have a choice. What's going on?" you question, Paul shouldn't have been back for awhile yet, and he's not the type to disobey orders.
+
+"The NSF -- they hit one of our shipments. A few of them got away, but we trapped the rest in the Statue." Paul gestured up to the Statue of Liberty looming behind him, standing tall in the middle of the island. You can see it has taken some damage, the head is missing, and there is other notable damage and burns to the structure.
+
+"What are we waiting for? Looks like a textbook assault." you respond eagerly, ready to charge on forward.
+You begin walking ahead but Paul puts his hand out and stops you in your tracks.
+
+"The NSF took one of our agents hostage. The bots are holding the perimeter, but my orders are to hold back and send you in alone. I think someone high up wants to see how you handle the situation." he states.
+
+"All I've got with me is a pistol and an electric prod. I don't mind a test, but UNATCO better issue some hardware." you reply, realising you weren't prepared for such an involved mission.
+
+"Remember that we're police. Stick with the prod. It will stun your opponents or knock them unconscious. A nonlethal takedown is always the most silent way to eliminate resistance." Paul opens up a storage box that was sitting beside him, you can see a few weapons inside. "Just in case, though, Manderley wants you to pick an additional weapon: a sniper rifle, a GEP gun, or a minicrossbow."
+
+You reply...
+* [[I like to pick 'em off from a distance. I'll take the rifle.|conv paul docks 2][$paul_choice to "Sniper"]]
+* [[Never know when I might come up against heavy armor. Give me the GEP gun.|conv paul docks 2][$paul_choice to "GEP Gun"]]
+* [[The crossbow. Sometimes you've got to make a silent takedown.|conv paul docks 2][$paul_choice to "Mini-Crossbow"]]
+
+
+:: conv paul docks 2 [conversation] {"position":"225,525"}
+<<giveitem $paul_choice>><<set $talked_paul_docks to true>><<if $paul_choice == "Sniper">>\
+"I like to pick 'em off from a distance. I'll take the rifle." you say, as you reach in to the crate and pull out a PIS LRW350 Military Sniper Rifle, and a few clips of 30.06 ammo.
+
+Paul places his hand on the barrel of the rifle. "This isn't a training exercise, JC. Your targets will be human beings. Keep that in mind."
+
+You've heard Paul's lectures about restraint many times before. "I get up the idea. What's the first move?" 
+
+<<elseif $paul_choice == "GEP Gun">>
+"Never know when I might come up against heavy armor. Give me the GEP gun." You reach over and grab the Guided Explosive Projectile (GEP) Gun, a portable shoulder-mounted rocket launcher.
+
+Paul hands you a couple of spare rockets. "The GEP gun might be useful. They have a security bot on patrol near the Statue entrance."
+
+You finish loading the launcher, and stow the weapon away in your inventory. "Great. What's the first move?"
+
+<<elseif $paul_choice == "Mini-Crossbow">>
+"The crossbow. Sometimes you've got to make a silent takedown." Paul hands you the Mini-Crossbow, a small wrist-mounted espionage weapon, codenamed Night Sleeper, designed for fire various types of darts, including standard shots, flare darts, and the most useful tranq darts.
+
+Paul nods approvingly, and hands you some spare darts for ammunition. "Good thinking. With these tranquilizer darts, you'll have another nonlethal way to take down an enemy in addition to the prod." 
+
+"I get the idea. What's the first move?" You are eager to get going.
+<</if>>
+
+Paul hands you a small datacube. "I'm going to give you a map of the island. If you can get to the north dock, a UNATCO informant will give you a key to the Statue doors. He responds to the code-phrase 'iron and copper.' You could avoid a lot of fighting, though, if you found a back way into the Statue."
+<<addnote>>Informant at nort dock responds to 'iron and copper'<</addnote>>
+
+"I'll see how it looks onshore..." You reply as you finish scanning the information device, storing the map and a reference to the codeword in your datavault. 
+
+"Your primary objective is the makeshift command center the terrorists installed at the top of the Statue, but don't forget about Agent Hermann. We think he's being held on the ground floor."
+
+"What are my orders when I reach the command center?"
+
+"Interrogate the leader. We don't yet know why the terrorists would risk an open assault."
+<<defgoal 'm01_leader'>>Interrogate the NSF Leader at the top of the statue.<</defgoal>>
+<<defgoal 'm01_rescue_hermann'>>Rescue the captured UNATCO Agent.<</defgoal>>
+
+You can..
+* [[End the conversation|$prevzone]]
+* [[Ask Paul what his plans are|conv paul docks 3]]
+
+:: conv paul docks 3 [conversation] {"position":"225,525"}
+
+"You just going to stay here?" you ask.
+
+"There's been some activity at sea. I'm going to watch the coast."
+
+"Why'd they bring you back to New York?"
+
+"I don't know what they have planned. I messed up an assassination attempt on one of the Triad leaders in Hong Kong."
+
+"UNATCO pulled you out?"
+
+"It's a long story. You better head to the Statue."
+
+You can...
+* [[End the conversation|$prevzone]]
+* [[Ask Paul about his mission in Hong Kong|conv paul docks 4]]
+
+:: conv paul docks 4 [conversation] {"position":"150,250"}
+
+
+"Which Triad was UNATCO targeting?" you ask.
+
+"We'll talk about that later. How was your graduation?" Paul replies, quickly changing the subject.
+
+"I want to hear what happened..." you reply, attempting to put the discussion back on course, sensing his evasiveness.
+
+Paul stays true to his conviction, and refuses to discuss the mission.. "I wish I could have come. At the time I could have cared less that Mom and Dad came to mine, but it was a good thing. The U.N. threw a dinner in honor of me, the first nano-augmented agent."
+
+"I didn't know that. Guess I must be old news..." you reply, giving up on your previous attempts.
+
+"Dad made a toast. I don't know if you remember his old brown suit..."
+
+"A toast? That doesn't sound like our father."
+
+"It was hard for him in front of the diplomats, but he savored every moment."
+
+"Strange how proud he could be when so much was due to... our augmentations."
+
+"Yes, he was proud. I believe that much. It was nice to have done something for him and Mom. I wish someone could have been there for you."
+
+"I'm used to being on my own."
+
+"One can be TOO self-sufficient, I'm coming to believe.
+Best thing is to let the bots handle the ground assault.
+You might be able to find some supplies in the comm van by the helipad.
+Hard to believe this rock used to be a tourist attraction, huh?
+I'll keep watch on this side of the island."
+
+There is nothing more to discuss here.
+[[End conversation|$prevzone]]
+
+
+
+
+:: Saved Agent Hermann [conversation] {"position":"1100,525"}
+You enter the cell. The room is barren, save for scattered trashbags and bottles of alcohol strewn around.
+A couple of rats scurries past your foot.
+You approach the imposing figure ahead of you, a large bodied mechanically augmented agent.
+Parts of his body look as if they have been replaced with raw machinery.
+
+"Glad you're not hurt, Agent..." you say. 
+"Command should not have left us to be surrounded..." Hermann responds in a thick german accent.
+"Risk is part of the job. I think you lucked out this time."
+"Agent Navarre and I were ready to go in, but for no reason they said pull back.
+I do not retreat. Please give me a weapon and move out of the way."
+
+* [[First thing is to get you out of here. I'll handle the enemy.|Refusing to give Hermann a weapon]]
+<<if playerHasItem("Pistol")>>* [[As you wish. Take my pistol.|Giving Hermann a weapon]]<</if>>
+
+
+:: Giving Hermann a weapon [conversation] {"position":"1075,450"}
+<<set $gave_gunther_a_pistol to true>>\
+"As you wish. Take my pistol." You pull your pistol out and hand it to him.<<takeitem 'Pistol'>>
+Hermann grabs the pistol, inspecting it, checking the magazine... "That will be adequate. I will secure this level. You proceed up the stairs to
+the command center at the top. I will clean out the lower level."
+<<include "Gunther Leaves">>
+
+:: Refusing to give Hermann a weapon [conversation] {"position":"1100,650"}
+"First thing is to get you out of here. I'll handle the enemy."
+"Excuse that I have forgotten your brother Paul Denton and the infinite power of nano-augmentation."
+"I just can't spare any arms. Please retreat to a safe location."
+"Go ahead. Advance up the stairs to the command center at the top. I will take my
+rusty metal bones and sweep away into the junk pile.
+Now I see the reason for the pull-back. They wanted to show off their new
+nanoaugmentation technology."
+<<include "Gunther Leaves">>
+
+:: Gunther Leaves {"position":"1075,450"}
+<<set $freed_hermann to true>>\
+Gunther speeds out of the cell, and as he passes the threshold, the door closes behind him.
+You find yourself locked in the cell.
+
+After examining the area, you find a brick extending out from the wall by the door.
+You push it in, it slides gracefully in to the brick wall, and the door swings open.
+You begin to wonder if Agent Hermann knew that the door opened from the inside.
+[[End scene|Statue: Guard Room]]

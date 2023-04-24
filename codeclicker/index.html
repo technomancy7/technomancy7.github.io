@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Code Clicker a40.4</title>
+    <script src="codeclicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="codeclicker.css">
+    <link rel="stylesheet" href="animate.css">
+  </head>
+  
+  <body>
+	<div class="tcalert">
+       <div class="wbutton" id="cash">£0</div>
+       <button onclick="compile()">Compile...</button><br>
+		<div class="cpwr" id="pwr">Compile Power: 1<br>Auto-Compiling 0 every 5s</div>
+        <button id="pepsi" onclick="buy('pepsi', 2)">Buy Multipack of Pepsi Turbo (£100)</button>
+        
+        <div id="blockauto" style="display: none;"><button onclick="upgrade('auto')">Buy Automated Compiler</button> for £<span id="costauto">50</span> (Currently have: <label id="auto">0</label>) <a onclick="help('auto')" href="javascript:void(0);">?</a><br></div> 
+        
+		<div id="blockcpu" style="display: none;"><button onclick="upgrade('cpu')">Buy CPU upgrade</button> for £<span id="costcpu">100</span> (Currently have: <label id="cpu">1</label>) <a onclick="help('cpu')" href="javascript:void(0);">?</a><br></div>
+		
+		<div id="blockfarm" style="display: none;"><button onclick="upgrade('farm')">Buy Server Farm</button> for £<span id="costfarm">300</span> (Currently have: <label id="farm">0</label>) <a onclick="help('farm')" href="javascript:void(0);">?</a><br></div>
+		
+		<div id="blockaic" style="display: none;"><button onclick="upgrade('aic')">Buy Generic AI compile-manager</button> for £<span id="costaic">500</span> (Currently have: <label id="aic">0</label>) <a onclick="help('aic')" href="javascript:void(0);">?</a><br></div>
+		
+		<div id="blockaica" style="display: none;"><button onclick="upgrade('aica')">Buy Athena™ AI</button> for £<span id="costaica">1200</span> (Currently have: <label id="aica">0</label>) <a onclick="help('aica')" href="javascript:void(0);">?</a><br></div>
+	</div>
+  </body>
+</html>

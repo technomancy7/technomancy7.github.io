@@ -1,0 +1,305 @@
+:: Liberty Island: South {"position":"375,675"} {"position":"575,700"} Dock {"position":"575,825"}
+<<if $cli_input == 'test'>>Test accepted.<</if>>
+<<if visited() == 1>><<initzoneitems 'Wine Bottle' 'Liquor Bottle' 'Crowbar' 'Multitool' 'Baton' 'Pistol'>>You are a aboard a police boat, heading towards Liberty Island from the New York mainland. The strange looking pilot does not speak much during the journey, but luckily you aren't much of a talker either.
+You depart from the boat as it halts to a still at the dock. You are greeted with the sound of gunfire in the distance.
+<<set $mission to 1>>You check your equipment...
+<<giveitem "Medkit">>
+<<giveitem "Pistol">>
+<<addammo "Pistol" 6>>
+<<giveitem "Riot Prod">>
+<<addammo "Riot Prod" 4>>
+<<giveitem "Nano-Keyring">>
+<<giveitem "Ammo Box">>
+<<addnote>>You can use this screen to store notes. The story will also insert notes here at times.<</addnote>>
+<hr>
+Your infolink begins to beep, and your handler for this mission, Alex Jacobson, flashes in to your vision.
+<<alex>><<type 25ms>>Heads up, JC. Your brother Paul is on his way to meet you at the dock. The NSF is raiding the island, and shots have been fired. I repeat: find Paul. I will monitor your situation from HQ.<</type>><</alex>><</if>>
+Docked at the port is a Police Boat, where the <<link 'pilot'>>\
+<<set _diagopt to random(1, 3)>><<diag Pilot>>\
+<<if _diagopt is 1>>My orders are to stay here.\
+<<elseif _diagopt is 2>>I'd let the bots do the fighting if I were you.\
+<<elseif _diagopt is 3>>I'm glad this thing has bullet-proof glass.\
+<</if>><</diag>><</link>> waits patiently.
+There are multiple storage boxes sitting on a wooden pallette. Two of the storage containers seem breakable.
+<<if zoneHasItem('here', 'Crowbar')>>A crowbar sits beside the storage containers.<</if>>
+<<container "binoccrate" "General" "Binoculars">>
+<<container "lpcratedocks" "General" "Lockpick">>
+You see a UNATCO Trooper patrolling the area, alongside a security robot. 
+<<if $talked_paul_docks>>You can [[leave the dock|Liberty Island: South]] via the north exit.\
+<<else>>\
+Your brother [[Paul|conv paul docks 1][$prevzone to "Liberty Island: South Dock"]] stands just out of view at the entrance to the enclosed dock. <<if visited() == 1>><<defgoal 'm01_talk_paul'>>Talk to your brother, Paul.<</defgoal>><</if>><</if>>
+<<if zoneHasItem('here', 'Liquor')>>A crowbar sits beside the storage containers.<</if>>
+There are metal stairs leading [[down|Under Liberty Island: South Dock]] in to the water under the dock platform.
+
+
+
+
+
+
+:: Under Liberty Island: South Dock [underwater] {"position":"575,950"}
+You can climb back [[up the metal stairs|Liberty Island: South Dock]] to ground level. 
+You see a broken open steel cage. Two storage boxes float inside the cage.
+<<container "ulisd_box1" "General" "Biocell">>
+<<container "ulisd_box2" "General" "Multitool">>
+
+
+
+
+
+:: Liberty Island: South
+<<if $handled_first_encounter isnot true and previous() == "Liberty Island: South Dock">><<goto 'First Encounter'>><</if>>\
+To the south is [[Liberty Island: South Dock]] and the north is [[Liberty Island: Crossroad]].
+There is a [[path|Liberty Island: Statue Rear]] leading to the back of the statue.
+
+<<if getFlag("lislp") isnot "true">>A wooden crate sits on top of a large metal storage unit.<</if>>
+<<container "lislp" "Combat" "Gas Grenade">>
+
+Ahead is a corpse of a downed UNATCO trooper who is holding some items.
+<<initzoneitems 'Candy Bar' 'Cigarettes'>>
+<<if $lismb1 isnot true>>\
+There is a locked panel on the container. <<if playerHasItem("Lockpick")>>You can <<link 'unlock'>><<takeitem 'Lockpick'>><<set $lismb1 to true>><<reload>><</link>> the storage container.<</if>>
+<<else>>
+You can use the <<link 'Medical Bot'>><<medicalbot>><</link>>.
+<</if>>
+
+<<container "libp1" "General" "Multitool">>
+
+
+
+
+:: Liberty Island: Statue Rear {"position":"825,625"}
+There are crates stacked up against the perimeter of the statue base, that you can [[climb|Statue: Level 2 Outer]] up.
+There is a passage [[down|Liberty Island: Bunker]] to an underground bunker.
+You can go [[forward|Liberty Island: North]] to the north side of the island. or back to the [[Liberty Island: South]].
+<<if $taken_lisr_lockpick isnot true>>A <<link 'Lockpick'>><<giveitem 'Lockpick'>><<set $taken_lisr_lockpick to true>><<reload>><</link>> sits on top of a wooden bench.<</if>>
+A <<container 'scc' 'Combat' '10mm'>> sits next to the gigantic pile of crates. 
+
+
+
+
+
+
+:: Statue: Lobby {"position":"975,625"}
+You can go outside to the [[Statue: Gate]], up to [[Statue: Level 1 Stairs]].
+Passages lead to a [[Statue: Monitor Room]], or [[Statue: Guard Room]].
+<<initzoneitems 'LAM' 'Crowbar' 'Fire Extinguisher' 'Lockpick'>>
+There is a <<link 'datacube'>><<infodevice Datacube>>Brother,
+I've set up the turrets and cameras in the statue ruins... a hasty defense, but
+since we won't be here long, it should work. The security computer login is:
+NSF001. The password is: smashthestate.<</infodevice>><</link>> resting on a storage crate..
+
+Up on the balcony view, a storage box sits in the corner. <<container 'slb' 'Medical' 'Medkit'>>
+
+You can sneak through the [[vents|Statue: Waiting Room]].
+
+
+
+
+
+:: Statue: Monitor Room {"position":"950,600"}
+Back to [[Statue: Lobby]], or in to [[Statue: Waiting Room]].
+<<initzoneitems 'LAM' 'Soda'>>
+
+
+:: Statue: Waiting Room {"position":"950,600"}
+Back to [[Statue: Monitor Room]].
+There is vents leading back to [[Statue: Lobby]].
+<<initzoneitems 'Liquor' 'Multitool' 'Soyfood' 'PS20' 'Medkit'>>
+
+
+:: Statue: Guard Room {"position":"950,625"}
+<<initzoneitems 'Fire Extinguisher' 'Soy Food' 'Accuracy Mod' 'Baton'>>\
+<<if $handled_statue_cell_guard isnot true>><<goto 'Saving the Agent'>><</if>>\
+Back to [[Statue: Lobby]].
+
+There is a <<link 'computer'>><<computer 'nsf001' 'smashthestate'>>\
+<<set $statue_cell_open to true>><<reload>>
+<</computer>><</link>> on the wall.
+<<if $freed_hermann isnot true>>\
+<<if $statue_cell_open>>You can talk to [[Agent Hermann|Saved Agent Hermann]].<<else>>"Agent! Open the door.", you hear from inside the cell.<</if>>
+<</if>>
+
+
+
+:: Statue: Level 1 Stairs {"position":"950,600"}
+Up to [[Statue: Level 2 Stairs]], or down to [[Statue: Lobby]].
+<<container 'sl1s' 'General' 'Lockpick'>>
+There is a camera here.
+
+
+
+
+
+:: Statue: Level 2 Outer {"position":"975,625"}
+You can [[climb down|Statue: Crate Climb]] to the rear paths, or [[climb the stairs|Statue: Level 3 Outer]].
+A passage leads [[inside the statue|Statue: Level 2 Stairs]].
+<<container 'sl2o' 'Medical' 'Medkit'>>
+
+
+
+
+
+:: Statue: Level 2 Stairs {"position":"950,625"}
+A passage leads [[outside|Statue: Level 2 Outer]].
+The stairwell goes to either [[level 1|Statue: Level 1 Stairs]] or <<if $handled_lil3o_encounter isnot true>>[[level 3|Statue: Level 3 Interior]]<<else>>[[level 3*|Listening in]]<</if>>.
+
+
+
+
+
+:: Statue: Level 3 Outer {"position":"975,600"}
+There are stairs [[down|Statue: Level 2 Outer]] and a passage leading [[inside|Statue: Level 3 Interior]].
+
+
+
+
+
+:: Statue: Level 3 Interior {"position":"975,625"}
+There are multiple passages leading [[outside|Statue: Level 3 Outer]], and stairs leading [[down|Statue: Level 2 Stairs]]. Around the corner are stairs leading [[upward|Statue: Level 4]].
+<<if visited() == 1>>\
+<<if $freed_hermann is true>><<alex>><<type 25ms>>Gunther has reestablished contact. He says you helped him escape. Good work.<</type>><</alex>>
+<<else>>
+<<alex>><<type 25ms>>Good. You're nearing the command center. Agent Hermann remains in captivity on
+the ground floor, but we can probably get him out. Keep moving.<</type>><</alex>>
+<</if>><</if>>
+
+
+
+
+
+:: Statue: Level 4 {"position":"950,600"}
+You can go down to [[Statue: Level 3 Interior]]. There is a balcony.
+You can climb up to [[Statue: Top]].
+<<initzoneitems 'Candy Bar' 'Cigarettes' 'Flare' 'Flare' 'PS20'>>
+<<if visited() == 1>><<alex>><<type 25s>>Easy. We want you to take this one alive and conscious. Find out what you can
+about the shipment, then turn him over to one of the troopers.<</type>><</alex>><</if>>
+
+
+
+
+
+:: Statue: Top {"position":"950,600"}
+Stairs lead down to [[Statue: Level 4]].
+<<initzoneitems 'Liquor' 'Liquor' 'Flare' 'Flare' 'Augmentation Cannister (A)'>>\
+<<if visited() == 1>><<goto 'Interrogating the commander'>><</if>>\
+<<if $leo_dead isnot true>><<link 'Leo'>>\
+<<set _diagopt to random(1, 7)>><<diag Leo Gold>>\
+<<if _diagopt is 1>>You can't fight ideas with bullets.\
+<<elseif _diagopt is 2>>Do you ever ask what it's for? The surveillance, the police, the shoot-on-sight laws? Is that freedom?\
+<<elseif _diagopt is 3>>UNATCO teaches teenagers to fight when it still seems like a game, and -- look at you! -- you're a killing machine!\
+<<elseif _diagopt is 4>>Who's the scary one, huh? Me or you?\
+<<elseif _diagopt is 5>>The more of us you kill, the more that secessionism lives in the hearts of the people.\
+<<elseif _diagopt is 6>>Ever wonder why big car companies pay two percent tax while the guys on the assembly line pay forty?\
+<<elseif _diagopt is 7>>Corporations are so big you don't even know who you're working for. That's terror. Terror built into the system.\
+<</if>><</diag>><</link>> is stood in the corner of the room.<</if>>
+<<if visited() == 2>><<set $mission_1_complete to true>><<completegoal 'm01_leader'>>
+<<defgoal 'm01_return_to_base'>>\
+Return to UNATCO HQ on the west side of the island.\
+<</defgoal>>\
+<<alex>><<type 25s>>Well done. I will pass on your orders to the troopers. Report back to base on the west side of the island. Mission complete.<<if $freed_gunther isnot true>> By the way, Gunther slipped out on his own.<</if>><</type>><</alex>>
+A UNATCO soldier climbs the stairs to join you.<</if>>
+Quickly travel to [[UNATCO HQ Courtyard]].
+
+
+
+
+
+:: Liberty Island: Bunker [puzzle] {"position":"975,625"}
+<<if visited() == 1>>\
+<<alex>><<type 25s>>JC, sometimes there'll be areas that require some logic puzzling, more than just clicking on links.
+In these areas, you can input commands that follow oldschool text adventure syntax, "open object", "push object", etc.
+Try using verbal commands on objects that are in the area.
+Press the Command Prompt button in the sidebar to open the input. When in a puzzle area, the button is bolder.
+One last thing, puzzle areas aren't the only places where commands can cause events to happen.<</type>><</alex>><</if>>
+You can [[leave|Liberty Island: Statue Rear]] the bunker.
+<<if zoneHasItem('here', 'Hazmat Suit')>>A Hazmat Suit sits on the wall.<</if>>
+<<if zoneHasItem('here', 'Multitool')>>A Multitool is partially hidden on top of a storage unit, reachable by ladder.<</if>>
+There is a <<link 'datacube'>><<infodevice Datacube>>Brother,
+I've set up the turrets and cameras in the statue ruins... a hasty defense, but
+since we won't be here long, it should work. The security computer login is:
+NSF001. The password is: smashthestate.<</infodevice>><</link>> resting on a storage crate..
+
+There is a small metal crate.
+On the generator is a small control panel.
+<<if $cli_input != "">>
+'' COMMAND RESULT: 
+<<if $cli_input.startsWith("push ")>>\
+<<if $cli_input.endsWith(" crate")>>
+
+<<else>>
+Push what?
+<</if>>
+<</if>>
+''
+<</if>>
+<<if $opened_li_bunker>>\
+There is a fire extinguisher and crowbar lying on the storage crates.
+<<container 'libr1' 'Combat' 'Laser Mod'>>
+<<container 'libr2' 'Combat' 'Clip Mod'>>
+<<container 'libr3' 'General' 'Biocell'>>
+<</if>>
+
+
+
+:: Liberty Island: North {"position":"275,400"}
+To the north is the [[Liberty Island: North Dock]].
+The road forks, one side leads to [[Liberty Island: Statue Rear]], while the other leads to [[Liberty Island: West Path]] or [[Liberty Island: West Path Side Alleyway]].
+
+
+:: Liberty Island: North Dock {"position":"350,500"}
+Back to [[Liberty Island: North]].
+[[Harley Filbens Shack]] is at the edge of the dock.
+<<container 'lind1' 'Combat' 'Rocket'>>
+<<container 'lind2' 'Combat' '3006'>>
+<<container 'lind3' 'Medical' 'Medkit'>>
+<<initzoneitems 'Cigarettes' 'Flare' 'Flare' 'Flare'>>
+
+
+:: Liberty Island: Sunken Ship {"position":"625,225"}
+Up to [[Liberty Island: North Dock]].
+<<container 'liss1' 'General' 'Accuracy Mod'>>
+<<container 'liss2' 'Combat' 'Sawed-Off Shotgun'>>
+
+
+:: Harley Filbens Shack {"position":"925,275"}
+Out to [[Liberty Island: North Dock]].
+<<initzoneitems 'Flare' 'Flare' 'Flare' 'Flare' 'Flare' 'Combat Knife' 'Crowbar' 'Fire Extinguisher'>>
+//TODO shop 10mm for 175, 3006 for 300, darts for 50
+
+
+:: Liberty Island: Crossroad {"position":"850,350"}
+You can go to [[Liberty Island: South]].
+To the west is [[UNATCO HQ Courtyard]], while the [[Liberty Statue Courtyard]] is north.
+There is a <<link 'datacube'>><<infodevice Datacube>>Brother,
+I've set up the turrets and cameras in the statue ruins... a hasty defense, but
+since we won't be here long, it should work. The security computer login is:
+NSF001. The password is: smashthestate.<</infodevice>><</link>> resting on the storage crate..
+<<initzoneitems 'Battery' 'Pepper Gun'>>
+
+:: Statue: Gate {"position":"950,600"}
+Back to [[Liberty Statue Courtyard]], or inside to [[Statue: Lobby]].
+<<initzoneitems 'Flare' 'Flare'>>
+<<container 'sg1' 'General' 'Lockpick'>>
+
+
+:: Liberty Statue Courtyard {"position":"975,625"}
+You can approach the [[Statue: Gate]] from here.
+Southward leads to the [[Liberty Island: Crossroad]].
+Northward leads to either [[Liberty Island: West Path]] or [[Liberty Island: West Path Side Alleyway]].
+A [[concrete structure]] stands in the courtyard.
+
+
+:: concrete structure {"position":"725,300"}
+<<initzoneitems 'Flare' 'Flare'>>
+//Locked container TODO 3006, 100creds
+
+
+:: Liberty Island: West Path {"position":"525,325"}
+South is [[Liberty Statue Courtyard]], north is [[Liberty Island: North]].
+
+
+:: Liberty Island: West Path Side Alleyway [dark] {"position":"550,450"}
+South is [[Liberty Statue Courtyard]], north is [[Liberty Island: North]].
+
+
+

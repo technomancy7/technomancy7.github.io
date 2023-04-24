@@ -1,0 +1,258 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Deus Ex</title>
+    <meta name="description" content="UC Class API documentation..">
+    <meta name="author" content="Kaiser">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../kaiser.js"></script>
+  </head>
+  <body>
+    <header><h2>Deus Ex Documentation::Core</h2></header>
+    <section>
+	<nav>
+	  <ul>
+	    <li><a href="../index.html">Home</a></li>
+	    <li><a href="../about.html">About</a></li>
+	    <li><a href="https://twitter.com/_technomancer">Twitter</a></li>
+	    <li><a href="https://gitlab.com/technomancer7/">Gitlab</a></li>
+        <li><a href="https://discord.gg/jCFJ3A6">Discord</a></li>
+        -
+        <li><a href="RCON.html">RCON</a></li>
+<li><a href="Core.html">Core</a></li>
+<li><a href="OpenDX.html">OpenDX</a></li>
+<li><a href="Extension.html">Extension</a></li>
+<li><a href="PartyStuff.html">PartyStuff</a></li>
+<li><a href="Engine.html">Engine</a></li>
+<li><a href="DeusEx.html">DeusEx</a></li>
+        -
+        <li><a href="#Commandlet.uc">Commandlet.uc</a></li>
+<li><a href="#DebugInfo.uc">DebugInfo.uc</a></li>
+<li><a href="#HelloWorldCommandlet.uc">HelloWorldCommandlet.uc</a></li>
+<li><a href="#Locale.uc">Locale.uc</a></li>
+<li><a href="#Object.uc">Object.uc</a></li>
+<li><a href="#Subsystem.uc">Subsystem.uc</a></li>
+<li><a href="#Time.uc">Time.uc</a></li>
+	  </ul>
+	</nav>
+	<article>  
+    <button onclick="topFunction()" id="btt" title="Go to top">Top</button>
+    <a class="headerlink" href="#Commandlet.uc" title="Permanent link"><h2 id="Commandlet.uc">Commandlet.uc (extends )</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var localized string HelpCmd;<br>var localized string HelpOneLiner;<br>var localized string HelpUsage;<br>var localized string HelpWebLink;<br>var localized string HelpParm[16];<br>var localized string HelpDesc[16];<br>var bool LogToStdout;<br>var bool IsServer, IsClient, IsEditor;<br>var bool LazyLoad;<br>var bool ShowErrorCount;<br>var bool ShowBanner;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">LogToStdout=True<br>IsServer=True<br>IsClient=True<br>IsEditor=True<br>LazyLoad=True<br>ShowBanner=True</div>
+<h3 id="Commandlet.Main"><a class="headerlink" href="#Commandlet.Main" title="Permanent link">Main</a> (string Parms) -> int | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#DebugInfo.uc" title="Permanent link"><h2 id="DebugInfo.uc">DebugInfo.uc (extends Object)</h2></a>
+
+<h3 id="DebugInfo.AddTimingData"><a class="headerlink" href="#DebugInfo.AddTimingData" title="Permanent link">AddTimingData</a> (string obj, string objName, int time) | native</h3>
+
+<h3 id="DebugInfo.Command"><a class="headerlink" href="#DebugInfo.Command" title="Permanent link">Command</a> (string cmd) | native</h3>
+
+<h3 id="DebugInfo.GetString"><a class="headerlink" href="#DebugInfo.GetString" title="Permanent link">GetString</a> (string Hash) | native</h3>
+
+<h3 id="DebugInfo.SetString"><a class="headerlink" href="#DebugInfo.SetString" title="Permanent link">SetString</a> (string Hash, string Value) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#HelloWorldCommandlet.uc" title="Permanent link"><h2 id="HelloWorldCommandlet.uc">HelloWorldCommandlet.uc (extends )</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var int intparm;<br>var string strparm;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">HelpCmd="HelloWorld"<br>HelpOneLiner="Sample"<br>HelpUsage="HelloWorld"<br>HelpParm(0)="IntParm"<br>HelpParm(1)="StrParm"<br>HelpDesc(0)="An integer parameter"<br>HelpDesc(1)="A string parameter"</div>
+<h3 id="HelloWorldCommandlet.Main"><a class="headerlink" href="#HelloWorldCommandlet.Main" title="Permanent link">Main</a> (string Parms) -> int</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;log( "Hello, world!" );<br>&#9;if( Parms!="" )<br>&#9;&#9;log( "Command line parameters=" $ Parms );<br>&#9;if( intparm!=0 )<br>&#9;&#9;log( "You specified intparm=" $ intparm );<br>&#9;if( strparm!="" )<br>&#9;&#9;log( "You specified strparm=" $ strparm );<br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#Locale.uc" title="Permanent link"><h2 id="Locale.uc">Locale.uc (extends )</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const string ISO3Language;<br>var const localized string DisplayLanguage;<br>var const localized string PrePercent, PostPercent;<br>var const localized string PreCurrencySymbol, PostCurrencySymbol;<br>var const localized int PercentScaler;<br>var const localized int ThousandsCount, ThousandsCountCurrency;<br>var const localized string<br>var const localized string ThousandsDelimitor, ThousandsDelimitorCurrency;<br>var const localized string Decimal, DecimalCurrency;<br>var const localized int DecimalCount;<br>var const localized string Months[12];<br>var const localized string DaysOfWeek[7];<br>var const localized string AMPM[2];<br>var const localized ShowAMPM;<br>var const localized array<string> EditableTimeFields;<br>var const localized string<br>var const localized string DateFormat;</div>
+<h3 id="Locale.Compare"><a class="headerlink" href="#Locale.Compare" title="Permanent link">Compare</a> (string A, string B) -> int</h3>
+
+<h3 id="Locale.CurrencyToString"><a class="headerlink" href="#Locale.CurrencyToString" title="Permanent link">CurrencyToString</a> (float Currency) -> string</h3>
+
+<h3 id="Locale.DateTimeToMap"><a class="headerlink" href="#Locale.DateTimeToMap" title="Permanent link">DateTimeToMap</a> (long T) -> map<string,string></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local map<string,string> M;<br><br>&#9;M.Set("Year",       Time.GetYear(T));<br>&#9;M.Set("Month",      Time.GetMonth(T));<br>&#9;M.Set("MonthName",  Months(Time.GetMonth(T)));<br>&#9;M.Set("Day",        Time.GetDay(T));<br>&#9;M.Set("DayName",    DaysOfWeek(Time.GetDay(T)));<br>&#9;M.Set("Hour24",     Time.GetHour(T));<br>&#9;M.Set("Hour12",     Time.GetHour(T)%12);<br>&#9;M.Set("AMPM",       AMPM(Time.GetHour(T)/12);<br>&#9;M.Set("Minute",     Time.GetMinute(T));<br>&#9;M.Set("Second",     Time.GetSecond(T));<br>&#9;M.Set("MSec",       Time.GetMSec(T));<br>&#9;M.Set("USec",       Time.GetUSec(T));<br>&#9;M.Set("NSec",       Time.GetNSec(T));<br>&#9;return M;<br><br></div>
+<h3 id="Locale.DateToString"><a class="headerlink" href="#Locale.DateToString" title="Permanent link">DateToString</a> (long T) -> string</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return string.Format( DateFormat, DateTimeToMap(T) );<br><br></div>
+<h3 id="Locale.GetDisplayLanguage"><a class="headerlink" href="#Locale.GetDisplayLanguage" title="Permanent link">GetDisplayLanguage</a> (string Language) -> string | native</h3>
+
+<h3 id="Locale.GetLanguage"><a class="headerlink" href="#Locale.GetLanguage" title="Permanent link">GetLanguage</a> -> string | native</h3>
+
+<h3 id="Locale.MapToDateTime"><a class="headerlink" href="#Locale.MapToDateTime" title="Permanent link">MapToDateTime</a> (map<string, string> Map, out long T) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;//!!<br><br></div>
+<h3 id="Locale.NumberToString"><a class="headerlink" href="#Locale.NumberToString" title="Permanent link">NumberToString</a> (float Number) -> string</h3>
+
+<h3 id="Locale.PercentToString"><a class="headerlink" href="#Locale.PercentToString" title="Permanent link">PercentToString</a> (float Fraction) -> string</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return PrePercent $ int(Fraction * PercentScaler) $ PostPercent;<br><br></div>
+<h3 id="Locale.SetLanguage"><a class="headerlink" href="#Locale.SetLanguage" title="Permanent link">SetLanguage</a> (string NewLanguage) -> bool | native</h3>
+
+<h3 id="Locale.TimeToString"><a class="headerlink" href="#Locale.TimeToString" title="Permanent link">TimeToString</a> (long T, bool Brief, bool Countdown) -> string</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local string S;<br><br>&#9;if( Brief )<br>&#9;{<br>&#9;&#9;if( ShowAMPM ) S = BriefTimeFormatAMPM;<br>&#9;&#9;else           S = BriefTimeFormat24Hour, <br>&#9;}<br>&#9;else if( !Countdown )<br>&#9;{<br>&#9;&#9;if( ShowAMPM ) S = TimeFormatAMPM;<br>&#9;&#9;else           S = TimeFormat24Hour, <br>&#9;}<br>&#9;else<br>&#9;{<br>&#9;&#9;S = CountdownTimeFormat;<br>&#9;}<br>&#9;return string.Format( S, DateTimeToMap(T) );<br><br></div>
+<h3 id="Locale.ToLower"><a class="headerlink" href="#Locale.ToLower" title="Permanent link">ToLower</a> (string S) -> string</h3>
+
+<h3 id="Locale.ToUpper"><a class="headerlink" href="#Locale.ToUpper" title="Permanent link">ToUpper</a> (string S) -> string</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#Object.uc" title="Permanent link"><h2 id="Object.uc">Object.uc (extends )</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var native private const int ObjectInternal[6];<br>var native const object Outer;<br>var native const int ObjectFlags;<br>var(Object) native const editconst name Name;<br>var(Object) native const editconst class Class;<br>var int A, B, C, D;<br>var() config float X, Y, Z;<br>var() config float W;<br>var() config int Pitch, Yaw, Roll;<br>var() config vector Origin, XAxis, YAxis, ZAxis;<br>var() config vector Scale;<br>var() config float SheerRate;<br>var() config enum ESheerAxis<br>var() config byte R, G, B, A;<br>var vector Min, Max;<br>var byte IsValid;<br>var plane Sphere;</div>
+<h3 id="Object.Abs"><a class="headerlink" href="#Object.Abs" title="Permanent link">Abs</a> (float A) | native</h3>
+
+<h3 id="Object.AllObjects"><a class="headerlink" href="#Object.AllObjects" title="Permanent link">AllObjects</a> (class<object> BaseClass, out object Object) | native</h3>
+
+<h3 id="Object.Asc"><a class="headerlink" href="#Object.Asc" title="Permanent link">Asc</a> (string S) | native</h3>
+
+<h3 id="Object.Atan"><a class="headerlink" href="#Object.Atan" title="Permanent link">Atan</a> (float A) | native</h3>
+
+<h3 id="Object.BeginState"><a class="headerlink" href="#Object.BeginState" title="Permanent link">BeginState</a></h3>
+
+<h3 id="Object.Caps"><a class="headerlink" href="#Object.Caps" title="Permanent link">Caps</a> (coerce string S) | native</h3>
+
+<h3 id="Object.Chr"><a class="headerlink" href="#Object.Chr" title="Permanent link">Chr</a> (int i) | native</h3>
+
+<h3 id="Object.Clamp"><a class="headerlink" href="#Object.Clamp" title="Permanent link">Clamp</a> (int V, int A, int B) | native</h3>
+
+<h3 id="Object.Cos"><a class="headerlink" href="#Object.Cos" title="Permanent link">Cos</a> (float A) | native</h3>
+
+<h3 id="Object.CyclesToSeconds"><a class="headerlink" href="#Object.CyclesToSeconds" title="Permanent link">CyclesToSeconds</a> (int cycles) | native</h3>
+
+<h3 id="Object.Disable"><a class="headerlink" href="#Object.Disable" title="Permanent link">Disable</a> (name ProbeFunc) | native</h3>
+
+<h3 id="Object.Enable"><a class="headerlink" href="#Object.Enable" title="Permanent link">Enable</a> (name ProbeFunc) | native</h3>
+
+<h3 id="Object.EndState"><a class="headerlink" href="#Object.EndState" title="Permanent link">EndState</a></h3>
+
+<h3 id="Object.Exp"><a class="headerlink" href="#Object.Exp" title="Permanent link">Exp</a> (float A) | native</h3>
+
+<h3 id="Object.FClamp"><a class="headerlink" href="#Object.FClamp" title="Permanent link">FClamp</a> (float V, float A, float B) | native</h3>
+
+<h3 id="Object.FMax"><a class="headerlink" href="#Object.FMax" title="Permanent link">FMax</a> (float A, float B) | native</h3>
+
+<h3 id="Object.FMin"><a class="headerlink" href="#Object.FMin" title="Permanent link">FMin</a> (float A, float B) | native</h3>
+
+<h3 id="Object.FRand"><a class="headerlink" href="#Object.FRand" title="Permanent link">FRand</a> | native</h3>
+
+<h3 id="Object.GetAxes"><a class="headerlink" href="#Object.GetAxes" title="Permanent link">GetAxes</a> (rotator A, out vector X, out vector Y, out vector Z) | native</h3>
+
+<h3 id="Object.GetEnum"><a class="headerlink" href="#Object.GetEnum" title="Permanent link">GetEnum</a> (object E, int i) -> name | native</h3>
+
+<h3 id="Object.GetPropertyText"><a class="headerlink" href="#Object.GetPropertyText" title="Permanent link">GetPropertyText</a> (string PropName) -> string | native</h3>
+
+<h3 id="Object.GetStateName"><a class="headerlink" href="#Object.GetStateName" title="Permanent link">GetStateName</a> | native</h3>
+
+<h3 id="Object.GetUnAxes"><a class="headerlink" href="#Object.GetUnAxes" title="Permanent link">GetUnAxes</a> (rotator A, out vector X, out vector Y, out vector Z) | native</h3>
+
+<h3 id="Object.GotoState"><a class="headerlink" href="#Object.GotoState" title="Permanent link">GotoState</a> (optional name NewState, optional name Label) | native</h3>
+
+<h3 id="Object.InStr"><a class="headerlink" href="#Object.InStr" title="Permanent link">InStr</a> (coerce string S, coerce string t) | native</h3>
+
+<h3 id="Object.Invert"><a class="headerlink" href="#Object.Invert" title="Permanent link">Invert</a> (out vector X, out vector Y, out vector Z) | native</h3>
+
+<h3 id="Object.IsA"><a class="headerlink" href="#Object.IsA" title="Permanent link">IsA</a> (name ClassName) | native</h3>
+
+<h3 id="Object.IsInState"><a class="headerlink" href="#Object.IsInState" title="Permanent link">IsInState</a> (name TestState) | native</h3>
+
+<h3 id="Object.Left"><a class="headerlink" href="#Object.Left" title="Permanent link">Left</a> (coerce string S, int i) | native</h3>
+
+<h3 id="Object.Len"><a class="headerlink" href="#Object.Len" title="Permanent link">Len</a> (coerce string S) | native</h3>
+
+<h3 id="Object.Lerp"><a class="headerlink" href="#Object.Lerp" title="Permanent link">Lerp</a> (float Alpha, float A, float B) | native</h3>
+
+<h3 id="Object.Localize"><a class="headerlink" href="#Object.Localize" title="Permanent link">Localize</a> (string SectionName, string KeyName, string PackageName) -> string | native</h3>
+
+<h3 id="Object.Log"><a class="headerlink" href="#Object.Log" title="Permanent link">Log</a> (coerce string S, optional name Tag) | native</h3>
+
+<h3 id="Object.Loge"><a class="headerlink" href="#Object.Loge" title="Permanent link">Loge</a> (float A) | native</h3>
+
+<h3 id="Object.Max"><a class="headerlink" href="#Object.Max" title="Permanent link">Max</a> (int A, int B) | native</h3>
+
+<h3 id="Object.Mid"><a class="headerlink" href="#Object.Mid" title="Permanent link">Mid</a> (coerce string S, int i, optional int j) | native</h3>
+
+<h3 id="Object.Min"><a class="headerlink" href="#Object.Min" title="Permanent link">Min</a> (int A, int B) | native</h3>
+
+<h3 id="Object.MirrorVectorByNormal"><a class="headerlink" href="#Object.MirrorVectorByNormal" title="Permanent link">MirrorVectorByNormal</a> (vector Vect, vector Normal) | native</h3>
+
+<h3 id="Object.Normal"><a class="headerlink" href="#Object.Normal" title="Permanent link">Normal</a> (vector A) | native</h3>
+
+<h3 id="Object.Normalize"><a class="headerlink" href="#Object.Normalize" title="Permanent link">Normalize</a> (rotator Rot) -> rotator | native</h3>
+
+<h3 id="Object.OrthoRotation"><a class="headerlink" href="#Object.OrthoRotation" title="Permanent link">OrthoRotation</a> (vector X, vector Y, vector Z) -> rotator | native</h3>
+
+<h3 id="Object.Rand"><a class="headerlink" href="#Object.Rand" title="Permanent link">Rand</a> (int Max) | native</h3>
+
+<h3 id="Object.RandRange"><a class="headerlink" href="#Object.RandRange" title="Permanent link">RandRange</a> (float Min, float Max) -> float</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>    return Min + (Max - Min) * FRand();<br><br></div>
+<h3 id="Object.ResetConfig"><a class="headerlink" href="#Object.ResetConfig" title="Permanent link">ResetConfig</a> | native</h3>
+
+<h3 id="Object.Right"><a class="headerlink" href="#Object.Right" title="Permanent link">Right</a> (coerce string S, int i) | native</h3>
+
+<h3 id="Object.RotRand"><a class="headerlink" href="#Object.RotRand" title="Permanent link">RotRand</a> (optional bool bRoll) | native</h3>
+
+<h3 id="Object.SaveConfig"><a class="headerlink" href="#Object.SaveConfig" title="Permanent link">SaveConfig</a> | native</h3>
+
+<h3 id="Object.SetPropertyText"><a class="headerlink" href="#Object.SetPropertyText" title="Permanent link">SetPropertyText</a> (string PropName, string PropValue) | native</h3>
+
+<h3 id="Object.Sin"><a class="headerlink" href="#Object.Sin" title="Permanent link">Sin</a> (float A) | native</h3>
+
+<h3 id="Object.Smerp"><a class="headerlink" href="#Object.Smerp" title="Permanent link">Smerp</a> (float Alpha, float A, float B) | native</h3>
+
+<h3 id="Object.Sqrt"><a class="headerlink" href="#Object.Sqrt" title="Permanent link">Sqrt</a> (float A) | native</h3>
+
+<h3 id="Object.Square"><a class="headerlink" href="#Object.Square" title="Permanent link">Square</a> (float A) | native</h3>
+
+<h3 id="Object.StaticSaveConfig"><a class="headerlink" href="#Object.StaticSaveConfig" title="Permanent link">StaticSaveConfig</a> | native</h3>
+
+<h3 id="Object.Tan"><a class="headerlink" href="#Object.Tan" title="Permanent link">Tan</a> (float A) | native</h3>
+
+<h3 id="Object.VRand"><a class="headerlink" href="#Object.VRand" title="Permanent link">VRand</a> | native</h3>
+
+<h3 id="Object.VSize"><a class="headerlink" href="#Object.VSize" title="Permanent link">VSize</a> (vector A) | native</h3>
+
+<h3 id="Object.Warn"><a class="headerlink" href="#Object.Warn" title="Permanent link">Warn</a> (coerce string S) | native</h3>
+
+<h3 id="Object.clock"><a class="headerlink" href="#Object.clock" title="Permanent link">clock</a> (out int cycles) | native</h3>
+
+<h3 id="Object.unclock"><a class="headerlink" href="#Object.unclock" title="Permanent link">unclock</a> (out int cycles) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#Subsystem.uc" title="Permanent link"><h2 id="Subsystem.uc">Subsystem.uc (extends Object)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private native const int ExecVtbl;</div>
+<br><br><hr>
+<a class="headerlink" href="#Time.uc" title="Permanent link"><h2 id="Time.uc">Time.uc (extends )</h2></a>
+
+<h3 id="Time.DayOfWeek"><a class="headerlink" href="#Time.DayOfWeek" title="Permanent link">DayOfWeek</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetDays"><a class="headerlink" href="#Time.GetDays" title="Permanent link">GetDays</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetGlobalTime"><a class="headerlink" href="#Time.GetGlobalTime" title="Permanent link">GetGlobalTime</a> -> long</h3>
+
+<h3 id="Time.GetHours"><a class="headerlink" href="#Time.GetHours" title="Permanent link">GetHours</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetMSecs"><a class="headerlink" href="#Time.GetMSecs" title="Permanent link">GetMSecs</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetMinutes"><a class="headerlink" href="#Time.GetMinutes" title="Permanent link">GetMinutes</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetMonths"><a class="headerlink" href="#Time.GetMonths" title="Permanent link">GetMonths</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetNSecs"><a class="headerlink" href="#Time.GetNSecs" title="Permanent link">GetNSecs</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetSeconds"><a class="headerlink" href="#Time.GetSeconds" title="Permanent link">GetSeconds</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetUSecs"><a class="headerlink" href="#Time.GetUSecs" title="Permanent link">GetUSecs</a> (long Time) -> long</h3>
+
+<h3 id="Time.GetYears"><a class="headerlink" href="#Time.GetYears" title="Permanent link">GetYears</a> (long Time) -> long</h3>
+
+<h3 id="Time.GlobalToLocal"><a class="headerlink" href="#Time.GlobalToLocal" title="Permanent link">GlobalToLocal</a> -> long</h3>
+
+<h3 id="Time.LocalToGlobal"><a class="headerlink" href="#Time.LocalToGlobal" title="Permanent link">LocalToGlobal</a> -> long</h3>
+
+<h3 id="Time.SpanSeconds"><a class="headerlink" href="#Time.SpanSeconds" title="Permanent link">SpanSeconds</a> (long Later, long Earlier) -> float</h3>
+
+<br><br><hr>
+	</article>
+    </section>
+    <footer> By Kaiser, The Coded Mind (C) 2021</footer>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+:: First Encounter
+You climb the steps to the main area of the island..
+To your right, an NSF terrorist is on patrol, currently walking away from you.
+A large pillar is obscuring your view of the path leading directly forward, but you hear noises from that direction.
+
+You can...
+<<if playerHasItem("Pistol")>>* Take a shot at the patrolling terrorist...<br/><</if>>\
+<<if playerHasItem("Riot Prod")>>* Sneak up to the terrorist and stun him...<br/><</if>>\
+<<if playerHasItem("Baton")>>* Sneak up to the terrorist and hit with 'Baton'...<br/><</if>>\
+* Attempt to sneak past the right side path
+* Sneak around the pillar
+* [[Pull back to the Dock|Liberty Island: South Dock]]
+
+:: First Encounter 1.A
+You take a shot at the terrorist...
+<<skillcheck 'Pistols' '2'>>
+You hit!
+<<failedcheck>>
+You miss!
+<</skillcheck>>

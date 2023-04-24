@@ -1,0 +1,1161 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Deus Ex</title>
+    <meta name="description" content="UC Class API documentation..">
+    <meta name="author" content="Kaiser">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../kaiser.js"></script>
+  </head>
+  <body>
+    <header><h2>Deus Ex Documentation::Extension</h2></header>
+    <section>
+	<nav>
+	  <ul>
+	    <li><a href="../index.html">Home</a></li>
+	    <li><a href="../about.html">About</a></li>
+	    <li><a href="https://twitter.com/_technomancer">Twitter</a></li>
+	    <li><a href="https://gitlab.com/technomancer7/">Gitlab</a></li>
+        <li><a href="https://discord.gg/jCFJ3A6">Discord</a></li>
+        -
+        <li><a href="RCON.html">RCON</a></li>
+<li><a href="Core.html">Core</a></li>
+<li><a href="OpenDX.html">OpenDX</a></li>
+<li><a href="Extension.html">Extension</a></li>
+<li><a href="PartyStuff.html">PartyStuff</a></li>
+<li><a href="Engine.html">Engine</a></li>
+<li><a href="DeusEx.html">DeusEx</a></li>
+        -
+        <li><a href="#BorderWindow.uc">BorderWindow.uc</a></li>
+<li><a href="#ButtonWindow.uc">ButtonWindow.uc</a></li>
+<li><a href="#CheckboxWindow.uc">CheckboxWindow.uc</a></li>
+<li><a href="#ClipWindow.uc">ClipWindow.uc</a></li>
+<li><a href="#ComputerWindow.uc">ComputerWindow.uc</a></li>
+<li><a href="#EditWindow.uc">EditWindow.uc</a></li>
+<li><a href="#ExtString.uc">ExtString.uc</a></li>
+<li><a href="#ExtensionObject.uc">ExtensionObject.uc</a></li>
+<li><a href="#Flag.uc">Flag.uc</a></li>
+<li><a href="#FlagBase.uc">FlagBase.uc</a></li>
+<li><a href="#FlagBool.uc">FlagBool.uc</a></li>
+<li><a href="#FlagByte.uc">FlagByte.uc</a></li>
+<li><a href="#FlagFloat.uc">FlagFloat.uc</a></li>
+<li><a href="#FlagInt.uc">FlagInt.uc</a></li>
+<li><a href="#FlagName.uc">FlagName.uc</a></li>
+<li><a href="#FlagRotator.uc">FlagRotator.uc</a></li>
+<li><a href="#FlagVector.uc">FlagVector.uc</a></li>
+<li><a href="#GC.uc">GC.uc</a></li>
+<li><a href="#LargeTextWindow.uc">LargeTextWindow.uc</a></li>
+<li><a href="#ListWindow.uc">ListWindow.uc</a></li>
+<li><a href="#ModalWindow.uc">ModalWindow.uc</a></li>
+<li><a href="#PlayerPawnExt.uc">PlayerPawnExt.uc</a></li>
+<li><a href="#RadioBoxWindow.uc">RadioBoxWindow.uc</a></li>
+<li><a href="#RootWindow.uc">RootWindow.uc</a></li>
+<li><a href="#ScaleManagerWindow.uc">ScaleManagerWindow.uc</a></li>
+<li><a href="#ScaleWindow.uc">ScaleWindow.uc</a></li>
+<li><a href="#ScrollAreaWindow.uc">ScrollAreaWindow.uc</a></li>
+<li><a href="#TabGroupWindow.uc">TabGroupWindow.uc</a></li>
+<li><a href="#TextLogWindow.uc">TextLogWindow.uc</a></li>
+<li><a href="#TextWindow.uc">TextWindow.uc</a></li>
+<li><a href="#TileWindow.uc">TileWindow.uc</a></li>
+<li><a href="#ToggleWindow.uc">ToggleWindow.uc</a></li>
+<li><a href="#ViewportWindow.uc">ViewportWindow.uc</a></li>
+<li><a href="#Window.uc">Window.uc</a></li>
+	  </ul>
+	</nav>
+	<article>  
+    <button onclick="topFunction()" id="btt" title="Go to top">Top</button>
+    <a class="headerlink" href="#BorderWindow.uc" title="Permanent link"><h2 id="BorderWindow.uc">BorderWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const texture borderLeft;<br>var const texture borderTopLeft;<br>var const texture borderTop;<br>var const texture borderTopRight;<br>var const texture borderRight;<br>var const texture borderBottomRight;<br>var const texture borderBottom;<br>var const texture borderBottomLeft;<br>var const texture center;<br>var const texture moveCursor;<br>var const texture hMoveCursor;<br>var const texture vMoveCursor;<br>var const texture tlMoveCursor;<br>var const texture trMoveCursor;<br>var EDrawStyle    borderStyle;     // Solid, translucent or masked<br>var bool          bSmoothBorder;   // TRUE if the borders should be smoothed<br>var bool          bStretchBorder;  // TRUE=stretched, FALSE=repeated tile<br>var const bool    bResizeable;     // TRUE if the user can resize by dragging<br>var const bool    bMarginsFromBorder; // TRUE if child margins are based on borders<br>var float         childLeftMargin;<br>var float         childRightMargin;<br>var float         childTopMargin;<br>var float         childBottomMargin;<br>var private float leftMargin;<br>var private float rightMargin;<br>var private float topMargin;<br>var private float bottomMargin;<br>var private bool  bLeftDrag;<br>var private bool  bRightDrag;<br>var private bool  bUpDrag;<br>var private bool  bDownDrag;<br>var private float lastMouseX;<br>var private float lastMouseY;<br>var private float dragX;<br>var private float dragY;<br>var private float dragWidth;<br>var private float dragHeight;</div>
+<h3 id="BorderWindow.BaseMarginsFromBorder"><a class="headerlink" href="#BorderWindow.BaseMarginsFromBorder" title="Permanent link">BaseMarginsFromBorder</a> (optional bool bBorder) | native</h3>
+
+<h3 id="BorderWindow.EnableResizing"><a class="headerlink" href="#BorderWindow.EnableResizing" title="Permanent link">EnableResizing</a> (optional bool bResize) | native</h3>
+
+<h3 id="BorderWindow.SetBorderStyle"><a class="headerlink" href="#BorderWindow.SetBorderStyle" title="Permanent link">SetBorderStyle</a> (EDrawStyle newBorderStyle)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;borderStyle = newBorderStyle;<br><br></div>
+<h3 id="BorderWindow.SmoothBorder"><a class="headerlink" href="#BorderWindow.SmoothBorder" title="Permanent link">SmoothBorder</a> (bool bNewSmoothBorder)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;bSmoothBorder = bNewSmoothBorder;<br><br></div>
+<h3 id="BorderWindow.StretchBorder"><a class="headerlink" href="#BorderWindow.StretchBorder" title="Permanent link">StretchBorder</a> (bool bNewStretchBorder)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;bStretchBorder = bNewStretchBorder;<br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#ButtonWindow.uc" title="Permanent link"><h2 id="ButtonWindow.uc">ButtonWindow.uc (extends TextWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var texture tx;<br>var color   tlColor;<br>var color   txColor;<br>var const bool                bButtonPressed;<br>var const bool                bMousePressed;<br>var const bool                bAutoRepeat;<br>var const bool                bEnableRightMouseClick;<br>var const float               activateDelay;<br>var const float               initialDelay;<br>var const float               repeatRate;<br>var const texture             curTexture;<br>var const color               curTileColor;<br>var const color               curTextColor;<br>var private sound             pressSound;<br>var private sound             clickSound;<br>var private int               activateTimer;<br>var private float             repeatTime;<br>var private EInputKey         lastInputKey;<br>var private ButtonDisplayInfo info[6];</div>
+<h3 id="ButtonWindow.AcceleratorKeyPressed"><a class="headerlink" href="#ButtonWindow.AcceleratorKeyPressed" title="Permanent link">AcceleratorKeyPressed</a> (string key) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br><br><br>&#9;retval = Super.AcceleratorKeyPressed(key);<br><br>&#9;if (!retval)<br>&#9;{<br>&#9;&#9;PressButton();<br><br>&#9;&#9;retval = true;<br>&#9;}<br><br>&#9;return retval;<br><br></div>
+<h3 id="ButtonWindow.ActivateButton"><a class="headerlink" href="#ButtonWindow.ActivateButton" title="Permanent link">ActivateButton</a> (EInputKey key) | native</h3>
+
+<h3 id="ButtonWindow.EnableRightMouseClick"><a class="headerlink" href="#ButtonWindow.EnableRightMouseClick" title="Permanent link">EnableRightMouseClick</a> (optional bool bEnable) | native</h3>
+
+<h3 id="ButtonWindow.PressButton"><a class="headerlink" href="#ButtonWindow.PressButton" title="Permanent link">PressButton</a> (optional EInputKey key) | native</h3>
+
+<h3 id="ButtonWindow.SetActivateDelay"><a class="headerlink" href="#ButtonWindow.SetActivateDelay" title="Permanent link">SetActivateDelay</a> (optional float newDelay) | native</h3>
+
+<h3 id="ButtonWindow.VirtualKeyPressed"><a class="headerlink" href="#ButtonWindow.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br><br><br>&#9;retval = Super.VirtualKeyPressed(key, bRepeat);<br><br>&#9;if ((key == IK_Enter) || (key == IK_Space))<br>&#9;{<br>&#9;&#9;PressButton(key);<br><br>&#9;&#9;retval = TRUE;<br>&#9;}<br><br>&#9;return retval;<br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#CheckboxWindow.uc" title="Permanent link"><h2 id="CheckboxWindow.uc">CheckboxWindow.uc (extends ToggleWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const texture    toggleOff;<br>var const texture    toggleOn;<br>var const float      textureWidth;<br>var const float      textureHeight;<br>var const float      checkboxSpacing;<br>var const bool       bRightSide;<br>var const EDrawStyle checkboxStyle;<br>var const Color      checkboxColor;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">toggleOff=Texture'Extension.CheckboxOff'<br>toggleOn=Texture'Extension.CheckboxOn'</div>
+<h3 id="CheckboxWindow.SetCheckboxColor"><a class="headerlink" href="#CheckboxWindow.SetCheckboxColor" title="Permanent link">SetCheckboxColor</a> (Color newColor) | native</h3>
+
+<h3 id="CheckboxWindow.SetCheckboxColorRGB"><a class="headerlink" href="#CheckboxWindow.SetCheckboxColorRGB" title="Permanent link">SetCheckboxColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetCheckboxColor(newColor);<br><br></div>
+<h3 id="CheckboxWindow.SetCheckboxSpacing"><a class="headerlink" href="#CheckboxWindow.SetCheckboxSpacing" title="Permanent link">SetCheckboxSpacing</a> (float newSpacing) | native</h3>
+
+<h3 id="CheckboxWindow.SetCheckboxStyle"><a class="headerlink" href="#CheckboxWindow.SetCheckboxStyle" title="Permanent link">SetCheckboxStyle</a> (EDrawStyle newStyle) | native</h3>
+
+<h3 id="CheckboxWindow.ShowCheckboxOnRightSide"><a class="headerlink" href="#CheckboxWindow.ShowCheckboxOnRightSide" title="Permanent link">ShowCheckboxOnRightSide</a> (optional bool bRight) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ClipWindow.uc" title="Permanent link"><h2 id="ClipWindow.uc">ClipWindow.uc (extends TabGroupWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const int childH;<br>var const int childV;<br>var const int prefHUnits;<br>var const int prefVUnits;<br>var const bool bForceChildWidth;<br>var const bool bForceChildHeight;<br>var const bool bSnapToUnits;<br>var const bool bFillWindow;<br>var private int areaHSize;<br>var private int areaVSize;<br>var private int childHSize;<br>var private int childVSize;<br>var private float hMult;<br>var private float vMult;</div>
+<h3 id="ClipWindow.EnableSnapToUnits"><a class="headerlink" href="#ClipWindow.EnableSnapToUnits" title="Permanent link">EnableSnapToUnits</a> (optional bool bNewSnapToUnits) | native</h3>
+
+<h3 id="ClipWindow.GetChild"><a class="headerlink" href="#ClipWindow.GetChild" title="Permanent link">GetChild</a> | native</h3>
+
+<h3 id="ClipWindow.GetChildPosition"><a class="headerlink" href="#ClipWindow.GetChildPosition" title="Permanent link">GetChildPosition</a> (out int pNewX, out int pNewY) | native</h3>
+
+<h3 id="ClipWindow.ResetUnitHeight"><a class="headerlink" href="#ClipWindow.ResetUnitHeight" title="Permanent link">ResetUnitHeight</a> | native</h3>
+
+<h3 id="ClipWindow.ResetUnitSize"><a class="headerlink" href="#ClipWindow.ResetUnitSize" title="Permanent link">ResetUnitSize</a> | native</h3>
+
+<h3 id="ClipWindow.ResetUnitWidth"><a class="headerlink" href="#ClipWindow.ResetUnitWidth" title="Permanent link">ResetUnitWidth</a> | native</h3>
+
+<h3 id="ClipWindow.SetChildPosition"><a class="headerlink" href="#ClipWindow.SetChildPosition" title="Permanent link">SetChildPosition</a> (int newX, int newY) | native</h3>
+
+<h3 id="ClipWindow.SetUnitHeight"><a class="headerlink" href="#ClipWindow.SetUnitHeight" title="Permanent link">SetUnitHeight</a> (int vUnits) | native</h3>
+
+<h3 id="ClipWindow.SetUnitSize"><a class="headerlink" href="#ClipWindow.SetUnitSize" title="Permanent link">SetUnitSize</a> (int hUnits, int vUnits) | native</h3>
+
+<h3 id="ClipWindow.SetUnitWidth"><a class="headerlink" href="#ClipWindow.SetUnitWidth" title="Permanent link">SetUnitWidth</a> (int hUnits) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ComputerWindow.uc" title="Permanent link"><h2 id="ComputerWindow.uc">ComputerWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var Float	eventTimeInterval;			// Timing between each event displayed<br>var Float	timeNextEvent;				// Time of next event<br>var Float	timeLastEvent;				// Time of last event added<br>var Float	timeCurrent;				// Current event time<br>var Float	fadeSpeed;					// Fade Speed<br>var Float	throttle;					// Throttle (speed modifier)<br>var Float   fadeOutTimer;				// Used to fade the entire screen out<br>var Float   fadeOutStart;				// Starting fade out value<br>var int		textCols;					// Number of text cols (for example, 80)<br>var int		textRows;					// Number of text rows (for example, 25)<br>var Font	textFont;					// Font used to display text<br>var int     fontWidth;<br>var int		fontHeight;<br>var Color	fontColor;					// Current Font Color, used when adding text events<br>var Sound	textSound;					// Sound to play for each character<br>var Sound   typingSound;				// Sound when user types<br>var Float	computerSoundVolume;		// Sound Volume<br>var Bool	bWordWrap;					// True if Word Wrap is enabled<br>var Bool	bLastLineWrapped;			// True if the last line was wrapped<br>var Bool	bInvokeComputerStart;		// True if we need to invoke ComputerStart<br>var Bool	bComputerStartInvoked;		// True if we've invoked ComputerStart event<br>var Bool	bFirstTick;					// True until we've had our first Tick event<br>var Texture backgroundTextures[6];		// Background textures<br>var Texture cursorTexture;				// Cursor texture, drawn ahead of text<br>var Color	cursorColor;				// Cursor Color<br>var int     cursorWidth;				// Cursor Width<br>var int     cursorHeight;				// Cursor Height<br>var Float	cursorBlinkSpeed;			// Cursor Blink Speed<br>var Bool    bCursorVisible;				// True if Cursor Visible<br>var Bool	bShowCursor;				// Set to False to hide cursor<br>var Float   cursorNextEvent;			// Countdown until 0 for next cursor blink change<br>var Color	colGraphicTile;				// Color used to draw graphics<br>var Window  textWindow;					// Window that text is displayed in<br>var PlayerPawnExt player;				// Pointer to player pawn<br>var const native DynamicArray displayBuffer;				// Pointer to display info<br>var const native DynamicArray queuedBuffer;				// Queued characters<br>var int		queuedBufferStart;			// Start of QueuedBuffer we're interested in<br>var int		textX;						// Current text X position<br>var int		textY;						// Current text Y position<br>var String		inputMask;				// Input Mask Character<br>var EditWindow  inputWindow;			// Input Window<br>var Bool		bWaitingForKey;			// True if we're waiting for a single key<br>var Bool		bEchoKey;				// True if echo keypress<br>var Bool		bPauseProcessing;		// True if we're pausing processing<br>var Bool		bIgnoreTick;			// True if ignoring TICK event<br>var Bool		bGamePaused;			// True if the Game is paused<br>var Bool		bIgnoreGamePaused;		// True if we're going to ignore the game being paused</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">throttle=1.000000<br>textCols=80<br>textRows=24<br>fontWidth=8<br>fontHeight=20<br>FontColor=(R=255,G=255,B=255)<br>computerSoundVolume=0.500000<br>bWordWrap=True<br>bFirstTick=True<br>cursorTexture=Texture'Extension.Solid'<br>cursorColor=(R=255,G=255,B=255)<br>cursorWidth=8<br>cursorHeight=2<br>cursorBlinkSpeed=0.500000<br>bShowCursor=True<br>colGraphicTile=(R=255,G=255,B=255)</div>
+<h3 id="ComputerWindow.ClearLine"><a class="headerlink" href="#ComputerWindow.ClearLine" title="Permanent link">ClearLine</a> (int rowToClear) | native</h3>
+
+<h3 id="ComputerWindow.ClearScreen"><a class="headerlink" href="#ComputerWindow.ClearScreen" title="Permanent link">ClearScreen</a> | native</h3>
+
+<h3 id="ComputerWindow.ComputerFadeOutCompleted"><a class="headerlink" href="#ComputerWindow.ComputerFadeOutCompleted" title="Permanent link">ComputerFadeOutCompleted</a></h3>
+
+<h3 id="ComputerWindow.ComputerInputFinished"><a class="headerlink" href="#ComputerWindow.ComputerInputFinished" title="Permanent link">ComputerInputFinished</a> (String inputKey, String inputValue) -> Bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return False;<br><br></div>
+<h3 id="ComputerWindow.ComputerStart"><a class="headerlink" href="#ComputerWindow.ComputerStart" title="Permanent link">ComputerStart</a> -> Bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return False;<br><br></div>
+<h3 id="ComputerWindow.EnableWordWrap"><a class="headerlink" href="#ComputerWindow.EnableWordWrap" title="Permanent link">EnableWordWrap</a> (optional Bool bNewWordWrap) | native</h3>
+
+<h3 id="ComputerWindow.FadeOutText"><a class="headerlink" href="#ComputerWindow.FadeOutText" title="Permanent link">FadeOutText</a> (optional Float fadeDuration) | native</h3>
+
+<h3 id="ComputerWindow.GetChar"><a class="headerlink" href="#ComputerWindow.GetChar" title="Permanent link">GetChar</a> (String inputKey, optional bool bEcho) | native</h3>
+
+<h3 id="ComputerWindow.GetThrottle"><a class="headerlink" href="#ComputerWindow.GetThrottle" title="Permanent link">GetThrottle</a> | native</h3>
+
+<h3 id="ComputerWindow.IsBufferFlushed"><a class="headerlink" href="#ComputerWindow.IsBufferFlushed" title="Permanent link">IsBufferFlushed</a> | native</h3>
+
+<h3 id="ComputerWindow.IsPaused"><a class="headerlink" href="#ComputerWindow.IsPaused" title="Permanent link">IsPaused</a> | native</h3>
+
+<h3 id="ComputerWindow.Pause"><a class="headerlink" href="#ComputerWindow.Pause" title="Permanent link">Pause</a> (optional Float pauseLength) | native</h3>
+
+<h3 id="ComputerWindow.PlaySoundLater"><a class="headerlink" href="#ComputerWindow.PlaySoundLater" title="Permanent link">PlaySoundLater</a> (Sound newSound) | native</h3>
+
+<h3 id="ComputerWindow.Print"><a class="headerlink" href="#ComputerWindow.Print" title="Permanent link">Print</a> (String printText, optional bool bNewLine) | native</h3>
+
+<h3 id="ComputerWindow.PrintLn"><a class="headerlink" href="#ComputerWindow.PrintLn" title="Permanent link">PrintLn</a> | native</h3>
+
+<h3 id="ComputerWindow.ResetThrottle"><a class="headerlink" href="#ComputerWindow.ResetThrottle" title="Permanent link">ResetThrottle</a> | native</h3>
+
+<h3 id="ComputerWindow.Resume"><a class="headerlink" href="#ComputerWindow.Resume" title="Permanent link">Resume</a> | native</h3>
+
+<h3 id="ComputerWindow.SetComputerSoundVolume"><a class="headerlink" href="#ComputerWindow.SetComputerSoundVolume" title="Permanent link">SetComputerSoundVolume</a> (Float newSoundVolume) | native</h3>
+
+<h3 id="ComputerWindow.SetCursorBlinkSpeed"><a class="headerlink" href="#ComputerWindow.SetCursorBlinkSpeed" title="Permanent link">SetCursorBlinkSpeed</a> (Float newBlinkSpeed) | native</h3>
+
+<h3 id="ComputerWindow.SetCursorColor"><a class="headerlink" href="#ComputerWindow.SetCursorColor" title="Permanent link">SetCursorColor</a> (Color newCursorColor) | native</h3>
+
+<h3 id="ComputerWindow.SetFadeSpeed"><a class="headerlink" href="#ComputerWindow.SetFadeSpeed" title="Permanent link">SetFadeSpeed</a> (Float fadeSpeed) | native</h3>
+
+<h3 id="ComputerWindow.SetFontColor"><a class="headerlink" href="#ComputerWindow.SetFontColor" title="Permanent link">SetFontColor</a> (Color newFontColor) | native</h3>
+
+<h3 id="ComputerWindow.SetGraphicTileColor"><a class="headerlink" href="#ComputerWindow.SetGraphicTileColor" title="Permanent link">SetGraphicTileColor</a> (Color newColor)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;colGraphicTile = newColor;<br><br></div>
+<h3 id="ComputerWindow.SetTextFont"><a class="headerlink" href="#ComputerWindow.SetTextFont" title="Permanent link">SetTextFont</a> (Font newFont, int newFontWidth, int newFontHeight, Color newFontColor) | native</h3>
+
+<h3 id="ComputerWindow.SetTextPosition"><a class="headerlink" href="#ComputerWindow.SetTextPosition" title="Permanent link">SetTextPosition</a> (int posX, int posY) | native</h3>
+
+<h3 id="ComputerWindow.SetTextSize"><a class="headerlink" href="#ComputerWindow.SetTextSize" title="Permanent link">SetTextSize</a> (int newCols, int newRows) | native</h3>
+
+<h3 id="ComputerWindow.SetTextSound"><a class="headerlink" href="#ComputerWindow.SetTextSound" title="Permanent link">SetTextSound</a> (Sound newTextSound) | native</h3>
+
+<h3 id="ComputerWindow.SetTextTiming"><a class="headerlink" href="#ComputerWindow.SetTextTiming" title="Permanent link">SetTextTiming</a> (Float newTiming) | native</h3>
+
+<h3 id="ComputerWindow.SetTextWindowPosition"><a class="headerlink" href="#ComputerWindow.SetTextWindowPosition" title="Permanent link">SetTextWindowPosition</a> (int newX, int newY) | native</h3>
+
+<h3 id="ComputerWindow.SetThrottle"><a class="headerlink" href="#ComputerWindow.SetThrottle" title="Permanent link">SetThrottle</a> (float throttleModifier) | native</h3>
+
+<h3 id="ComputerWindow.SetTypingSound"><a class="headerlink" href="#ComputerWindow.SetTypingSound" title="Permanent link">SetTypingSound</a> (Sound newTypingSound) | native</h3>
+
+<h3 id="ComputerWindow.SetTypingSoundVolume"><a class="headerlink" href="#ComputerWindow.SetTypingSoundVolume" title="Permanent link">SetTypingSoundVolume</a> (Float newSoundVolume) | native</h3>
+
+<h3 id="ComputerWindow.ShowTextCursor"><a class="headerlink" href="#ComputerWindow.ShowTextCursor" title="Permanent link">ShowTextCursor</a> (optional Bool bShow) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#EditWindow.uc" title="Permanent link"><h2 id="EditWindow.uc">EditWindow.uc (extends LargeTextWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const bool bEditable;<br>var const bool bSingleLine;<br>var const bool bUppercaseOnly;<br>var const int                 insertPos;<br>var const int                 insertHookPos;<br>var const EInsertionPointType insertType;<br>var const int  selectStart;<br>var const int  selectEnd;<br>var const int  maxSize;<br>var const texture insertTexture;<br>var const color   insertColor;<br>var const texture selectTexture;<br>var const color   selectColor;<br>var const color   inverseColor;<br>var const texture editCursor;<br>var const texture editCursorShadow;<br>var const color   editCursorColor;<br>var const sound   typeSound;<br>var const sound   deleteSound;<br>var const sound   enterSound;<br>var const sound   moveSound;<br>var private DynamicArray bufferList;<br>var private int          currentUndo;<br>var private int          maxUndos;<br>var private int          unchangedUndo;<br>var private float dragDelay;<br>var private float blinkDelay;<br>var private float blinkStart;<br>var private float blinkPeriod;<br>var private bool  bCursorShowing;<br>var private bool  bDragging;<br>var private bool  bSelectWords;<br>var private float insertX;<br>var private float insertY;<br>var private float insertWidth;<br>var private float insertHeight;<br>var private float insertPrefWidth;<br>var private float insertPrefHeight;<br>var private float showAreaX;<br>var private float showAreaY;<br>var private float showAreaWidth;<br>var private float showAreaHeight;<br>var private float insertPreferredCol;<br>var private float lastConfigWidth;<br>var private float lastConfigHeight;<br>var private int   selectStartRow;<br>var private int   selectEndRow;<br>var private float selectStartX;<br>var private float selectEndX;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">insertTexture=Texture'Extension.Solid'<br>selectTexture=Texture'Extension.Solid'</div>
+<h3 id="EditWindow.ClearTextChangedFlag"><a class="headerlink" href="#EditWindow.ClearTextChangedFlag" title="Permanent link">ClearTextChangedFlag</a> | native</h3>
+
+<h3 id="EditWindow.ClearUndo"><a class="headerlink" href="#EditWindow.ClearUndo" title="Permanent link">ClearUndo</a> | native</h3>
+
+<h3 id="EditWindow.Copy"><a class="headerlink" href="#EditWindow.Copy" title="Permanent link">Copy</a> | native</h3>
+
+<h3 id="EditWindow.Cut"><a class="headerlink" href="#EditWindow.Cut" title="Permanent link">Cut</a> | native</h3>
+
+<h3 id="EditWindow.DeleteChar"><a class="headerlink" href="#EditWindow.DeleteChar" title="Permanent link">DeleteChar</a> (optional bool bBefore, optional bool bUndo) | native</h3>
+
+<h3 id="EditWindow.EnableEditing"><a class="headerlink" href="#EditWindow.EnableEditing" title="Permanent link">EnableEditing</a> (optional bool bEdit) | native</h3>
+
+<h3 id="EditWindow.EnableSingleLineEditing"><a class="headerlink" href="#EditWindow.EnableSingleLineEditing" title="Permanent link">EnableSingleLineEditing</a> (optional bool bSingle) | native</h3>
+
+<h3 id="EditWindow.EnableUppercaseOnly"><a class="headerlink" href="#EditWindow.EnableUppercaseOnly" title="Permanent link">EnableUppercaseOnly</a> (optional bool bUppercase) | native</h3>
+
+<h3 id="EditWindow.FilterChar"><a class="headerlink" href="#EditWindow.FilterChar" title="Permanent link">FilterChar</a> (out string chStr) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return true;<br><br></div>
+<h3 id="EditWindow.GetInsertionPoint"><a class="headerlink" href="#EditWindow.GetInsertionPoint" title="Permanent link">GetInsertionPoint</a> | native</h3>
+
+<h3 id="EditWindow.GetSelectedArea"><a class="headerlink" href="#EditWindow.GetSelectedArea" title="Permanent link">GetSelectedArea</a> (out int startPos, out int count) | native</h3>
+
+<h3 id="EditWindow.HasTextChanged"><a class="headerlink" href="#EditWindow.HasTextChanged" title="Permanent link">HasTextChanged</a> | native</h3>
+
+<h3 id="EditWindow.IsEditingEnabled"><a class="headerlink" href="#EditWindow.IsEditingEnabled" title="Permanent link">IsEditingEnabled</a> | native</h3>
+
+<h3 id="EditWindow.IsSingleLineEditingEnabled"><a class="headerlink" href="#EditWindow.IsSingleLineEditingEnabled" title="Permanent link">IsSingleLineEditingEnabled</a> | native</h3>
+
+<h3 id="EditWindow.MoveInsertionPoint"><a class="headerlink" href="#EditWindow.MoveInsertionPoint" title="Permanent link">MoveInsertionPoint</a> (EMoveInsert moveInsert, optional bool bDrag) | native</h3>
+
+<h3 id="EditWindow.Paste"><a class="headerlink" href="#EditWindow.Paste" title="Permanent link">Paste</a> | native</h3>
+
+<h3 id="EditWindow.Redo"><a class="headerlink" href="#EditWindow.Redo" title="Permanent link">Redo</a> | native</h3>
+
+<h3 id="EditWindow.SetInsertionPoint"><a class="headerlink" href="#EditWindow.SetInsertionPoint" title="Permanent link">SetInsertionPoint</a> (int newPos, optional bool bDrag) | native</h3>
+
+<h3 id="EditWindow.SetInsertionPointTextureRGB"><a class="headerlink" href="#EditWindow.SetInsertionPointTextureRGB" title="Permanent link">SetInsertionPointTextureRGB</a> (texture newTexture, byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetInsertionPointTexture(newTexture, newColor);<br><br></div>
+<h3 id="EditWindow.SetMaxSize"><a class="headerlink" href="#EditWindow.SetMaxSize" title="Permanent link">SetMaxSize</a> (int newMaxSize) | native</h3>
+
+<h3 id="EditWindow.SetMaxUndos"><a class="headerlink" href="#EditWindow.SetMaxUndos" title="Permanent link">SetMaxUndos</a> (int newMaxUndos) | native</h3>
+
+<h3 id="EditWindow.SetSelectedArea"><a class="headerlink" href="#EditWindow.SetSelectedArea" title="Permanent link">SetSelectedArea</a> (int startPos, int count) | native</h3>
+
+<h3 id="EditWindow.SetSelectedAreaTextColor"><a class="headerlink" href="#EditWindow.SetSelectedAreaTextColor" title="Permanent link">SetSelectedAreaTextColor</a> (optional color newColor) | native</h3>
+
+<h3 id="EditWindow.SetSelectedAreaTextColorRGB"><a class="headerlink" href="#EditWindow.SetSelectedAreaTextColorRGB" title="Permanent link">SetSelectedAreaTextColorRGB</a> (byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetSelectedAreaTextColor(newColor);<br><br></div>
+<h3 id="EditWindow.SetSelectedAreaTextureRGB"><a class="headerlink" href="#EditWindow.SetSelectedAreaTextureRGB" title="Permanent link">SetSelectedAreaTextureRGB</a> (texture newTexture, byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetSelectedAreaTexture(newTexture, newColor);<br><br></div>
+<h3 id="EditWindow.SetTextChangedFlag"><a class="headerlink" href="#EditWindow.SetTextChangedFlag" title="Permanent link">SetTextChangedFlag</a> (optional bool bSet) | native</h3>
+
+<h3 id="EditWindow.Undo"><a class="headerlink" href="#EditWindow.Undo" title="Permanent link">Undo</a> | native</h3>
+
+<h3 id="EditWindow.VirtualKeyPressed"><a class="headerlink" href="#EditWindow.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br>&#9;local bool bShift;<br>&#9;local bool bCtrl;<br>&#9;local bool bDrag;<br>&#9;local bool bWord;<br><br><br>&#9;retval = Super.VirtualKeyPressed(key, bRepeat);<br><br>&#9;if (!bEditable)<br>&#9;&#9;return (retval);<br><br>&#9;bShift = IsKeyDown(IK_Shift);<br>&#9;bCtrl  = IsKeyDown(IK_Ctrl);<br>&#9;bDrag  = bShift;<br>&#9;bWord  = bCtrl;<br><br>&#9;// Movement<br>&#9;if (key == IK_Left)<br>&#9;{<br>&#9;&#9;if (bWord)<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_WordLeft, bDrag);<br>&#9;&#9;else<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_Left, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Right)<br>&#9;{<br>&#9;&#9;if (bWord)<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_WordRight, bDrag);<br>&#9;&#9;else<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_Right, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Up)<br>&#9;{<br>&#9;&#9;MoveInsertionPoint(MOVEINSERT_Up, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Down)<br>&#9;{<br>&#9;&#9;MoveInsertionPoint(MOVEINSERT_Down, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_PageUp)<br>&#9;{<br>&#9;&#9;MoveInsertionPoint(MOVEINSERT_PageUp, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_PageDown)<br>&#9;{<br>&#9;&#9;MoveInsertionPoint(MOVEINSERT_PageDown, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Home)<br>&#9;{<br>&#9;&#9;if (bWord)<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_Home, bDrag);<br>&#9;&#9;else<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_StartOfLine, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_End)<br>&#9;{<br>&#9;&#9;if (bWord)<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_End, bDrag);<br>&#9;&#9;else<br>&#9;&#9;&#9;MoveInsertionPoint(MOVEINSERT_EndOfLine, bDrag);<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;retval = true;<br>&#9;}<br><br>&#9;// Editing<br>&#9;else if (key == IK_Backspace)<br>&#9;{<br>&#9;&#9;PlayEditSound(deleteSound);<br>&#9;&#9;DeleteChar(true, true);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Delete)<br>&#9;{<br>&#9;&#9;PlayEditSound(deleteSound);<br>&#9;&#9;DeleteChar(false, true);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Enter)<br>&#9;{<br>&#9;&#9;InsertText("|n", true);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_C)<br>&#9;{<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;if (bCtrl)<br>&#9;&#9;{<br>&#9;&#9;&#9;Copy();<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;}<br>&#9;}<br>&#9;else if (key == IK_X)<br>&#9;{<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;if (bCtrl)<br>&#9;&#9;{<br>&#9;&#9;&#9;Cut();<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;}<br>&#9;}<br>&#9;else if (key == IK_V)<br>&#9;{<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;if (bCtrl)<br>&#9;&#9;{<br>&#9;&#9;&#9;Paste();<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;}<br>&#9;}<br>&#9;else if (key == IK_Z)<br>&#9;{<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;if (bCtrl)<br>&#9;&#9;{<br>&#9;&#9;&#9;Undo();<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;}<br>&#9;}<br>&#9;else if (key == IK_Y)<br>&#9;{<br>&#9;&#9;PlayEditSound(moveSound);<br>&#9;&#9;if (bCtrl)<br>&#9;&#9;{<br>&#9;&#9;&#9;Redo();<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;}<br>&#9;}<br><br>&#9;return (retval);<br><br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#ExtString.uc" title="Permanent link"><h2 id="ExtString.uc">ExtString.uc (extends Object)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var native private int speechPage;<br>var native private string text;</div>
+<h3 id="ExtString.AppendText"><a class="headerlink" href="#ExtString.AppendText" title="Permanent link">AppendText</a> (coerce string newText) | native</h3>
+
+<h3 id="ExtString.GetFirstTextPart"><a class="headerlink" href="#ExtString.GetFirstTextPart" title="Permanent link">GetFirstTextPart</a> (out string outText) | native</h3>
+
+<h3 id="ExtString.GetNextTextPart"><a class="headerlink" href="#ExtString.GetNextTextPart" title="Permanent link">GetNextTextPart</a> (out string outText) | native</h3>
+
+<h3 id="ExtString.GetText"><a class="headerlink" href="#ExtString.GetText" title="Permanent link">GetText</a> | native</h3>
+
+<h3 id="ExtString.GetTextLength"><a class="headerlink" href="#ExtString.GetTextLength" title="Permanent link">GetTextLength</a> | native</h3>
+
+<h3 id="ExtString.GetTextPart"><a class="headerlink" href="#ExtString.GetTextPart" title="Permanent link">GetTextPart</a> (int startPos, int count, out string outText) | native</h3>
+
+<h3 id="ExtString.SetText"><a class="headerlink" href="#ExtString.SetText" title="Permanent link">SetText</a> (coerce string newText) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ExtensionObject.uc" title="Permanent link"><h2 id="ExtensionObject.uc">ExtensionObject.uc (extends Object)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const int Num, Max, Ptr;<br>var float originX,   originY;<br>var float clipX,     clipY;<br>var float clipWidth, clipHeight;</div>
+<h3 id="ExtensionObject.StringToName"><a class="headerlink" href="#ExtensionObject.StringToName" title="Permanent link">StringToName</a> (coerce string str) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#Flag.uc" title="Permanent link"><h2 id="Flag.uc">Flag.uc (extends ExtensionObject)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel name      flagName;<br>var private travel int       flagHash;<br>var private travel FlagBase  flagBase;<br>var private travel Flag      nextFlag;<br>var private travel EFlagType flagType;<br>var private travel int       expiration;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagBase.uc" title="Permanent link"><h2 id="FlagBase.uc">FlagBase.uc (extends ExtensionObject)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel flag hashTable[64];					// Hash table containing all flags<br>var private travel int  defaultFlagExpiration;          // Default flag expiration</div>
+<h3 id="FlagBase.CheckFlag"><a class="headerlink" href="#FlagBase.CheckFlag" title="Permanent link">CheckFlag</a> (Name flagName, EFlagType flagType) | native</h3>
+
+<h3 id="FlagBase.CreateIterator"><a class="headerlink" href="#FlagBase.CreateIterator" title="Permanent link">CreateIterator</a> (optional EFlagType flagType) | native</h3>
+
+<h3 id="FlagBase.DeleteAllFlags"><a class="headerlink" href="#FlagBase.DeleteAllFlags" title="Permanent link">DeleteAllFlags</a> | native</h3>
+
+<h3 id="FlagBase.DeleteExpiredFlags"><a class="headerlink" href="#FlagBase.DeleteExpiredFlags" title="Permanent link">DeleteExpiredFlags</a> (int criteria) | native</h3>
+
+<h3 id="FlagBase.DeleteFlag"><a class="headerlink" href="#FlagBase.DeleteFlag" title="Permanent link">DeleteFlag</a> (Name flagName, EFlagType flagType) | native</h3>
+
+<h3 id="FlagBase.DestroyIterator"><a class="headerlink" href="#FlagBase.DestroyIterator" title="Permanent link">DestroyIterator</a> (int iterator) | native</h3>
+
+<h3 id="FlagBase.FubarCheat"><a class="headerlink" href="#FlagBase.FubarCheat" title="Permanent link">FubarCheat</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local FlagBool    flag1;<br>&#9;local FlagByte    flag2;<br>&#9;local FlagInt     flag3;<br>&#9;local FlagFloat   flag4;<br>&#9;local FlagName    flag5;<br>&#9;local FlagVector  flag6;<br>&#9;local FlagRotator flag7;<br><br><br>&#9;// Do absolutely nothing -- the above variables are only included so<br>&#9;// UnrealScript will load the associated class information from the<br>&#9;// Extension package.  Mega-Barf.<br><br></div>
+<h3 id="FlagBase.GetBool"><a class="headerlink" href="#FlagBase.GetBool" title="Permanent link">GetBool</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.GetByte"><a class="headerlink" href="#FlagBase.GetByte" title="Permanent link">GetByte</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.GetExpiration"><a class="headerlink" href="#FlagBase.GetExpiration" title="Permanent link">GetExpiration</a> (Name flagName, EFlagType flagType) | native</h3>
+
+<h3 id="FlagBase.GetFloat"><a class="headerlink" href="#FlagBase.GetFloat" title="Permanent link">GetFloat</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.GetInt"><a class="headerlink" href="#FlagBase.GetInt" title="Permanent link">GetInt</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.GetName"><a class="headerlink" href="#FlagBase.GetName" title="Permanent link">GetName</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.GetNextFlagName"><a class="headerlink" href="#FlagBase.GetNextFlagName" title="Permanent link">GetNextFlagName</a> (int iterator, out name flagName) | native</h3>
+
+<h3 id="FlagBase.GetRotator"><a class="headerlink" href="#FlagBase.GetRotator" title="Permanent link">GetRotator</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.GetVector"><a class="headerlink" href="#FlagBase.GetVector" title="Permanent link">GetVector</a> (Name flagName) | native</h3>
+
+<h3 id="FlagBase.SetBool"><a class="headerlink" href="#FlagBase.SetBool" title="Permanent link">SetBool</a> (Name flagName, bool newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<h3 id="FlagBase.SetByte"><a class="headerlink" href="#FlagBase.SetByte" title="Permanent link">SetByte</a> (Name flagName, byte newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<h3 id="FlagBase.SetDefaultExpiration"><a class="headerlink" href="#FlagBase.SetDefaultExpiration" title="Permanent link">SetDefaultExpiration</a> (int expiration) | native</h3>
+
+<h3 id="FlagBase.SetExpiration"><a class="headerlink" href="#FlagBase.SetExpiration" title="Permanent link">SetExpiration</a> (Name flagName, EFlagType flagType, int expiration) | native</h3>
+
+<h3 id="FlagBase.SetFloat"><a class="headerlink" href="#FlagBase.SetFloat" title="Permanent link">SetFloat</a> (Name flagName, float newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<h3 id="FlagBase.SetInt"><a class="headerlink" href="#FlagBase.SetInt" title="Permanent link">SetInt</a> (Name flagName, int newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<h3 id="FlagBase.SetName"><a class="headerlink" href="#FlagBase.SetName" title="Permanent link">SetName</a> (Name flagName, name newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<h3 id="FlagBase.SetRotator"><a class="headerlink" href="#FlagBase.SetRotator" title="Permanent link">SetRotator</a> (Name flagName, rotator newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<h3 id="FlagBase.SetVector"><a class="headerlink" href="#FlagBase.SetVector" title="Permanent link">SetVector</a> (Name flagName, vector newValue, optional bool bAdd, optional int expiration) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#FlagBool.uc" title="Permanent link"><h2 id="FlagBool.uc">FlagBool.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel bool bValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagByte.uc" title="Permanent link"><h2 id="FlagByte.uc">FlagByte.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel byte      byteValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagFloat.uc" title="Permanent link"><h2 id="FlagFloat.uc">FlagFloat.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel float floatValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagInt.uc" title="Permanent link"><h2 id="FlagInt.uc">FlagInt.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel int intValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagName.uc" title="Permanent link"><h2 id="FlagName.uc">FlagName.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel name nameValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagRotator.uc" title="Permanent link"><h2 id="FlagRotator.uc">FlagRotator.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel rotator rotatorValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#FlagVector.uc" title="Permanent link"><h2 id="FlagVector.uc">FlagVector.uc (extends Flag)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private travel vector vectorValue;</div>
+<br><br><hr>
+<a class="headerlink" href="#GC.uc" title="Permanent link"><h2 id="GC.uc">GC.uc (extends ExtensionObject)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private native Canvas canvas;<br>var private ClipRect  gcClipRect;<br>var private byte      style;<br>var private bool      bSmoothed;<br>var private bool      bDrawEnabled;<br>var private bool      bMasked;<br>var private bool      bTranslucent;<br>var private bool      bModulated;<br>var private bool      bTextTranslucent;<br>var private int       polyFlags;<br>var private int       textPolyFlags;<br>var private color     tileColor;<br>var private plane     tilePlane;<br>var private color     textColor;<br>var private plane     textPlane;<br>var private font      normalFont;<br>var private font      boldFont;<br>var private texture   underlineTexture;<br>var private float     underlineHeight;<br>var private float     baselineOffset;<br>var private float     textVSpacing;<br>var private EHAlign   hAlign;<br>var private EVAlign   vAlign;<br>var private bool      bWordWrap;<br>var private bool      bParseMetachars;<br>var private int       hMultiplier;<br>var private int       vMultiplier;<br>var private bool      bFree;<br>var private int       gcCount;<br>var private GC        gcStack;<br>var private GC        gcFree;<br>var private GC        gcOwner;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">underlineTexture=Texture'Extension.Solid'</div>
+<h3 id="GC.ClearZ"><a class="headerlink" href="#GC.ClearZ" title="Permanent link">ClearZ</a> | native</h3>
+
+<h3 id="GC.CopyGC"><a class="headerlink" href="#GC.CopyGC" title="Permanent link">CopyGC</a> (gc copy) | native</h3>
+
+<h3 id="GC.EnableDrawing"><a class="headerlink" href="#GC.EnableDrawing" title="Permanent link">EnableDrawing</a> (bool bDrawEnabled) | native</h3>
+
+<h3 id="GC.EnableMasking"><a class="headerlink" href="#GC.EnableMasking" title="Permanent link">EnableMasking</a> (bool bNewMasking) | native</h3>
+
+<h3 id="GC.EnableModulation"><a class="headerlink" href="#GC.EnableModulation" title="Permanent link">EnableModulation</a> (bool bNewModulation) | native</h3>
+
+<h3 id="GC.EnableSmoothing"><a class="headerlink" href="#GC.EnableSmoothing" title="Permanent link">EnableSmoothing</a> (bool bNewSmoothing) | native</h3>
+
+<h3 id="GC.EnableSpecialText"><a class="headerlink" href="#GC.EnableSpecialText" title="Permanent link">EnableSpecialText</a> (bool bNewSpecialText) | native</h3>
+
+<h3 id="GC.EnableTranslucency"><a class="headerlink" href="#GC.EnableTranslucency" title="Permanent link">EnableTranslucency</a> (bool bNewTranslucency) | native</h3>
+
+<h3 id="GC.EnableTranslucentText"><a class="headerlink" href="#GC.EnableTranslucentText" title="Permanent link">EnableTranslucentText</a> (bool bNewTranslucency) | native</h3>
+
+<h3 id="GC.EnableWordWrap"><a class="headerlink" href="#GC.EnableWordWrap" title="Permanent link">EnableWordWrap</a> (bool bNewWordWrap) | native</h3>
+
+<h3 id="GC.GetAlignments"><a class="headerlink" href="#GC.GetAlignments" title="Permanent link">GetAlignments</a> (out EHAlign hAlign, out EVAlign vAlign) | native</h3>
+
+<h3 id="GC.GetFontHeight"><a class="headerlink" href="#GC.GetFontHeight" title="Permanent link">GetFontHeight</a> (optional bool bIncludeSpace) | native</h3>
+
+<h3 id="GC.GetFonts"><a class="headerlink" href="#GC.GetFonts" title="Permanent link">GetFonts</a> (out font normalFont, out font boldFont) | native</h3>
+
+<h3 id="GC.GetHorizontalAlignment"><a class="headerlink" href="#GC.GetHorizontalAlignment" title="Permanent link">GetHorizontalAlignment</a> | native</h3>
+
+<h3 id="GC.GetStyle"><a class="headerlink" href="#GC.GetStyle" title="Permanent link">GetStyle</a> | native</h3>
+
+<h3 id="GC.GetTextColor"><a class="headerlink" href="#GC.GetTextColor" title="Permanent link">GetTextColor</a> (out color textColor) | native</h3>
+
+<h3 id="GC.GetTextVSpacing"><a class="headerlink" href="#GC.GetTextVSpacing" title="Permanent link">GetTextVSpacing</a> | native</h3>
+
+<h3 id="GC.GetTileColor"><a class="headerlink" href="#GC.GetTileColor" title="Permanent link">GetTileColor</a> (out color tileColor) | native</h3>
+
+<h3 id="GC.GetVerticalAlignment"><a class="headerlink" href="#GC.GetVerticalAlignment" title="Permanent link">GetVerticalAlignment</a> | native</h3>
+
+<h3 id="GC.IsDrawingEnabled"><a class="headerlink" href="#GC.IsDrawingEnabled" title="Permanent link">IsDrawingEnabled</a> | native</h3>
+
+<h3 id="GC.IsMaskingEnabled"><a class="headerlink" href="#GC.IsMaskingEnabled" title="Permanent link">IsMaskingEnabled</a> | native</h3>
+
+<h3 id="GC.IsModulationEnabled"><a class="headerlink" href="#GC.IsModulationEnabled" title="Permanent link">IsModulationEnabled</a> | native</h3>
+
+<h3 id="GC.IsSmoothingEnabled"><a class="headerlink" href="#GC.IsSmoothingEnabled" title="Permanent link">IsSmoothingEnabled</a> | native</h3>
+
+<h3 id="GC.IsSpecialTextEnabled"><a class="headerlink" href="#GC.IsSpecialTextEnabled" title="Permanent link">IsSpecialTextEnabled</a> | native</h3>
+
+<h3 id="GC.IsTranslucencyEnabled"><a class="headerlink" href="#GC.IsTranslucencyEnabled" title="Permanent link">IsTranslucencyEnabled</a> | native</h3>
+
+<h3 id="GC.IsTranslucentTextEnabled"><a class="headerlink" href="#GC.IsTranslucentTextEnabled" title="Permanent link">IsTranslucentTextEnabled</a> | native</h3>
+
+<h3 id="GC.IsWordWrapEnabled"><a class="headerlink" href="#GC.IsWordWrapEnabled" title="Permanent link">IsWordWrapEnabled</a> | native</h3>
+
+<h3 id="GC.PopGC"><a class="headerlink" href="#GC.PopGC" title="Permanent link">PopGC</a> (optional int gcNum) | native</h3>
+
+<h3 id="GC.PushGC"><a class="headerlink" href="#GC.PushGC" title="Permanent link">PushGC</a> | native</h3>
+
+<h3 id="GC.SetAlignments"><a class="headerlink" href="#GC.SetAlignments" title="Permanent link">SetAlignments</a> (EHAlign newHAlign, EVAlign newVAlign) | native</h3>
+
+<h3 id="GC.SetBoldFont"><a class="headerlink" href="#GC.SetBoldFont" title="Permanent link">SetBoldFont</a> (font newBoldFont) | native</h3>
+
+<h3 id="GC.SetFont"><a class="headerlink" href="#GC.SetFont" title="Permanent link">SetFont</a> (font newFont) | native</h3>
+
+<h3 id="GC.SetFonts"><a class="headerlink" href="#GC.SetFonts" title="Permanent link">SetFonts</a> (font newNormalFont, font newBoldFont) | native</h3>
+
+<h3 id="GC.SetHorizontalAlignment"><a class="headerlink" href="#GC.SetHorizontalAlignment" title="Permanent link">SetHorizontalAlignment</a> (EHAlign newHAlign) | native</h3>
+
+<h3 id="GC.SetNormalFont"><a class="headerlink" href="#GC.SetNormalFont" title="Permanent link">SetNormalFont</a> (font newNormalFont) | native</h3>
+
+<h3 id="GC.SetStyle"><a class="headerlink" href="#GC.SetStyle" title="Permanent link">SetStyle</a> (EDrawStyle newStyle) | native</h3>
+
+<h3 id="GC.SetTextColor"><a class="headerlink" href="#GC.SetTextColor" title="Permanent link">SetTextColor</a> (color newTextColor) | native</h3>
+
+<h3 id="GC.SetTextColorRGB"><a class="headerlink" href="#GC.SetTextColorRGB" title="Permanent link">SetTextColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetTextColor(newColor);<br><br></div>
+<h3 id="GC.SetTextVSpacing"><a class="headerlink" href="#GC.SetTextVSpacing" title="Permanent link">SetTextVSpacing</a> (float newVSpacing) | native</h3>
+
+<h3 id="GC.SetTileColor"><a class="headerlink" href="#GC.SetTileColor" title="Permanent link">SetTileColor</a> (color newTileColor) | native</h3>
+
+<h3 id="GC.SetTileColorRGB"><a class="headerlink" href="#GC.SetTileColorRGB" title="Permanent link">SetTileColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetTileColor(newColor);<br><br></div>
+<h3 id="GC.SetVerticalAlignment"><a class="headerlink" href="#GC.SetVerticalAlignment" title="Permanent link">SetVerticalAlignment</a> (EVAlign newVAlign) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#LargeTextWindow.uc" title="Permanent link"><h2 id="LargeTextWindow.uc">LargeTextWindow.uc (extends TextWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var bool  bDirty;<br>var bool  bSpecialText;<br>var int   dirtyStart;<br>var int   dirtyCount;<br>var font  normalFont;<br>var font  boldFont;<br>var float destWidth;<br>var const float vSpace;<br>var const float lineHeight;<br>var private XTextParams textParams;<br>var native private DynamicArray rowData;<br>var private XTextParams queryTextParams;<br>var native private DynamicArray queryRowData;<br>var native private DynamicArray tempRowData;</div>
+<h3 id="LargeTextWindow.SetVerticalSpacing"><a class="headerlink" href="#LargeTextWindow.SetVerticalSpacing" title="Permanent link">SetVerticalSpacing</a> (optional float newVSpace) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ListWindow.uc" title="Permanent link"><h2 id="ListWindow.uc">ListWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const string            delimiter;<br>var const color             inverseColor;<br>var const texture           highlightTexture;<br>var const texture           focusTexture;<br>var const color             highlightColor;<br>var const color             focusColor;<br>var const float             focusThickness;<br>var const native DynamicArray rows;<br>var const native DynamicArray cols;<br>var const bool              bAutoSort;<br>var const bool              bAutoExpandColumns;<br>var const bool              bMultiSelect;<br>var const float             colMargin;<br>var const float             rowMargin;<br>var const bool              bHotKeys;<br>var const int               hotKeyCol;<br>var const float             lineSize;<br>var const sound             activateSound;<br>var const sound             moveSound;<br>var private int             numSelected;<br>var private native int      focusLine;<br>var private native int      anchorLine;<br>var private bool            bDragging;<br>var private int             lastIndex;<br>var private float           remainingDelay;<br>var private string          hotKeyString;<br>var private float           hotKeyTimer;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">highlightTexture=Texture'Extension.Solid'<br>focusTexture=Texture'Extension.Dithered'</div>
+<h3 id="ListWindow.AddRow"><a class="headerlink" href="#ListWindow.AddRow" title="Permanent link">AddRow</a> (coerce string rowStr, optional int clientData) | native</h3>
+
+<h3 id="ListWindow.DeleteAllRows"><a class="headerlink" href="#ListWindow.DeleteAllRows" title="Permanent link">DeleteAllRows</a> | native</h3>
+
+<h3 id="ListWindow.DeleteRow"><a class="headerlink" href="#ListWindow.DeleteRow" title="Permanent link">DeleteRow</a> (int rowId) | native</h3>
+
+<h3 id="ListWindow.EnableAutoExpandColumns"><a class="headerlink" href="#ListWindow.EnableAutoExpandColumns" title="Permanent link">EnableAutoExpandColumns</a> (optional bool bAutoExpand) | native</h3>
+
+<h3 id="ListWindow.EnableAutoSort"><a class="headerlink" href="#ListWindow.EnableAutoSort" title="Permanent link">EnableAutoSort</a> (optional bool bAutoSort) | native</h3>
+
+<h3 id="ListWindow.EnableHotKeys"><a class="headerlink" href="#ListWindow.EnableHotKeys" title="Permanent link">EnableHotKeys</a> (optional bool bEnable) | native</h3>
+
+<h3 id="ListWindow.EnableMultiSelect"><a class="headerlink" href="#ListWindow.EnableMultiSelect" title="Permanent link">EnableMultiSelect</a> (optional bool bEnableMultiSelect) | native</h3>
+
+<h3 id="ListWindow.GetColumnAlignment"><a class="headerlink" href="#ListWindow.GetColumnAlignment" title="Permanent link">GetColumnAlignment</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetColumnColor"><a class="headerlink" href="#ListWindow.GetColumnColor" title="Permanent link">GetColumnColor</a> (int colIndex, out color colColor) | native</h3>
+
+<h3 id="ListWindow.GetColumnFont"><a class="headerlink" href="#ListWindow.GetColumnFont" title="Permanent link">GetColumnFont</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetColumnTitle"><a class="headerlink" href="#ListWindow.GetColumnTitle" title="Permanent link">GetColumnTitle</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetColumnType"><a class="headerlink" href="#ListWindow.GetColumnType" title="Permanent link">GetColumnType</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetColumnWidth"><a class="headerlink" href="#ListWindow.GetColumnWidth" title="Permanent link">GetColumnWidth</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetField"><a class="headerlink" href="#ListWindow.GetField" title="Permanent link">GetField</a> (int rowId, int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetFieldMargins"><a class="headerlink" href="#ListWindow.GetFieldMargins" title="Permanent link">GetFieldMargins</a> (out float marginWidth, out float marginHeight) | native</h3>
+
+<h3 id="ListWindow.GetFieldValue"><a class="headerlink" href="#ListWindow.GetFieldValue" title="Permanent link">GetFieldValue</a> (int rowId, int colIndex) | native</h3>
+
+<h3 id="ListWindow.GetFocusRow"><a class="headerlink" href="#ListWindow.GetFocusRow" title="Permanent link">GetFocusRow</a> | native</h3>
+
+<h3 id="ListWindow.GetNumColumns"><a class="headerlink" href="#ListWindow.GetNumColumns" title="Permanent link">GetNumColumns</a> | native</h3>
+
+<h3 id="ListWindow.GetNumRows"><a class="headerlink" href="#ListWindow.GetNumRows" title="Permanent link">GetNumRows</a> | native</h3>
+
+<h3 id="ListWindow.GetNumSelectedRows"><a class="headerlink" href="#ListWindow.GetNumSelectedRows" title="Permanent link">GetNumSelectedRows</a> | native</h3>
+
+<h3 id="ListWindow.GetPageSize"><a class="headerlink" href="#ListWindow.GetPageSize" title="Permanent link">GetPageSize</a> | native</h3>
+
+<h3 id="ListWindow.GetRowClientInt"><a class="headerlink" href="#ListWindow.GetRowClientInt" title="Permanent link">GetRowClientInt</a> (int rowId) | native</h3>
+
+<h3 id="ListWindow.GetRowClientObject"><a class="headerlink" href="#ListWindow.GetRowClientObject" title="Permanent link">GetRowClientObject</a> (int rowId) | native</h3>
+
+<h3 id="ListWindow.GetSelectedRow"><a class="headerlink" href="#ListWindow.GetSelectedRow" title="Permanent link">GetSelectedRow</a> | native</h3>
+
+<h3 id="ListWindow.HideColumn"><a class="headerlink" href="#ListWindow.HideColumn" title="Permanent link">HideColumn</a> (int colIndex, optional bool bHide) | native</h3>
+
+<h3 id="ListWindow.IndexToRowId"><a class="headerlink" href="#ListWindow.IndexToRowId" title="Permanent link">IndexToRowId</a> (int index) | native</h3>
+
+<h3 id="ListWindow.IsAutoExpandColumnsEnabled"><a class="headerlink" href="#ListWindow.IsAutoExpandColumnsEnabled" title="Permanent link">IsAutoExpandColumnsEnabled</a> | native</h3>
+
+<h3 id="ListWindow.IsAutoSortEnabled"><a class="headerlink" href="#ListWindow.IsAutoSortEnabled" title="Permanent link">IsAutoSortEnabled</a> | native</h3>
+
+<h3 id="ListWindow.IsColumnHidden"><a class="headerlink" href="#ListWindow.IsColumnHidden" title="Permanent link">IsColumnHidden</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.IsMultiSelectEnabled"><a class="headerlink" href="#ListWindow.IsMultiSelectEnabled" title="Permanent link">IsMultiSelectEnabled</a> | native</h3>
+
+<h3 id="ListWindow.IsRowSelected"><a class="headerlink" href="#ListWindow.IsRowSelected" title="Permanent link">IsRowSelected</a> (int rowId) | native</h3>
+
+<h3 id="ListWindow.ModifyRow"><a class="headerlink" href="#ListWindow.ModifyRow" title="Permanent link">ModifyRow</a> (int rowId, coerce string rowStr) | native</h3>
+
+<h3 id="ListWindow.RemoveSortColumn"><a class="headerlink" href="#ListWindow.RemoveSortColumn" title="Permanent link">RemoveSortColumn</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.ResetSortColumns"><a class="headerlink" href="#ListWindow.ResetSortColumns" title="Permanent link">ResetSortColumns</a> (optional bool bSort) | native</h3>
+
+<h3 id="ListWindow.ResizeColumns"><a class="headerlink" href="#ListWindow.ResizeColumns" title="Permanent link">ResizeColumns</a> (optional bool bExpandOnly) | native</h3>
+
+<h3 id="ListWindow.RowIdToIndex"><a class="headerlink" href="#ListWindow.RowIdToIndex" title="Permanent link">RowIdToIndex</a> (int rowId) | native</h3>
+
+<h3 id="ListWindow.SelectAllRows"><a class="headerlink" href="#ListWindow.SelectAllRows" title="Permanent link">SelectAllRows</a> (optional bool bSelect) | native</h3>
+
+<h3 id="ListWindow.SelectRow"><a class="headerlink" href="#ListWindow.SelectRow" title="Permanent link">SelectRow</a> (int rowId, optional bool bSelect) | native</h3>
+
+<h3 id="ListWindow.SetColumnAlignment"><a class="headerlink" href="#ListWindow.SetColumnAlignment" title="Permanent link">SetColumnAlignment</a> (int colIndex, EHAlign newAlign) | native</h3>
+
+<h3 id="ListWindow.SetColumnColor"><a class="headerlink" href="#ListWindow.SetColumnColor" title="Permanent link">SetColumnColor</a> (int colIndex, color newColor) | native</h3>
+
+<h3 id="ListWindow.SetColumnColorRGB"><a class="headerlink" href="#ListWindow.SetColumnColorRGB" title="Permanent link">SetColumnColorRGB</a> (INT colIndex, INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetColumnColor(colIndex, newColor);<br><br></div>
+<h3 id="ListWindow.SetColumnFont"><a class="headerlink" href="#ListWindow.SetColumnFont" title="Permanent link">SetColumnFont</a> (int colIndex, font newFont) | native</h3>
+
+<h3 id="ListWindow.SetColumnTitle"><a class="headerlink" href="#ListWindow.SetColumnTitle" title="Permanent link">SetColumnTitle</a> (int colIndex, coerce string title) | native</h3>
+
+<h3 id="ListWindow.SetColumnType"><a class="headerlink" href="#ListWindow.SetColumnType" title="Permanent link">SetColumnType</a> (int colIndex, EColumnType newType, optional coerce string newFmt) | native</h3>
+
+<h3 id="ListWindow.SetColumnWidth"><a class="headerlink" href="#ListWindow.SetColumnWidth" title="Permanent link">SetColumnWidth</a> (int colIndex, float newWidth) | native</h3>
+
+<h3 id="ListWindow.SetDelimiter"><a class="headerlink" href="#ListWindow.SetDelimiter" title="Permanent link">SetDelimiter</a> (string newDelimiter) | native</h3>
+
+<h3 id="ListWindow.SetField"><a class="headerlink" href="#ListWindow.SetField" title="Permanent link">SetField</a> (int rowId, int colIndex, coerce string fieldStr) | native</h3>
+
+<h3 id="ListWindow.SetFieldMargins"><a class="headerlink" href="#ListWindow.SetFieldMargins" title="Permanent link">SetFieldMargins</a> (float newMarginWidth, float newMarginHeight) | native</h3>
+
+<h3 id="ListWindow.SetFieldValue"><a class="headerlink" href="#ListWindow.SetFieldValue" title="Permanent link">SetFieldValue</a> (int rowId, int colIndex, float newValue) | native</h3>
+
+<h3 id="ListWindow.SetFocusColor"><a class="headerlink" href="#ListWindow.SetFocusColor" title="Permanent link">SetFocusColor</a> (color newColor) | native</h3>
+
+<h3 id="ListWindow.SetFocusColorRGB"><a class="headerlink" href="#ListWindow.SetFocusColorRGB" title="Permanent link">SetFocusColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetFocusColor(newColor);<br><br></div>
+<h3 id="ListWindow.SetFocusRow"><a class="headerlink" href="#ListWindow.SetFocusRow" title="Permanent link">SetFocusRow</a> (int rowId, optional bool bMoveTo, optional bool bAnchor) | native</h3>
+
+<h3 id="ListWindow.SetFocusTexture"><a class="headerlink" href="#ListWindow.SetFocusTexture" title="Permanent link">SetFocusTexture</a> (texture newTexture) | native</h3>
+
+<h3 id="ListWindow.SetFocusThickness"><a class="headerlink" href="#ListWindow.SetFocusThickness" title="Permanent link">SetFocusThickness</a> (float newThickness) | native</h3>
+
+<h3 id="ListWindow.SetHighlightColor"><a class="headerlink" href="#ListWindow.SetHighlightColor" title="Permanent link">SetHighlightColor</a> (color newColor) | native</h3>
+
+<h3 id="ListWindow.SetHighlightColorRGB"><a class="headerlink" href="#ListWindow.SetHighlightColorRGB" title="Permanent link">SetHighlightColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetHighlightColor(newColor);<br><br></div>
+<h3 id="ListWindow.SetHighlightTextColor"><a class="headerlink" href="#ListWindow.SetHighlightTextColor" title="Permanent link">SetHighlightTextColor</a> (color newColor) | native</h3>
+
+<h3 id="ListWindow.SetHighlightTextColorRGB"><a class="headerlink" href="#ListWindow.SetHighlightTextColorRGB" title="Permanent link">SetHighlightTextColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetHighlightTextColor(newColor);<br><br></div>
+<h3 id="ListWindow.SetHighlightTexture"><a class="headerlink" href="#ListWindow.SetHighlightTexture" title="Permanent link">SetHighlightTexture</a> (texture newTexture) | native</h3>
+
+<h3 id="ListWindow.SetHotKeyColumn"><a class="headerlink" href="#ListWindow.SetHotKeyColumn" title="Permanent link">SetHotKeyColumn</a> (int colIndex) | native</h3>
+
+<h3 id="ListWindow.SetNumColumns"><a class="headerlink" href="#ListWindow.SetNumColumns" title="Permanent link">SetNumColumns</a> (int newCols) | native</h3>
+
+<h3 id="ListWindow.SetRowClientInt"><a class="headerlink" href="#ListWindow.SetRowClientInt" title="Permanent link">SetRowClientInt</a> (int rowId, int clientInt) | native</h3>
+
+<h3 id="ListWindow.SetRowClientObject"><a class="headerlink" href="#ListWindow.SetRowClientObject" title="Permanent link">SetRowClientObject</a> (int rowId, object clientObj) | native</h3>
+
+<h3 id="ListWindow.ShowFocusRow"><a class="headerlink" href="#ListWindow.ShowFocusRow" title="Permanent link">ShowFocusRow</a> | native</h3>
+
+<h3 id="ListWindow.Sort"><a class="headerlink" href="#ListWindow.Sort" title="Permanent link">Sort</a> | native</h3>
+
+<h3 id="ListWindow.ToggleRowSelection"><a class="headerlink" href="#ListWindow.ToggleRowSelection" title="Permanent link">ToggleRowSelection</a> (int rowId) | native</h3>
+
+<h3 id="ListWindow.VirtualKeyPressed"><a class="headerlink" href="#ListWindow.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br>&#9;local bool bDrag;<br>&#9;local bool bSelect;<br>&#9;local bool bClear;<br><br><br>&#9;retval = Super.VirtualKeyPressed(key, bRepeat);<br><br>&#9;bDrag   = IsKeyDown(IK_Shift);<br>&#9;bSelect = !IsKeyDown(IK_Ctrl);<br>&#9;bClear  = !IsKeyDown(IK_Ctrl);<br><br>&#9;// Handle keys<br>&#9;switch (key)<br>&#9;{<br>&#9;&#9;case IK_Up:<br>&#9;&#9;&#9;MoveRow(MOVELIST_Up, bSelect, bClear, bDrag);<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br>&#9;&#9;case IK_Down:<br>&#9;&#9;&#9;MoveRow(MOVELIST_Down, bSelect, bClear, bDrag);<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br>&#9;&#9;case IK_PageUp:<br>&#9;&#9;&#9;MoveRow(MOVELIST_PageUp, bSelect, bClear, bDrag);<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br>&#9;&#9;case IK_PageDown:<br>&#9;&#9;&#9;MoveRow(MOVELIST_PageDown, bSelect, bClear, bDrag);<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br>&#9;&#9;case IK_Home:<br>&#9;&#9;&#9;MoveRow(MOVELIST_Home, bSelect, bClear, bDrag);<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br>&#9;&#9;case IK_End:<br>&#9;&#9;&#9;MoveRow(MOVELIST_End, bSelect, bClear, bDrag);<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br><br>&#9;&#9;case IK_Space:  // toggle selection<br>&#9;&#9;&#9;ToggleRowSelection(GetFocusRow());<br>&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;break;<br><br>&#9;}<br><br>&#9;// Return TRUE if we handled this<br>&#9;return (retval);<br><br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#ModalWindow.uc" title="Permanent link"><h2 id="ModalWindow.uc">ModalWindow.uc (extends TabGroupWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var EMouseFocusMode             focusMode;<br>var private Window              preferredFocus;<br>var native private DynamicArray tabGroupWindowList;<br>var private Window              acceleratorTable[0xFF];<br>var private bool                bDirtyAccelerators;</div>
+<h3 id="ModalWindow.IsCurrentModal"><a class="headerlink" href="#ModalWindow.IsCurrentModal" title="Permanent link">IsCurrentModal</a> | native</h3>
+
+<h3 id="ModalWindow.SetMouseFocusMode"><a class="headerlink" href="#ModalWindow.SetMouseFocusMode" title="Permanent link">SetMouseFocusMode</a> (EMouseFocusMode newFocusMode) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#PlayerPawnExt.uc" title="Permanent link"><h2 id="PlayerPawnExt.uc">PlayerPawnExt.uc (extends PlayerPawn)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var Actor actor;<br>var int   refCount;<br>var const travel FlagBase flagBase;     // Knowledge base for the player<br>var const transient RootWindow rootWindow; // Root window for window manager<br>var private ActorRef actorList[32];  // List of valid actors<br>var private int      actorCount;     // Count of valid actors</div>
+<h3 id="PlayerPawnExt.ClientMessage"><a class="headerlink" href="#PlayerPawnExt.ClientMessage" title="Permanent link">ClientMessage</a> (coerce string msg, optional Name type, optional bool bBeep)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool bHandled;<br><br><br>&#9;// See if the root window can use this event<br>&#9;bHandled = false;<br>&#9;if (rootWindow != None)<br>&#9;&#9;if (rootWindow.ClientMessage(msg, type, bBeep))<br>&#9;&#9;&#9;bHandled = true;<br><br>&#9;// If not, call the superclass<br>&#9;if (!bHandled)<br>&#9;&#9;Super.ClientMessage(msg, type, bBeep);<br><br></div>
+<h3 id="PlayerPawnExt.Destroyed"><a class="headerlink" href="#PlayerPawnExt.Destroyed" title="Permanent link">Destroyed</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;Super.Destroyed();<br><br></div>
+<h3 id="PlayerPawnExt.InitRootWindow"><a class="headerlink" href="#PlayerPawnExt.InitRootWindow" title="Permanent link">InitRootWindow</a> | native</h3>
+
+<h3 id="PlayerPawnExt.Possess"><a class="headerlink" href="#PlayerPawnExt.Possess" title="Permanent link">Possess</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;Super.Possess();<br>&#9;InitRootWindow();<br><br></div>
+<h3 id="PlayerPawnExt.PostRender"><a class="headerlink" href="#PlayerPawnExt.PostRender" title="Permanent link">PostRender</a> (canvas Canvas)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;Super.PostRender(Canvas);<br><br></div>
+<h3 id="PlayerPawnExt.PostRenderFlash"><a class="headerlink" href="#PlayerPawnExt.PostRenderFlash" title="Permanent link">PostRenderFlash</a> (canvas Canvas)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;PostRenderWindows(Canvas);<br>&#9;Super.PostRenderFlash(Canvas);<br><br></div>
+<h3 id="PlayerPawnExt.PostRenderWindows"><a class="headerlink" href="#PlayerPawnExt.PostRenderWindows" title="Permanent link">PostRenderWindows</a> (canvas Canvas) | native</h3>
+
+<h3 id="PlayerPawnExt.PreRender"><a class="headerlink" href="#PlayerPawnExt.PreRender" title="Permanent link">PreRender</a> (canvas Canvas)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;Super.PreRender(Canvas);<br>&#9;PreRenderWindows(Canvas);<br><br></div>
+<h3 id="PlayerPawnExt.PreRenderWindows"><a class="headerlink" href="#PlayerPawnExt.PreRenderWindows" title="Permanent link">PreRenderWindows</a> (canvas Canvas) | native</h3>
+
+<h3 id="PlayerPawnExt.RenderOverlays"><a class="headerlink" href="#PlayerPawnExt.RenderOverlays" title="Permanent link">RenderOverlays</a> (canvas Canvas)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;Super.RenderOverlays(Canvas);<br><br></div>
+<h3 id="PlayerPawnExt.SwitchWeapon"><a class="headerlink" href="#PlayerPawnExt.SwitchWeapon" title="Permanent link">SwitchWeapon</a> (byte F)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local weapon newWeapon;<br><br><br>&#9;if ( Inventory == None )<br>&#9;&#9;return;<br>&#9;if ( (Weapon != None) && (Weapon.Inventory != None) )<br>&#9;&#9;newWeapon = Weapon.Inventory.WeaponChange(F);<br>&#9;else<br>&#9;&#9;newWeapon = None;&#9;<br>&#9;if ( newWeapon == None )<br>&#9;&#9;newWeapon = Inventory.WeaponChange(F);<br>&#9;if ( newWeapon == None )<br>&#9;&#9;return;<br><br>&#9;if ( Weapon == None )<br>&#9;{<br>&#9;&#9;PendingWeapon = newWeapon;<br>&#9;&#9;ChangedWeapon();<br>&#9;}<br>&#9;else if ( (Weapon != newWeapon) && Weapon.PutDown() )<br>&#9;&#9;PendingWeapon = newWeapon;<br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#RadioBoxWindow.uc" title="Permanent link"><h2 id="RadioBoxWindow.uc">RadioBoxWindow.uc (extends TabGroupWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var bool                        bOneCheck;<br>var native private DynamicArray toggleButtons;<br>var private ToggleWindow        currentSelection;</div>
+<h3 id="RadioBoxWindow.GetEnabledToggle"><a class="headerlink" href="#RadioBoxWindow.GetEnabledToggle" title="Permanent link">GetEnabledToggle</a> | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#RootWindow.uc" title="Permanent link"><h2 id="RootWindow.uc">RootWindow.uc (extends ModalWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const PlayerPawnExt parentPawn;         // APlayerPawnExt which owns this win<br>var private RootWindow  nextRootWindow;     // Next root window in global list<br>var private float       mouseX;             // Cursor X pos<br>var private float       mouseY;             // Cursor Y pos<br>var private float       prevMouseX;         // Last cursor X pos<br>var private float       prevMouseY;         // Last cursor Y pos<br>var private window      lastMouseWindow;    // Last window the cursor was in<br>var private bool        bMouseMoved;        // TRUE if the mouse moved<br>var private bool        bMouseMoveLocked;   // TRUE if mouse movement is disabled<br>var private bool        bMouseButtonLocked; // TRUE if mouse buttons are disabled<br>var private bool        bCursorVisible;     // TRUE if the cursor is visible<br>var private texture     defaultEditCursor;           // Cursor for edit widgets<br>var private texture     defaultMoveCursor;           // General movement cursor<br>var private texture     defaultHorizontalMoveCursor; // Horizontal movement cursor<br>var private texture     defaultVerticalMoveCursor;   // Vertical movement cursor<br>var private texture     defaultTopLeftMoveCursor;    // Upper left to lower right cursor<br>var private texture     defaultTopRightMoveCursor;   // Upper right to lower left cursor<br>var private bool        bPositionalSound;            // TRUE if positional sound is enabled<br>var const window        grabbedWindow;         // Recipient window for all mouse events<br>var const window        focusWindow;           // Recipient window for all keyboard events<br>var int                 handleMouseRef;        // Should root handle mouse events?<br>var int                 handleKeyboardRef;     // Should root handle keyboard events?<br>var int                 initCount;             // Number of windows to be initialized this tick<br>var private bool        bRender;               // TRUE if 3D areas should be rendered<br>var private bool        bClipRender;           // TRUE if the 3D area is clipped<br>var private bool        bStretchRawBackground; // TRUE if raw background should be stretched<br>var private float       renderX;               // X offset of rendered area<br>var private float       renderY;               // Y offset of rendered area<br>var private float       renderWidth;           // Width of rendered area<br>var private float       renderHeight;          // Height of rendered area<br>var private texture     rawBackground;         // Background graphic drawn in unrendered areas<br>var private float       rawBackgroundWidth;    // Width of background graphic<br>var private float       rawBackgroundHeight;   // Height of background graphic<br>var private color       rawColor;              // Color of raw background texture<br>var const int           tickCycles;            // Number of cycles used during windows tick<br>var const int           paintCycles;           // Number of cycles used during PaintWindows call<br>var bool                bShowStats;            // Should statistics be shown on root window?<br>var bool                bShowFrames;           // Should we draw debugging frames around all windows?<br>var texture             debugTexture;          // Debugging texture<br>var float               frameTimer;            // Timer used for frames<br>var float               multiClickTimeout;     // Max amount of time between multiple button clicks<br>var private float       maxMouseDist;          // Maximum mouse distance for multi-click to work<br>var private int         clickCount;            // Current click number (zero-based)<br>var private int         lastButtonType;        // Last mouse button handled<br>var private float       lastButtonPress;       // Time remaining for last button press<br>var private window      lastButtonWindow;      // Last window clicked in<br>var private float       firstButtonMouseX;     // X position of initial button press<br>var private float       firstButtonMouseY;     // Y position of initial button press<br>var private byte        keyDownMap[0xFF];      // State is TRUE if key is pressed<br>var private int         hMultiplier;           // Horizontal multiplier<br>var private int         vMultiplier;           // Vertical multiplier<br>var private int         snapshotWidth;        // Snapshot width<br>var private int         snapshotHeight;       // Snapshot height<br>var private transient int rootFrame;           // Transient frame</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">rawBackground=Texture'Extension.Solid'<br>debugTexture=Texture'Extension.Solid'</div>
+<h3 id="RootWindow.EnablePositionalSound"><a class="headerlink" href="#RootWindow.EnablePositionalSound" title="Permanent link">EnablePositionalSound</a> (optional bool bEnable) | native</h3>
+
+<h3 id="RootWindow.EnableRendering"><a class="headerlink" href="#RootWindow.EnableRendering" title="Permanent link">EnableRendering</a> (optional bool bRender) | native</h3>
+
+<h3 id="RootWindow.GenerateSnapshot"><a class="headerlink" href="#RootWindow.GenerateSnapshot" title="Permanent link">GenerateSnapshot</a> (optional bool bFilter) | native</h3>
+
+<h3 id="RootWindow.GrabKeyboardEvents"><a class="headerlink" href="#RootWindow.GrabKeyboardEvents" title="Permanent link">GrabKeyboardEvents</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;handleKeyboardRef++;<br><br></div>
+<h3 id="RootWindow.GrabMouseEvents"><a class="headerlink" href="#RootWindow.GrabMouseEvents" title="Permanent link">GrabMouseEvents</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;handleMouseRef++;<br><br></div>
+<h3 id="RootWindow.InitWindow"><a class="headerlink" href="#RootWindow.InitWindow" title="Permanent link">InitWindow</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;Super.InitWindow();<br>&#9;SetFont(Font'TechMedium');<br>&#9;SetDefaultCursor(Texture'DefaultCursor');<br>&#9;SetDefaultEditCursor(Texture'DefaultTextCursor');<br>&#9;SetDefaultMovementCursors(Texture'DefaultMoveCursor',<br>&#9;                          Texture'DefaultHMoveCursor',<br>&#9;                          Texture'DefaultVMoveCursor',<br>&#9;                          Texture'DefaultTLMoveCursor',<br>&#9;                          Texture'DefaultTRMoveCursor');<br><br></div>
+<h3 id="RootWindow.IsKeyboardGrabbed"><a class="headerlink" href="#RootWindow.IsKeyboardGrabbed" title="Permanent link">IsKeyboardGrabbed</a> -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;if (handleKeyboardRef > 0)<br>&#9;&#9;return true;<br>&#9;else<br>&#9;&#9;return false;<br><br></div>
+<h3 id="RootWindow.IsMouseGrabbed"><a class="headerlink" href="#RootWindow.IsMouseGrabbed" title="Permanent link">IsMouseGrabbed</a> -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;if (handleMouseRef > 0)<br>&#9;&#9;return true;<br>&#9;else<br>&#9;&#9;return false;<br><br></div>
+<h3 id="RootWindow.IsPositionalSoundEnabled"><a class="headerlink" href="#RootWindow.IsPositionalSoundEnabled" title="Permanent link">IsPositionalSoundEnabled</a> | native</h3>
+
+<h3 id="RootWindow.IsRenderingEnabled"><a class="headerlink" href="#RootWindow.IsRenderingEnabled" title="Permanent link">IsRenderingEnabled</a> | native</h3>
+
+<h3 id="RootWindow.LockMouse"><a class="headerlink" href="#RootWindow.LockMouse" title="Permanent link">LockMouse</a> (optional bool bLockMove, optional bool bLockButton) | native</h3>
+
+<h3 id="RootWindow.ResetRenderViewport"><a class="headerlink" href="#RootWindow.ResetRenderViewport" title="Permanent link">ResetRenderViewport</a> | native</h3>
+
+<h3 id="RootWindow.SetDefaultEditCursor"><a class="headerlink" href="#RootWindow.SetDefaultEditCursor" title="Permanent link">SetDefaultEditCursor</a> (optional texture newEditCursor) | native</h3>
+
+<h3 id="RootWindow.SetRawBackgroundSize"><a class="headerlink" href="#RootWindow.SetRawBackgroundSize" title="Permanent link">SetRawBackgroundSize</a> (float newWidth, float newHeight) | native</h3>
+
+<h3 id="RootWindow.SetSnapshotSize"><a class="headerlink" href="#RootWindow.SetSnapshotSize" title="Permanent link">SetSnapshotSize</a> (float newWidth, float newHeight) | native</h3>
+
+<h3 id="RootWindow.ShowCursor"><a class="headerlink" href="#RootWindow.ShowCursor" title="Permanent link">ShowCursor</a> (optional bool bShow) | native</h3>
+
+<h3 id="RootWindow.ShowFrames"><a class="headerlink" href="#RootWindow.ShowFrames" title="Permanent link">ShowFrames</a> (bool bNewShowFrames)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;bShowFrames = bNewShowFrames;<br><br></div>
+<h3 id="RootWindow.ShowStats"><a class="headerlink" href="#RootWindow.ShowStats" title="Permanent link">ShowStats</a> (bool bNewShowStats)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;bShowStats = bNewShowStats;<br><br></div>
+<h3 id="RootWindow.StretchRawBackground"><a class="headerlink" href="#RootWindow.StretchRawBackground" title="Permanent link">StretchRawBackground</a> (optional bool bStretch) | native</h3>
+
+<h3 id="RootWindow.Tick"><a class="headerlink" href="#RootWindow.Tick" title="Permanent link">Tick</a> (float deltaSeconds)</h3>
+
+<h3 id="RootWindow.UngrabKeyboardEvents"><a class="headerlink" href="#RootWindow.UngrabKeyboardEvents" title="Permanent link">UngrabKeyboardEvents</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;if (handleKeyboardRef > 0)<br>&#9;&#9;handleKeyboardRef--;<br><br></div>
+<h3 id="RootWindow.UngrabMouseEvents"><a class="headerlink" href="#RootWindow.UngrabMouseEvents" title="Permanent link">UngrabMouseEvents</a></h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;if (handleMouseRef > 0)<br>&#9;&#9;handleMouseRef--;<br><br></div>
+<h3 id="RootWindow.VirtualKeyPressed"><a class="headerlink" href="#RootWindow.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br><br><br>&#9;// Try the superclass first<br>&#9;retval = Super.VirtualKeyPressed(key, bRepeat);<br><br>&#9;// Didn't handle it -- do it ourselves<br>&#9;if (!retval)<br>&#9;{<br>&#9;&#9;retval = true;<br><br>&#9;&#9;// Handle arrow keys<br>&#9;&#9;if      (key == IK_Left)<br>&#9;&#9;&#9;MoveFocusLeft();<br>&#9;&#9;else if (key == IK_Right)<br>&#9;&#9;&#9;MoveFocusRight();<br>&#9;&#9;else if (key == IK_Up)<br>&#9;&#9;&#9;MoveFocusUp();<br>&#9;&#9;else if (key == IK_Down)<br>&#9;&#9;&#9;MoveFocusDown();<br><br>&#9;&#9;// Handle tab key<br>&#9;&#9;else if (key == IK_Tab)<br>&#9;&#9;{<br>&#9;&#9;&#9;if (IsKeyDown(IK_Shift))<br>&#9;&#9;&#9;&#9;MoveTabGroupPrev();<br>&#9;&#9;&#9;else<br>&#9;&#9;&#9;&#9;MoveTabGroupNext();<br>&#9;&#9;}<br><br>&#9;&#9;// Handle zilch<br>&#9;&#9;else<br>&#9;&#9;&#9;retval = false;<br>&#9;}<br><br>&#9;// Return TRUE if we handled this event<br>&#9;return (retval);<br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#ScaleManagerWindow.uc" title="Permanent link"><h2 id="ScaleManagerWindow.uc">ScaleManagerWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const buttonwindow decButton;<br>var const buttonwindow incButton;<br>var const textwindow   valueField;<br>var const scalewindow  scale;<br>var const EOrientation orientation;<br>var const bool         bStretchScaleField;<br>var const bool         bStretchValueField;<br>var const float        marginWidth;<br>var const float        marginHeight;<br>var const float        spacing;<br>var const EHAlign      childHAlign;<br>var const EVAlign      childVAlign;</div>
+<h3 id="ScaleManagerWindow.SetManagerAlignments"><a class="headerlink" href="#ScaleManagerWindow.SetManagerAlignments" title="Permanent link">SetManagerAlignments</a> (EHAlign newHAlign, EVAlign newVAlign) | native</h3>
+
+<h3 id="ScaleManagerWindow.SetManagerOrientation"><a class="headerlink" href="#ScaleManagerWindow.SetManagerOrientation" title="Permanent link">SetManagerOrientation</a> (EOrientation newOrientation) | native</h3>
+
+<h3 id="ScaleManagerWindow.SetMarginSpacing"><a class="headerlink" href="#ScaleManagerWindow.SetMarginSpacing" title="Permanent link">SetMarginSpacing</a> (optional float newSpacing) | native</h3>
+
+<h3 id="ScaleManagerWindow.SetScale"><a class="headerlink" href="#ScaleManagerWindow.SetScale" title="Permanent link">SetScale</a> (scalewindow newScale) | native</h3>
+
+<h3 id="ScaleManagerWindow.SetValueField"><a class="headerlink" href="#ScaleManagerWindow.SetValueField" title="Permanent link">SetValueField</a> (textwindow newValueField) | native</h3>
+
+<h3 id="ScaleManagerWindow.StretchScaleField"><a class="headerlink" href="#ScaleManagerWindow.StretchScaleField" title="Permanent link">StretchScaleField</a> (optional bool bNewStretch) | native</h3>
+
+<h3 id="ScaleManagerWindow.StretchValueField"><a class="headerlink" href="#ScaleManagerWindow.StretchValueField" title="Permanent link">StretchValueField</a> (optional bool bNewStretch) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ScaleWindow.uc" title="Permanent link"><h2 id="ScaleWindow.uc">ScaleWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const EOrientation orientation;<br>var const texture      scaleTexture;<br>var const texture      thumbTexture;<br>var const texture      tickTexture;<br>var const texture      preCapTexture;<br>var const texture      postCapTexture;<br>var const bool         bRepeatScaleTexture;<br>var const bool         bRepeatThumbTexture;<br>var const bool         bDrawEndTicks;<br>var const bool         bStretchScale;<br>var const bool         bSpanThumb;<br>var const texture      borderPattern;<br>var const float        scaleBorderSize;<br>var const float        thumbBorderSize;<br>var const color        scaleBorderColor;<br>var const color        thumbBorderColor;<br>var const EDrawStyle   scaleStyle;<br>var const EDrawStyle   thumbStyle;<br>var const EDrawStyle   tickStyle;<br>var const color        scaleColor;<br>var const color        thumbColor;<br>var const color        tickColor;<br>var const float        scaleWidth;<br>var const float        scaleHeight;<br>var const float        thumbWidth;<br>var const float        thumbHeight;<br>var const float        tickWidth;<br>var const float        tickHeight;<br>var const float        preCapWidth;<br>var const float        preCapHeight;<br>var const float        postCapWidth;<br>var const float        postCapHeight;<br>var const float        startOffset;<br>var const float        endOffset;<br>var const float        marginWidth;<br>var const float        marginHeight;<br>var const int          numPositions;<br>var const int          currentPos;<br>var const int          spanRange;<br>var const int          thumbStep;<br>var const float        fromValue;<br>var const float        toValue;<br>var const string       valueFmt;<br>var const float        initialDelay;<br>var const float        repeatRate;<br>var const int          initialPos;<br>var const sound        setSound;<br>var const sound        clickSound;<br>var const sound        dragSound;<br>var private float      scaleX;<br>var private float      scaleY;<br>var private float      scaleW;<br>var private float      scaleH;<br>var private float      thumbX;<br>var private float      thumbY;<br>var private float      thumbW;<br>var private float      thumbH;<br>var private float      tickX;<br>var private float      tickY;<br>var private float      tickW;<br>var private float      tickH;<br>var private float      preCapXOff;<br>var private float      preCapYOff;<br>var private float      preCapW;<br>var private float      preCapH;<br>var private float      postCapXOff;<br>var private float      postCapYOff;<br>var private float      postCapW;<br>var private float      postCapH;<br>var private float      absStartScale;<br>var private float      absEndScale;<br>var private bool       bDraggingThumb;<br>var private float      mousePos;<br>var private byte       repeatDir;<br>var private float      remainingTime;<br>var private native DynamicArray enumStrings;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">borderPattern=Texture'Extension.Solid'</div>
+<h3 id="ScaleWindow.ClearAllEnumerations"><a class="headerlink" href="#ScaleWindow.ClearAllEnumerations" title="Permanent link">ClearAllEnumerations</a> | native</h3>
+
+<h3 id="ScaleWindow.EnableStretchedScale"><a class="headerlink" href="#ScaleWindow.EnableStretchedScale" title="Permanent link">EnableStretchedScale</a> (optional bool bNewStretch) | native</h3>
+
+<h3 id="ScaleWindow.GetNumTicks"><a class="headerlink" href="#ScaleWindow.GetNumTicks" title="Permanent link">GetNumTicks</a> | native</h3>
+
+<h3 id="ScaleWindow.GetThumbSpan"><a class="headerlink" href="#ScaleWindow.GetThumbSpan" title="Permanent link">GetThumbSpan</a> | native</h3>
+
+<h3 id="ScaleWindow.GetTickPosition"><a class="headerlink" href="#ScaleWindow.GetTickPosition" title="Permanent link">GetTickPosition</a> | native</h3>
+
+<h3 id="ScaleWindow.GetValue"><a class="headerlink" href="#ScaleWindow.GetValue" title="Permanent link">GetValue</a> | native</h3>
+
+<h3 id="ScaleWindow.GetValueString"><a class="headerlink" href="#ScaleWindow.GetValueString" title="Permanent link">GetValueString</a> | native</h3>
+
+<h3 id="ScaleWindow.GetValues"><a class="headerlink" href="#ScaleWindow.GetValues" title="Permanent link">GetValues</a> (out float fromValue, out float toValue) | native</h3>
+
+<h3 id="ScaleWindow.MoveThumb"><a class="headerlink" href="#ScaleWindow.MoveThumb" title="Permanent link">MoveThumb</a> (EMoveThumb moveThumb) | native</h3>
+
+<h3 id="ScaleWindow.SetBorderPattern"><a class="headerlink" href="#ScaleWindow.SetBorderPattern" title="Permanent link">SetBorderPattern</a> (texture newTexture) | native</h3>
+
+<h3 id="ScaleWindow.SetEnumeration"><a class="headerlink" href="#ScaleWindow.SetEnumeration" title="Permanent link">SetEnumeration</a> (int tickPos, coerce string newStr) | native</h3>
+
+<h3 id="ScaleWindow.SetNumTicks"><a class="headerlink" href="#ScaleWindow.SetNumTicks" title="Permanent link">SetNumTicks</a> (int newNumTicks) | native</h3>
+
+<h3 id="ScaleWindow.SetScaleBorder"><a class="headerlink" href="#ScaleWindow.SetScaleBorder" title="Permanent link">SetScaleBorder</a> (optional float newBorderSize, optional color newColor) | native</h3>
+
+<h3 id="ScaleWindow.SetScaleBorderRGB"><a class="headerlink" href="#ScaleWindow.SetScaleBorderRGB" title="Permanent link">SetScaleBorderRGB</a> (float borderSize, byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetScaleBorder(borderSize, newColor);<br><br></div>
+<h3 id="ScaleWindow.SetScaleColor"><a class="headerlink" href="#ScaleWindow.SetScaleColor" title="Permanent link">SetScaleColor</a> (color newColor) | native</h3>
+
+<h3 id="ScaleWindow.SetScaleColorRGB"><a class="headerlink" href="#ScaleWindow.SetScaleColorRGB" title="Permanent link">SetScaleColorRGB</a> (byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetScaleColor(newColor);<br><br></div>
+<h3 id="ScaleWindow.SetScaleOrientation"><a class="headerlink" href="#ScaleWindow.SetScaleOrientation" title="Permanent link">SetScaleOrientation</a> (EOrientation newOrientation) | native</h3>
+
+<h3 id="ScaleWindow.SetScaleStyle"><a class="headerlink" href="#ScaleWindow.SetScaleStyle" title="Permanent link">SetScaleStyle</a> (EDrawStyle newStyle) | native</h3>
+
+<h3 id="ScaleWindow.SetThumbBorder"><a class="headerlink" href="#ScaleWindow.SetThumbBorder" title="Permanent link">SetThumbBorder</a> (optional float newBorderSize, optional color newColor) | native</h3>
+
+<h3 id="ScaleWindow.SetThumbBorderRGB"><a class="headerlink" href="#ScaleWindow.SetThumbBorderRGB" title="Permanent link">SetThumbBorderRGB</a> (float borderSize, byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetThumbBorder(borderSize, newColor);<br><br></div>
+<h3 id="ScaleWindow.SetThumbColor"><a class="headerlink" href="#ScaleWindow.SetThumbColor" title="Permanent link">SetThumbColor</a> (color newColor) | native</h3>
+
+<h3 id="ScaleWindow.SetThumbColorRGB"><a class="headerlink" href="#ScaleWindow.SetThumbColorRGB" title="Permanent link">SetThumbColorRGB</a> (byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetThumbColor(newColor);<br><br></div>
+<h3 id="ScaleWindow.SetThumbSpan"><a class="headerlink" href="#ScaleWindow.SetThumbSpan" title="Permanent link">SetThumbSpan</a> (optional int newRange) | native</h3>
+
+<h3 id="ScaleWindow.SetThumbStep"><a class="headerlink" href="#ScaleWindow.SetThumbStep" title="Permanent link">SetThumbStep</a> (int newStep) | native</h3>
+
+<h3 id="ScaleWindow.SetThumbStyle"><a class="headerlink" href="#ScaleWindow.SetThumbStyle" title="Permanent link">SetThumbStyle</a> (EDrawStyle newStyle) | native</h3>
+
+<h3 id="ScaleWindow.SetTickColor"><a class="headerlink" href="#ScaleWindow.SetTickColor" title="Permanent link">SetTickColor</a> (color newColor) | native</h3>
+
+<h3 id="ScaleWindow.SetTickColorRGB"><a class="headerlink" href="#ScaleWindow.SetTickColorRGB" title="Permanent link">SetTickColorRGB</a> (byte red, byte green, byte blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.R = red;<br>&#9;newColor.G = green;<br>&#9;newColor.B = blue;<br><br>&#9;SetTickColor(newColor);<br><br></div>
+<h3 id="ScaleWindow.SetTickPosition"><a class="headerlink" href="#ScaleWindow.SetTickPosition" title="Permanent link">SetTickPosition</a> (int newPosition) | native</h3>
+
+<h3 id="ScaleWindow.SetTickStyle"><a class="headerlink" href="#ScaleWindow.SetTickStyle" title="Permanent link">SetTickStyle</a> (EDrawStyle newStyle) | native</h3>
+
+<h3 id="ScaleWindow.SetValue"><a class="headerlink" href="#ScaleWindow.SetValue" title="Permanent link">SetValue</a> (float newValue) | native</h3>
+
+<h3 id="ScaleWindow.SetValueFormat"><a class="headerlink" href="#ScaleWindow.SetValueFormat" title="Permanent link">SetValueFormat</a> (coerce string newFmt) | native</h3>
+
+<h3 id="ScaleWindow.SetValueRange"><a class="headerlink" href="#ScaleWindow.SetValueRange" title="Permanent link">SetValueRange</a> (float newFrom, float newTo) | native</h3>
+
+<h3 id="ScaleWindow.VirtualKeyPressed"><a class="headerlink" href="#ScaleWindow.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br><br><br>&#9;retval = Super.VirtualKeyPressed(key, bRepeat);<br><br>&#9;if ((key == IK_Left) || (key == IK_Up))<br>&#9;{<br>&#9;&#9;MoveThumb(MOVETHUMB_StepUp);<br>&#9;&#9;PlayScaleSound(setSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if ((key == IK_Right) || (key == IK_Down))<br>&#9;{<br>&#9;&#9;MoveThumb(MOVETHUMB_StepDown);<br>&#9;&#9;PlayScaleSound(setSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_Home)<br>&#9;{<br>&#9;&#9;MoveThumb(MOVETHUMB_Home);<br>&#9;&#9;PlayScaleSound(setSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_End)<br>&#9;{<br>&#9;&#9;MoveThumb(MOVETHUMB_End);<br>&#9;&#9;PlayScaleSound(setSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_PageUp)<br>&#9;{<br>&#9;&#9;MoveThumb(MOVETHUMB_PageUp);<br>&#9;&#9;PlayScaleSound(setSound);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_PageDown)<br>&#9;{<br>&#9;&#9;MoveThumb(MOVETHUMB_PageDown);<br>&#9;&#9;PlayScaleSound(setSound);<br>&#9;&#9;retval = true;<br>&#9;}<br><br>&#9;return (retval);<br><br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#ScrollAreaWindow.uc" title="Permanent link"><h2 id="ScrollAreaWindow.uc">ScrollAreaWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const ScaleManagerWindow hScaleMgr;<br>var const ScaleManagerWindow vScaleMgr;<br>var const ScaleWindow        hScale;<br>var const ScaleWindow        vScale;<br>var const ButtonWindow       leftButton;<br>var const ButtonWindow       rightButton;<br>var const ButtonWindow       upButton;<br>var const ButtonWindow       downButton;<br>var const ClipWindow         clipWindow;<br>var const float              marginWidth;<br>var const float              marginHeight;<br>var const float              scrollbarDistance;<br>var const bool               bHideScrollbars;<br>var const bool               bHLastShow;<br>var const bool               bVLastShow;</div>
+<h3 id="ScrollAreaWindow.AutoHideScrollbars"><a class="headerlink" href="#ScrollAreaWindow.AutoHideScrollbars" title="Permanent link">AutoHideScrollbars</a> (optional bool bHide) | native</h3>
+
+<h3 id="ScrollAreaWindow.SetScrollbarDistance"><a class="headerlink" href="#ScrollAreaWindow.SetScrollbarDistance" title="Permanent link">SetScrollbarDistance</a> (float newDistance) | native</h3>
+
+<h3 id="ScrollAreaWindow.VirtualKeyPressed"><a class="headerlink" href="#ScrollAreaWindow.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local bool retval;<br><br><br>&#9;retval = Super.VirtualKeyPressed(key, bRepeat);<br><br>// I'm commenting this out for now, because I'm not sure we should do this<br>// by default...<br>/*<br>&#9;if (key == IK_Home)<br>&#9;{<br>&#9;&#9;if (vScale != None)<br>&#9;&#9;&#9;vScale.MoveThumb(MOVETHUMB_Home);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_End)<br>&#9;{<br>&#9;&#9;if (vScale != None)<br>&#9;&#9;&#9;vScale.MoveThumb(MOVETHUMB_End);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_PageUp)<br>&#9;{<br>&#9;&#9;if (vScale != None)<br>&#9;&#9;&#9;vScale.MoveThumb(MOVETHUMB_PageUp);<br>&#9;&#9;retval = true;<br>&#9;}<br>&#9;else if (key == IK_PageDown)<br>&#9;{<br>&#9;&#9;if (vScale != None)<br>&#9;&#9;&#9;vScale.MoveThumb(MOVETHUMB_PageDown);<br>&#9;&#9;retval = true;<br>&#9;}<br><br>&#9;if (hScale != None)<br>&#9;{<br>&#9;&#9;if (hScale.IsVisible())<br>&#9;&#9;{<br>&#9;&#9;&#9;if (key == IK_Left)<br>&#9;&#9;&#9;{<br>&#9;&#9;&#9;&#9;hScale.MoveThumb(MOVETHUMB_StepUp);<br>&#9;&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;}<br>&#9;&#9;&#9;else if (key == IK_Right)<br>&#9;&#9;&#9;{<br>&#9;&#9;&#9;&#9;hScale.MoveThumb(MOVETHUMB_StepDown);<br>&#9;&#9;&#9;&#9;retval = true;<br>&#9;&#9;&#9;}<br>&#9;&#9;}<br>&#9;}<br>*/<br><br>&#9;return (retval);<br><br><br></div>
+<br><br><hr>
+<a class="headerlink" href="#TabGroupWindow.uc" title="Permanent link"><h2 id="TabGroupWindow.uc">TabGroupWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var native private DynamicArray rowMajorWindowList;<br>var native private DynamicArray colMajorWindowList;<br>var bool                 bSizeParentToChildren;<br>var bool                 bSizeChildrenToParent;<br>var private int          tabGroupIndex;<br>var private float        firstAbsX;<br>var private float        firstAbsY;</div>
+<br><br><hr>
+<a class="headerlink" href="#TextLogWindow.uc" title="Permanent link"><h2 id="TextLogWindow.uc">TextLogWindow.uc (extends TextWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var float                       textTimeout;  // Time before a log entry disappears<br>var native private DynamicArray lines;        // Individual log entries<br>var private bool                bTooTall;     // TRUE if the log won't fit in the window<br>var private bool                bPaused;      // TRUE if the log is currently paused</div>
+<h3 id="TextLogWindow.AddLog"><a class="headerlink" href="#TextLogWindow.AddLog" title="Permanent link">AddLog</a> (string newText, color linecol) | native</h3>
+
+<h3 id="TextLogWindow.ClearLog"><a class="headerlink" href="#TextLogWindow.ClearLog" title="Permanent link">ClearLog</a> | native</h3>
+
+<h3 id="TextLogWindow.PauseLog"><a class="headerlink" href="#TextLogWindow.PauseLog" title="Permanent link">PauseLog</a> (bool bNewPauseState) | native</h3>
+
+<h3 id="TextLogWindow.SetTextTimeout"><a class="headerlink" href="#TextLogWindow.SetTextTimeout" title="Permanent link">SetTextTimeout</a> (float newTimeout) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#TextWindow.uc" title="Permanent link"><h2 id="TextWindow.uc">TextWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const  EHAlign                 hAlign;             // Horizontal alignment (left, center, right justified)<br>var const  EVAlign                 vAlign;             // Vertical alignment   (top, center, bottom justified)<br>var const  bool                    bWordWrap;          // Is word wrapping on?<br>var const  bool                    bTextIsAccelerator; // Is our text also used for keyboard acceleration?<br>var const  float                   hMargin;   // Horizontal margin between the window and the text<br>var const  float                   vMargin;   // Vertical margin between the window and the text<br>var const  int                     minLines;  // Preferred minimum number of lines<br>var const  int                     maxLines;  // Preferred maximum number of lines<br>var const  float                   minWidth;  // Preferred minimum width<br>var native private string          text;      // Text string to draw</div>
+<h3 id="TextWindow.AppendText"><a class="headerlink" href="#TextWindow.AppendText" title="Permanent link">AppendText</a> (coerce string newText) | native</h3>
+
+<h3 id="TextWindow.EnableTextAsAccelerator"><a class="headerlink" href="#TextWindow.EnableTextAsAccelerator" title="Permanent link">EnableTextAsAccelerator</a> (optional bool bEnable) | native</h3>
+
+<h3 id="TextWindow.GetText"><a class="headerlink" href="#TextWindow.GetText" title="Permanent link">GetText</a> | native</h3>
+
+<h3 id="TextWindow.GetTextLength"><a class="headerlink" href="#TextWindow.GetTextLength" title="Permanent link">GetTextLength</a> | native</h3>
+
+<h3 id="TextWindow.GetTextPart"><a class="headerlink" href="#TextWindow.GetTextPart" title="Permanent link">GetTextPart</a> (int startPos, int count, out string outText) | native</h3>
+
+<h3 id="TextWindow.ResetLines"><a class="headerlink" href="#TextWindow.ResetLines" title="Permanent link">ResetLines</a> | native</h3>
+
+<h3 id="TextWindow.ResetMinWidth"><a class="headerlink" href="#TextWindow.ResetMinWidth" title="Permanent link">ResetMinWidth</a> | native</h3>
+
+<h3 id="TextWindow.SetLines"><a class="headerlink" href="#TextWindow.SetLines" title="Permanent link">SetLines</a> (int newMinLines, int newMaxLines) | native</h3>
+
+<h3 id="TextWindow.SetMaxLines"><a class="headerlink" href="#TextWindow.SetMaxLines" title="Permanent link">SetMaxLines</a> (int newMaxLines) | native</h3>
+
+<h3 id="TextWindow.SetMinLines"><a class="headerlink" href="#TextWindow.SetMinLines" title="Permanent link">SetMinLines</a> (int newMinLines) | native</h3>
+
+<h3 id="TextWindow.SetMinWidth"><a class="headerlink" href="#TextWindow.SetMinWidth" title="Permanent link">SetMinWidth</a> (float newMinWidth) | native</h3>
+
+<h3 id="TextWindow.SetText"><a class="headerlink" href="#TextWindow.SetText" title="Permanent link">SetText</a> (coerce string newText) | native</h3>
+
+<h3 id="TextWindow.SetTextAlignments"><a class="headerlink" href="#TextWindow.SetTextAlignments" title="Permanent link">SetTextAlignments</a> (EHAlign newHAlign, EVAlign newVAlign) | native</h3>
+
+<h3 id="TextWindow.SetTextMargins"><a class="headerlink" href="#TextWindow.SetTextMargins" title="Permanent link">SetTextMargins</a> (float newHMargin, float newVMargin) | native</h3>
+
+<h3 id="TextWindow.SetWordWrap"><a class="headerlink" href="#TextWindow.SetWordWrap" title="Permanent link">SetWordWrap</a> (bool bNewWordWrap) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#TileWindow.uc" title="Permanent link"><h2 id="TileWindow.uc">TileWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const byte  orientation;        // Horizontal or vertical<br>var const byte  hDirection;         // Left-right or right-left<br>var const byte  vDirection;         // Top-bottom or bottom-top<br>var const float hMargin;            // Horizontal margin<br>var const float vMargin;            // Vertical margin<br>var const float minorSpacing;       // Child spacing along orientation<br>var const float majorSpacing;       // Child spacing when wrapped<br>var const byte  hChildAlign;        // Horizontal child alignment<br>var const byte  vChildAlign;        // Vertical child alignment<br>var const bool  bWrap;              // Wrap windows if not enough space?<br>var const bool  bFillParent;        // Fill the parent with children?<br>var const bool  bEqualWidth;        // Make all children equal width?<br>var const bool  bEqualHeight;       // Make all children equal height?<br>var native private DynamicArray rowArray;  // Temporary array of row information</div>
+<h3 id="TileWindow.EnableWrapping"><a class="headerlink" href="#TileWindow.EnableWrapping" title="Permanent link">EnableWrapping</a> (bool bWrapOn) | native</h3>
+
+<h3 id="TileWindow.FillParent"><a class="headerlink" href="#TileWindow.FillParent" title="Permanent link">FillParent</a> (bool FillParent) | native</h3>
+
+<h3 id="TileWindow.MakeHeightsEqual"><a class="headerlink" href="#TileWindow.MakeHeightsEqual" title="Permanent link">MakeHeightsEqual</a> (bool bEqual) | native</h3>
+
+<h3 id="TileWindow.MakeWidthsEqual"><a class="headerlink" href="#TileWindow.MakeWidthsEqual" title="Permanent link">MakeWidthsEqual</a> (bool bEqual) | native</h3>
+
+<h3 id="TileWindow.SetChildAlignments"><a class="headerlink" href="#TileWindow.SetChildAlignments" title="Permanent link">SetChildAlignments</a> (EHAlign newHAlign, EVAlign newVAlign) | native</h3>
+
+<h3 id="TileWindow.SetDirections"><a class="headerlink" href="#TileWindow.SetDirections" title="Permanent link">SetDirections</a> (EHDirection newHDir, EVDirection newVDir) | native</h3>
+
+<h3 id="TileWindow.SetMajorSpacing"><a class="headerlink" href="#TileWindow.SetMajorSpacing" title="Permanent link">SetMajorSpacing</a> (float newSpacing) | native</h3>
+
+<h3 id="TileWindow.SetMargins"><a class="headerlink" href="#TileWindow.SetMargins" title="Permanent link">SetMargins</a> (float newHMargin, float newVMargin) | native</h3>
+
+<h3 id="TileWindow.SetMinorSpacing"><a class="headerlink" href="#TileWindow.SetMinorSpacing" title="Permanent link">SetMinorSpacing</a> (float newSpacing) | native</h3>
+
+<h3 id="TileWindow.SetOrder"><a class="headerlink" href="#TileWindow.SetOrder" title="Permanent link">SetOrder</a> (EOrder newOrder) | native</h3>
+
+<h3 id="TileWindow.SetOrientation"><a class="headerlink" href="#TileWindow.SetOrientation" title="Permanent link">SetOrientation</a> (EOrientation newOrientation) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ToggleWindow.uc" title="Permanent link"><h2 id="ToggleWindow.uc">ToggleWindow.uc (extends ButtonWindow)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const sound enableSound;<br>var const sound disableSound;</div>
+<h3 id="ToggleWindow.ChangeToggle"><a class="headerlink" href="#ToggleWindow.ChangeToggle" title="Permanent link">ChangeToggle</a> | native</h3>
+
+<h3 id="ToggleWindow.GetToggle"><a class="headerlink" href="#ToggleWindow.GetToggle" title="Permanent link">GetToggle</a> | native</h3>
+
+<h3 id="ToggleWindow.SetToggle"><a class="headerlink" href="#ToggleWindow.SetToggle" title="Permanent link">SetToggle</a> (bool bNewToggle) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#ViewportWindow.uc" title="Permanent link"><h2 id="ViewportWindow.uc">ViewportWindow.uc (extends Window)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var const bool    bEnableViewport;<br>var const bool    bClearZ;<br>var const bool    bShowActor;<br>var const bool    bShowWeapons;<br>var const bool    bUseViewRotation;<br>var const bool    bUseEyeHeight;<br>var const bool    bWatchEyeHeight;<br>var const float   fov;<br>var const texture defaultTexture;<br>var const color   defaultColor;<br>var const actor   originActor;<br>var const actor   watchActor;<br>var const vector  location;<br>var const vector  relLocation;<br>var const rotator rotation;<br>var const rotator relRotation;<br>var private bool    bOriginActorDestroyed;<br>var private vector  lastLocation;<br>var private rotator lastRotation;<br>var private transient int viewportFrame;</div>
+<button type="button" class="collapsible">Show Default Properties</button><div class="content" style="white-space:pre">DefaultTexture=Texture'Extension.Solid'</div>
+<h3 id="ViewportWindow.ClearZBuffer"><a class="headerlink" href="#ViewportWindow.ClearZBuffer" title="Permanent link">ClearZBuffer</a> (optional bool bClear) | native</h3>
+
+<h3 id="ViewportWindow.EnableViewport"><a class="headerlink" href="#ViewportWindow.EnableViewport" title="Permanent link">EnableViewport</a> (optional bool bEnable) | native</h3>
+
+<h3 id="ViewportWindow.SetDefaultTextureRGB"><a class="headerlink" href="#ViewportWindow.SetDefaultTextureRGB" title="Permanent link">SetDefaultTextureRGB</a> (texture newTexture, INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br><br>&#9;SetDefaultTexture(newTexture, newColor);<br><br></div>
+<h3 id="ViewportWindow.SetFOVAngle"><a class="headerlink" href="#ViewportWindow.SetFOVAngle" title="Permanent link">SetFOVAngle</a> (optional float newAngle) | native</h3>
+
+<h3 id="ViewportWindow.SetRelativeLocation"><a class="headerlink" href="#ViewportWindow.SetRelativeLocation" title="Permanent link">SetRelativeLocation</a> (optional vector relLoc) | native</h3>
+
+<h3 id="ViewportWindow.SetRelativeLocationXYZ"><a class="headerlink" href="#ViewportWindow.SetRelativeLocationXYZ" title="Permanent link">SetRelativeLocationXYZ</a> (float x, float y, float z)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local Vector vector;<br><br><br>&#9;vector.x = x;<br>&#9;vector.y = y;<br>&#9;vector.z = z;<br><br>&#9;SetRelativeLocation(vector);<br><br></div>
+<h3 id="ViewportWindow.SetRelativeRotation"><a class="headerlink" href="#ViewportWindow.SetRelativeRotation" title="Permanent link">SetRelativeRotation</a> (optional rotator relRot) | native</h3>
+
+<h3 id="ViewportWindow.SetRelativeRotationPYR"><a class="headerlink" href="#ViewportWindow.SetRelativeRotationPYR" title="Permanent link">SetRelativeRotationPYR</a> (int pitch, int yaw, int roll)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local rotator rotation;<br><br><br>&#9;rotation.roll  = roll;<br>&#9;rotation.pitch = pitch;<br>&#9;rotation.yaw   = yaw;<br><br>&#9;SetRelativeRotation(rotation);<br><br></div>
+<h3 id="ViewportWindow.SetRotation"><a class="headerlink" href="#ViewportWindow.SetRotation" title="Permanent link">SetRotation</a> (optional rotator newRotation) | native</h3>
+
+<h3 id="ViewportWindow.SetRotationPYR"><a class="headerlink" href="#ViewportWindow.SetRotationPYR" title="Permanent link">SetRotationPYR</a> (int pitch, int yaw, int roll)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local rotator rotation;<br><br><br>&#9;rotation.roll  = roll;<br>&#9;rotation.pitch = pitch;<br>&#9;rotation.yaw   = yaw;<br><br>&#9;SetRotation(rotation);<br><br></div>
+<h3 id="ViewportWindow.SetViewportLocationXYZ"><a class="headerlink" href="#ViewportWindow.SetViewportLocationXYZ" title="Permanent link">SetViewportLocationXYZ</a> (float x, float y, float z, bool bEnable)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local Vector vector;<br><br><br>&#9;vector.x = x;<br>&#9;vector.y = y;<br>&#9;vector.z = z;<br><br>&#9;SetViewportLocation(vector, bEnable);<br><br></div>
+<h3 id="ViewportWindow.ShowViewportActor"><a class="headerlink" href="#ViewportWindow.ShowViewportActor" title="Permanent link">ShowViewportActor</a> (optional bool bShow) | native</h3>
+
+<h3 id="ViewportWindow.ShowWeapons"><a class="headerlink" href="#ViewportWindow.ShowWeapons" title="Permanent link">ShowWeapons</a> (optional bool bShow) | native</h3>
+
+<br><br><hr>
+<a class="headerlink" href="#Window.uc" title="Permanent link"><h2 id="Window.uc">Window.uc (extends ExtensionObject)</h2></a>
+
+<button type="button" class="collapsible">Show Variables</button><div class="content" style="white-space:pre">var private byte     windowType;          // Contains window type<br>var private window   parentOwner;         // Window that "owns" this window<br>var const bool       bIsVisible;          // TRUE if the window is visible<br>var const bool       bIsSensitive;        // TRUE if the window can take input<br>var const bool       bIsSelectable;       // TRUE if the window can have keyboard focus<br>var const bool       bIsInitialized;      // TRUE if the window has been initialized<br>var const bool       bBeingDestroyed;     // TRUE if this window is going bye-bye<br>var const int        lockCount;           // Reference count of locks on this window<br>var const bool       bDrawRawBackground;  // TRUE if raw backgrounds should be drawn here<br>var const bool       bStretchBackground;  // TRUE=stretch background, FALSE=repeat tile<br>var const bool       bSmoothBackground;   // TRUE if the background should be smoothed<br>var const EDrawStyle backgroundStyle;     // Normal, masked or translucent<br>var const color      textColor;           // Color of text<br>var const plane      textPlane;           // Plane of text; converted from textColor<br>var const font       normalFont;          // Regular font<br>var const font       boldFont;            // Boldface font<br>var const float      textVSpacing;        // Space between lines of text<br>var const color      tileColor;           // Color of tile<br>var const plane      tilePlane;           // Plane of tile; converted from tileColor<br>var const bool       bSpecialText;        // TRUE if special text is enabled<br>var const bool       bTextTranslucent;    // TRUE if translucent text is enabled<br>var const float      x;                   // X position of window relative to parent<br>var const float      y;                   // Y position of window relative to parent<br>var const float      width;               // Width of window<br>var const float      height;              // Height of window<br>var const EHAlign    winHAlign;           // User-specified horizontal alignment<br>var const EVAlign    winVAlign;           // User-specified vertical alignment<br>var const float      hMargin0;            // User-specified first horizontal margin<br>var const float      hMargin1;            // User-specified second horizontal margin (FULL only)<br>var const float      vMargin0;            // User-specified first vertical margin<br>var const float      vMargin1;            // User-specified second vertical margin (FULL only)<br>var const float      hardcodedWidth;      // User-specified preferred width<br>var const float      hardcodedHeight;     // User-specified preferred height<br>var float            holdX;<br>var float            holdY;<br>var float            holdWidth;<br>var float            holdHeight;<br>var int              acceleratorKey;         // Hotkey, cast to an INT (hack)<br>var bool             bNeedsReconfigure;      // TRUE if this window must be reconfigured<br>var bool             bNeedsQuery;            // TRUE if this window must be requeried<br>var bool             bConfigured;            // TRUE if this window was reconfigured<br>var private bool     bLastWidthSpecified;    // Whether width was specified in last size query<br>var private bool     bLastHeightSpecified;   // Whether height was specified in last size query<br>var private float    lastSpecifiedWidth;     // Width specified in last size query<br>var private float    lastSpecifiedHeight;    // Height specified in last size query<br>var private float    lastQueryWidth;         // Width returned by last size query<br>var private float    lastQueryHeight;        // Height returned by last size query<br>var bool             bTickEnabled;        // TRUE if the UnrealScript Tick() is enabled<br>var int              maxClicks;           // Number of clicks handled by window; 0=any number<br>var const ClipRect   winClipRect;         // Clipping rectangle; maintained at all times<br>var const texture    background;          // Background textures<br>var const texture    defaultCursor;       // Default cursor; can be overridden in CursorRequested<br>var const texture    defaultCursorShadow; // Default cursor shadow; can be overridden in CursorRequested<br>var const float      defaultHotX;         // Default hot X; can be overridden in CursorRequested<br>var const float      defaultHotY;         // Default hot Y; can be overridden in CursorRequested<br>var const color      defaultCursorColor;  // Default cursor color; can be overridden in CursorRequested<br>var const sound      focusSound;          // Played when this window obtains focus<br>var const sound      unfocusSound;        // Played when this window loses focus<br>var const sound      visibleSound;        // Played when this window becomes visible<br>var const sound      invisibleSound;      // Played when this window becomes invisible<br>var const float      soundVolume;         // Volume of sound<br>var const object     clientObject;        // Pointer to an object associated with this window<br>var private int      rowMajorIndex;       // Index into tab group's row-major sorted list<br>var private int      colMajorIndex;       // Index into tab group's column-major sorted list<br>var native private int      att;                 // Pointer to first attribute; used by parent<br>var native private int      firstTimer;          // Pointer to this window's first timer<br>var native private int      freeTimer;           // Free list of timers<br>var private gc       wGc;<br>var private gc       gGc;<br>var const window     winParent;           // Parent window; NULL if this is root<br>var const window     firstChild;          // "Lowest" child (first one drawn)<br>var const window     lastChild;           // "Highest" child (last one drawn)<br>var const window     prevSibling;         // Next "lowest" sibling (previous one drawn)<br>var const window     nextSibling;         // Next "highest" sibling (next one drawn)</div>
+<h3 id="Window.AcceleratorKeyPressed"><a class="headerlink" href="#Window.AcceleratorKeyPressed" title="Permanent link">AcceleratorKeyPressed</a> (string key) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;  // don't handle<br><br></div>
+<h3 id="Window.AddActorRef"><a class="headerlink" href="#Window.AddActorRef" title="Permanent link">AddActorRef</a> (actor refActor) | native</h3>
+
+<h3 id="Window.AskParentForReconfigure"><a class="headerlink" href="#Window.AskParentForReconfigure" title="Permanent link">AskParentForReconfigure</a> | native</h3>
+
+<h3 id="Window.BoxOptionSelected"><a class="headerlink" href="#Window.BoxOptionSelected" title="Permanent link">BoxOptionSelected</a> (Window box, int buttonNumber) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.ButtonActivated"><a class="headerlink" href="#Window.ButtonActivated" title="Permanent link">ButtonActivated</a> (Window button) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.CR"><a class="headerlink" href="#Window.CR" title="Permanent link">CR</a> -> string</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return CarriageReturn();<br><br></div>
+<h3 id="Window.CarriageReturn"><a class="headerlink" href="#Window.CarriageReturn" title="Permanent link">CarriageReturn</a> | native</h3>
+
+<h3 id="Window.ChangeStyle"><a class="headerlink" href="#Window.ChangeStyle" title="Permanent link">ChangeStyle</a> | native</h3>
+
+<h3 id="Window.ChildAdded"><a class="headerlink" href="#Window.ChildAdded" title="Permanent link">ChildAdded</a> (Window child)</h3>
+
+<h3 id="Window.ChildRemoved"><a class="headerlink" href="#Window.ChildRemoved" title="Permanent link">ChildRemoved</a> (Window child)</h3>
+
+<h3 id="Window.ChildRequestedReconfiguration"><a class="headerlink" href="#Window.ChildRequestedReconfiguration" title="Permanent link">ChildRequestedReconfiguration</a> (window childWin) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br><br>&#9;childWin.ResizeChild();<br><br>&#9;return true;<br><br></div>
+<h3 id="Window.ChildRequestedVisibilityChange"><a class="headerlink" href="#Window.ChildRequestedVisibilityChange" title="Permanent link">ChildRequestedVisibilityChange</a> (window childWin, bool bNewVisibility)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;childWin.SetChildVisibility(bNewVisibility);<br><br></div>
+<h3 id="Window.ClipPositionChanged"><a class="headerlink" href="#Window.ClipPositionChanged" title="Permanent link">ClipPositionChanged</a> (window clip, int newCol, int newRow) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.ConfigurationChanged"><a class="headerlink" href="#Window.ConfigurationChanged" title="Permanent link">ConfigurationChanged</a></h3>
+
+<h3 id="Window.ConfigureChild"><a class="headerlink" href="#Window.ConfigureChild" title="Permanent link">ConfigureChild</a> (float newX, float newY, float newWidth, float newHeight) | native</h3>
+
+<h3 id="Window.ConvertScriptString"><a class="headerlink" href="#Window.ConvertScriptString" title="Permanent link">ConvertScriptString</a> (string oldStr) | native</h3>
+
+<h3 id="Window.DescendantAdded"><a class="headerlink" href="#Window.DescendantAdded" title="Permanent link">DescendantAdded</a> (Window descendant)</h3>
+
+<h3 id="Window.DescendantRemoved"><a class="headerlink" href="#Window.DescendantRemoved" title="Permanent link">DescendantRemoved</a> (Window descendant)</h3>
+
+<h3 id="Window.Destroy"><a class="headerlink" href="#Window.Destroy" title="Permanent link">Destroy</a> | native</h3>
+
+<h3 id="Window.DestroyAllChildren"><a class="headerlink" href="#Window.DestroyAllChildren" title="Permanent link">DestroyAllChildren</a> | native</h3>
+
+<h3 id="Window.DestroyWindow"><a class="headerlink" href="#Window.DestroyWindow" title="Permanent link">DestroyWindow</a></h3>
+
+<h3 id="Window.DisableWindow"><a class="headerlink" href="#Window.DisableWindow" title="Permanent link">DisableWindow</a> | native</h3>
+
+<h3 id="Window.DrawWindow"><a class="headerlink" href="#Window.DrawWindow" title="Permanent link">DrawWindow</a> (GC gc)</h3>
+
+<h3 id="Window.EditActivated"><a class="headerlink" href="#Window.EditActivated" title="Permanent link">EditActivated</a> (window edit, bool bModified) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.EnableSpecialText"><a class="headerlink" href="#Window.EnableSpecialText" title="Permanent link">EnableSpecialText</a> (optional bool bEnable) | native</h3>
+
+<h3 id="Window.EnableTranslucentText"><a class="headerlink" href="#Window.EnableTranslucentText" title="Permanent link">EnableTranslucentText</a> (optional bool bEnable) | native</h3>
+
+<h3 id="Window.EnableWindow"><a class="headerlink" href="#Window.EnableWindow" title="Permanent link">EnableWindow</a> (optional bool bEnable) | native</h3>
+
+<h3 id="Window.FocusEnteredDescendant"><a class="headerlink" href="#Window.FocusEnteredDescendant" title="Permanent link">FocusEnteredDescendant</a> (Window enterWindow)</h3>
+
+<h3 id="Window.FocusEnteredWindow"><a class="headerlink" href="#Window.FocusEnteredWindow" title="Permanent link">FocusEnteredWindow</a></h3>
+
+<h3 id="Window.FocusLeftDescendant"><a class="headerlink" href="#Window.FocusLeftDescendant" title="Permanent link">FocusLeftDescendant</a> (Window leaveWindow)</h3>
+
+<h3 id="Window.FocusLeftWindow"><a class="headerlink" href="#Window.FocusLeftWindow" title="Permanent link">FocusLeftWindow</a></h3>
+
+<h3 id="Window.GetBottomChild"><a class="headerlink" href="#Window.GetBottomChild" title="Permanent link">GetBottomChild</a> (optional bool bVisibleOnly) | native</h3>
+
+<h3 id="Window.GetClientObject"><a class="headerlink" href="#Window.GetClientObject" title="Permanent link">GetClientObject</a> | native</h3>
+
+<h3 id="Window.GetColorScaled"><a class="headerlink" href="#Window.GetColorScaled" title="Permanent link">GetColorScaled</a> (float percent) -> Color</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local float mult;<br>&#9;local Color col;<br><br><br>&#9;if (percent > 0.80)<br>&#9;{<br>&#9;&#9;col.r = 0;<br>&#9;&#9;col.g = 255;<br>&#9;&#9;col.b = 0;<br>&#9;}<br>&#9;else if (percent > 0.40)<br>&#9;{<br>&#9;&#9;mult = (percent-0.40)/(0.80-0.40);<br>&#9;&#9;col.r = 255 + (0-255)*mult;<br>&#9;&#9;col.g = 255;<br>&#9;&#9;col.b = 0;<br>&#9;}<br>&#9;else if (percent > 0.10)<br>&#9;{<br>&#9;&#9;mult = (percent-0.10)/(0.40-0.10);<br>&#9;&#9;col.r = 255;<br>&#9;&#9;col.g = 0 + (255-0)*mult;<br>&#9;&#9;col.b = 0;<br>&#9;}<br>&#9;else if (percent > 0)<br>&#9;{<br>&#9;&#9;col.r = 255;<br>&#9;&#9;col.g = 0;<br>&#9;&#9;col.b = 0;<br>&#9;}<br>&#9;else<br>&#9;{<br>&#9;&#9;col.r = 0;<br>&#9;&#9;col.g = 0;<br>&#9;&#9;col.b = 0;<br>&#9;}<br><br>&#9;return col;<br><br><br></div>
+<h3 id="Window.GetCursorPos"><a class="headerlink" href="#Window.GetCursorPos" title="Permanent link">GetCursorPos</a> (out float mouseX, out float mouseY) | native</h3>
+
+<h3 id="Window.GetFocusWindow"><a class="headerlink" href="#Window.GetFocusWindow" title="Permanent link">GetFocusWindow</a> | native</h3>
+
+<h3 id="Window.GetGC"><a class="headerlink" href="#Window.GetGC" title="Permanent link">GetGC</a> | native</h3>
+
+<h3 id="Window.GetHigherSibling"><a class="headerlink" href="#Window.GetHigherSibling" title="Permanent link">GetHigherSibling</a> (optional bool bVisibleOnly) | native</h3>
+
+<h3 id="Window.GetLowerSibling"><a class="headerlink" href="#Window.GetLowerSibling" title="Permanent link">GetLowerSibling</a> (optional bool bVisibleOnly) | native</h3>
+
+<h3 id="Window.GetModalWindow"><a class="headerlink" href="#Window.GetModalWindow" title="Permanent link">GetModalWindow</a> | native</h3>
+
+<h3 id="Window.GetParent"><a class="headerlink" href="#Window.GetParent" title="Permanent link">GetParent</a> | native</h3>
+
+<h3 id="Window.GetPlayerPawn"><a class="headerlink" href="#Window.GetPlayerPawn" title="Permanent link">GetPlayerPawn</a> | native</h3>
+
+<h3 id="Window.GetRootWindow"><a class="headerlink" href="#Window.GetRootWindow" title="Permanent link">GetRootWindow</a> | native</h3>
+
+<h3 id="Window.GetTabGroupWindow"><a class="headerlink" href="#Window.GetTabGroupWindow" title="Permanent link">GetTabGroupWindow</a> | native</h3>
+
+<h3 id="Window.GetTickOffset"><a class="headerlink" href="#Window.GetTickOffset" title="Permanent link">GetTickOffset</a> | native</h3>
+
+<h3 id="Window.GetTopChild"><a class="headerlink" href="#Window.GetTopChild" title="Permanent link">GetTopChild</a> (optional bool bVisibleOnly) | native</h3>
+
+<h3 id="Window.GrabMouse"><a class="headerlink" href="#Window.GrabMouse" title="Permanent link">GrabMouse</a> | native</h3>
+
+<h3 id="Window.Hide"><a class="headerlink" href="#Window.Hide" title="Permanent link">Hide</a> | native</h3>
+
+<h3 id="Window.InitWindow"><a class="headerlink" href="#Window.InitWindow" title="Permanent link">InitWindow</a></h3>
+
+<h3 id="Window.IsActorValid"><a class="headerlink" href="#Window.IsActorValid" title="Permanent link">IsActorValid</a> (actor refActor) | native</h3>
+
+<h3 id="Window.IsFocusWindow"><a class="headerlink" href="#Window.IsFocusWindow" title="Permanent link">IsFocusWindow</a> | native</h3>
+
+<h3 id="Window.IsKeyDown"><a class="headerlink" href="#Window.IsKeyDown" title="Permanent link">IsKeyDown</a> (EInputKey key) | native</h3>
+
+<h3 id="Window.IsPointInWindow"><a class="headerlink" href="#Window.IsPointInWindow" title="Permanent link">IsPointInWindow</a> (float pointX, float pointY) | native</h3>
+
+<h3 id="Window.IsSensitive"><a class="headerlink" href="#Window.IsSensitive" title="Permanent link">IsSensitive</a> (optional bool bRecurse) | native</h3>
+
+<h3 id="Window.IsVisible"><a class="headerlink" href="#Window.IsVisible" title="Permanent link">IsVisible</a> (optional bool bRecurse) | native</h3>
+
+<h3 id="Window.KeyPressed"><a class="headerlink" href="#Window.KeyPressed" title="Permanent link">KeyPressed</a> (string key) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;  // don't handle<br><br></div>
+<h3 id="Window.ListRowActivated"><a class="headerlink" href="#Window.ListRowActivated" title="Permanent link">ListRowActivated</a> (window list, int rowId) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.ListSelectionChanged"><a class="headerlink" href="#Window.ListSelectionChanged" title="Permanent link">ListSelectionChanged</a> (window list, int numSelections, int focusRowId) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.Lower"><a class="headerlink" href="#Window.Lower" title="Permanent link">Lower</a> | native</h3>
+
+<h3 id="Window.MouseEnteredWindow"><a class="headerlink" href="#Window.MouseEnteredWindow" title="Permanent link">MouseEnteredWindow</a></h3>
+
+<h3 id="Window.MouseLeftWindow"><a class="headerlink" href="#Window.MouseLeftWindow" title="Permanent link">MouseLeftWindow</a></h3>
+
+<h3 id="Window.MouseMoved"><a class="headerlink" href="#Window.MouseMoved" title="Permanent link">MouseMoved</a> (float newX, float newY)</h3>
+
+<h3 id="Window.MoveFocusDown"><a class="headerlink" href="#Window.MoveFocusDown" title="Permanent link">MoveFocusDown</a> | native</h3>
+
+<h3 id="Window.MoveFocusLeft"><a class="headerlink" href="#Window.MoveFocusLeft" title="Permanent link">MoveFocusLeft</a> | native</h3>
+
+<h3 id="Window.MoveFocusRight"><a class="headerlink" href="#Window.MoveFocusRight" title="Permanent link">MoveFocusRight</a> | native</h3>
+
+<h3 id="Window.MoveFocusUp"><a class="headerlink" href="#Window.MoveFocusUp" title="Permanent link">MoveFocusUp</a> | native</h3>
+
+<h3 id="Window.MoveTabGroupNext"><a class="headerlink" href="#Window.MoveTabGroupNext" title="Permanent link">MoveTabGroupNext</a> | native</h3>
+
+<h3 id="Window.MoveTabGroupPrev"><a class="headerlink" href="#Window.MoveTabGroupPrev" title="Permanent link">MoveTabGroupPrev</a> | native</h3>
+
+<h3 id="Window.PostDrawWindow"><a class="headerlink" href="#Window.PostDrawWindow" title="Permanent link">PostDrawWindow</a> (GC gc)</h3>
+
+<h3 id="Window.QueryGranularity"><a class="headerlink" href="#Window.QueryGranularity" title="Permanent link">QueryGranularity</a> (out float hGranularity, out float vGranularity) | native</h3>
+
+<h3 id="Window.QueryPreferredHeight"><a class="headerlink" href="#Window.QueryPreferredHeight" title="Permanent link">QueryPreferredHeight</a> (float queryWidth) | native</h3>
+
+<h3 id="Window.QueryPreferredSize"><a class="headerlink" href="#Window.QueryPreferredSize" title="Permanent link">QueryPreferredSize</a> (out float preferredWidth, out float preferredHeight) | native</h3>
+
+<h3 id="Window.QueryPreferredWidth"><a class="headerlink" href="#Window.QueryPreferredWidth" title="Permanent link">QueryPreferredWidth</a> (float queryHeight) | native</h3>
+
+<h3 id="Window.Raise"><a class="headerlink" href="#Window.Raise" title="Permanent link">Raise</a> | native</h3>
+
+<h3 id="Window.RawKeyPressed"><a class="headerlink" href="#Window.RawKeyPressed" title="Permanent link">RawKeyPressed</a> (EInputKey key, EInputState iState, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;  // don't handle<br><br></div>
+<h3 id="Window.ReleaseGC"><a class="headerlink" href="#Window.ReleaseGC" title="Permanent link">ReleaseGC</a> (GC gc) | native</h3>
+
+<h3 id="Window.RemoveActorRef"><a class="headerlink" href="#Window.RemoveActorRef" title="Permanent link">RemoveActorRef</a> (actor refActor) | native</h3>
+
+<h3 id="Window.RemoveTimer"><a class="headerlink" href="#Window.RemoveTimer" title="Permanent link">RemoveTimer</a> (int timerId) | native</h3>
+
+<h3 id="Window.ResetHeight"><a class="headerlink" href="#Window.ResetHeight" title="Permanent link">ResetHeight</a> | native</h3>
+
+<h3 id="Window.ResetSize"><a class="headerlink" href="#Window.ResetSize" title="Permanent link">ResetSize</a> | native</h3>
+
+<h3 id="Window.ResetWidth"><a class="headerlink" href="#Window.ResetWidth" title="Permanent link">ResetWidth</a> | native</h3>
+
+<h3 id="Window.ResizeChild"><a class="headerlink" href="#Window.ResizeChild" title="Permanent link">ResizeChild</a> | native</h3>
+
+<h3 id="Window.SensitivityChanged"><a class="headerlink" href="#Window.SensitivityChanged" title="Permanent link">SensitivityChanged</a> (bool bNewSensitivity)</h3>
+
+<h3 id="Window.SetAcceleratorText"><a class="headerlink" href="#Window.SetAcceleratorText" title="Permanent link">SetAcceleratorText</a> (string newStr) | native</h3>
+
+<h3 id="Window.SetBackground"><a class="headerlink" href="#Window.SetBackground" title="Permanent link">SetBackground</a> (texture newBackground) | native</h3>
+
+<h3 id="Window.SetBackgroundSmoothing"><a class="headerlink" href="#Window.SetBackgroundSmoothing" title="Permanent link">SetBackgroundSmoothing</a> (bool newSmoothing) | native</h3>
+
+<h3 id="Window.SetBackgroundStretching"><a class="headerlink" href="#Window.SetBackgroundStretching" title="Permanent link">SetBackgroundStretching</a> (bool newStretching) | native</h3>
+
+<h3 id="Window.SetBackgroundStyle"><a class="headerlink" href="#Window.SetBackgroundStyle" title="Permanent link">SetBackgroundStyle</a> (EDrawStyle newStyle) | native</h3>
+
+<h3 id="Window.SetBoldFont"><a class="headerlink" href="#Window.SetBoldFont" title="Permanent link">SetBoldFont</a> (Font fn) | native</h3>
+
+<h3 id="Window.SetChildVisibility"><a class="headerlink" href="#Window.SetChildVisibility" title="Permanent link">SetChildVisibility</a> (bool bNewVisibility) | native</h3>
+
+<h3 id="Window.SetClientObject"><a class="headerlink" href="#Window.SetClientObject" title="Permanent link">SetClientObject</a> (object newClientObject) | native</h3>
+
+<h3 id="Window.SetCursorPos"><a class="headerlink" href="#Window.SetCursorPos" title="Permanent link">SetCursorPos</a> (float newMouseX, float newMouseY) | native</h3>
+
+<h3 id="Window.SetFocusSounds"><a class="headerlink" href="#Window.SetFocusSounds" title="Permanent link">SetFocusSounds</a> (optional sound focusSound, optional sound unfocusSound) | native</h3>
+
+<h3 id="Window.SetFocusWindow"><a class="headerlink" href="#Window.SetFocusWindow" title="Permanent link">SetFocusWindow</a> (window newFocusWindow) | native</h3>
+
+<h3 id="Window.SetFont"><a class="headerlink" href="#Window.SetFont" title="Permanent link">SetFont</a> (Font fn) | native</h3>
+
+<h3 id="Window.SetFonts"><a class="headerlink" href="#Window.SetFonts" title="Permanent link">SetFonts</a> (Font nFont, Font bFont) | native</h3>
+
+<h3 id="Window.SetHeight"><a class="headerlink" href="#Window.SetHeight" title="Permanent link">SetHeight</a> (float newHeight) | native</h3>
+
+<h3 id="Window.SetNormalFont"><a class="headerlink" href="#Window.SetNormalFont" title="Permanent link">SetNormalFont</a> (Font fn) | native</h3>
+
+<h3 id="Window.SetPos"><a class="headerlink" href="#Window.SetPos" title="Permanent link">SetPos</a> (float newX, float newY) | native</h3>
+
+<h3 id="Window.SetSelectability"><a class="headerlink" href="#Window.SetSelectability" title="Permanent link">SetSelectability</a> (bool newSelectability) | native</h3>
+
+<h3 id="Window.SetSensitivity"><a class="headerlink" href="#Window.SetSensitivity" title="Permanent link">SetSensitivity</a> (bool newSensitivity) | native</h3>
+
+<h3 id="Window.SetSize"><a class="headerlink" href="#Window.SetSize" title="Permanent link">SetSize</a> (float newWidth, float newHeight) | native</h3>
+
+<h3 id="Window.SetSoundVolume"><a class="headerlink" href="#Window.SetSoundVolume" title="Permanent link">SetSoundVolume</a> (float newVolume) | native</h3>
+
+<h3 id="Window.SetTextColor"><a class="headerlink" href="#Window.SetTextColor" title="Permanent link">SetTextColor</a> (color newColor) | native</h3>
+
+<h3 id="Window.SetTextColorRGB"><a class="headerlink" href="#Window.SetTextColorRGB" title="Permanent link">SetTextColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetTextColor(newColor);<br><br></div>
+<h3 id="Window.SetTileColor"><a class="headerlink" href="#Window.SetTileColor" title="Permanent link">SetTileColor</a> (color newColor) | native</h3>
+
+<h3 id="Window.SetTileColorRGB"><a class="headerlink" href="#Window.SetTileColorRGB" title="Permanent link">SetTileColorRGB</a> (INT red, INT green, INT blue)</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;local color newColor;<br><br>&#9;newColor.r = red;<br>&#9;newColor.g = green;<br>&#9;newColor.b = blue;<br>&#9;SetTileColor(newColor);<br><br></div>
+<h3 id="Window.SetVisibilitySounds"><a class="headerlink" href="#Window.SetVisibilitySounds" title="Permanent link">SetVisibilitySounds</a> (optional sound visSound, optional sound invisSound) | native</h3>
+
+<h3 id="Window.SetWidth"><a class="headerlink" href="#Window.SetWidth" title="Permanent link">SetWidth</a> (float newWidth) | native</h3>
+
+<h3 id="Window.Show"><a class="headerlink" href="#Window.Show" title="Permanent link">Show</a> (optional bool bShow) | native</h3>
+
+<h3 id="Window.TextChanged"><a class="headerlink" href="#Window.TextChanged" title="Permanent link">TextChanged</a> (window edit, bool bModified) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.ToggleChanged"><a class="headerlink" href="#Window.ToggleChanged" title="Permanent link">ToggleChanged</a> (Window button, bool bNewToggle) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.UngrabMouse"><a class="headerlink" href="#Window.UngrabMouse" title="Permanent link">UngrabMouse</a> | native</h3>
+
+<h3 id="Window.VirtualKeyPressed"><a class="headerlink" href="#Window.VirtualKeyPressed" title="Permanent link">VirtualKeyPressed</a> (EInputKey key, bool bRepeat) -> bool</h3>
+<button type="button" class="collapsible">Code</button><div class="content" style="white-space:pre"><br>&#9;return false;<br><br></div>
+<h3 id="Window.VisibilityChanged"><a class="headerlink" href="#Window.VisibilityChanged" title="Permanent link">VisibilityChanged</a> (bool bNewVisibility)</h3>
+
+<h3 id="Window.WindowReady"><a class="headerlink" href="#Window.WindowReady" title="Permanent link">WindowReady</a></h3>
+
+<br><br><hr>
+	</article>
+    </section>
+    <footer> By Kaiser, The Coded Mind (C) 2021</footer>
+  </body>
+</html>

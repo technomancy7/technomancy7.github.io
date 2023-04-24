@@ -1,0 +1,202 @@
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+
+	<title>Coded Mind</title>
+	<meta name="description" content="A portal of web stuff.">
+	<meta name="author" content="Kaiser">
+
+	<link rel="stylesheet" href="styles.css">
+	<script src="kaiser.js"></script>
+	
+  </head>
+  <body>
+	<header><h2>Coded Mind::Home</h2></header>
+	<section>
+	  <nav>
+		<ul>
+		  <li><a href="about.html">About</a></li>
+		  <li><a href="chat.html">Chat</a></li>
+		  <li><a href="https://twitter.com/thecodedmind">Twitter</a></li>
+		  <li><a href="https://twitter.com/themindofathena">Twitter (Athena)</a></li>
+		  <li><a href="https://gitlab.com/codedmind/">Gitlab</a></li>
+		</ul>
+	  </nav>
+ 
+	  <article>  
+		<a name="python" href="#python">#</a> <font size=10>Python</font><br>
+				
+		<a name="merry" href="#merry">#</a> <optitle>Merry</optitle><br>
+		A GUI around Pip.<br>
+		<a href="https://gitlab.com/codedmind/Merry">Source</a>
+		<br><br>
+		
+		<a name="netcrawler" href="#netcrawler">#</a> <optitle>Netcrawler</optitle><br>
+		A library containing various netcrawling and web scraping utilities.<br>
+		<a href="https://gitlab.com/codedmind/netcrawler">Source</a> |
+		<a href="https://pypi.org/project/netcrawler">PYPI</a>
+		<br><br>
+		
+		<a name="card" href="#card">#</a> <optitle>Cardpacks</optitle><br>
+		An extendible library for generating digital card packs.<br>
+		Useful for making digital solitaire, poker etc, without having to write bespoke card logic.<br>
+		<a href="https://gitlab.com/codedmind/cardpacks">Source</a> |
+		<a href="https://pypi.org/project/cardpacks/">PYPI</a>
+		<br><br>
+		
+		<a name="tyr" href="#tyr">#</a> <optitle>Tyr</optitle><br>
+		A WIP library for writing text adventure games in Python, using a simplistic API, JSON<br>
+		structure, and plug-n-play extendibility.<br>
+		<a href="https://gitlab.com/codedmind/tyr">Source</a>
+		<br><br>
+		
+		<a name="memory" href="#memory">#</a> <optitle>Memory3</optitle><br>
+		A library for rapid config management. Supports JSON and TOML backends currently.<br>
+		<a href="https://gitlab.com/codedmind/memory3">Source</a> |
+		<a href="https://pypi.org/project/memory3/">PYPI</a>
+		<br><br>
+		
+		<a name="mog" href="#mog">#</a> <optitle>Mogscript</optitle><br>
+		A library for scripting and automating text processing logic.<br>
+		<a href="https://gitlab.com/codedmind/mogscript">Source</a>
+		<br><br>
+		
+		<a name="bestiary" href="#bestiary">#</a> <optitle>Bestiary</optitle><br>
+		A GUI Bestiary app, letting a user categorize and label arbitrary indexed objects.<br>
+		<a href="https://gitlab.com/codedmind/OpenBestiary">Source</a>
+		<br><br>
+		<br>
+		
+		<a name="nim" href="#nim">#</a> <font size=10>Nim</font><br>
+		
+            <a name="nt" href="#nt">#</a> <optitle>NT: Nim Text storage</optitle><br>
+		Nim-based snippet/note app for CLI.<br>
+		<a href="https://gitlab.com/codedmind/nt">Source</a> |
+		  <a href="https://gitlab.com/codedmind/nt/releases">Download</a>
+		<br><br>
+
+		
+		<a name="dchk" href="#dchk">#</a> <optitle>dchk</optitle><br>
+		A command-line utility for quick directory scanning,<br>
+		searching file bodies for specific text.<br>
+		<a href="https://gitlab.com/codedmind/dchk">Source</a> | 
+		<a href="https://gitlab.com/codedmind/dchk/releases">Download</a>
+		<br><br>
+		<br>
+		
+		<a name="ruby" href="#ruby">#</a> <font size=10>Ruby</font><br>
+
+		<a name="chariot" href="#chariot">#</a> <optitle>Chariot</optitle>
+		A WIP desktop assistant, using an AIML-style input and completely extendable <br>
+		through extension files and a live scripting environment.<br>
+		<a href="https://gitlab.com/codedmind/chariot">Source</a>
+		<br><br>
+
+		<a name="ridea" href="#ridea">#</a> <optitle>ridea</optitle>
+		A Ruby IDE Application! Super work-in-progress, planned to be Emacs-lite but for Ruby, not lisp.<br>
+		<a href="https://gitlab.com/codedmind/ridea">Source</a>
+		<br><br>
+		
+		<a name="fountain" href="#fountain">#</a> <optitle>fountain</optitle>
+		A WIP extendible novel writing software.<br>
+		<a href="https://gitlab.com/codedmind/fountain">Source</a>
+		<br><br>
+		
+		<a name="memrb" href="#memrb">#</a> <optitle>Memory-rb</optitle>
+		Memory library, but for ruby. Weird!<br>
+		<a href="https://gitlab.com/codedmind/Memory-rb">Source</a>
+		<br><br>
+		
+		<a name="valkrb" href="#valkrb">#</a> <optitle>Valkyrie-rb</optitle>
+		Experimental source code for a Ruby discord bot.<br>
+		Contains working functionality for a hunger games simulator.<br>
+		<a href="https://gitlab.com/codedmind/Valkyrie-rb">Source</a>
+		<br><br>
+		
+		<a name="libkaiserrb" href="#libkaiserrb">#</a> <optitle>libkaiser.rb</optitle>
+		Random assorted utilities.<br>
+		<a href="https://gitlab.com/codedmind/libkaiser-rb">Source</a>
+		<br><br>
+
+		<a name="javascript" href="#javascript">#</a> <font size=10>Javascript</font><br>
+		<a name="valkyrie" href="#valkyrie">#</a> <optitle>Valkyrie</optitle>
+		Source code for my Valkyrie discord bot.<br>
+		<a href="https://gitlab.com/codedmind/valkyrie">Source</a>
+		<br><br>
+		
+		<a name="libkaiserjs" href="#libkaiserjs">#</a> <optitle>libkaiser.js</optitle>
+		Random assorted utilities.<br>
+		<a href="https://gitlab.com/codedmind/libkaiser-js">Source</a> | <a href="https://github.com/Kaiz0r/libkaiser-js/raw/master/libkaiser.js">Direct</a>	
+		<br><br>
+
+		<a name="dlang" href="#dlang">#</a> <font size=10>D</font><br>
+		<a name="dgames" href="#dgames">#</a> <optitle>dgames</optitle>
+		A WIP command-line extendable games collection.<br>
+		<a href="https://gitlab.com/codedmind/d-games">Source</a>
+		<a href="https://gitlab.com/codedmind/dggames-extensions">Extensions</a>
+		<br><br>
+		
+		<a name="other" href="#other">#</a> <font size=10>Other</font><br>
+		
+		<a name="winter" href="#winter">#</a> <optitle>Winter</optitle><br>
+		A WIP text adventure survival game.<br>
+		<a href="https://codedmind.gitlab.io/winter">Play</a>
+		<br><br>
+		
+		<a name="cc" href="#cc">#</a> <optitle>Code Clicker</optitle><br>
+		A WIP iterative clicker game. Not really anything serious, just playing with JS.<br>
+		<a href="https://codedmind.gitlab.io/codeclicker">Play</a>
+		<br><br>
+		
+		<a name="nodewords" href="#nodewords">#</a> <optitle>Nodewords</optitle><br>
+		A word guessing game.<br>
+		<a href="https://codedmind.gitlab.io/nodewords">Play Javascript Ver.</a> |
+		<a href="https://codedmind.gitlab.io/nodewords_v2">Play Twine Ver.</a>
+		<br><br>
+		
+		<a name="trivia" href="#trivia">#</a> <optitle>Trivia</optitle><br>
+		Web trivia game.<br>
+		<a href="https://codedmind.gitlab.io/trivia">Play</a>
+		<br><br>
+		
+		<a name="openbestiary" href="#openbestiary">#</a> <optitle>OpenBestiary</optitle><br>
+		TODO: Web version of bestiary app.<br>
+		N/A
+		<br><br>
+		
+		<a name="dxd" href="#dxd">#</a> <optitle>Deus Ex Docs</optitle><br>
+		DX knowledge base.<br>
+		Link WIP
+		<br><br>
+		<br>
+		
+		<a name="unreal" href="#unreal">#</a> <font size=10>Unreal</font><br>
+		<a name="opendx" href="#opendx">#</a> <optitle>OpenDX</optitle><br>
+		<a href="https://gitlab.com/deus-ex/opendx">Source</a>
+		<br><br>
+		
+		<a name="partystuff" href="#partystuff">#</a> <optitle>PartyStuff</optitle><br>
+		<a href="https://gitlab.com/deus-ex/PartyStuff">Source</a>
+		<br><br>
+		
+		<a name="rcon" href="#rcon">#</a> <optitle>RCON</optitle><br>
+		<a href="https://gitlab.com/deus-ex/RCON">Source</a>
+		<br><br>
+		
+		<a name="cdx" href="#cdx">#</a> <optitle>CDX</optitle><br>
+		<a href="https://gitlab.com/deus-ex/CDX">Source</a>
+		<br><br>
+		
+		<a name="tcc" href="#tcc">#</a> <optitle>tccore</optitle><br>
+		<a href="https://gitlab.com/deus-ex/tccore">Source</a>
+		<br><br>
+
+		<a name="dyn" href="#dyn">#</a> <optitle>DynMusic</optitle><br>
+		<a href="https://gitlab.com/deus-ex/dynmusic">Source</a>
+		<br><br>
+	  </article>
+	</section>
+
+	<footer> By Kaiser, The Coded Mind (C) 2020</footer>
+  </body>
+</html>
