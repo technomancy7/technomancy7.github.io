@@ -8,7 +8,10 @@ function populateDsc(){
 		json.items.forEach((item) => {
 			let slist = document.getElementById("dsc-"+item.group);
 			if(slist == null) return;
-			slist.insertAdjacentHTML( 'beforeend',"<li>" + item.title + " : " + item.url+ " </li>");
+			const link = document.createElement("a");
+			link.href = item.url;
+			link.innerText = `${item.name}: ${item.url}`
+			slist.insertAdjacentHTML( 'beforeend',"<li>" + link.outerHTML+ " </li>");
 		});
 	  });
 }
