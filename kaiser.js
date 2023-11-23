@@ -1,3 +1,17 @@
+function populateDsc(){
+	fetch('./discords.json')
+	  .then((response) => response.json())
+	  .then((json) => {
+		let list = document.getElementById("dsc-main");
+		if(list == null) return;
+
+		json.items.forEach((item) => {
+			let slist = document.getElementById("dsc-"+item.group);
+			if(slist == null) return;
+			slist.insertAdjacentHTML( 'beforeend',"<li>" + item.title + " : " + item.url+ " </li>");
+		});
+	  });
+}
 
 function test(input) {
 	console.log(input);
@@ -19,6 +33,9 @@ function collapses(){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+
+	populateDsc();
+
     var coll = document.getElementsByClassName("collapsible");
 
     for (i = 0; i < coll.length; i++) {
