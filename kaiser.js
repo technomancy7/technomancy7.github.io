@@ -10,8 +10,8 @@ function populateDsc(){
 			if(slist == null) return;
 			const link = document.createElement("a");
 			link.href = item.url;
-			link.innerText = `${item.name}: ${item.url}`
-			slist.insertAdjacentHTML( 'beforeend',"<li>" + link.outerHTML+ " </li>");
+			link.innerText = `${item.url}`
+			slist.insertAdjacentHTML( 'beforeend',"<li>" + item.name+": "+link.outerHTML+ " </li>");
 		});
 	  });
 }
