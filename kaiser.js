@@ -11,7 +11,8 @@ function populateDsc(){
 			const link = document.createElement("a");
 			link.href = item.url;
 			link.innerText = `${item.url}`
-			slist.insertAdjacentHTML( 'beforeend',"<li>" + item.name+": "+link.outerHTML+ " </li>");
+			const di = `<img src="svg/discord.svg" style="width:20px;height:16px;">`
+			slist.insertAdjacentHTML( 'beforeend',"<li>" + di + item.name+": "+link.outerHTML+ " </li>");
 		});
 	  });
 }
