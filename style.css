@@ -50,6 +50,9 @@ article{
   padding-top: 0px;
   background:#888888;
 }
+article:hover {
+	background: #a8a8a8;
+}
 .title{
   background: #595959;
   color: #fff;
