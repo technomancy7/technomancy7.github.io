@@ -34,12 +34,14 @@ header nav ul li{
   float:left;
   margin-left: 4px;
   margin-right: 4px;
+  padding-left: 10px;
 }
 
 header nav ul li a{
   color:#fff;
   font-size:1.2em
 }
+
 article{
   margin: 5px;
   padding: 5px 0;
